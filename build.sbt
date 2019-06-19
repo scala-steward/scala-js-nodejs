@@ -54,7 +54,7 @@ lazy val root = (project in file("."))
   .settings(publishingSettings)
   .settings(nonPublishingSetting)
   .settings(
-    name := "scala-js-nodejs"
+    name := "scala-js-nodejs-all"
   )
 
 lazy val core = (project in file("./core"))
@@ -62,9 +62,8 @@ lazy val core = (project in file("./core"))
   .settings(commonSettings)
   .settings(commonScalaJsSettings)
   .settings(publishingSettings)
-  .settings(nonPublishingSetting)
   .settings(
-    name := "core",
+    name := "scala-js-nodejs-core",
     libraryDependencies ++= Seq(
       "org.scala-lang" % "scala-reflect" % scalaVersion.value,
       "org.scalatest"  %%% "scalatest"   % scalatestVersion % "test"
@@ -77,9 +76,8 @@ lazy val common = (project in file("./app/common"))
   .settings(commonScalaJsSettings)
   .settings(commonMacroParadiseSetting)
   .settings(publishingSettings)
-  .settings(nonPublishingSetting)
   .settings(
-    name := "nodejs-common",
+    name := "scala-js-nodejs-common",
     libraryDependencies ++= Seq(
       "org.scala-lang" % "scala-reflect" % scalaVersion.value,
       "org.scalactic"  %% "scalactic"    % scalacticVersion,
@@ -96,7 +94,7 @@ lazy val nodejs_v8 = (project in file("./app/nodejs_v8"))
   .settings(commonMacroParadiseSetting)
   .settings(publishingSettings)
   .settings(
-    name := "nodejs_v8",
+    name := "scala-js-nodejs-v8",
     description := "NodeJS v8.7.0 API for Scala.js",
     homepage := Some(url("https://github.com/exoego/scala-js-nodejs")),
     libraryDependencies ++= Seq(
