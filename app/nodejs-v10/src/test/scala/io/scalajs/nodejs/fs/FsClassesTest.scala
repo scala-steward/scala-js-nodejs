@@ -10,7 +10,7 @@ class FsClassesTest extends AnyFunSpec {
 
   describe("ReadStream") {
     it("supports constructor(") {
-      assert(new ReadStream("package.json") !== null)
+      assert(new ReadStream("package.json").readableLength === 0)
       assert(new ReadStream(Buffer.from("package.json")) !== null)
       assert(new ReadStream(new URL(s"file:///${dirname}/package.json")) !== null)
     }
@@ -18,9 +18,9 @@ class FsClassesTest extends AnyFunSpec {
 
   describe("WriteStream") {
     it("supports constructor") {
-      assert(new WriteStream("package.json") !== null)
-      assert(new WriteStream(Buffer.from("package.json")) !== null)
-      assert(new WriteStream(new URL(s"file:///${dirname}/package.json")) !== null)
+      assert(new WriteStream("NO_SUCH_FILE").writableLength === 0)
+      assert(new WriteStream(Buffer.from("NO_SUCH_FILE")) !== null)
+      assert(new WriteStream(new URL(s"file:///${dirname}/NO_SUCH_FILE")) !== null)
     }
   }
 }
