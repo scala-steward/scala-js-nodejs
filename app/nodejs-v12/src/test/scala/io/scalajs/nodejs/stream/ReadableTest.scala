@@ -8,5 +8,12 @@ class ReadableTest extends AnyFunSpec {
     it("readableEncoding") {
       assert(new ReadStream("package.json").readableEncoding === null)
     }
+
+    it("readableFlowing") {
+      val rs = new ReadStream("package.json")
+      assert(rs.readableFlowing === null)
+      rs.on("readable", () => {})
+      assert(rs.readableFlowing === false)
+    }
   }
 }

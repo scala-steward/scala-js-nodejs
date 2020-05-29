@@ -159,7 +159,7 @@ sealed trait IReadable extends LegacyStream {
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def readableEnded: Boolean = js.native
 
-  def readableFlowing: Boolean = js.native
+  def readableFlowing: Boolean | Null = js.native
 
   def readableHighWaterMark: Double = js.native
 
