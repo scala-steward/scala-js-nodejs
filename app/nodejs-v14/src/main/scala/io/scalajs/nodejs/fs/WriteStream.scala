@@ -12,7 +12,7 @@ import scala.scalajs.js.|
   * @see https://nodejs.org/api/fs.html#fs_class_fs_writestream
   */
 @js.native
-@JSImport("fs", "ReadStream")
+@JSImport("fs", "WriteStream")
 class WriteStream(path: Path) extends stream.Writable {
   /////////////////////////////////////////////////////////////////////////////////
   //      Properties
