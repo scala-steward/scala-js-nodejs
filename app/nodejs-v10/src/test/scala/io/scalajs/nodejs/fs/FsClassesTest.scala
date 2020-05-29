@@ -18,10 +18,9 @@ class FsClassesTest extends AnyFunSpec {
 
   describe("WriteStream") {
     it("supports constructor") {
-      new WriteStream("package.json").cork()
-      assert(new WriteStream("package.json") !== null)
-      assert(new WriteStream(Buffer.from("package.json")) !== null)
-      assert(new WriteStream(new URL(s"file:///${dirname}/package.json")) !== null)
+      assert(new WriteStream("NO_SUCH_FILE").writableLength === 0)
+      assert(new WriteStream(Buffer.from("NO_SUCH_FILE")) !== null)
+      assert(new WriteStream(new URL(s"file:///${dirname}/NO_SUCH_FILE")) !== null)
     }
   }
 }
