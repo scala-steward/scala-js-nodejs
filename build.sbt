@@ -1,13 +1,19 @@
 organization in ThisBuild := "net.exoego"
 
-lazy val root = (project in file("."))
-  .aggregate(core, nodejs_v14, nodejs_v12, nodejs_v10)
-  .settings(MySettings.commonSettings)
-  .settings(MySettings.publishingSettings)
-  .settings(MySettings.nonPublishingSetting)
-  .settings(
-    name := "scala-js-nodejs"
-  )
+lazy val root = {
+  val p = (project in file("."))
+    .aggregate(core)
+    .settings(MySettings.commonSettings)
+    .settings(MySettings.publishingSettings)
+    .settings(MySettings.nonPublishingSetting)
+    .settings(
+      name := "scala-js-nodejs"
+    )
+  val travisNodeVersion = Option(System.getenv("TRAVIS_NODE_VERSION")).filter(_.nonEmpty).getOrElse("")
+  if (travisNodeVersion.startsWith("10.")) p.aggregate(nodejs_v10)
+  else if (travisNodeVersion.startsWith("12.")) p.aggregate(nodejs_v10, nodejs_v12)
+  else p.aggregate(nodejs_v10, nodejs_v12, nodejs_v14)
+}
 
 lazy val core = (project in file("./core"))
   .enablePlugins(ScalaJSPlugin)
