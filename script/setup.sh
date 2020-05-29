@@ -17,5 +17,5 @@ if [ -e "$V10_DIR" ]; then
   echo "V10 dir already exists."
 else
   ln -s "$SOURCE_DIR" "$V10_DIR";
-  echo "V1 dir created.";
+  echo "V10 dir created.";
 fi
