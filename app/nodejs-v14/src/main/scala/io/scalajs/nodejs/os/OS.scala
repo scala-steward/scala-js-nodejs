@@ -1,5 +1,7 @@
 package io.scalajs.nodejs.os
 
+import com.thoughtworks.enableIf
+
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
@@ -146,6 +148,13 @@ trait OS extends js.Object {
     * @return a [[UserInfoObject user information object]]
     */
   def userInfo(options: UserInfoOptions = js.native): UserInfoObject = js.native
+
+  /**
+    * Returns a string identifying the kernel version.
+    * Added in: v13.11.0
+    */
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+  def version(): String = js.native
 }
 
 /**
