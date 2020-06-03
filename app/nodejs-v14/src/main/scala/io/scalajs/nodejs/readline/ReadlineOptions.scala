@@ -16,4 +16,5 @@ trait ReadlineOptions extends js.Object {
   var crlfDelay: js.UndefOr[Double]                = js.undefined
   var removeHistoryDuplicates: js.UndefOr[Boolean] = js.undefined
   var escapeCodeTimeout: js.UndefOr[Double]        = js.undefined
+  var tabSize: js.UndefOr[Int]                     = js.undefined
 }
