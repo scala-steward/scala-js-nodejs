@@ -37,11 +37,10 @@ trait QueryString extends js.Object {
     * @param options The given [[QueryDecodeOptions options]]
     * @return a mapping of the key-value pairs
     */
-  def parse(str: String,
-            sep: String = js.native,
-            eq: String = js.native,
-            options: QueryDecodeOptions = js.native
-  ): js.Dictionary[String] = js.native
+  def parse(str: String, sep: String, eq: String, options: QueryDecodeOptions): js.Dictionary[String] = js.native
+  def parse(str: String, sep: String, eq: String): js.Dictionary[String]                              = js.native
+  def parse(str: String, sep: String): js.Dictionary[String]                                          = js.native
+  def parse(str: String): js.Dictionary[String]                                                       = js.native
 
   /**
     * The querystring.stringify() method produces a URL query string from a given obj by iterating through the
@@ -51,11 +50,10 @@ trait QueryString extends js.Object {
     * @param eq      The substring used to delimit keys and values in the query string. Defaults to '='.
     * @param options The given [[QueryEncodeOptions options]]
     */
-  def stringify(obj: js.Any,
-                sep: String = js.native,
-                eq: String = js.native,
-                options: QueryEncodeOptions = js.native
-  ): String = js.native
+  def stringify(obj: js.Any, sep: String, eq: String, options: QueryEncodeOptions): String = js.native
+  def stringify(obj: js.Any, sep: String, eq: String): String                              = js.native
+  def stringify(obj: js.Any, sep: String): String                                          = js.native
+  def stringify(obj: js.Any): String                                                       = js.native
 
   /**
     * The querystring.unescape() method performs decoding of URL percent-encoded characters on the given str.

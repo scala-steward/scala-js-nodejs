@@ -15,9 +15,10 @@ import scala.scalajs.js.annotation.JSImport
   */
 @js.native
 trait ChildProcess extends IEventEmitter {
-  def kill(signal: js.UndefOr[KillSignal] = js.native): Unit = js.native
-  def ref(): Unit                                            = js.native
-  def unref(): Unit                                          = js.native
+  def kill(signal: js.UndefOr[KillSignal]): Unit = js.native
+  def kill(): Unit                               = js.native
+  def ref(): Unit                                = js.native
+  def unref(): Unit                              = js.native
 
   val channel: js.UndefOr[js.Object] = js.native
   val connected: Boolean             = js.native
@@ -32,11 +33,17 @@ trait ChildProcess extends IEventEmitter {
 @js.native
 trait ForkedChildProcess extends ChildProcess {
   def disconnect(): Unit = js.native
+
   def send(message: js.Any,
-           sendHandle: Handle = js.native,
-           options: SendOptions = js.native,
-           callback: js.Function1[nodejs.Error, Any] = js.native
-  ): Boolean = js.native
+           sendHandle: Handle,
+           options: SendOptions,
+           callback: js.Function1[nodejs.Error, Any]
+  ): Boolean                                                                                        = js.native
+  def send(message: js.Any, sendHandle: Handle, options: SendOptions): Boolean                      = js.native
+  def send(message: js.Any, sendHandle: Handle, callback: js.Function1[nodejs.Error, Any]): Boolean = js.native
+  def send(message: js.Any, sendHandle: Handle): Boolean                                            = js.native
+  def send(message: js.Any, callback: js.Function1[nodejs.Error, Any]): Boolean                     = js.native
+  def send(message: js.Any): Boolean                                                                = js.native
 }
 
 /**
@@ -45,55 +52,41 @@ trait ForkedChildProcess extends ChildProcess {
 @JSImport("child_process", JSImport.Namespace)
 @js.native
 object ChildProcess extends scala.scalajs.js.Object {
-  def exec(
-      args: String,
-      options: ExecOptions = js.native,
-      callback: js.Function3[
-        nodejs.Error,
-        Output,
-        Output,
-        Any
-      ]
-  ): ChildProcess = js.native
+  def exec(args: String, options: ExecOptions, callback: ExecCallback): ChildProcess = js.native
+  def exec(args: String, callback: ExecCallback): ChildProcess                       = js.native
+  def exec(args: String, options: ExecOptions): ChildProcess                         = js.native
+  def exec(args: String): ChildProcess                                               = js.native
 
-  def execFile(
-      file: String,
-      args: js.Array[String] = js.native,
-      options: ExecOptions = js.native,
-      callback: js.Function3[
-        nodejs.Error,
-        Output,
-        Output,
-        Any
-      ]
-  ): ChildProcess = js.native
+  def execFile(file: String, args: js.Array[String], options: ExecOptions, callback: ExecCallback): ChildProcess =
+    js.native
+  def execFile(file: String, args: js.Array[String], options: ExecOptions): ChildProcess   = js.native
+  def execFile(file: String, args: js.Array[String], callback: ExecCallback): ChildProcess = js.native
+  def execFile(file: String, args: js.Array[String]): ChildProcess                         = js.native
+  def execFile(file: String, options: ExecOptions, callback: ExecCallback): ChildProcess   = js.native
+  def execFile(file: String, options: ExecOptions): ChildProcess                           = js.native
+  def execFile(file: String, callback: ExecCallback): ChildProcess                         = js.native
+  def execFile(file: String): ChildProcess                                                 = js.native
 
-  def execSync(
-      command: String,
-      options: ExecOptions = js.native
-  ): Output = js.native
+  def execSync(command: String, options: ExecOptions): Output = js.native
+  def execSync(command: String): Output                       = js.native
 
-  def execFileSync(
-      file: String,
-      args: js.Array[String] = js.native,
-      options: ExecFileSyncOptions = js.native
-  ): Output = js.native
+  def execFileSync(file: String, args: js.Array[String], options: ExecFileSyncOptions): Output = js.native
+  def execFileSync(file: String, args: js.Array[String]): Output                               = js.native
+  def execFileSync(file: String, options: ExecFileSyncOptions): Output                         = js.native
+  def execFileSync(file: String): Output                                                       = js.native
 
-  def fork(
-      modulePath: String,
-      args: js.Array[String] = js.native,
-      options: ForkOptions = js.native
-  ): ForkedChildProcess = js.native
+  def fork(modulePath: String, args: js.Array[String], options: ForkOptions): ForkedChildProcess = js.native
+  def fork(modulePath: String, args: js.Array[String]): ForkedChildProcess                       = js.native
+  def fork(modulePath: String, options: ForkOptions): ForkedChildProcess                         = js.native
+  def fork(modulePath: String): ForkedChildProcess                                               = js.native
 
-  def spawn(
-      command: String,
-      args: js.Array[String] = js.native,
-      options: SpawnOptions = js.native
-  ): ChildProcess = js.native
+  def spawn(command: String, args: js.Array[String], options: SpawnOptions): ChildProcess = js.native
+  def spawn(command: String, args: js.Array[String]): ChildProcess                        = js.native
+  def spawn(command: String, options: SpawnOptions): ChildProcess                         = js.native
+  def spawn(command: String): ChildProcess                                                = js.native
 
-  def spawnSync(
-      command: String,
-      args: js.Array[String] = js.native,
-      options: SpawnSyncOptions = js.native
-  ): SpawnSyncResult = js.native
+  def spawnSync(command: String, args: js.Array[String], options: SpawnSyncOptions): SpawnSyncResult = js.native
+  def spawnSync(command: String, args: js.Array[String]): SpawnSyncResult                            = js.native
+  def spawnSync(command: String, options: SpawnSyncOptions): SpawnSyncResult                         = js.native
+  def spawnSync(command: String): SpawnSyncResult                                                    = js.native
 }

@@ -28,7 +28,8 @@ class Socket private[this] () extends IEventEmitter {
     * @param multicastInterface the multicast interface
     * @example addMembership(multicastAddress[, multicastInterface])
     */
-  def addMembership(multicastAddress: String, multicastInterface: String = js.native): Unit = js.native
+  def addMembership(multicastAddress: String, multicastInterface: String): Unit = js.native
+  def addMembership(multicastAddress: String): Unit                             = js.native
 
   /**
     * Returns an object containing the address information for a socket. For UDP sockets,
@@ -64,17 +65,28 @@ class Socket private[this] () extends IEventEmitter {
     * @param callback the callback
     * @example bind(options[, callback])
     */
-  def bind(options: BindOptions, callback: js.Function = js.native): Unit = js.native
+  def bind(options: BindOptions, callback: js.Function): Unit = js.native
+  def bind(options: BindOptions): Unit                        = js.native
 
-  def close(callback: js.Function = js.native): Unit = js.native
+  def close(callback: js.Function): Unit = js.native
+  def close(): Unit                      = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def connect(port: Int, address: String = js.native, callback: js.Function0[Any] = js.native): Unit = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def connect(port: Int,
+                                                                                 address: String,
+                                                                                 callback: js.Function0[Any]
+  ): Unit = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def connect(port: Int, address: String): Unit =
+    js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def connect(port: Int,
+                                                                                 callback: js.Function0[Any]
+  ): Unit                                                                                         = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def connect(port: Int): Unit = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def disconnect(): Unit = js.native
 
-  def dropMembership(multicastAddress: String, multicastInterface: String = js.native): Unit = js.native
+  def dropMembership(multicastAddress: String, multicastInterface: String): Unit = js.native
+  def dropMembership(multicastAddress: String): Unit                             = js.native
 
   def getRecvBufferSize(): Int = js.native
   def getSendBufferSize(): Int = js.native

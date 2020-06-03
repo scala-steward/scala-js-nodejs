@@ -44,7 +44,8 @@ sealed trait Cipher extends Transform {
     * the value used for the additional authenticated data (AAD) input parameter.
     * @example cipher.setAAD(buffer)
     */
-  def setAAD(buffer: Buffer, options: SetAADOptions = js.native): Cipher = js.native
+  def setAAD(buffer: Buffer, options: SetAADOptions): Cipher = js.native
+  def setAAD(buffer: Buffer): Cipher                         = js.native
 
   /**
     * When using an authenticated encryption mode (only GCM is currently supported), the cipher.getAuthTag() method
@@ -66,7 +67,8 @@ sealed trait Cipher extends Transform {
     * The cipher.setAutoPadding() method must be called before cipher.final().
     * @example cipher.setAutoPadding(auto_padding=true)
     */
-  def setAutoPadding(auto_padding: Boolean = js.native): Cipher = js.native
+  def setAutoPadding(auto_padding: Boolean): Cipher = js.native
+  def setAutoPadding(): Cipher                      = js.native
 
   /**
     * Updates the cipher with data. If the input_encoding argument is given, it's value must be one of 'utf8', 'ascii',

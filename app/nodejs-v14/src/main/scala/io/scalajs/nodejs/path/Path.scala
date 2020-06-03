@@ -44,7 +44,8 @@ trait Path extends js.Object {
     * @param ext  optional, if given, must also be a string.
     * @return the last portion of a path
     */
-  def basename(path: String, ext: String = js.native): String = js.native
+  def basename(path: String, ext: String): String = js.native
+  def basename(path: String): String              = js.native
 
   /**
     * Return the directory name of a path, similar to the Unix dirname command.

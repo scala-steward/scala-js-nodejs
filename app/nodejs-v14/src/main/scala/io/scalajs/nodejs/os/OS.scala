@@ -64,7 +64,8 @@ trait OS extends js.Object {
     */
   def freemem(): Double = js.native
 
-  def getPriority(pid: Int = js.native): Int = js.native
+  def getPriority(pid: Int): Int = js.native
+  def getPriority(): Int         = js.native
 
   /**
     * Returns the home directory of the current user.
@@ -147,7 +148,8 @@ trait OS extends js.Object {
     * falling back to the operating system response.
     * @return a [[UserInfoObject user information object]]
     */
-  def userInfo(options: UserInfoOptions = js.native): UserInfoObject = js.native
+  def userInfo(options: UserInfoOptions): UserInfoObject = js.native
+  def userInfo(): UserInfoObject                         = js.native
 
   /**
     * Returns a string identifying the kernel version.

@@ -188,7 +188,8 @@ trait Process extends IEventEmitter {
     */
   def chdir(directory: String): Unit = js.native
 
-  def cpuUsage(previousValue: CpuUsage = js.native): CpuUsage = js.native
+  def cpuUsage(previousValue: CpuUsage): CpuUsage = js.native
+  def cpuUsage(): CpuUsage                        = js.native
 
   /**
     * Returns the current working directory of the process.
@@ -206,21 +207,25 @@ trait Process extends IEventEmitter {
     */
   def disconnect(): js.Any = js.native
 
-  def dlopen(module: io.scalajs.nodejs.Module, filename: String, flags: Int = js.native): Unit = js.native
+  def dlopen(module: io.scalajs.nodejs.Module, filename: String, flags: Int): Unit = js.native
+  def dlopen(module: io.scalajs.nodejs.Module, filename: String): Unit             = js.native
 
-  def emitWarning(warning: io.scalajs.nodejs.Error): Unit = js.native
-  def emitWarning(warning: String,
-                  `type`: String = js.native,
-                  code: String = js.native,
-                  ctor: js.Function = js.native
-  ): Unit                                                         = js.native
-  def emitWarning(warning: String, options: WarningOptions): Unit = js.native
+  def emitWarning(warning: io.scalajs.nodejs.Error, options: WarningOptions): Unit        = js.native
+  def emitWarning(warning: io.scalajs.nodejs.Error): Unit                                 = js.native
+  def emitWarning(warning: String, options: WarningOptions): Unit                         = js.native
+  def emitWarning(warning: String, `type`: String, code: String, ctor: js.Function): Unit = js.native
+  def emitWarning(warning: String, `type`: String, ctor: js.Function): Unit               = js.native
+  def emitWarning(warning: String, ctor: js.Function): Unit                               = js.native
+  def emitWarning(warning: String, `type`: String, code: String): Unit                    = js.native
+  def emitWarning(warning: String, `type`: String): Unit                                  = js.native
+  def emitWarning(warning: String): Unit                                                  = js.native
 
   /**
     * Ends the process with the specified code. If omitted, exit uses the 'success' code 0.
     * @example process.exit([code])
     */
-  def exit(code: Int = js.native): Unit = js.native
+  def exit(code: Int): Unit = js.native
+  def exit(): Unit          = js.native
 
   /**
     * Gets the effective group identity of the process. This is the numerical group id, not the group name.
@@ -286,7 +291,8 @@ trait Process extends IEventEmitter {
     * like the kill system call. The signal sent may do something other than kill the target process.
     * @example process.kill(pid[, signal])
     */
-  def kill(pid: Int, signal: String | Int = js.native): Unit = js.native
+  def kill(pid: Int, signal: String | Int): Unit = js.native
+  def kill(pid: Int): Unit                       = js.native
 
   /**
     * Returns an object describing the memory usage of the Node.js process measured in bytes.
@@ -362,7 +368,8 @@ trait Process extends IEventEmitter {
     */
   def setuid(id: String | Int): Unit = js.native
 
-  def setUncaughtExceptionCaptureCallback(callback: js.Function = js.native): Unit = js.native
+  def setUncaughtExceptionCaptureCallback(callback: js.Function): Unit = js.native
+  def setUncaughtExceptionCaptureCallback(): Unit                      = js.native
 
   /**
     * Sets or reads the process's file mode creation mask. Child processes inherit the mask from the parent process.

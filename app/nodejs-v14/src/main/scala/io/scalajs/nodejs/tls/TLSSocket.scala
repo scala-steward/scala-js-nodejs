@@ -19,7 +19,9 @@ import scala.scalajs.js.|
   */
 @js.native
 @JSImport("tls", "TLSSocket")
-class TLSSocket(socket: stream.IDuplex, options: TLSSocketOptions = js.native) extends net.Socket {
+class TLSSocket(socket: stream.IDuplex, options: TLSSocketOptions) extends net.Socket {
+  def this(socket: stream.IDuplex) = this(???, ???)
+
   def authorizationError: js.UndefOr[Boolean] = js.native
 
   def authorized: Boolean = js.native

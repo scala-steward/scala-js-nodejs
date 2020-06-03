@@ -17,11 +17,6 @@ class Http2ServerResponse extends stream.Writable with Http2TimeoutOps {
   def socket: net.Socket | tls.TLSSocket     = js.native
   def stream: Http2Stream                    = js.native
 
-  def end(): js.UndefOr[this.type] = js.native
-
-  def write(chunk: String | Buffer): Boolean                                              = js.native
-  def write(chunk: String, encoding: String, callback: js.Function1[Error, Any]): Boolean = js.native
-
   def writeHead(statusCode: Int, statusMessage: String, http2Headers: Http2Headers): Unit = js.native
   def writeHead(statusCode: Int, http2Headers: Http2Headers): Unit                        = js.native
   def writeHead(statusCode: Int, statusMessage: String): Unit                             = js.native

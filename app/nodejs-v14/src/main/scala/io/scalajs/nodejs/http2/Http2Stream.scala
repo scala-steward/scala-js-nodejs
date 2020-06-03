@@ -12,7 +12,8 @@ trait Http2Stream extends stream.Duplex {
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def bufferSize: Int = js.native
 
-  def close(code: Int, callback: js.Function = js.native): Unit = js.native
+  def close(code: Int, callback: js.Function): Unit = js.native
+  def close(code: Int): Unit                        = js.native
 
   def closed: Boolean = js.native
 

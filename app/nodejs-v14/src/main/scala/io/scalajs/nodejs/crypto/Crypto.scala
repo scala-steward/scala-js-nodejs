@@ -112,8 +112,9 @@ trait Crypto extends js.Object {
     * @param algorithm the given algorithm (e.g. 'sha256', 'sha512')
     */
   @deprecated("Use CreateHashOptions instead.", "v0.12.0")
-  def createHash(algorithm: String, options: TransformOptions): Hash              = js.native
-  def createHash(algorithm: String, options: CreateHashOptions = js.native): Hash = js.native
+  def createHash(algorithm: String, options: TransformOptions): Hash  = js.native
+  def createHash(algorithm: String, options: CreateHashOptions): Hash = js.native
+  def createHash(algorithm: String): Hash                             = js.native
 
   /**
     * Creates and returns an Hmac object that uses the given algorithm and key.
@@ -124,7 +125,8 @@ trait Crypto extends js.Object {
     * @param algorithm the given algorithm (e.g. 'sha256', 'sha512')
     * @param key       The key is the HMAC key used to generate the cryptographic HMAC hash.
     */
-  def createHmac(algorithm: String, key: String | BufferLike, options: TransformOptions = js.native): Hmac = js.native
+  def createHmac(algorithm: String, key: String | BufferLike, options: TransformOptions): Hmac = js.native
+  def createHmac(algorithm: String, key: String | BufferLike): Hmac                            = js.native
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def createHmac(algorithm: String, key: KeyObject, options: TransformOptions): Hmac = js.native
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
@@ -144,14 +146,16 @@ trait Crypto extends js.Object {
     * list-public-key-algorithms will display the available signing algorithms. One example is 'RSA-SHA256'.
     * @param algorithm the given algorithm (e.g. 'RSA-SHA256')
     */
-  def createSign(algorithm: String, options: WritableOptions = js.native): Sign = js.native
+  def createSign(algorithm: String, options: WritableOptions): Sign = js.native
+  def createSign(algorithm: String): Sign                           = js.native
 
   /**
     * Creates and returns a Verify object that uses the given algorithm. On recent OpenSSL releases, openssl
     * list-public-key-algorithms will display the available signing algorithms. One example is 'RSA-SHA256'.
     * @param algorithm the given algorithm (e.g. 'RSA-SHA256')
     */
-  def createVerify(algorithm: String, options: WritableOptions = js.native): Verify = js.native
+  def createVerify(algorithm: String, options: WritableOptions): Verify = js.native
+  def createVerify(algorithm: String): Verify                           = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
   def diffieHellman(options: DiffieHellmanOptions): Buffer = js.native
@@ -238,10 +242,10 @@ trait Crypto extends js.Object {
   def randomFillSync(buffer: scala.scalajs.js.typedarray.DataView, offset: Int): scala.scalajs.js.typedarray.DataView =
     js.native
   def randomFillSync(buffer: scala.scalajs.js.typedarray.DataView): scala.scalajs.js.typedarray.DataView = js.native
-  def randomFillSync[T <: scala.scalajs.js.typedarray.TypedArray[_, T]](buffer: T,
-                                                                        offset: Int = js.native,
-                                                                        size: Int = js.native
-  ): T = js.native
+  def randomFillSync[T <: scala.scalajs.js.typedarray.TypedArray[_, T]](buffer: T, offset: Int, size: Int): T =
+    js.native
+  def randomFillSync[T <: scala.scalajs.js.typedarray.TypedArray[_, T]](buffer: T, offset: Int): T = js.native
+  def randomFillSync[T <: scala.scalajs.js.typedarray.TypedArray[_, T]](buffer: T): T              = js.native
 
   def randomFill(buffer: Buffer, offset: Int, size: Int, callback: Callback1[Buffer]): Buffer = js.native
   def randomFill(buffer: Buffer, offset: Int, callback: Callback1[Buffer]): Buffer            = js.native
@@ -263,35 +267,52 @@ trait Crypto extends js.Object {
   ): scala.scalajs.js.typedarray.DataView =
     js.native
   def randomFill[T <: scala.scalajs.js.typedarray.TypedArray[_, T]](buffer: T,
-                                                                    offset: Int = js.native,
-                                                                    size: Int = js.native,
+                                                                    offset: Int,
+                                                                    size: Int,
                                                                     callback: Callback1[T]
   ): T = js.native
+  def randomFill[T <: scala.scalajs.js.typedarray.TypedArray[_, T]](buffer: T, offset: Int, callback: Callback1[T]): T =
+    js.native
+  def randomFill[T <: scala.scalajs.js.typedarray.TypedArray[_, T]](buffer: T, callback: Callback1[T]): T = js.native
 
   def scrypt(password: String | BufferLike,
              salt: String | BufferLike,
              keylen: Int,
-             options: ScryptOptions = js.native,
+             options: ScryptOptions,
              callback: Callback1[Buffer]
   ): Unit = js.native
+  def scrypt(password: String | BufferLike, salt: String | BufferLike, keylen: Int, callback: Callback1[Buffer]): Unit =
+    js.native
 
   def scryptSync(password: String | BufferLike,
                  salt: String | BufferLike,
                  keylen: Int,
-                 options: ScryptOptions = js.native
-  ): Buffer = js.native
+                 options: ScryptOptions
+  ): Buffer                                                                                     = js.native
+  def scryptSync(password: String | BufferLike, salt: String | BufferLike, keylen: Int): Buffer = js.native
 
-  def setEngine(engine: String, fips: Int = js.native): Unit = js.native
+  def setEngine(engine: String, fips: Int): Unit = js.native
+  def setEngine(engine: String): Unit            = js.native
 
   def setFips(enable: Boolean): Unit = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def sign(algorithm: String = js.native, data: BufferLike, key: String | Buffer | KeyObject): Buffer = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def sign(algorithm: String,
+                                                                              data: BufferLike,
+                                                                              key: String | Buffer | KeyObject
+  ): Buffer = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def sign(data: BufferLike,
+                                                                              key: String | Buffer | KeyObject
+  ): Buffer = js.native
 
   def timingSafeEqual(a: BufferLike, b: BufferLike): Boolean = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def verify(algorithm: String = js.native, data: BufferLike, key: String | Buffer | KeyObject): Boolean = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def verify(algorithm: String,
+                                                                                data: BufferLike,
+                                                                                key: String | Buffer | KeyObject
+  ): Boolean = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def verify(data: BufferLike,
+                                                                                key: String | Buffer | KeyObject
+  ): Boolean = js.native
 }
 
 /**

@@ -113,7 +113,8 @@ trait ServerResponse extends stream.Writable {
     *
     * Returns response.
     */
-  def setTimeout(msecs: Int, callback: js.Function = js.native): Unit = js.native
+  def setTimeout(msecs: Int, callback: js.Function): Unit = js.native
+  def setTimeout(msecs: Int): Unit                        = js.native
 
   def status(statusCode: Int): this.type = js.native
 
@@ -126,10 +127,10 @@ trait ServerResponse extends stream.Writable {
   def writeContinue(): Unit = js.native
 
   // Todo: Return this.type when Node.js v10 dropped
-  def writeHead(statusCode: Int, statusMessage: String, headers: js.Object | js.Dictionary[_] = js.native): Unit =
-    js.native
-  def writeHead(statusCode: Int, headers: js.Object | js.Dictionary[_]): Unit = js.native
-  def writeHead(statusCode: Int): Unit                                        = js.native
+  def writeHead(statusCode: Int, statusMessage: String, headers: js.Object | js.Dictionary[_]): Unit = js.native
+  def writeHead(statusCode: Int, statusMessage: String): Unit                                        = js.native
+  def writeHead(statusCode: Int, headers: js.Object | js.Dictionary[_]): Unit                        = js.native
+  def writeHead(statusCode: Int): Unit                                                               = js.native
 
   def writeProcessing(): Unit = js.native
 }

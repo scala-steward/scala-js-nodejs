@@ -13,9 +13,10 @@ import scala.scalajs.js.|
   */
 @js.native
 @JSImport("net", "Server")
-class Server(options: ServerOptions = js.native) extends IEventEmitter {
-  def this(options: ServerOptions, connectionListener: js.Function) = this()
-  def this(connectionListener: js.Function) = this()
+class Server(options: ServerOptions, connectionListener: js.Function) extends IEventEmitter {
+  def this() = this(???, ???)
+  def this(options: ServerOptions) = this(???, ???)
+  def this(connectionListener: js.Function) = this(???, ???)
 
   /**
     * A Boolean indicating whether or not the server is listening for connections.
@@ -45,7 +46,8 @@ class Server(options: ServerOptions = js.native) extends IEventEmitter {
     * its only argument if the server was not open when it was closed.
     * @example server.close([callback])
     */
-  def close(callback: js.Function1[io.scalajs.nodejs.SystemError, Any] = js.native): Unit = js.native
+  def close(callback: js.Function1[io.scalajs.nodejs.SystemError, Any]): Unit = js.native
+  def close(): Unit                                                           = js.native
 
   /**
     * Asynchronously get the number of concurrent connections on the server. Works when sockets were sent to forks.

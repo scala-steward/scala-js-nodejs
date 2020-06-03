@@ -10,4 +10,6 @@ import scala.scalajs.js.annotation.JSImport
   */
 @js.native
 @JSImport("https", "Agent")
-class Agent(options: AgentOptions = js.native) extends nodejs.http.Agent
+class Agent(options: AgentOptions) extends nodejs.http.Agent {
+  def this() = this(???)
+}

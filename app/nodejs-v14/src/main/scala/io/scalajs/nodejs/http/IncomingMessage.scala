@@ -21,7 +21,8 @@ class IncomingMessage extends stream.Readable {
 
   def complete: Boolean = js.native
 
-  def destroy(error: io.scalajs.nodejs.Error = js.native): Unit = js.native
+  def destroy(error: io.scalajs.nodejs.Error): Unit = js.native
+  def destroy(): Unit                               = js.native
 
   /**
     * The request/response headers object. Key-value pairs of header names and values. Header names are lower-cased.

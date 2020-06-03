@@ -46,7 +46,7 @@ trait REPLServer extends IEventEmitter with Interface {
     * for commands registered using the replServer.defineCommand() method.
     * @param preserveCursor indicates whether to preserver the cursor (position?)
     */
-  def displayPrompt(preserveCursor: Boolean = js.native): Unit = js.native
+  def displayPrompt(preserveCursor: Boolean): Unit = js.native
 
   /**
     * Like readline.prompt except also adding indents with ellipses when inside blocks. The preserveCursor argument

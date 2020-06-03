@@ -27,7 +27,8 @@ trait Util extends js.Object {
     * Marks that a method should not be used any more.
     * @example util.deprecate(function, message)
     */
-  def deprecate(function: js.Function, message: String, code: String = js.native): js.Any = js.native
+  def deprecate(function: js.Function, message: String, code: String): js.Any = js.native
+  def deprecate(function: js.Function, message: String): js.Any               = js.native
 
   /**
     * Returns a formatted string using the first argument as a printf-like format.

@@ -118,7 +118,8 @@ trait IEventEmitter extends js.Object {
     * <p/>Returns a reference to the EventEmitter so calls can be chained.
     * @example emitter.removeAllListeners([eventName])
     */
-  def removeAllListeners(eventName: String = js.native): this.type = js.native
+  def removeAllListeners(eventName: String): this.type = js.native
+  def removeAllListeners(): this.type                  = js.native
 
   /**
     * Removes the specified listener from the listener array for the event named eventName.

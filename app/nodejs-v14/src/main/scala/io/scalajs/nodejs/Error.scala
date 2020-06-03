@@ -15,7 +15,8 @@ import scala.scalajs.js.annotation.JSGlobal
   */
 @js.native
 @JSGlobal
-class Error(message0: String = js.native) extends js.Object {
+class Error(message0: String) extends js.Object {
+  def this() = this(???)
 
   /**
     * The `error.code` property is a string label that identifies the kind of error.
@@ -70,7 +71,8 @@ object Error extends js.Object {
     *                       from an end user.
     * @example Error.captureStackTrace(targetObject[, constructorOpt])
     */
-  def captureStackTrace(targetObject: js.Any, constructorOpt: js.Any = js.native): Unit = js.native
+  def captureStackTrace(targetObject: js.Any, constructorOpt: js.Any): Unit = js.native
+  def captureStackTrace(targetObject: js.Any): Unit                         = js.native
 }
 
 object ErrorCodes {
