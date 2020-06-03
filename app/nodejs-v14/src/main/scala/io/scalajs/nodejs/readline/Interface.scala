@@ -1,5 +1,6 @@
 package io.scalajs.nodejs.readline
 
+import com.thoughtworks.enableIf
 import io.scalajs.nodejs.events.IEventEmitter
 import net.exoego.scalajs.types.util.Factory
 
@@ -83,6 +84,13 @@ trait Interface extends IEventEmitter {
   def write(data: String): Unit = js.native
 
   // TODO: [Symbol.asyncIterator]()
+
+  def line: js.UndefOr[String] = js.native
+
+  def cursor: js.UndefOr[Int] = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def getCursorPos(): CursorPos = js.native
 }
 
 @Factory
@@ -91,4 +99,10 @@ trait Key extends js.Object {
   var meta: js.UndefOr[Boolean]  = js.undefined
   var shift: js.UndefOr[Boolean] = js.undefined
   var name: js.UndefOr[String]   = js.undefined
+}
+
+@Factory
+trait CursorPos extends js.Object {
+  var rows: Int
+  var cols: Int
 }
