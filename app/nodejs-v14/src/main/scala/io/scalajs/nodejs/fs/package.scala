@@ -37,25 +37,50 @@ package object fs {
     */
   implicit final class FsExtensions(private val instance: Fs) extends AnyVal {
     @inline
-    def accessFuture(path: Buffer | String): Future[Unit] = {
+    def accessFuture(path: Path): Future[Unit] = {
       promiseWithError0[FileIOError](instance.access(path, _))
     }
 
     @inline
-    def accessFuture(path: Buffer | String, mode: FileMode): Future[Unit] = {
+    def accessFuture(path: Path, mode: FileMode): Future[Unit] = {
       promiseWithError0[FileIOError](instance.access(path, mode, _))
     }
 
     @inline
-    def appendFileFuture(file: Buffer | FileDescriptor | String,
-                         data: Buffer | String,
-                         options: FileAppendOptions = null
-    ): Future[Unit] = {
+    def appendFileFuture(file: Path, data: Buffer, options: FileAppendOptions): Future[Unit] = {
       promiseWithError0[FileIOError](instance.appendFile(file, data, options, _))
+    }
+    @inline
+    def appendFileFuture(file: Path, data: String, options: FileAppendOptions): Future[Unit] = {
+      promiseWithError0[FileIOError](instance.appendFile(file, data, options, _))
+    }
+    @inline
+    def appendFileFuture(file: FileDescriptor, data: Buffer, options: FileAppendOptions): Future[Unit] = {
+      promiseWithError0[FileIOError](instance.appendFile(file, data, options, _))
+    }
+    @inline
+    def appendFileFuture(file: FileDescriptor, data: String, options: FileAppendOptions): Future[Unit] = {
+      promiseWithError0[FileIOError](instance.appendFile(file, data, options, _))
+    }
+    @inline
+    def appendFileFuture(file: Path, data: Buffer): Future[Unit] = {
+      promiseWithError0[FileIOError](instance.appendFile(file, data, _))
+    }
+    @inline
+    def appendFileFuture(file: Path, data: String): Future[Unit] = {
+      promiseWithError0[FileIOError](instance.appendFile(file, data, _))
+    }
+    @inline
+    def appendFileFuture(file: FileDescriptor, data: Buffer): Future[Unit] = {
+      promiseWithError0[FileIOError](instance.appendFile(file, data, _))
+    }
+    @inline
+    def appendFileFuture(file: FileDescriptor, data: String): Future[Unit] = {
+      promiseWithError0[FileIOError](instance.appendFile(file, data, _))
     }
 
     @inline
-    def chmodFuture(path: Buffer | String, mode: FileMode): Future[Unit] = {
+    def chmodFuture(path: Path, mode: FileMode): Future[Unit] = {
       promiseWithError0[FileIOError](instance.chmod(path, mode, _))
     }
 
@@ -247,7 +272,18 @@ package object fs {
     }
 
     @inline
-    def readdirDirentFuture(path: Buffer | String): Future[js.Array[Dirent]] = {
+    def readdirDirentFuture(path: Buffer): Future[js.Array[Dirent]] = {
+      val callback: FsCallback1[js.Array[Dirent]] => Unit = { callback =>
+        instance.readdir(
+          path,
+          ReaddirOptions(withFileTypes = true),
+          callback.asInstanceOf[FsCallback1[ReaddirArrays2]]
+        )
+      }
+      promiseWithError1[FileIOError, js.Array[Dirent]](callback)
+    }
+    @inline
+    def readdirDirentFuture(path: String): Future[js.Array[Dirent]] = {
       val callback: FsCallback1[js.Array[Dirent]] => Unit = { callback =>
         instance.readdir(
           path,
@@ -259,22 +295,38 @@ package object fs {
     }
 
     @inline
-    def readFileFuture(file: Path | FileDescriptor, options: ReadFileOptions): Future[Output] = {
+    def readFileFuture(file: Path, options: ReadFileOptions): Future[Output] = {
+      promiseWithError1[FileIOError, Output](instance.readFile(file, options, _))
+    }
+    @inline
+    def readFileFuture(file: FileDescriptor, options: ReadFileOptions): Future[Output] = {
       promiseWithError1[FileIOError, Output](instance.readFile(file, options, _))
     }
 
     @inline
-    def readFileFuture(file: Path | FileDescriptor, encoding: String): Future[String] = {
+    def readFileFuture(file: Path, encoding: String): Future[String] = {
+      promiseWithError1[FileIOError, String](instance.readFile(file, encoding, _))
+    }
+    @inline
+    def readFileFuture(file: FileDescriptor, encoding: String): Future[String] = {
       promiseWithError1[FileIOError, String](instance.readFile(file, encoding, _))
     }
 
     @inline
-    def readFileFuture(file: Path | FileDescriptor): Future[Buffer] = {
+    def readFileFuture(file: Path): Future[Buffer] = {
+      promiseWithError1[FileIOError, Buffer](instance.readFile(file, _))
+    }
+    @inline
+    def readFileFuture(file: FileDescriptor): Future[Buffer] = {
       promiseWithError1[FileIOError, Buffer](instance.readFile(file, _))
     }
 
     @inline
-    def readlinkFuture(file: Path, options: String | FileEncodingOptions): Future[Output] = {
+    def readlinkFuture(file: Path, options: String): Future[Output] = {
+      promiseWithError1[FileIOError, Output](instance.readlink(file, options, _))
+    }
+    @inline
+    def readlinkFuture(file: Path, options: FileEncodingOptions): Future[Output] = {
       promiseWithError1[FileIOError, Output](instance.readlink(file, options, _))
     }
 
@@ -289,7 +341,11 @@ package object fs {
     }
 
     @inline
-    def realpathFuture(file: Path, options: String | FileEncodingOptions): Future[Output] = {
+    def realpathFuture(file: Path, options: String): Future[Output] = {
+      promiseWithError1[FileIOError, Output](instance.realpath(file, options, _))
+    }
+    @inline
+    def realpathFuture(file: Path, options: FileEncodingOptions): Future[Output] = {
       promiseWithError1[FileIOError, Output](instance.realpath(file, options, _))
     }
 

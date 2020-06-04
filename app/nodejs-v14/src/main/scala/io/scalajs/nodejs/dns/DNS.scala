@@ -35,7 +35,9 @@ trait DNS extends IResolver {
     * All properties are optional.
     * @example dns.lookup(hostname[, options], callback)
     */
-  def lookup(hostname: String, options: DnsOptions | Int, callback: DnsCallback2[String, Int]): Unit = js.native
+  def lookup(hostname: String, options: DnsOptions, callback: DnsCallback2[String, Int]): Unit = js.native
+  def lookup(hostname: String, options: Int, callback: DnsCallback2[String, Int]): Unit        = js.native
+  def lookup(hostname: String, callback: DnsCallback2[String, Int]): Unit                      = js.native
 
   /**
     * Resolves a hostname (e.g. 'nodejs.org') into the first found A (IPv4) or AAAA (IPv6) record. options can be an

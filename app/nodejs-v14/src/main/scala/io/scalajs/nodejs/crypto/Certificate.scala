@@ -9,10 +9,12 @@ import scala.scalajs.js.|
 @js.native
 @JSImport("crypto", "Certificate")
 object Certificate extends js.Object {
-  def exportChallenge(spkac: String | BufferLike): Buffer = js.native
+  def exportChallenge(spkac: String): Buffer     = js.native
+  def exportChallenge(spkac: BufferLike): Buffer = js.native
 
-  def exportPublicKey(spkac: String | BufferLike, encoding: String): Buffer = js.native
-  def exportPublicKey(spkac: String | BufferLike): Buffer                   = js.native
+  def exportPublicKey(spkac: String, encoding: String): Buffer = js.native
+  def exportPublicKey(spkac: String): Buffer                   = js.native
+  def exportPublicKey(spkac: BufferLike): Buffer               = js.native
 
   def verifySpkac(spkac: BufferLike): Boolean = js.native
 }

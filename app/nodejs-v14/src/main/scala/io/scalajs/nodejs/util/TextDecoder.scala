@@ -15,8 +15,10 @@ class TextDecoder() extends js.Object {
   val fatal: Boolean     = js.native
   val ignoreBOM: Boolean = js.native
 
-  def decode(buffer: ArrayBuffer | ArrayBufferView, options: TextDecodeOptions): String = js.native
-  def decode(buffer: ArrayBuffer | ArrayBufferView): String                             = js.native
+  def decode(buffer: ArrayBuffer, options: TextDecodeOptions): String     = js.native
+  def decode(buffer: ArrayBufferView, options: TextDecodeOptions): String = js.native
+  def decode(buffer: ArrayBuffer): String                                 = js.native
+  def decode(buffer: ArrayBufferView): String                             = js.native
 }
 
 @Factory

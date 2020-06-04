@@ -97,49 +97,36 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     */
   def equals(otherBuffer: Uint8Array): Boolean = js.native
 
-  /**
-    * Fills buf with the specified value. If the offset and end are not given, the entire buf will be filled.
-    * This is meant to be a small simplification to allow the creation and filling of a Buffer to be done on a single line.
-    *
-    * @param value    The value to fill buf with
-    * @param offset   Where to start filling buf. Default: 0
-    * @param end      Where to stop filling buf (not inclusive). Default: buf.length
-    * @param encoding If value is a string, this is its encoding. Default: 'utf8'
-    * @return A reference to buf
-    * @see https://nodejs.org/api/buffer.html#buffer_buf_fill_value_offset_end_encoding
-    */
-  def fill(value: Uint8Array | Int | String, offset: Int, end: Int, encoding: String): this.type = js.native
-  def fill(value: Uint8Array | Int | String, offset: Int, end: Int): this.type                   = js.native
-  def fill(value: Uint8Array | Int | String, offset: Int, encoding: String): this.type           = js.native
-  def fill(value: Uint8Array | Int | String, offset: Int): this.type                             = js.native
-  def fill(value: Uint8Array | Int | String, encoding: String): this.type                        = js.native
-  def fill(value: Uint8Array | Int | String): this.type                                          = js.native
+  def fill(value: Uint8Array, offset: Int, end: Int): this.type               = js.native
+  def fill(value: Uint8Array, offset: Int): this.type                         = js.native
+  def fill(value: Uint8Array): this.type                                      = js.native
+  def fill(value: Int, offset: Int, end: Int): this.type                      = js.native
+  def fill(value: Int, offset: Int): this.type                                = js.native
+  def fill(value: Int): this.type                                             = js.native
+  def fill(value: String, offset: Int, end: Int, encoding: String): this.type = js.native
+  def fill(value: String, offset: Int, end: Int): this.type                   = js.native
+  def fill(value: String, offset: Int, encoding: String): this.type           = js.native
+  def fill(value: String, offset: Int): this.type                             = js.native
+  def fill(value: String, encoding: String): this.type                        = js.native
+  def fill(value: String): this.type                                          = js.native
 
-  /**
-    * Returns the index of the first occurrence of value in buf or -1 if buf does not contain value
-    * @param value      What to search for
-    * @param byteOffset Where to begin searching in buf. Default: 0
-    * @param encoding   If value is a string, this is its encoding. Default: 'utf8'
-    * @return The index of the first occurrence of value in buf or -1 if buf does not contain value
-    * @example {{{ buf.indexOf(value[, byteOffset][, encoding]) }}}
-    */
-  def indexOf(value: Buffer | Int | String, byteOffset: Int, encoding: String): Int = js.native
-  def indexOf(value: Buffer | Int | String, byteOffset: Int): Int                   = js.native
-  def indexOf(value: Buffer | Int | String, encoding: String): Int                  = js.native
-  def indexOf(value: Buffer | Int | String): Int                                    = js.native
+  def indexOf(value: Buffer, byteOffset: Int): Int                   = js.native
+  def indexOf(value: Buffer): Int                                    = js.native
+  def indexOf(value: Int, byteOffset: Int): Int                      = js.native
+  def indexOf(value: Int): Int                                       = js.native
+  def indexOf(value: String, byteOffset: Int, encoding: String): Int = js.native
+  def indexOf(value: String, byteOffset: Int): Int                   = js.native
+  def indexOf(value: String, encoding: String): Int                  = js.native
+  def indexOf(value: String): Int                                    = js.native
 
-  /**
-    * Equivalent to buf.indexOf() !== -1.
-    * @param value      What to search for
-    * @param byteOffset Where to begin searching in buf. Default: 0
-    * @param encoding   If value is a string, this is its encoding. Default: 'utf8'
-    * @return true if value was found in buf, false otherwise
-    * @example {{{ buf.includes(value[, byteOffset][, encoding]) }}}
-    */
-  def includes(value: Buffer | Int | String, byteOffset: Int, encoding: String): Boolean = js.native
-  def includes(value: Buffer | Int | String, byteOffset: Int): Boolean                   = js.native
-  def includes(value: Buffer | Int | String, encoding: String): Boolean                  = js.native
-  def includes(value: Buffer | Int | String): Boolean                                    = js.native
+  def includes(value: Buffer, byteOffset: Int): Boolean                   = js.native
+  def includes(value: Buffer): Boolean                                    = js.native
+  def includes(value: Int, byteOffset: Int): Boolean                      = js.native
+  def includes(value: Int): Boolean                                       = js.native
+  def includes(value: String, byteOffset: Int, encoding: String): Boolean = js.native
+  def includes(value: String, byteOffset: Int): Boolean                   = js.native
+  def includes(value: String, encoding: String): Boolean                  = js.native
+  def includes(value: String): Boolean                                    = js.native
 
   /**
     * Creates and returns an iterator of buf keys (indices).
@@ -148,18 +135,14 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     */
   def keys(): js.Iterator[Int] = js.native
 
-  /**
-    * Identical to buf.indexOf(), except buf is searched from back to front instead of front to back.
-    * @param value      What to search for
-    * @param byteOffset Where to begin searching in buf. Default: 0
-    * @param encoding   If value is a string, this is its encoding. Default: 'utf8'
-    * @return The index of the last occurrence of value in buf or -1 if buf does not contain value
-    * @example {{{ buf.lastIndexOf(value[, byteOffset][, encoding]) }}}
-    */
-  def lastIndexOf(value: Buffer | Int | String, byteOffset: Int, encoding: String): Int = js.native
-  def lastIndexOf(value: Buffer | Int | String, byteOffset: Int): Int                   = js.native
-  def lastIndexOf(value: Buffer | Int | String, encoding: String): Int                  = js.native
-  def lastIndexOf(value: Buffer | Int | String): Int                                    = js.native
+  def lastIndexOf(value: Buffer, byteOffset: Int): Int                   = js.native
+  def lastIndexOf(value: Buffer): Int                                    = js.native
+  def lastIndexOf(value: Int, byteOffset: Int): Int                      = js.native
+  def lastIndexOf(value: Int): Int                                       = js.native
+  def lastIndexOf(value: String, byteOffset: Int, encoding: String): Int = js.native
+  def lastIndexOf(value: String, byteOffset: Int): Int                   = js.native
+  def lastIndexOf(value: String, encoding: String): Int                  = js.native
+  def lastIndexOf(value: String): Int                                    = js.native
 
   /**
     * Returns the amount of memory allocated for buf in bytes.
@@ -925,8 +908,11 @@ object Buffer extends js.Object {
     *
     * @see [[https://nodejs.org/api/buffer.html#buffer_class_method_buffer_bytelength_string_encoding]]
     */
-  def byteLength(string: String | TypedArray[_, _] | DataView | ArrayBuffer, encoding: String = "utf8"): Int =
-    js.native
+  def byteLength(string: String, encoding: String): Int = js.native
+  def byteLength(string: String): Int                   = js.native
+  def byteLength(string: TypedArray[_, _]): Int         = js.native
+  def byteLength(string: DataView): Int                 = js.native
+  def byteLength(string: ArrayBuffer): Int              = js.native
 
   /**
     * Compares `buf1` to `buf2` typically for the purpose of sorting arrays of `Buffer` instances.
@@ -945,8 +931,8 @@ object Buffer extends js.Object {
     * @see [[https://nodejs.org/api/buffer.html#buffer_class_method_buffer_concat_list_totallength]]
     *
     */
-  def concat(list: js.Array[Buffer] | js.Array[Uint8Array], totalLength: Int): Buffer = js.native
-  def concat(list: js.Array[Buffer] | js.Array[Uint8Array]): Buffer                   = js.native
+  def concat[B <: Uint8Array](list: js.Array[B], totalLength: Int): Buffer = js.native
+  def concat[B <: Uint8Array](list: js.Array[B]): Buffer                   = js.native
 
   /**
     * When passed a reference to the .buffer property of a TypedArray instance, the newly created Buffer

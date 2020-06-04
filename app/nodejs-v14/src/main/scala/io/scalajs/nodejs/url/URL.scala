@@ -13,8 +13,9 @@ import scala.scalajs.js.|
   */
 @js.native
 @JSImport("url", "URL")
-class URL(input: String, base: String | URL) extends js.Object {
-  def this(input: String) = this(input, ???)
+class URL(input: String, base: String) extends js.Object {
+  def this(input: String, base: URL) = this(input, "")
+  def this(input: String) = this(input, "")
 
   /**
     * The auth property is the username and password portion of the URL, also referred to as "userinfo".
@@ -169,7 +170,8 @@ object URL extends js.Object {
     */
   def domainToUnicode(domain: String): String = js.native
 
-  def fileURLToPath(url: URL | String): String = js.native
+  def fileURLToPath(url: URL): String    = js.native
+  def fileURLToPath(url: String): String = js.native
 
   def pathToFileURL(url: String): URL = js.native
 }

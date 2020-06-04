@@ -36,17 +36,22 @@ trait Https extends js.Object {
   def createServer(options: ServerOptions): Server                               = js.native
   def createServer(): Server                                                     = js.native
 
-  def get(url: String | URL, options: RequestOptions, callback: js.Function1[ServerResponse, Any]): ClientRequest =
-    js.native
-  def get(url: String | URL, callback: js.Function1[ServerResponse, Any]): ClientRequest = js.native
-  def get(options: RequestOptions, callback: js.Function): ClientRequest                 = js.native
+  def get(url: String, options: RequestOptions, callback: js.Function1[ServerResponse, Any]): ClientRequest = js.native
+  def get(url: String, callback: js.Function1[ServerResponse, Any]): ClientRequest                          = js.native
+  def get(url: URL, options: RequestOptions, callback: js.Function1[ServerResponse, Any]): ClientRequest    = js.native
+  def get(url: URL, callback: js.Function1[ServerResponse, Any]): ClientRequest                             = js.native
+  def get(options: RequestOptions, callback: js.Function): ClientRequest                                    = js.native
 
-  def request(url: String | URL, options: RequestOptions, callback: js.Function1[ServerResponse, Any]): Unit = js.native
-  def request(url: String | URL, options: RequestOptions): Unit                                              = js.native
-  def request(url: String | URL, callback: js.Function1[ServerResponse, Any]): Unit                          = js.native
-  def request(url: String | URL): Unit                                                                       = js.native
-  def request(options: RequestOptions): Unit                                                                 = js.native
-  def request(options: RequestOptions, callback: js.Function1[ServerResponse, Any]): Unit                    = js.native
+  def request(url: String, options: RequestOptions, callback: js.Function1[ServerResponse, Any]): Unit = js.native
+  def request(url: String, options: RequestOptions): Unit                                              = js.native
+  def request(url: String, callback: js.Function1[ServerResponse, Any]): Unit                          = js.native
+  def request(url: String): Unit                                                                       = js.native
+  def request(url: URL, options: RequestOptions, callback: js.Function1[ServerResponse, Any]): Unit    = js.native
+  def request(url: URL, options: RequestOptions): Unit                                                 = js.native
+  def request(url: URL, callback: js.Function1[ServerResponse, Any]): Unit                             = js.native
+  def request(url: URL): Unit                                                                          = js.native
+  def request(options: RequestOptions): Unit                                                           = js.native
+  def request(options: RequestOptions, callback: js.Function1[ServerResponse, Any]): Unit              = js.native
 }
 
 /**

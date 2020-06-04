@@ -49,20 +49,25 @@ trait Crypto extends js.Object {
     *                  either a 'binary' encoded string or a Buffer.
     * @example crypto.createCipher(algorithm, password)
     */
-  @deprecated("Use crypto.createCipheriv() instead.", "Node.js v10.0")
-  def createCipher(algorithm: String, password: Buffer | String): Cipher = js.native
+  @deprecated("Use crypto.createCipheriv() instead.", "Node.js v10.0") def createCipher(algorithm: String,
+                                                                                        password: Buffer
+  ): Cipher = js.native
+  @deprecated("Use crypto.createCipheriv() instead.", "Node.js v10.0") def createCipher(algorithm: String,
+                                                                                        password: String
+  ): Cipher = js.native
 
-  def createCipheriv(algorithm: String,
-                     key: String | BufferLike,
-                     iv: String | BufferLike,
-                     options: TransformOptions
-  ): Cipher                                                                                        = js.native
-  def createCipheriv(algorithm: String, key: String | BufferLike, iv: String | BufferLike): Cipher = js.native
+  def createCipheriv(algorithm: String, key: String, iv: String, options: TransformOptions): Cipher     = js.native
+  def createCipheriv(algorithm: String, key: String, iv: BufferLike): Cipher                            = js.native
+  def createCipheriv(algorithm: String, key: BufferLike, iv: String, options: TransformOptions): Cipher = js.native
+  def createCipheriv(algorithm: String, key: BufferLike, iv: BufferLike): Cipher                        = js.native
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def createCipheriv(algorithm: String, key: KeyObject, iv: String | BufferLike, options: TransformOptions): Cipher =
-    js.native
+  def createCipheriv(algorithm: String, key: KeyObject, iv: String, options: TransformOptions): Cipher = js.native
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def createCipheriv(algorithm: String, key: KeyObject, iv: String | BufferLike): Cipher = js.native
+  def createCipheriv(algorithm: String, key: KeyObject, iv: BufferLike, options: TransformOptions): Cipher = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def createCipheriv(algorithm: String, key: KeyObject, iv: String): Cipher = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def createCipheriv(algorithm: String, key: KeyObject, iv: BufferLike): Cipher = js.native
 
   /**
     * Creates and returns a Decipher object that uses the given algorithm and password (key).
@@ -75,31 +80,34 @@ trait Crypto extends js.Object {
     * derive a key and IV on their own using crypto.pbkdf2() and to use crypto.createDecipheriv() to create the Decipher object.
     * @example crypto.createDecipher(algorithm, password)
     */
-  @deprecated("Use crypto.createDecipheriv() instead.", "Node.js v10.0")
-  def createDecipher(algorithm: String, password: Buffer | String): Decipher = js.native
+  @deprecated("Use crypto.createDecipheriv() instead.", "Node.js v10.0") def createDecipher(algorithm: String,
+                                                                                            password: Buffer
+  ): Decipher = js.native
+  @deprecated("Use crypto.createDecipheriv() instead.", "Node.js v10.0") def createDecipher(algorithm: String,
+                                                                                            password: String
+  ): Decipher = js.native
 
-  def createDecipheriv(algorithm: String,
-                       key: String | BufferLike,
-                       iv: String | BufferLike,
-                       options: TransformOptions
-  ): Decipher                                                                                          = js.native
-  def createDecipheriv(algorithm: String, key: String | BufferLike, iv: String | BufferLike): Decipher = js.native
-  def createDecipheriv(algorithm: String,
-                       key: KeyObject,
-                       iv: String | BufferLike,
-                       options: TransformOptions
-  ): Decipher                                                                                = js.native
-  def createDecipheriv(algorithm: String, key: KeyObject, iv: String | BufferLike): Decipher = js.native
+  def createDecipheriv(algorithm: String, key: String, iv: String, options: TransformOptions): Decipher     = js.native
+  def createDecipheriv(algorithm: String, key: String, iv: BufferLike, options: TransformOptions): Decipher = js.native
+  def createDecipheriv(algorithm: String, key: BufferLike, iv: String): Decipher                            = js.native
+  def createDecipheriv(algorithm: String, key: BufferLike, iv: BufferLike): Decipher                        = js.native
+  def createDecipheriv(algorithm: String, key: KeyObject, iv: String, options: TransformOptions): Decipher  = js.native
+  def createDecipheriv(algorithm: String, key: KeyObject, iv: BufferLike, options: TransformOptions): Decipher =
+    js.native
+  def createDecipheriv(algorithm: String, key: KeyObject, iv: String): Decipher     = js.native
+  def createDecipheriv(algorithm: String, key: KeyObject, iv: BufferLike): Decipher = js.native
 
-  def createDiffieHellman(prime: String, primeEncoding: String, generator: Int | BufferLike): DiffieHellman = js.native
+  def createDiffieHellman(prime: String, primeEncoding: String, generator: Int): DiffieHellman        = js.native
+  def createDiffieHellman(prime: String, primeEncoding: String, generator: BufferLike): DiffieHellman = js.native
   def createDiffieHellman(prime: String,
                           primeEncoding: String,
                           generator: String,
                           generatorEncoding: String
   ): DiffieHellman                                                                                        = js.native
   def createDiffieHellman(prime: BufferLike, generator: String, generatorEncoding: String): DiffieHellman = js.native
-  def createDiffieHellman(prime: BufferLike, generator: Int | BufferLike): DiffieHellman                  = js.native
-  def createDiffieHellman(primeLength: Int, generator: Int | String | BufferLike): DiffieHellman          = js.native
+  def createDiffieHellman(prime: BufferLike, generator: Int): DiffieHellman                               = js.native
+  def createDiffieHellman(prime: BufferLike, generator: BufferLike): DiffieHellman                        = js.native
+  def createDiffieHellman(primeLength: Int, generator: Int): DiffieHellman                                = js.native
 
   def createDiffieHellmanGroup(name: String): DiffieHellman = js.native
 
@@ -127,18 +135,32 @@ trait Crypto extends js.Object {
     * @param algorithm the given algorithm (e.g. 'sha256', 'sha512')
     * @param key       The key is the HMAC key used to generate the cryptographic HMAC hash.
     */
-  def createHmac(algorithm: String, key: String | BufferLike, options: TransformOptions): Hmac = js.native
-  def createHmac(algorithm: String, key: String | BufferLike): Hmac                            = js.native
+  def createHmac(algorithm: String, key: String, options: TransformOptions): Hmac     = js.native
+  def createHmac(algorithm: String, key: BufferLike, options: TransformOptions): Hmac = js.native
+  def createHmac(algorithm: String, key: String): Hmac                                = js.native
+  def createHmac(algorithm: String, key: BufferLike): Hmac                            = js.native
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def createHmac(algorithm: String, key: KeyObject, options: TransformOptions): Hmac = js.native
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def createHmac(algorithm: String, key: KeyObject): Hmac = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def createPrivateKey(key: String | Buffer | CreatePrivateKeyOptions): KeyObject = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def createPrivateKey(key: String): KeyObject =
+    js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def createPrivateKey(key: Buffer): KeyObject =
+    js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def createPrivateKey(
+      key: CreatePrivateKeyOptions
+  ): KeyObject = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def createPublicKey(key: String | Buffer | KeyObject | CreatePublicKeyOptions): KeyObject = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def createPublicKey(key: String): KeyObject =
+    js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def createPublicKey(key: Buffer): KeyObject =
+    js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def createPublicKey(key: KeyObject): KeyObject =
+    js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def createPublicKey(
+      key: CreatePublicKeyOptions
+  ): KeyObject = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def createSecretKey(key: Buffer): KeyObject = js.native
@@ -184,8 +206,29 @@ trait Crypto extends js.Object {
 
   def getHashes(): js.Array[String] = js.native
 
-  def pbkdf2(password: String | BufferLike,
-             salt: String | BufferLike,
+  def pbkdf2(password: String,
+             salt: String,
+             iterations: Int,
+             keylen: Int,
+             digest: String,
+             callback: Callback1[Buffer]
+  ): Buffer = js.native
+  def pbkdf2(password: String,
+             salt: BufferLike,
+             iterations: Int,
+             keylen: Int,
+             digest: String,
+             callback: Callback1[Buffer]
+  ): Buffer = js.native
+  def pbkdf2(password: BufferLike,
+             salt: String,
+             iterations: Int,
+             keylen: Int,
+             digest: String,
+             callback: Callback1[Buffer]
+  ): Buffer = js.native
+  def pbkdf2(password: BufferLike,
+             salt: BufferLike,
              iterations: Int,
              keylen: Int,
              digest: String,
@@ -207,26 +250,29 @@ trait Crypto extends js.Object {
     *
     * (Doc source: https://nodejs.org/api/crypto.html#crypto_crypto_pbkdf2sync_password_salt_iterations_keylen_digest)
     */
-  def pbkdf2Sync(password: String | BufferLike,
-                 salt: String | BufferLike,
-                 iterations: Int,
-                 keylen: Int,
-                 digest: String
-  ): Buffer = js.native
+  def pbkdf2Sync(password: String, salt: String, iterations: Int, keylen: Int, digest: String): Buffer     = js.native
+  def pbkdf2Sync(password: String, salt: BufferLike, iterations: Int, keylen: Int, digest: String): Buffer = js.native
+  def pbkdf2Sync(password: BufferLike, salt: String, iterations: Int, keylen: Int, digest: String): Buffer = js.native
+  def pbkdf2Sync(password: BufferLike, salt: BufferLike, iterations: Int, keylen: Int, digest: String): Buffer =
+    js.native
 
-  def privateDecrypt(privateKey: String | Buffer, buffer: BufferLike): Buffer = js.native
+  def privateDecrypt(privateKey: String, buffer: BufferLike): Buffer = js.native
+  def privateDecrypt(privateKey: Buffer, buffer: BufferLike): Buffer = js.native
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def privateDecrypt(privateKey: PrivateDecryptKeyObject, buffer: BufferLike): Buffer = js.native
 
-  def privateEncrypt(privateKey: String | Buffer, buffer: BufferLike): Buffer = js.native
+  def privateEncrypt(privateKey: String, buffer: BufferLike): Buffer = js.native
+  def privateEncrypt(privateKey: Buffer, buffer: BufferLike): Buffer = js.native
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def privateEncrypt(privateKey: PrivateEncryptKeyObject, buffer: BufferLike): Buffer = js.native
 
-  def publicDecrypt(key: String | Buffer, buffer: BufferLike): Buffer = js.native
+  def publicDecrypt(key: String, buffer: BufferLike): Buffer = js.native
+  def publicDecrypt(key: Buffer, buffer: BufferLike): Buffer = js.native
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def publicDecrypt(key: PublicDecryptKeyObject, buffer: BufferLike): Buffer = js.native
 
-  def publicEncrypt(key: String | Buffer, buffer: BufferLike): Buffer = js.native
+  def publicEncrypt(key: String, buffer: BufferLike): Buffer = js.native
+  def publicEncrypt(key: Buffer, buffer: BufferLike): Buffer = js.native
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def publicEncrypt(key: PublicEncryptKeyObject, buffer: BufferLike): Buffer = js.native
 
@@ -277,21 +323,39 @@ trait Crypto extends js.Object {
     js.native
   def randomFill[T <: scala.scalajs.js.typedarray.TypedArray[_, T]](buffer: T, callback: Callback1[T]): T = js.native
 
-  def scrypt(password: String | BufferLike,
-             salt: String | BufferLike,
+  def scrypt(password: String, salt: String, keylen: Int, options: ScryptOptions, callback: Callback1[Buffer]): Unit =
+    js.native
+  def scrypt(password: String,
+             salt: BufferLike,
              keylen: Int,
              options: ScryptOptions,
              callback: Callback1[Buffer]
   ): Unit = js.native
-  def scrypt(password: String | BufferLike, salt: String | BufferLike, keylen: Int, callback: Callback1[Buffer]): Unit =
-    js.native
+  def scrypt(password: BufferLike,
+             salt: String,
+             keylen: Int,
+             options: ScryptOptions,
+             callback: Callback1[Buffer]
+  ): Unit = js.native
+  def scrypt(password: BufferLike,
+             salt: BufferLike,
+             keylen: Int,
+             options: ScryptOptions,
+             callback: Callback1[Buffer]
+  ): Unit                                                                                            = js.native
+  def scrypt(password: String, salt: String, keylen: Int, callback: Callback1[Buffer]): Unit         = js.native
+  def scrypt(password: String, salt: BufferLike, keylen: Int, callback: Callback1[Buffer]): Unit     = js.native
+  def scrypt(password: BufferLike, salt: String, keylen: Int, callback: Callback1[Buffer]): Unit     = js.native
+  def scrypt(password: BufferLike, salt: BufferLike, keylen: Int, callback: Callback1[Buffer]): Unit = js.native
 
-  def scryptSync(password: String | BufferLike,
-                 salt: String | BufferLike,
-                 keylen: Int,
-                 options: ScryptOptions
-  ): Buffer                                                                                     = js.native
-  def scryptSync(password: String | BufferLike, salt: String | BufferLike, keylen: Int): Buffer = js.native
+  def scryptSync(password: String, salt: String, keylen: Int, options: ScryptOptions): Buffer         = js.native
+  def scryptSync(password: String, salt: BufferLike, keylen: Int, options: ScryptOptions): Buffer     = js.native
+  def scryptSync(password: BufferLike, salt: String, keylen: Int, options: ScryptOptions): Buffer     = js.native
+  def scryptSync(password: BufferLike, salt: BufferLike, keylen: Int, options: ScryptOptions): Buffer = js.native
+  def scryptSync(password: String, salt: String, keylen: Int): Buffer                                 = js.native
+  def scryptSync(password: String, salt: BufferLike, keylen: Int): Buffer                             = js.native
+  def scryptSync(password: BufferLike, salt: String, keylen: Int): Buffer                             = js.native
+  def scryptSync(password: BufferLike, salt: BufferLike, keylen: Int): Buffer                         = js.native
 
   def setEngine(engine: String, fips: Int): Unit = js.native
   def setEngine(engine: String): Unit            = js.native
@@ -300,20 +364,46 @@ trait Crypto extends js.Object {
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def sign(algorithm: String,
                                                                               data: BufferLike,
-                                                                              key: String | Buffer | KeyObject
+                                                                              key: String
   ): Buffer = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def sign(algorithm: String,
+                                                                              data: BufferLike,
+                                                                              key: Buffer
+  ): Buffer = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def sign(algorithm: String,
+                                                                              data: BufferLike,
+                                                                              key: KeyObject
+  ): Buffer = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def sign(data: BufferLike, key: String): Buffer =
+    js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def sign(data: BufferLike, key: Buffer): Buffer =
+    js.native
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def sign(data: BufferLike,
-                                                                              key: String | Buffer | KeyObject
+                                                                              key: KeyObject
   ): Buffer = js.native
 
   def timingSafeEqual(a: BufferLike, b: BufferLike): Boolean = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def verify(algorithm: String,
                                                                                 data: BufferLike,
-                                                                                key: String | Buffer | KeyObject
+                                                                                key: String
+  ): Boolean = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def verify(algorithm: String,
+                                                                                data: BufferLike,
+                                                                                key: Buffer
+  ): Boolean = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def verify(algorithm: String,
+                                                                                data: BufferLike,
+                                                                                key: KeyObject
   ): Boolean = js.native
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def verify(data: BufferLike,
-                                                                                key: String | Buffer | KeyObject
+                                                                                key: String
+  ): Boolean = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def verify(data: BufferLike,
+                                                                                key: Buffer
+  ): Boolean = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def verify(data: BufferLike,
+                                                                                key: KeyObject
   ): Boolean = js.native
 }
 

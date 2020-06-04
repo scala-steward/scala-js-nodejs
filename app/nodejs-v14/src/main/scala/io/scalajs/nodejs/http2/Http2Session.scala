@@ -27,13 +27,11 @@ trait Http2Session extends IEventEmitter {
 
   def encrypted: Boolean = js.native
 
-  def goaway(code: Int, lastStreamID: Int, opaqueData: TypedArray[_, _] | DataView): Unit = js.native
-
-  def goaway(code: Int, lastStreamID: Int): Unit = js.native
-
-  def goaway(code: Int): Unit = js.native
-
-  def goaway(): Unit = js.native
+  def goaway(code: Int, lastStreamID: Int, opaqueData: TypedArray[_, _]): Unit = js.native
+  def goaway(code: Int, lastStreamID: Int, opaqueData: DataView): Unit         = js.native
+  def goaway(code: Int, lastStreamID: Int): Unit                               = js.native
+  def goaway(code: Int): Unit                                                  = js.native
+  def goaway(): Unit                                                           = js.native
 
   def localSettings: Http2Settings  = js.native
   def remoteSettings: Http2Settings = js.native
@@ -42,9 +40,9 @@ trait Http2Session extends IEventEmitter {
 
   def pendingSettingsAck: Boolean = js.native
 
-  def ping(payload: TypedArray[_, _] | DataView, callback: js.Function): Boolean = js.native
-
-  def ping(callback: js.Function): Boolean = js.native
+  def ping(payload: TypedArray[_, _], callback: js.Function): Boolean = js.native
+  def ping(payload: DataView, callback: js.Function): Boolean         = js.native
+  def ping(callback: js.Function): Boolean                            = js.native
 
   def ref(): Unit = js.native
 
