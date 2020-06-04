@@ -52,7 +52,9 @@ trait Http2Headers extends js.Object {
   def apply(key: String): js.UndefOr[String | js.Array[String]] = js.native
 
   @JSBracketAccess
-  def update(key: String, value: String | js.Array[String]): Unit = js.native
+  def update(key: String, value: String): Unit = js.native
+  @JSBracketAccess
+  def update(key: String, value: js.Array[String]): Unit = js.native
 }
 
 object Http2Headers {

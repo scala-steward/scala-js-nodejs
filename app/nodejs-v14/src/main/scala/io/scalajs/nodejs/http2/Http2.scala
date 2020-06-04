@@ -17,8 +17,8 @@ trait Http2 extends js.Object {
     js.native
   def createSecureServer(options: Http2SecureServerOptions): Http2SecureServer = js.native
 
-  def connect(authority: String | URL, options: Http2ConnectOptions, listener: js.Function): ClientHttp2Session =
-    js.native
+  def connect(authority: String, options: Http2ConnectOptions, listener: js.Function): ClientHttp2Session = js.native
+  def connect(authority: URL, options: Http2ConnectOptions, listener: js.Function): ClientHttp2Session    = js.native
 
   def constants: Http2Constants = js.native
 

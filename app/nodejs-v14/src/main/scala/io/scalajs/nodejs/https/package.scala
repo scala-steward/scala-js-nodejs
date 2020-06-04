@@ -43,16 +43,20 @@ package object https {
       promiseCallback1[ServerResponse](https.request(options, _))
     }
 
-    /**
-      * Makes a request to a secure web server.
-      */
     @inline
-    def requestFuture(url: String | URL): Future[ServerResponse] = {
+    def requestFuture(url: String): Future[ServerResponse] = {
       promiseCallback1[ServerResponse](https.request(url, _))
     }
-
     @inline
-    def requestFuture(url: String | URL, options: RequestOptions): Future[ServerResponse] = {
+    def requestFuture(url: URL): Future[ServerResponse] = {
+      promiseCallback1[ServerResponse](https.request(url, _))
+    }
+    @inline
+    def requestFuture(url: String, options: RequestOptions): Future[ServerResponse] = {
+      promiseCallback1[ServerResponse](https.request(url, options, _))
+    }
+    @inline
+    def requestFuture(url: URL, options: RequestOptions): Future[ServerResponse] = {
       promiseCallback1[ServerResponse](https.request(url, options, _))
     }
   }

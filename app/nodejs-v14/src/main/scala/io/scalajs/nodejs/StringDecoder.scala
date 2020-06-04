@@ -20,12 +20,14 @@ class StringDecoder(encoding: String) extends IEventEmitter {
     * Returns any trailing bytes that were left in the buffer.
     * @example decoder.end()
     */
-  def end(buffer: TypedArray[_, _] | DataView): String = js.native
-  def end(): String                                    = js.native
+  def end(buffer: TypedArray[_, _]): String = js.native
+  def end(buffer: DataView): String         = js.native
+  def end(): String                         = js.native
 
   /**
     * Returns a decoded string.
     * @example decoder.write(buffer)
     */
-  def write(buffer: TypedArray[_, _] | DataView): String = js.native
+  def write(buffer: TypedArray[_, _]): String = js.native
+  def write(buffer: DataView): String         = js.native
 }

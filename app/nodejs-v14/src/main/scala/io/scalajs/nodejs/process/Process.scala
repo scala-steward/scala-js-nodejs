@@ -275,7 +275,10 @@ trait Process extends IEventEmitter {
     * This is a privileged operation, meaning you need to be root or have the CAP_SETGID capability.
     * @example process.initgroups(user, extra_group)
     */
-  def initgroups(user: String | Int, extra_group: String | Int): js.Array[Int] = js.native
+  def initgroups(user: String, extra_group: String): js.Array[Int] = js.native
+  def initgroups(user: String, extra_group: Int): js.Array[Int]    = js.native
+  def initgroups(user: Int, extra_group: String): js.Array[Int]    = js.native
+  def initgroups(user: Int, extra_group: Int): js.Array[Int]       = js.native
 
   def hasUncaughtExceptionCaptureCallback(): Boolean = js.native
 
@@ -291,8 +294,9 @@ trait Process extends IEventEmitter {
     * like the kill system call. The signal sent may do something other than kill the target process.
     * @example process.kill(pid[, signal])
     */
-  def kill(pid: Int, signal: String | Int): Unit = js.native
-  def kill(pid: Int): Unit                       = js.native
+  def kill(pid: Int, signal: String): Unit = js.native
+  def kill(pid: Int, signal: Int): Unit    = js.native
+  def kill(pid: Int): Unit                 = js.native
 
   /**
     * Returns an object describing the memory usage of the Node.js process measured in bytes.
@@ -335,35 +339,39 @@ trait Process extends IEventEmitter {
     * @example process.setegid(id)
     * @since 2.0.0
     */
-  def setegid(id: String | Int): Unit = js.native
+  def setegid(id: String): Unit = js.native
+  def setegid(id: Int): Unit    = js.native
 
   /**
     * Sets the effective user identity of the process. This accepts either a numerical ID or a username string.
     * If a username is specified, this method blocks while resolving it to a numerical ID.
     * @example process.seteuid(id)
     */
-  def seteuid(id: String | Int): Unit = js.native
+  def seteuid(id: String): Unit = js.native
+  def seteuid(id: Int): Unit    = js.native
 
   /**
     * Sets the group identity of the process. This accepts either a numerical ID or a groupname string.
     * If a groupname is specified, this method blocks while resolving it to a numerical ID.
     * @example process.setgid(id)
     */
-  def setgid(id: String | Int): Unit = js.native
+  def setgid(id: String): Unit = js.native
+  def setgid(id: Int): Unit    = js.native
 
   /**
     * Sets the supplementary group IDs. This is a privileged operation, meaning you need to be root or have the
     * CAP_SETGID capability. The list can contain group IDs, group names or both.
     * @example process.setgroups(groups)
     */
-  def setgroups(groups: js.Array[Int] | js.Array[String] | js.Array[String | Int]): Unit = js.native
+  def setgroups(groups: js.Array[Int]): Unit = js.native
 
   /**
     * Sets the user identity of the process. This accepts either a numerical ID or a username string.
     * If a username is specified, this method blocks while resolving it to a numerical ID.
     * @example process.setuid(id)
     */
-  def setuid(id: String | Int): Unit = js.native
+  def setuid(id: String): Unit = js.native
+  def setuid(id: Int): Unit    = js.native
 
   def setUncaughtExceptionCaptureCallback(callback: js.Function): Unit = js.native
   def setUncaughtExceptionCaptureCallback(): Unit                      = js.native

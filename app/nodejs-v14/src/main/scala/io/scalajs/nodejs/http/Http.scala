@@ -47,23 +47,30 @@ trait Http extends js.Object {
   def createServer(requestListener: js.Function2[ClientRequest, ServerResponse, Any]): Server = js.native
   def createServer(): Server                                                                  = js.native
 
-  def get(url: String | URL, options: RequestOptions, callback: js.Function1[ServerResponse, Any]): ClientRequest =
-    js.native
-  def get(url: String | URL, options: RequestOptions): ClientRequest                     = js.native
-  def get(url: String | URL, callback: js.Function1[ServerResponse, Any]): ClientRequest = js.native
-  def get(url: String | URL): ClientRequest                                              = js.native
-  def get(options: RequestOptions): ClientRequest                                        = js.native
-  def get(options: RequestOptions, callback: js.Function): ClientRequest                 = js.native
+  def get(url: String, options: RequestOptions, callback: js.Function1[ServerResponse, Any]): ClientRequest = js.native
+  def get(url: URL, options: RequestOptions, callback: js.Function1[ServerResponse, Any]): ClientRequest    = js.native
+  def get(url: String, options: RequestOptions): ClientRequest                                              = js.native
+  def get(url: String, callback: js.Function1[ServerResponse, Any]): ClientRequest                          = js.native
+  def get(url: String): ClientRequest                                                                       = js.native
+  def get(url: URL, options: RequestOptions): ClientRequest                                                 = js.native
+  def get(url: URL, callback: js.Function1[ServerResponse, Any]): ClientRequest                             = js.native
+  def get(url: URL): ClientRequest                                                                          = js.native
+  def get(options: RequestOptions): ClientRequest                                                           = js.native
+  def get(options: RequestOptions, callback: js.Function): ClientRequest                                    = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def maxHeaderSize: Int = js.native
 
-  def request(url: String | URL, options: RequestOptions): Unit                                              = js.native
-  def request(url: String | URL, options: RequestOptions, callback: js.Function1[ServerResponse, Any]): Unit = js.native
-  def request(url: String | URL, callback: js.Function1[ServerResponse, Any]): Unit                          = js.native
-  def request(url: String | URL): Unit                                                                       = js.native
-  def request(options: RequestOptions): Unit                                                                 = js.native
-  def request(options: RequestOptions, callback: js.Function1[ServerResponse, Any]): Unit                    = js.native
+  def request(url: String, options: RequestOptions): Unit                                              = js.native
+  def request(url: String, options: RequestOptions, callback: js.Function1[ServerResponse, Any]): Unit = js.native
+  def request(url: String, callback: js.Function1[ServerResponse, Any]): Unit                          = js.native
+  def request(url: String): Unit                                                                       = js.native
+  def request(url: URL, options: RequestOptions): Unit                                                 = js.native
+  def request(url: URL, options: RequestOptions, callback: js.Function1[ServerResponse, Any]): Unit    = js.native
+  def request(url: URL, callback: js.Function1[ServerResponse, Any]): Unit                             = js.native
+  def request(url: URL): Unit                                                                          = js.native
+  def request(options: RequestOptions): Unit                                                           = js.native
+  def request(options: RequestOptions, callback: js.Function1[ServerResponse, Any]): Unit              = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
   def validateHeaderName(name: String): Unit = js.native

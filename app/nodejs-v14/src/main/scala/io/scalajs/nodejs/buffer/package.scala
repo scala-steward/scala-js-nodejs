@@ -29,11 +29,9 @@ package object buffer {
     /**
       * Returns the actual byte length of a string. This is not the same as String.prototype.length since that returns
       * the number of characters in a string.
-      *
-      * @param encoding the optional encoding (default "utf8")
       */
     @inline
-    def byteLength(encoding: String = "utf8"): Int = Buffer.byteLength(buffer, encoding)
+    def byteLength(encoding: String): Int = Buffer.byteLength(buffer)
 
     /**
       * Returns the hex-formatted string

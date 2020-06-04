@@ -1,6 +1,7 @@
 package io.scalajs.nodejs.worker_threads
 
 import scala.scalajs.js
+import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
 @js.native
@@ -16,7 +17,7 @@ class Worker(filename: String, workerOptions: WorkerOptions) extends js.Object w
 
   def threadId: Int = js.native
 
-  def stderr: io.scalajs.nodejs.stream.Readable            = js.native
-  def stdout: io.scalajs.nodejs.stream.Readable            = js.native
-  def stdin: js.|[io.scalajs.nodejs.stream.Writable, Null] = js.native
+  def stderr: io.scalajs.nodejs.stream.Readable       = js.native
+  def stdout: io.scalajs.nodejs.stream.Readable       = js.native
+  def stdin: io.scalajs.nodejs.stream.Writable | Null = js.native
 }

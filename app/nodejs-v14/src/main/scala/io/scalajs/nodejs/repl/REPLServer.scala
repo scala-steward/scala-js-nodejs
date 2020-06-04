@@ -32,7 +32,8 @@ trait REPLServer extends IEventEmitter with Interface {
     * @param keyword The command keyword (without a leading . character).
     * @param cmd     The function to invoke when the command is processed.
     */
-  def defineCommand(keyword: String, cmd: DefinedCommand | js.Function1[String, Any]): Unit = js.native
+  def defineCommand(keyword: String, cmd: DefinedCommand): Unit            = js.native
+  def defineCommand(keyword: String, cmd: js.Function1[String, Any]): Unit = js.native
 
   /**
     * The replServer.displayPrompt() method readies the REPL instance for input from the user, printing the

@@ -31,11 +31,18 @@ trait Assert extends js.Object {
   def deepStrictEqual(actual: js.Any, expected: js.Any, message: String): Unit = js.native
   def deepStrictEqual(actual: js.Any, expected: js.Any): Unit                  = js.native
 
-  def doesNotReject(asyncFn: js.Function | js.Promise[_], error: js.RegExp | js.Function, message: String): Unit =
-    js.native
-  def doesNotReject(asyncFn: js.Function | js.Promise[_], error: js.RegExp | js.Function): Unit = js.native
-  def doesNotReject(asyncFn: js.Function | js.Promise[_], message: String): Unit                = js.native
-  def doesNotReject(asyncFn: js.Function | js.Promise[_]): Unit                                 = js.native
+  def doesNotReject(asyncFn: js.Function, error: js.RegExp, message: String): Unit     = js.native
+  def doesNotReject(asyncFn: js.Function, error: js.RegExp): Unit                      = js.native
+  def doesNotReject(asyncFn: js.Function, error: js.Function, message: String): Unit   = js.native
+  def doesNotReject(asyncFn: js.Function, error: js.Function): Unit                    = js.native
+  def doesNotReject(asyncFn: js.Function, message: String): Unit                       = js.native
+  def doesNotReject(asyncFn: js.Function): Unit                                        = js.native
+  def doesNotReject(asyncFn: js.Promise[_], error: js.RegExp, message: String): Unit   = js.native
+  def doesNotReject(asyncFn: js.Promise[_], error: js.RegExp): Unit                    = js.native
+  def doesNotReject(asyncFn: js.Promise[_], error: js.Function, message: String): Unit = js.native
+  def doesNotReject(asyncFn: js.Promise[_], error: js.Function): Unit                  = js.native
+  def doesNotReject(asyncFn: js.Promise[_], message: String): Unit                     = js.native
+  def doesNotReject(asyncFn: js.Promise[_]): Unit                                      = js.native
 
   /**
     * Asserts that the function block does not throw an error. See assert.throws() for more details.
@@ -44,10 +51,12 @@ trait Assert extends js.Object {
     * error is of a different type, or if the error parameter is undefined, the error is propagated back to the caller.
     * @example assert.doesNotThrow(block[, error][, message])
     */
-  def doesNotThrow(block: js.Function, error: js.RegExp | js.Function, message: String): Unit = js.native
-  def doesNotThrow(block: js.Function, error: js.RegExp | js.Function): Unit                  = js.native
-  def doesNotThrow(block: js.Function, message: String): Unit                                 = js.native
-  def doesNotThrow(block: js.Function): Unit                                                  = js.native
+  def doesNotThrow(block: js.Function, error: js.RegExp, message: String): Unit   = js.native
+  def doesNotThrow(block: js.Function, error: js.RegExp): Unit                    = js.native
+  def doesNotThrow(block: js.Function, error: js.Function, message: String): Unit = js.native
+  def doesNotThrow(block: js.Function, error: js.Function): Unit                  = js.native
+  def doesNotThrow(block: js.Function, message: String): Unit                     = js.native
+  def doesNotThrow(block: js.Function): Unit                                      = js.native
 
   /**
     * @see https://nodejs.org/api/assert.html#assert_assert_fail_message
@@ -102,17 +111,17 @@ trait Assert extends js.Object {
     * of the message parameter. If the message parameter is undefined, a default error message is assigned.
     * @example assert.throws(block[, error][, message])
     */
-  def throws(block: js.Function, error: js.RegExp | js.Function | js.Object | Error, message: String): Unit = js.native
-  def throws(block: js.Function, error: js.RegExp | js.Function | js.Object | Error): Unit                  = js.native
+  def throws(block: js.Function, error: js.Object, message: String): Unit = js.native
+  def throws(block: js.Function, error: js.Object): Unit                  = js.native
 
-  def rejects(asyncFn: js.Function | js.Promise[_],
-              error: js.RegExp | js.Function | js.Object | Error,
-              message: String
-  ): Unit = js.native
-  def rejects(asyncFn: js.Function | js.Promise[_], error: js.RegExp | js.Function | js.Object | Error): Unit =
-    js.native
-  def rejects(asyncFn: js.Function | js.Promise[_], message: String): Unit = js.native
-  def rejects(asyncFn: js.Function | js.Promise[_]): Unit                  = js.native
+  def rejects(asyncFn: js.Function, error: js.Object, message: String): Unit   = js.native
+  def rejects(asyncFn: js.Function, error: js.Object): Unit                    = js.native
+  def rejects(asyncFn: js.Function, message: String): Unit                     = js.native
+  def rejects(asyncFn: js.Function): Unit                                      = js.native
+  def rejects(asyncFn: js.Promise[_], error: js.Object, message: String): Unit = js.native
+  def rejects(asyncFn: js.Promise[_], error: js.Object): Unit                  = js.native
+  def rejects(asyncFn: js.Promise[_], message: String): Unit                   = js.native
+  def rejects(asyncFn: js.Promise[_]): Unit                                    = js.native
 }
 
 /**

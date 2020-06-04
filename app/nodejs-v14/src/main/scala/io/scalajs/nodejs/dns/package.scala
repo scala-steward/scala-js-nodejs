@@ -70,8 +70,16 @@ package object dns {
       * integer, then it must be 4 or 6.
       */
     @inline
-    def lookupFuture(hostname: String, options: DnsOptions | Int = null): Future[(String, Int)] = {
+    def lookupFuture(hostname: String, family: Int): Future[(String, Int)] = {
+      promiseWithError2[DnsError, String, Int](dns.lookup(hostname, family, _))
+    }
+    @inline
+    def lookupFuture(hostname: String, options: DnsOptions): Future[(String, Int)] = {
       promiseWithError2[DnsError, String, Int](dns.lookup(hostname, options, _))
+    }
+    @inline
+    def lookupFuture(hostname: String): Future[(String, Int)] = {
+      promiseWithError2[DnsError, String, Int](dns.lookup(hostname, _))
     }
 
     /**

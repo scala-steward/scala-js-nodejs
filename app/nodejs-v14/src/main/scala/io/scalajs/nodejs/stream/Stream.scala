@@ -223,7 +223,8 @@ sealed trait IReadable extends LegacyStream {
     * a Transform stream instead.
     * @example readable.unshift(chunk)
     */
-  def unshift(chunk: String | Uint8Array): Unit = js.native
+  def unshift(chunk: String): Unit     = js.native
+  def unshift(chunk: Uint8Array): Unit = js.native
 
   /**
     * Versions of Node.js prior to v0.10 had streams that did not implement the entire Streams API as it is today.
@@ -287,9 +288,10 @@ sealed trait IWritable extends LegacyStream {
 
   def destroyed: Boolean = js.native
 
-  def end(chunk: String | Uint8Array, callback: js.Function1[Error, Any]): this.type = js.native
-  def end(chunk: String | Uint8Array): this.type                                     = js.native
-
+  def end(chunk: String, callback: js.Function1[Error, Any]): this.type                   = js.native
+  def end(chunk: Uint8Array, callback: js.Function1[Error, Any]): this.type               = js.native
+  def end(chunk: String): this.type                                                       = js.native
+  def end(chunk: Uint8Array): this.type                                                   = js.native
   def end(chunk: String, encoding: String, callback: js.Function1[Error, Any]): this.type = js.native
   def end(chunk: String, encoding: String): this.type                                     = js.native
   def end(callback: js.Function1[Error, Any]): this.type                                  = js.native
@@ -323,8 +325,10 @@ sealed trait IWritable extends LegacyStream {
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def writableObjectMode: Boolean = js.native
 
-  def write(chunk: Uint8Array | String, callback: js.Function1[Error, Any]): Boolean      = js.native
-  def write(chunk: Uint8Array | String): Boolean                                          = js.native
+  def write(chunk: Uint8Array, callback: js.Function1[Error, Any]): Boolean               = js.native
+  def write(chunk: Uint8Array): Boolean                                                   = js.native
+  def write(chunk: String, callback: js.Function1[Error, Any]): Boolean                   = js.native
+  def write(chunk: String): Boolean                                                       = js.native
   def write(chunk: String, encoding: String): Boolean                                     = js.native
   def write(chunk: String, encoding: String, callback: js.Function1[Error, Any]): Boolean = js.native
 }

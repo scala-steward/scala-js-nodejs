@@ -28,12 +28,13 @@ class Http2ServerResponse extends stream.Writable with Http2TimeoutOps {
                          callback: js.Function2[io.scalajs.nodejs.Error, ServerHttp2Stream, Any]
   ): Unit = js.native
 
-  def getHeader(name: String): String                                 = js.native
-  def getHeaderNames(name: String): js.Array[String]                  = js.native
-  def getHeaders(): Http2Headers                                      = js.native
-  def hasHeader(name: String): Boolean                                = js.native
-  def removeHeader(name: String): Unit                                = js.native
-  def setHeader(name: String, value: String | js.Array[String]): Unit = js.native
+  def getHeader(name: String): String                        = js.native
+  def getHeaderNames(name: String): js.Array[String]         = js.native
+  def getHeaders(): Http2Headers                             = js.native
+  def hasHeader(name: String): Boolean                       = js.native
+  def removeHeader(name: String): Unit                       = js.native
+  def setHeader(name: String, value: String): Unit           = js.native
+  def setHeader(name: String, value: js.Array[String]): Unit = js.native
 
   @deprecated("Use writableEnd", "Node.js v13.4.0, v12.16.0")
   def finished: Boolean    = js.native
