@@ -13,7 +13,8 @@ import scala.scalajs.js.annotation.JSImport
   */
 @js.native
 @JSImport("net", "Socket")
-class Socket(options: SocketOptions = js.native) extends stream.Duplex with HasHandle {
+class Socket(options: SocketOptions) extends stream.Duplex with HasHandle {
+  def this() = this(???)
 
   /**
     * net.Socket has the property that socket.write() always works. This is to help users get up and running quickly.
@@ -112,7 +113,8 @@ class Socket(options: SocketOptions = js.native) extends stream.Duplex with HasH
     * @param connectListener the optional connect listener
     * @example socket.connect(options[, connectListener])
     */
-  def connect(options: ConnectOptions, connectListener: js.Function = js.native): Unit = js.native
+  def connect(options: ConnectOptions, connectListener: js.Function): Unit = js.native
+  def connect(options: ConnectOptions): Unit                               = js.native
 
   def connect(port: Int, host: String, connectListener: js.Function): Unit = js.native
   def connect(port: Int, connectListener: js.Function): Unit               = js.native
@@ -147,7 +149,8 @@ class Socket(options: SocketOptions = js.native) extends stream.Duplex with HasH
     * @return socket
     * @example socket.setNoDelay([noDelay])
     */
-  def setNoDelay(noDelay: Boolean = js.native): this.type = js.native
+  def setNoDelay(noDelay: Boolean): this.type = js.native
+  def setNoDelay(): this.type                 = js.native
 
   /**
     * Sets the socket to timeout after timeout milliseconds of inactivity on the socket. By default net.Socket do not have a timeout.

@@ -44,12 +44,15 @@ class WriteStream(fd: FileDescriptor) extends net.Socket {
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def cursorTo(x: Int, y: Int, callback: js.Function): Boolean = js.native
 
-  def getColorDepth(env: io.scalajs.nodejs.process.Environment = js.native): Int = js.native
+  def getColorDepth(env: io.scalajs.nodejs.process.Environment): Int = js.native
+  def getColorDepth(): Int                                           = js.native
 
   def getWindowSize(): js.Tuple2[Int, Int] = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def hasColors(count: Int = js.native, env: io.scalajs.nodejs.process.Environment = js.native): Boolean = js.native
+  def hasColors(count: Int, env: io.scalajs.nodejs.process.Environment): Boolean = js.native
+  def hasColors(count: Int): Boolean                                             = js.native
+  def hasColors(env: io.scalajs.nodejs.process.Environment): Boolean             = js.native
+  def hasColors(): Boolean                                                       = js.native
 
   /**
     * Indicates whether the stream is a TTY

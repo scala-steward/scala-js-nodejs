@@ -16,8 +16,9 @@ trait REPL extends js.Object {
   var REPL_MODE_SLOPPY: js.Symbol = js.native
   var REPL_MODE_STRICT: js.Symbol = js.native
 
-  def start(options: StartOptions = js.native): REPLServer = js.native
-  def start(prompt: String): REPLServer                    = js.native
+  def start(options: StartOptions): REPLServer = js.native
+  def start(prompt: String): REPLServer        = js.native
+  def start(): REPLServer                      = js.native
 }
 
 @Factory

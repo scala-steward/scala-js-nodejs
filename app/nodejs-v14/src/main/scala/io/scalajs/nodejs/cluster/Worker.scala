@@ -88,7 +88,8 @@ trait Worker extends IEventEmitter {
     * @param signal the name of the kill signal to send to the worker process.
     * @example kill([signal='SIGTERM'])
     */
-  def kill(signal: String = js.native): Unit = js.native
+  def kill(signal: String): Unit = js.native
+  def kill(): Unit               = js.native
 
   /**
     * Send a message to a worker or master, optionally with a handle.
@@ -96,5 +97,8 @@ trait Worker extends IEventEmitter {
     * In a worker this sends a message to the master. It is identical to process.send().
     * @example worker.send(message[, sendHandle][, callback])
     */
-  def send(message: Message, sendHandle: Handle = js.native, callback: js.Function = js.native): Unit = js.native
+  def send(message: Message, sendHandle: Handle, callback: js.Function): Unit = js.native
+  def send(message: Message, callback: js.Function): Unit                     = js.native
+  def send(message: Message, sendHandle: Handle): Unit                        = js.native
+  def send(message: Message): Unit                                            = js.native
 }

@@ -26,8 +26,10 @@ import scala.scalajs.js.annotation.{JSGlobal, JSImport}
 @js.native
 @JSImport("console", "Console")
 class Console protected () extends js.Object {
-  def this(stdout: IWritable, stderr: IWritable = js.native, ignoreErrors: Boolean = true) = this()
-
+  def this(stdout: IWritable, stderr: IWritable, ignoreErrors: Boolean) = this()
+  def this(stdout: IWritable, stderr: IWritable) = this()
+  def this(stdout: IWritable, ignoreErrors: Boolean) = this()
+  def this(stdout: IWritable) = this()
   def this(options: ConsoleOptions) = this()
 
   /**
@@ -63,13 +65,15 @@ class Console protected () extends js.Object {
     * Maintains an internal counter specific to `label` and outputs to `stdout` the number of times `console.count()` has been called with the given `label`.
     * @param label The display label for the counter. Default: 'default'.
     */
-  def count(label: String = js.native): Unit = js.native
+  def count(label: String): Unit = js.native
+  def count(): Unit              = js.native
 
   /**
     * Resets the internal counter specific to `label`.
     * @param label The display label for the counter. Default: 'default'.
     */
-  def countReset(label: String = js.native): Unit = js.native
+  def countReset(label: String): Unit = js.native
+  def countReset(): Unit              = js.native
 
   /**
     * The `console.debug()` function is an alias for `console.log()`.
@@ -82,7 +86,8 @@ class Console protected () extends js.Object {
     * Uses [[io.scalajs.nodejs.util.Util.inspect()]] on `obj` and prints the resulting string to `stdout`.
     * This function bypasses any custom `inspect()` function defined on `obj`.
     */
-  def dir(obj: js.Any, options: ConsoleDirOptions = js.native): Unit = js.native
+  def dir(obj: js.Any, options: ConsoleDirOptions): Unit = js.native
+  def dir(obj: js.Any): Unit                             = js.native
 
   /**
     * This method calls[[log()]] passing it the arguments received.
@@ -143,7 +148,8 @@ class Console protected () extends js.Object {
     * @param tabularData
     * @param properties Alternate properties for constructing the table.
     */
-  def table(tabularData: js.Any, properties: js.Array[String] = js.native): Unit = js.native
+  def table(tabularData: js.Any, properties: js.Array[String]): Unit = js.native
+  def table(tabularData: js.Any): Unit                               = js.native
 
   /**
     * Starts a timer that can be used to compute the duration of an operation.
@@ -152,12 +158,14 @@ class Console protected () extends js.Object {
     * `stdout`.
     * Timer durations are accurate to the sub-millisecond.
     */
-  def time(label: String = js.native): Unit = js.native
+  def time(label: String): Unit = js.native
+  def time(): Unit              = js.native
 
   /**
     * Stops a timer that was previously started by calling [[time()]] and prints the result to `stdout`.
     */
-  def timeEnd(label: String = js.native): Unit = js.native
+  def timeEnd(label: String): Unit = js.native
+  def timeEnd(): Unit              = js.native
 
   /**
     * Stops a timer that was previously started by calling [[time()]] and prints the result to `.stdout`.`
@@ -180,7 +188,8 @@ class Console protected () extends js.Object {
     * The `console.profile()` method starts a JavaScript CPU profile with an optional label until [[profileEnd()]] is called.
     * The profile is then added to the **Profile** panel of the inspector.
     */
-  def profile(label: String = js.native): Unit = js.native
+  def profile(label: String): Unit = js.native
+  def profile(): Unit              = js.native
 
   /**
     * This method does not display anything unless used in the inspector.
@@ -189,13 +198,15 @@ class Console protected () extends js.Object {
     *
     * If this method is called without a label, the most recently started profile is stopped.
     */
-  def profileEnd(label: String = js.native): Unit = js.native
+  def profileEnd(label: String): Unit = js.native
+  def profileEnd(): Unit              = js.native
 
   /**
     * This method does not display anything unless used in the inspector.
     * The `console.timeStamp()` method adds an event with the label `'label'` to the **Timeline** panel of the inspector.
     */
-  def timeStamp(label: String = js.native): Unit = js.native
+  def timeStamp(label: String): Unit = js.native
+  def timeStamp(): Unit              = js.native
 }
 
 /**

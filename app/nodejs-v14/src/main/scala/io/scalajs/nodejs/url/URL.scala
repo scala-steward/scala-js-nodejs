@@ -13,7 +13,8 @@ import scala.scalajs.js.|
   */
 @js.native
 @JSImport("url", "URL")
-class URL(input: String, base: String | URL = js.native) extends js.Object {
+class URL(input: String, base: String | URL) extends js.Object {
+  def this(input: String) = this(input, ???)
 
   /**
     * The auth property is the username and password portion of the URL, also referred to as "userinfo".
@@ -120,7 +121,8 @@ object URL extends js.Object {
     * @param options the given [[UrlFormatOptions options]]
     * @return a customizable serialization of a URL String representation of a WHATWG URL object.
     */
-  def format(url: URL, options: UrlFormatOptions = js.native): String = js.native
+  def format(url: URL, options: UrlFormatOptions): String = js.native
+  def format(url: URL): String                            = js.native
 
   /**
     * Take a URL string, and return an object.

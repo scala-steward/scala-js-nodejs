@@ -13,13 +13,15 @@ import scala.scalajs.js.|
   */
 @js.native
 @JSImport("string_decoder", "StringDecoder")
-class StringDecoder(encoding: String = js.native) extends IEventEmitter {
+class StringDecoder(encoding: String) extends IEventEmitter {
+  def this() = this(???)
 
   /**
     * Returns any trailing bytes that were left in the buffer.
     * @example decoder.end()
     */
-  def end(buffer: TypedArray[_, _] | DataView = js.native): String = js.native
+  def end(buffer: TypedArray[_, _] | DataView): String = js.native
+  def end(): String                                    = js.native
 
   /**
     * Returns a decoded string.

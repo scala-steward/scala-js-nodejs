@@ -20,7 +20,8 @@ object Require extends Require
 
 @js.native
 trait RequireResolver extends js.Object {
-  def apply(request: String, options: ResolveOptions = js.native): js.Any = js.native
+  def apply(request: String, options: ResolveOptions): js.Any = js.native
+  def apply(request: String): js.Any                          = js.native
 
   def paths(requiest: String): js.Array[String] = js.native
 }

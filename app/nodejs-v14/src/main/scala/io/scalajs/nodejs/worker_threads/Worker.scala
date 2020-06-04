@@ -5,7 +5,9 @@ import scala.scalajs.js.annotation.JSImport
 
 @js.native
 @JSImport("worker_threads", "Worker")
-class Worker(filename: String, workerOptions: WorkerOptions = js.native) extends js.Object with MessagePoster {
+class Worker(filename: String, workerOptions: WorkerOptions) extends js.Object with MessagePoster {
+  def this(filename: String) = this(???, ???)
+
   def ref(): Unit   = js.native
   def unref(): Unit = js.native
 

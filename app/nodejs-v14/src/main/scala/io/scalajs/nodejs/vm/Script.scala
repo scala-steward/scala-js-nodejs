@@ -13,8 +13,9 @@ import scala.scalajs.js.|
 @js.native
 @JSImport("vm", "Script")
 class Script private[this] () extends js.Object {
-  def this(code: String, options: ScriptOptions = js.native) = this()
+  def this(code: String, options: ScriptOptions) = this()
   def this(code: String, filename: String) = this()
+  def this(code: String) = this()
 
   def createCachedData(): io.scalajs.nodejs.buffer.Buffer = js.native
 
@@ -25,7 +26,8 @@ class Script private[this] () extends js.Object {
     * @param options             the optional options
     * @example script.runInContext(contextifiedSandbox[, options])
     */
-  def runInContext(contextifiedSandbox: ScriptContext, options: RunInContextOptions = js.native): js.Any = js.native
+  def runInContext(contextifiedSandbox: ScriptContext, options: RunInContextOptions): js.Any = js.native
+  def runInContext(contextifiedSandbox: ScriptContext): js.Any                               = js.native
 
   /**
     * First contextifies the given sandbox, runs the compiled code contained by the vm.Script object within the created
@@ -34,8 +36,9 @@ class Script private[this] () extends js.Object {
     * @param options the optional options
     * @example script.runInNewContext([sandbox][, options])
     */
-  def runInNewContext(sandbox: js.Object, options: RunInNewContextOptions = js.native): js.Any = js.native
-  def runInNewContext(): js.Any                                                                = js.native
+  def runInNewContext(sandbox: js.Object, options: RunInNewContextOptions): js.Any = js.native
+  def runInNewContext(sandbox: js.Object): js.Any                                  = js.native
+  def runInNewContext(): js.Any                                                    = js.native
 
   /**
     * Runs the compiled code contained by the vm.Script within the context of the current global object. Running code
@@ -43,7 +46,8 @@ class Script private[this] () extends js.Object {
     * @param options the optional options
     * @example script.runInThisContext([options])
     */
-  def runInThisContext(options: RunInContextOptions = js.native): Script = js.native
+  def runInThisContext(options: RunInContextOptions): Script = js.native
+  def runInThisContext(): Script                             = js.native
 }
 
 @Factory

@@ -15,13 +15,16 @@ import scala.scalajs.js.annotation.JSImport
 trait Tls extends js.Object {
   def checkServerIdentity(hostname: String, cert: TLSCertificate): js.UndefOr[io.scalajs.nodejs.Error] = js.native
 
-  def connect(options: ConnectOptions, callback: js.Function = js.native): Unit = js.native
+  def connect(options: ConnectOptions, callback: js.Function): Unit = js.native
+  def connect(options: ConnectOptions): Unit                        = js.native
 
-  def createSecureContext(options: SecureContextOptions = js.native): SecureContext = js.native
+  def createSecureContext(options: SecureContextOptions): SecureContext = js.native
+  def createSecureContext(): SecureContext                              = js.native
 
-  def createServer(options: ServerOptions, secureConnectionListener: js.Function = js.native): Server = js.native
-  def createServer(secureConnectionListener: js.Function): Server                                     = js.native
-  def createServer(): Server                                                                          = js.native
+  def createServer(options: ServerOptions, secureConnectionListener: js.Function): Server = js.native
+  def createServer(options: ServerOptions): Server                                        = js.native
+  def createServer(secureConnectionListener: js.Function): Server                         = js.native
+  def createServer(): Server                                                              = js.native
 
   def getCiphers(): js.Array[String] = js.native
 

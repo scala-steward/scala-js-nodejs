@@ -31,13 +31,18 @@ object Stream extends js.Object {
   */
 @js.native
 @JSImport("stream", "Readable")
-class Readable(options: ReadableOptions = js.native) extends IReadable
+class Readable(options: ReadableOptions) extends IReadable {
+  def this() = this(???)
+}
 
 @js.native
 @JSImport("stream", "Readable")
 object Readable extends js.Object {
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def from(iterable: js.Iterable[_], options: ReadableOptions = js.native): Readable = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def from(iterable: js.Iterable[_],
+                                                                              options: ReadableOptions
+  ): Readable = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def from(iterable: js.Iterable[_]): Readable =
+    js.native
 }
 
 /**
@@ -47,7 +52,9 @@ object Readable extends js.Object {
   */
 @js.native
 @JSImport("stream", "Writable")
-class Writable(options: WritableOptions = js.native) extends IWritable
+class Writable(options: WritableOptions) extends IWritable {
+  def this() = this(???)
+}
 
 /**
   * A "duplex" stream is one that is both Readable and Writable, such as a TCP socket connection.
@@ -62,7 +69,9 @@ class Writable(options: WritableOptions = js.native) extends IWritable
   */
 @js.native
 @JSImport("stream", "Duplex")
-class Duplex(options: DuplexOptions = js.native) extends IDuplex
+class Duplex(options: DuplexOptions) extends IDuplex {
+  def this() = this(???)
+}
 
 /**
   * Transform streams are Duplex streams where the output is in some way computed from the input.
@@ -70,7 +79,9 @@ class Duplex(options: DuplexOptions = js.native) extends IDuplex
   */
 @js.native
 @JSImport("stream", "Transform")
-class Transform(options: TransformOptions = js.native) extends ITransform
+class Transform(options: TransformOptions) extends ITransform {
+  def this() = this(???)
+}
 
 /**
   * This is a trivial implementation of a Transform stream that simply passes the input bytes across to the output.
@@ -110,7 +121,8 @@ sealed trait IReadable extends LegacyStream {
     * Multiple destinations can be piped to safely.
     * @example readable.pipe(destination[, options])
     */
-  def pipe(destination: IWritable, options: ReadablePipeOptions = js.native): this.type = js.native
+  def pipe(destination: IWritable, options: ReadablePipeOptions): this.type = js.native
+  def pipe(destination: IWritable): this.type                               = js.native
 
   /**
     * When chunk is a Buffer or string, the chunk of data will be added to the internal queue for users
@@ -126,7 +138,8 @@ sealed trait IReadable extends LegacyStream {
     * @param encoding the encoding of String chunks. Must be a valid Buffer encoding, such as 'utf8' or 'ascii'
     * @return true if additional chunks of data may continued to be pushed; false otherwise.
     */
-  def push(chunk: String, encoding: String = js.native): Boolean = js.native
+  def push(chunk: String, encoding: String): Boolean = js.native
+  def push(chunk: String): Boolean                   = js.native
 
   /**
     * When chunk is a Buffer or string, the chunk of data will be added to the internal queue for users
@@ -143,12 +156,12 @@ sealed trait IReadable extends LegacyStream {
     */
   def push(chunk: Uint8Array): Boolean = js.native
 
-  @JSName("read")
-  def readAsString(size: Int = js.native): String = js.native
-  @JSName("read")
-  def readAsBuffer(size: Int = js.native): Buffer = js.native
-  @JSName("read")
-  def readAsObject(size: Int = js.native): js.Any = js.native
+  @JSName("read") def readAsString(size: Int): String = js.native
+  @JSName("read") def readAsString(): String          = js.native
+  @JSName("read") def readAsBuffer(size: Int): Buffer = js.native
+  @JSName("read") def readAsBuffer(): Buffer          = js.native
+  @JSName("read") def readAsObject(size: Int): js.Any = js.native
+  @JSName("read") def readAsObject(): js.Any          = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def readable: Boolean = js.native
@@ -197,7 +210,8 @@ sealed trait IReadable extends LegacyStream {
     * <p/>If the destination is specified, but no pipe is set up for it, then this is a no-op.
     * @example readable.unpipe([destination])
     */
-  def unpipe(destination: IWritable = js.native): Unit = js.native
+  def unpipe(destination: IWritable): Unit = js.native
+  def unpipe(): Unit                       = js.native
 
   /**
     * This is useful in certain cases where a stream is being consumed by a parser, which needs
@@ -268,16 +282,18 @@ sealed trait IWritable extends LegacyStream {
     */
   def cork(): Unit = js.native
 
-  def destroy(error: io.scalajs.nodejs.Error = js.native): Unit = js.native
+  def destroy(error: io.scalajs.nodejs.Error): Unit = js.native
+  def destroy(): Unit                               = js.native
 
   def destroyed: Boolean = js.native
 
   def end(chunk: String | Uint8Array, callback: js.Function1[Error, Any]): this.type = js.native
-  def end(chunk: String | Uint8Array): js.UndefOr[this.type]                         = js.native
+  def end(chunk: String | Uint8Array): this.type                                     = js.native
 
   def end(chunk: String, encoding: String, callback: js.Function1[Error, Any]): this.type = js.native
   def end(chunk: String, encoding: String): this.type                                     = js.native
-  def end(callback: js.Function1[Error, Any] = js.native): this.type                      = js.native
+  def end(callback: js.Function1[Error, Any]): this.type                                  = js.native
+  def end(): this.type                                                                    = js.native
 
   /**
     * Sets the default encoding for a writable stream.
@@ -307,9 +323,10 @@ sealed trait IWritable extends LegacyStream {
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def writableObjectMode: Boolean = js.native
 
-  def write(chunk: Uint8Array | String, callback: js.Function1[Error, Any] = js.native): Boolean = js.native
-  def write(chunk: String, encoding: String): Boolean                                            = js.native
-  def write(chunk: String, encoding: String, callback: js.Function1[Error, Any]): Boolean        = js.native
+  def write(chunk: Uint8Array | String, callback: js.Function1[Error, Any]): Boolean      = js.native
+  def write(chunk: Uint8Array | String): Boolean                                          = js.native
+  def write(chunk: String, encoding: String): Boolean                                     = js.native
+  def write(chunk: String, encoding: String, callback: js.Function1[Error, Any]): Boolean = js.native
 }
 
 @Factory

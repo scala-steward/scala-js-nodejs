@@ -23,8 +23,9 @@ trait V8 extends js.Object {
 
   def setFlagsFromString(flags: String): Unit = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def writeHeapSnapshot(filename: String = js.native): String = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def writeHeapSnapshot(filename: String): String =
+    js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def writeHeapSnapshot(): String = js.native
 
   def serialize(value: js.Any): Buffer = js.native
 

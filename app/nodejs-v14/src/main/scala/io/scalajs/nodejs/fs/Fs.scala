@@ -76,7 +76,8 @@ trait Fs extends js.Object with FSConstants {
     * @param mode the optional mode
     * @example fs.accessSync(path[, mode])
     */
-  def accessSync(path: Path, mode: FileMode = js.native): Unit = js.native
+  def accessSync(path: Path, mode: FileMode): Unit = js.native
+  def accessSync(path: Path): Unit                 = js.native
 
   /**
     * Asynchronously append data to a file, creating the file if it does not yet exist. data can be a string or a buffer.
@@ -108,8 +109,8 @@ trait Fs extends js.Object with FSConstants {
     * @param options the [[FileAppendOptions optional append settings]]
     * @return undefined.
     */
-  def appendFileSync(path: Path | FileDescriptor, data: Buffer | String, options: FileAppendOptions = js.native): Unit =
-    js.native
+  def appendFileSync(path: Path | FileDescriptor, data: Buffer | String, options: FileAppendOptions): Unit = js.native
+  def appendFileSync(path: Path | FileDescriptor, data: Buffer | String): Unit                             = js.native
 
   /**
     * Asynchronous chmod(2). No arguments other than a possible exception are given to the completion callback.
@@ -213,8 +214,8 @@ trait Fs extends js.Object with FSConstants {
     * @param options the optional stream options
     * @example fs.createReadStream(path[, options])
     */
-  def createReadStream(path: Path, options: FileInputOptions = js.native): ReadStream =
-    js.native
+  def createReadStream(path: Path, options: FileInputOptions): ReadStream = js.native
+  def createReadStream(path: Path): ReadStream                            = js.native
 
   /**
     * Returns a new WriteStream object.
@@ -222,8 +223,8 @@ trait Fs extends js.Object with FSConstants {
     * @param options the optional stream options
     * @example fs.createWriteStream(path[, options])
     */
-  def createWriteStream(path: Path, options: FileOutputOptions = js.native): WriteStream =
-    js.native
+  def createWriteStream(path: Path, options: FileOutputOptions): WriteStream = js.native
+  def createWriteStream(path: Path): WriteStream                             = js.native
 
   /**
     * fs.exists() should not be used to check if a file exists before calling fs.open(). Doing so introduces a race
@@ -292,7 +293,8 @@ trait Fs extends js.Object with FSConstants {
     * @param fd the file descriptor
     * @return an instance of [[fs.Stats]].
     */
-  def fstatSync(fd: FileDescriptor, options: StatOptions = js.native): StatsVariant = js.native
+  def fstatSync(fd: FileDescriptor, options: StatOptions): StatsVariant = js.native
+  def fstatSync(fd: FileDescriptor): StatsVariant                       = js.native
 
   /**
     * Asynchronous fsync(2). No arguments other than a possible exception are given to the completion callback.
@@ -447,7 +449,8 @@ trait Fs extends js.Object with FSConstants {
     * @param path the path
     * @param mode the mode
     */
-  def mkdirSync(path: Path, mode: FileMode = js.native): Unit = js.native
+  def mkdirSync(path: Path, mode: FileMode): Unit = js.native
+  def mkdirSync(path: Path): Unit                 = js.native
 
   /**
     * @return After Node.js v13.11.0, in recursive mode, the first created path is returned now. Otherwise undefined
@@ -487,7 +490,8 @@ trait Fs extends js.Object with FSConstants {
     * @param prefix  the prefix
     * @param options the optional encoding setting
     */
-  def mkdtempSync(prefix: String, options: String | FileEncodingOptions = js.native): String = js.native
+  def mkdtempSync(prefix: String, options: String | FileEncodingOptions): String = js.native
+  def mkdtempSync(prefix: String): String                                        = js.native
 
   /**
     * Asynchronous file open. See open(2).
@@ -559,7 +563,8 @@ trait Fs extends js.Object with FSConstants {
     * @return an integer representing the file descriptor.
     * @example fs.openSync(path, flags[, mode])
     */
-  def openSync(path: Path, flags: Flags, mode: FileMode = js.native): FileDescriptor = js.native
+  def openSync(path: Path, flags: Flags, mode: FileMode): FileDescriptor = js.native
+  def openSync(path: Path, flags: Flags): FileDescriptor                 = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def openSync(path: Path): FileDescriptor = js.native
@@ -570,8 +575,10 @@ trait Fs extends js.Object with FSConstants {
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def opendir(path: Path, callback: FsCallback1[Fs.Dir]): Unit = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def opendirSync(path: Path, options: OpendirOptions = js.native): Fs.Dir = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def opendirSync(path: Path,
+                                                                                     options: OpendirOptions
+  ): Fs.Dir                                                                                              = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def opendirSync(path: Path): Fs.Dir = js.native
 
   /**
     * Read data from the file specified by fd.
@@ -659,7 +666,9 @@ trait Fs extends js.Object with FSConstants {
     *                to 'buffer', the filenames returned will be passed as Buffer objects.
     * @return an array of filenames excluding '.' and '..'.
     */
-  def readdirSync(path: Path, options: String | ReaddirOptions = js.native): js.Array[String] = js.native
+  def readdirSync(path: Path, options: String): js.Array[String]         = js.native
+  def readdirSync(path: Path, options: ReaddirOptions): js.Array[String] = js.native
+  def readdirSync(path: Path): js.Array[String]                          = js.native
 
   /**
     * Asynchronously reads the entire contents of a file.
@@ -709,7 +718,7 @@ trait Fs extends js.Object with FSConstants {
     *         Otherwise it returns a buffer.
     * @example fs.readFileSync(file[, options])
     */
-  def readFileSync(file: Path | FileDescriptor, options: ReadFileOptions = js.native): Output = js.native
+  def readFileSync(file: Path | FileDescriptor, options: ReadFileOptions): Output = js.native
 
   /**
     * Synchronous version of fs.readFile.
@@ -780,8 +789,8 @@ trait Fs extends js.Object with FSConstants {
     * @return the resolved path.
     * @example fs.realpathSync(path[, options])
     */
-  def realpathSync(path: Path, options: FileEncodingOptions = js.native): Output = js.native
-  def realpathSync(path: Path): String                                           = js.native
+  def realpathSync(path: Path, options: FileEncodingOptions): Output = js.native
+  def realpathSync(path: Path): String                               = js.native
 
   val realpath: RealpathObject = js.native
 
@@ -862,8 +871,8 @@ trait Fs extends js.Object with FSConstants {
     * @return undefined.
     * @example fs.symlinkSync(target, path[, type])
     */
-  def symlinkSync(target: Path, path: Path, `type`: String = js.native): Unit =
-    js.native
+  def symlinkSync(target: Path, path: Path, `type`: String): Unit = js.native
+  def symlinkSync(target: Path, path: Path): Unit                 = js.native
 
   /**
     * Asynchronous truncate(2). No arguments other than a possible exception are given to the completion callback.
@@ -884,7 +893,8 @@ trait Fs extends js.Object with FSConstants {
     * @return undefined.
     * @example fs.truncateSync(path, length)
     */
-  def truncateSync(path: Path, length: Int = js.native): Unit = js.native
+  def truncateSync(path: Path, length: Int): Unit = js.native
+  def truncateSync(path: Path): Unit              = js.native
 
   /**
     * Asynchronous unlink(2). No arguments other than a possible exception are given to the completion callback.
@@ -909,7 +919,8 @@ trait Fs extends js.Object with FSConstants {
     * fs.watchFile() and fs.unwatchFile() when possible.
     * @example fs.unwatchFile(filename[, listener])
     */
-  def unwatchFile(path: Path, listener: FsCallback0 = js.native): Unit = js.native
+  def unwatchFile(path: Path, listener: FsCallback0): Unit = js.native
+  def unwatchFile(path: Path): Unit                        = js.native
 
   /**
     * Change file timestamps of the file referenced by the supplied path.
@@ -979,7 +990,8 @@ trait Fs extends js.Object with FSConstants {
     * @return a [[FSWatcher]]
     * @example fs.watch(filename[, options][, listener])
     */
-  def watch(filename: Path, options: FSWatcherOptions = js.native): FSWatcher = js.native
+  def watch(filename: Path, options: FSWatcherOptions): FSWatcher = js.native
+  def watch(filename: Path): FSWatcher                            = js.native
 
   /**
     * Watch for changes on filename. The callback listener will be called each time the file is accessed.
@@ -1164,35 +1176,46 @@ object Fs extends Fs {
                    options: FileAppendOptions | String = js.native
     ): js.Promise[Unit] = js.native
 
-    def chmod(path: Path, mode: FileMode): js.Promise[Unit]                                = js.native
-    def chown(path: Path, uid: UID, gid: GID): js.Promise[Unit]                            = js.native
-    def copyFile(src: Path, target: Path, flag: Int): js.Promise[Unit]                     = js.native
-    def lchmod(path: Path, mode: FileMode): js.Promise[Unit]                               = js.native
-    def lchown(path: Path, uid: UID, gid: GID): js.Promise[Unit]                           = js.native
-    def link(existingPath: Path, newPath: Path): js.Promise[Unit]                          = js.native
-    def lstat(path: Path, options: StatOptions): js.Promise[StatsVariant]                  = js.native
-    def mkdir(path: Path, options: MkdirOptions = js.native): js.Promise[Unit]             = js.native
-    def mkdir(path: Path, mode: FileMode): js.Promise[Unit]                                = js.native
-    def mkdtemp(prefix: String, options: FileEncodingOptions): js.Promise[String]          = js.native
-    def mkdtemp(prefix: String, encoding: String = js.native): js.Promise[String]          = js.native
-    def open(path: Path, flags: Flags, mode: FileMode = js.native): js.Promise[FileHandle] = js.native
+    def chmod(path: Path, mode: FileMode): js.Promise[Unit]                       = js.native
+    def chown(path: Path, uid: UID, gid: GID): js.Promise[Unit]                   = js.native
+    def copyFile(src: Path, target: Path, flag: Int): js.Promise[Unit]            = js.native
+    def lchmod(path: Path, mode: FileMode): js.Promise[Unit]                      = js.native
+    def lchown(path: Path, uid: UID, gid: GID): js.Promise[Unit]                  = js.native
+    def link(existingPath: Path, newPath: Path): js.Promise[Unit]                 = js.native
+    def lstat(path: Path, options: StatOptions): js.Promise[StatsVariant]         = js.native
+    def mkdir(path: Path, options: MkdirOptions): js.Promise[Unit]                = js.native
+    def mkdir(path: Path): js.Promise[Unit]                                       = js.native
+    def mkdir(path: Path, mode: FileMode): js.Promise[Unit]                       = js.native
+    def mkdtemp(prefix: String, options: FileEncodingOptions): js.Promise[String] = js.native
+    def mkdtemp(prefix: String, encoding: String): js.Promise[String]             = js.native
+    def mkdtemp(prefix: String): js.Promise[String]                               = js.native
+    def open(path: Path, flags: Flags, mode: FileMode): js.Promise[FileHandle]    = js.native
+    def open(path: Path, flags: Flags): js.Promise[FileHandle]                    = js.native
     @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     def open(path: Path): js.Promise[FileHandle] = js.native
+    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def opendir(path: Path,
+                                                                                   options: OpendirOptions
+    ): js.Promise[Dir] = js.native
+    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def opendir(path: Path): js.Promise[Dir] =
+      js.native
+    def readdir(path: Path, options: ReaddirOptions): js.Promise[js.Array[String] | js.Array[Dirent]] = js.native
+    def readdir(path: Path, encoding: String): js.Promise[js.Array[String]]                           = js.native
+    def readdir(path: Path, options: FileEncodingOptions): js.Promise[js.Array[String]]               = js.native
+    def readdir(path: Path): js.Promise[js.Array[String]]                                             = js.native
+    def readlink(path: Path): js.Promise[String]                                                      = js.native
+    def readlink(path: Path, options: String | FileEncodingOptions): js.Promise[Output]               = js.native
+    def rename(oldPath: Path, newPath: Path): js.Promise[Unit]                                        = js.native
+    def rmdir(path: Path): js.Promise[Unit]                                                           = js.native
     @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-    def opendir(path: Path, options: OpendirOptions = js.native): js.Promise[Dir]                            = js.native
-    def readdir(path: Path, options: ReaddirOptions): js.Promise[js.Array[String] | js.Array[Dirent]]        = js.native
-    def readdir(path: Path, options: String | FileEncodingOptions = js.native): js.Promise[js.Array[String]] = js.native
-    def readlink(path: Path): js.Promise[String]                                                             = js.native
-    def readlink(path: Path, options: String | FileEncodingOptions): js.Promise[Output]                      = js.native
-    def rename(oldPath: Path, newPath: Path): js.Promise[Unit]                                               = js.native
-    def rmdir(path: Path): js.Promise[Unit]                                                                  = js.native
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-    def rmdir(path: Path, options: RmdirOptions): js.Promise[Unit]                      = js.native
-    def stat(path: Path, options: StatOptions = js.native): js.Promise[StatsVariant]    = js.native
-    def symlink(target: Path, path: Path, `type`: String = js.native): js.Promise[Unit] = js.native
-    def truncate(path: Path, length: Int = js.native): js.Promise[Unit]                 = js.native
-    def unlink(path: Path): js.Promise[Unit]                                            = js.native
-    def utimes(path: Path, atime: Time, mtime: Time): js.Promise[Unit]                  = js.native
+    def rmdir(path: Path, options: RmdirOptions): js.Promise[Unit]          = js.native
+    def stat(path: Path, options: StatOptions): js.Promise[StatsVariant]    = js.native
+    def stat(path: Path): js.Promise[StatsVariant]                          = js.native
+    def symlink(target: Path, path: Path, `type`: String): js.Promise[Unit] = js.native
+    def symlink(target: Path, path: Path): js.Promise[Unit]                 = js.native
+    def truncate(path: Path, length: Int): js.Promise[Unit]                 = js.native
+    def truncate(path: Path): js.Promise[Unit]                              = js.native
+    def unlink(path: Path): js.Promise[Unit]                                = js.native
+    def utimes(path: Path, atime: Time, mtime: Time): js.Promise[Unit]      = js.native
     def writeFile(file: Path | FileHandle, data: String | BufferLike, options: FileWriteOptions): js.Promise[Unit] =
       js.native
   }
@@ -1201,18 +1224,19 @@ object Fs extends Fs {
   trait FileHandle extends js.Object {
     val fd: FileDescriptor = js.native
 
-    def appendFile(data: String | Buffer, options: FileAppendOptions = js.native): js.Promise[Unit] = js.native
-    def chmod(mode: FileMode): js.Promise[Unit]                                                     = js.native
-    def chown(uid: UID, gid: GID): js.Promise[Unit]                                                 = js.native
-    def close(): js.Promise[Unit]                                                                   = js.native
-    def datasync(): js.Promise[Unit]                                                                = js.native
+    def appendFile(data: String | Buffer, options: FileAppendOptions): js.Promise[Unit] = js.native
+    def appendFile(data: String | Buffer): js.Promise[Unit]                             = js.native
+    def chmod(mode: FileMode): js.Promise[Unit]                                         = js.native
+    def chown(uid: UID, gid: GID): js.Promise[Unit]                                     = js.native
+    def close(): js.Promise[Unit]                                                       = js.native
+    def datasync(): js.Promise[Unit]                                                    = js.native
     def read[T <: js.typedarray.TypedArray[_, _]](buffer: T,
                                                   offset: Int | Null,
                                                   length: Int | Null,
                                                   position: Int | Null
     ): js.Promise[BufferIOResult[T]] = js.native
     @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
-    def readd[T <: js.typedarray.TypedArray[_, _]](options: ReadOptions): js.Promise[BufferIOResult[T]] = js.native
+    def read[T <: js.typedarray.TypedArray[_, _]](options: ReadOptions): js.Promise[BufferIOResult[T]] = js.native
 
     def readFile(): js.Promise[Buffer]                         = js.native
     def readFile(encoding: String): js.Promise[String]         = js.native
@@ -1310,7 +1334,8 @@ trait OpendirOptions extends js.Object {
 
 @Factory
 trait ReadFileOptions extends js.Object {
-  var flag: js.UndefOr[String] = js.undefined
+  var encoding: js.UndefOr[String] = js.undefined
+  var flag: js.UndefOr[String]     = js.undefined
 }
 
 @Factory

@@ -8,7 +8,8 @@ import scala.scalajs.js.|
 @enableMembersIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
 @js.native
 trait Reporter extends js.Object {
-  def getReport(err: io.scalajs.nodejs.Error = js.native): Reporter = js.native
+  def getReport(err: io.scalajs.nodejs.Error): Reporter = js.native
+  def getReport(): Reporter                             = js.native
 
   def directory: String            = js.native
   def directory_=(v: String): Unit = js.native

@@ -23,13 +23,15 @@ trait Readline extends js.Object {
     * </ul>
     * @example readline.clearLine(stream, dir)
     */
-  def clearLine(stream: IWritable, dir: Int, callback: js.Function = js.native): Boolean = js.native
+  def clearLine(stream: IWritable, dir: Int, callback: js.Function): Boolean = js.native
+  def clearLine(stream: IWritable, dir: Int): Boolean                        = js.native
 
   /**
     * Clears the screen from the current position of the cursor down.
     * @example readline.clearScreenDown(stream)
     */
-  def clearScreenDown(stream: IWritable, callback: js.Function = js.native): Boolean = js.native
+  def clearScreenDown(stream: IWritable, callback: js.Function): Boolean = js.native
+  def clearScreenDown(stream: IWritable): Boolean                        = js.native
 
   /**
     * Creates a readline Interface instance.
@@ -41,17 +43,20 @@ trait Readline extends js.Object {
     * Move cursor to the specified position in a given TTY stream.
     * @example readline.cursorTo(stream, x, y)
     */
-  def cursorTo(stream: IWritable, x: Int, y: Int, callback: js.Function = js.native): Unit = js.native
-  def cursorTo(stream: IWritable, x: Int, callback: js.Function): Unit                     = js.native
-  def cursorTo(stream: IWritable, x: Int): Unit                                            = js.native
+  def cursorTo(stream: IWritable, x: Int, y: Int, callback: js.Function): Unit = js.native
+  def cursorTo(stream: IWritable, x: Int, y: Int): Unit                        = js.native
+  def cursorTo(stream: IWritable, x: Int, callback: js.Function): Unit         = js.native
+  def cursorTo(stream: IWritable, x: Int): Unit                                = js.native
 
-  def emitKeypressEvents(stream: IReadable, interface: Interface = js.native): Unit = js.native
+  def emitKeypressEvents(stream: IReadable, interface: Interface): Unit = js.native
+  def emitKeypressEvents(stream: IReadable): Unit                       = js.native
 
   /**
     * Move cursor relative to it's current position in a given TTY stream.
     * @example readline.moveCursor(stream, dx, dy)
     */
-  def moveCursor(stream: IWritable, dx: Int, dy: Int, callback: js.Function = js.native): Unit = js.native
+  def moveCursor(stream: IWritable, dx: Int, dy: Int, callback: js.Function): Unit = js.native
+  def moveCursor(stream: IWritable, dx: Int, dy: Int): Unit                        = js.native
 }
 
 /**

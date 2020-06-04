@@ -27,8 +27,9 @@ trait Verify extends Writable {
     *                       'utf8', 'ascii' or 'binary'. If encoding is not provided, and the data is a string, an
     *                       encoding of 'utf8' is enforced. If data is a Buffer then input_encoding is ignored.
     */
-  def update(data: String, inputEncoding: String = js.native): Unit = js.native
-  def update(data: BufferLike): Unit                                = js.native
+  def update(data: String, inputEncoding: String): Unit = js.native
+  def update(data: String): Unit                        = js.native
+  def update(data: BufferLike): Unit                    = js.native
 
   /**
     * Verifies the provided data using the given object and signature.

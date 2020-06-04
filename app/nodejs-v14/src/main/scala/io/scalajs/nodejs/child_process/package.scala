@@ -14,7 +14,8 @@ package object child_process {
   type StdIo = String | js.Array[String] | js.Array[io.scalajs.nodejs.FileDescriptor] | js.Array[
     String | io.scalajs.nodejs.FileDescriptor
   ]
-  type KillSignal = Int | String
+  type KillSignal   = Int | String
+  type ExecCallback = js.Function3[nodejs.Error, Output, Output, Any]
 
   implicit final class ChildProcessObjectExtensions(private val cp: ChildProcess.type) extends AnyVal {
     @inline

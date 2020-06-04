@@ -20,19 +20,22 @@ trait Assert extends js.Object {
     * @param expression the expression to evaluate
     * @example assert(value[, message])
     */
-  def apply(expression: js.Any, message: String = js.native): Unit = js.native
+  def apply(expression: js.Any, message: String): Unit = js.native
+  def apply(expression: js.Any): Unit                  = js.native
 
   /**
     * Generally identical to assert.deepEqual() with two exceptions. First, primitive values are compared using the
     * strict equality operator ( === ). Second, object comparisons include a strict equality check of their prototypes.
     * @example assert.deepStrictEqual(actual, expected[, message])
     */
-  def deepStrictEqual(actual: js.Any, expected: js.Any, message: String = js.native): Unit = js.native
+  def deepStrictEqual(actual: js.Any, expected: js.Any, message: String): Unit = js.native
+  def deepStrictEqual(actual: js.Any, expected: js.Any): Unit                  = js.native
 
-  def doesNotReject(asyncFn: js.Function | js.Promise[_],
-                    error: js.RegExp | js.Function = js.native,
-                    message: String = js.native
-  ): Unit = js.native
+  def doesNotReject(asyncFn: js.Function | js.Promise[_], error: js.RegExp | js.Function, message: String): Unit =
+    js.native
+  def doesNotReject(asyncFn: js.Function | js.Promise[_], error: js.RegExp | js.Function): Unit = js.native
+  def doesNotReject(asyncFn: js.Function | js.Promise[_], message: String): Unit                = js.native
+  def doesNotReject(asyncFn: js.Function | js.Promise[_]): Unit                                 = js.native
 
   /**
     * Asserts that the function block does not throw an error. See assert.throws() for more details.
@@ -41,8 +44,10 @@ trait Assert extends js.Object {
     * error is of a different type, or if the error parameter is undefined, the error is propagated back to the caller.
     * @example assert.doesNotThrow(block[, error][, message])
     */
-  def doesNotThrow(block: js.Function, error: js.RegExp | js.Function = js.native, message: String = js.native): Unit =
-    js.native
+  def doesNotThrow(block: js.Function, error: js.RegExp | js.Function, message: String): Unit = js.native
+  def doesNotThrow(block: js.Function, error: js.RegExp | js.Function): Unit                  = js.native
+  def doesNotThrow(block: js.Function, message: String): Unit                                 = js.native
+  def doesNotThrow(block: js.Function): Unit                                                  = js.native
 
   /**
     * @see https://nodejs.org/api/assert.html#assert_assert_fail_message
@@ -67,26 +72,30 @@ trait Assert extends js.Object {
     * Tests for deep strict inequality. Opposite of assert.deepStrictEqual().
     * @example assert.notDeepStrictEqual(actual, expected[, message])
     */
-  def notDeepStrictEqual(actual: js.Any, expected: js.Any, message: String = js.native): Unit = js.native
+  def notDeepStrictEqual(actual: js.Any, expected: js.Any, message: String): Unit = js.native
+  def notDeepStrictEqual(actual: js.Any, expected: js.Any): Unit                  = js.native
 
   /**
     * Tests strict inequality as determined by the strict not equal operator ( !== ).
     * @example assert.notStrictEqual(actual, expected[, message])
     */
-  def notStrictEqual(actual: js.Any, expected: js.Any, message: String = js.native): Unit = js.native
+  def notStrictEqual(actual: js.Any, expected: js.Any, message: String): Unit = js.native
+  def notStrictEqual(actual: js.Any, expected: js.Any): Unit                  = js.native
 
   /**
     * Tests if value is truthy. It is equivalent to assert.equal(!!value, true, message). If value is not truthy,
     * an AssertionError is thrown with a message property set equal to the value of the message parameter. If the
     * message parameter is undefined, a default error message is assigned.
     */
-  def ok(value: js.Any, message: String = js.native): Unit = js.native
+  def ok(value: js.Any, message: String): Unit = js.native
+  def ok(value: js.Any): Unit                  = js.native
 
   /**
     * Tests strict equality as determined by the strict equality operator ( === ).
     * @example assert.strictEqual(actual, expected[, message])
     */
-  def strictEqual(actual: js.Any, expected: js.Any, message: String = js.native): Unit = js.native
+  def strictEqual(actual: js.Any, expected: js.Any, message: String): Unit = js.native
+  def strictEqual(actual: js.Any, expected: js.Any): Unit                  = js.native
 
   /**
     * If the values are not strictly equal, an AssertionError is thrown with a message property set equal to the value
@@ -99,9 +108,13 @@ trait Assert extends js.Object {
   ): Unit = js.native
 
   def rejects(asyncFn: js.Function | js.Promise[_],
-              error: js.RegExp | js.Function | js.Object | Error = js.native,
-              message: String = js.native
+              error: js.RegExp | js.Function | js.Object | Error,
+              message: String
   ): Unit = js.native
+  def rejects(asyncFn: js.Function | js.Promise[_], error: js.RegExp | js.Function | js.Object | Error): Unit =
+    js.native
+  def rejects(asyncFn: js.Function | js.Promise[_], message: String): Unit = js.native
+  def rejects(asyncFn: js.Function | js.Promise[_]): Unit                  = js.native
 }
 
 /**

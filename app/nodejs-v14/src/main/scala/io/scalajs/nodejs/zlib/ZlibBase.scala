@@ -15,7 +15,8 @@ import scala.scalajs.js
 trait ZlibBase extends stream.Transform {
   def bytesWritten: Double = js.native
 
-  def close(callback: js.Function = js.native): Unit = js.native
+  def close(callback: js.Function): Unit = js.native
+  def close(): Unit                      = js.native
 
   def flush(kind: CompressionFlush, callback: js.Function): Unit = js.native
   def flush(callback: js.Function): Unit                         = js.native

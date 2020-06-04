@@ -26,6 +26,7 @@ sealed trait Sign extends Writable {
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def sign(privateKey: KeyObject, outputEncoding: String): String = js.native
 
-  def update(data: String, inputEncoding: String = js.native): Unit = js.native
-  def update(data: BufferLike): Unit                                = js.native
+  def update(data: String, inputEncoding: String): Unit = js.native
+  def update(data: String): Unit                        = js.native
+  def update(data: BufferLike): Unit                    = js.native
 }

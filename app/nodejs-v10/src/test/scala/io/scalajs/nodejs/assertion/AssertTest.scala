@@ -11,7 +11,7 @@ class AssertTest extends AnyFunSpec {
   }
 
   it("have rejects/doesNotReject from v10.0.0") {
-    assert(NodeAssert.strict.rejects _ !== js.undefined)
-    assert(NodeAssert.strict.doesNotReject _ !== js.undefined)
+    NodeAssert.strict.rejects(js.Promise.reject("omg"))
+    NodeAssert.strict.doesNotReject(js.Promise.resolve[String]("wow"))
   }
 }

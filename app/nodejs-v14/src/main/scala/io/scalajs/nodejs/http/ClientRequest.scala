@@ -84,13 +84,17 @@ class ClientRequest extends stream.Writable {
   /**
     * Once a socket is assigned to this request and is connected socket.setNoDelay() will be called.
     */
-  def setNoDelay(noDelay: Boolean = js.native): Unit = js.native
+  def setNoDelay(noDelay: Boolean): Unit = js.native
+  def setNoDelay(): Unit                 = js.native
 
   /**
     * Once a socket is assigned to this request and is connected socket.setKeepAlive() will be called.
     * @see [[https://nodejs.org/api/http.html#http_request_setsocketkeepalive_enable_initialdelay]]
     */
-  def setSocketKeepAlive(enable: Boolean = js.native, initialDelay: Int = js.native): Unit = js.native
+  def setSocketKeepAlive(enable: Boolean, initialDelay: Int): Unit = js.native
+  def setSocketKeepAlive(enable: Boolean): Unit                    = js.native
+  def setSocketKeepAlive(initialDelay: Int): Unit                  = js.native
+  def setSocketKeepAlive(): Unit                                   = js.native
 
   /**
     * Once a socket is assigned to this request and is connected socket.setTimeout() will be called.
@@ -100,7 +104,8 @@ class ClientRequest extends stream.Writable {
     * Same as binding to the timeout event.</li>
     * </ul>
     */
-  def setTimeout(timeout: Int, callback: js.Function = js.native): Unit = js.native
+  def setTimeout(timeout: Int, callback: js.Function): Unit = js.native
+  def setTimeout(timeout: Int): Unit                        = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def reusedSocket: Boolean = js.native

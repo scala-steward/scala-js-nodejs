@@ -11,7 +11,8 @@ import scala.scalajs.js.|
 object Certificate extends js.Object {
   def exportChallenge(spkac: String | BufferLike): Buffer = js.native
 
-  def exportPublicKey(spkac: String | BufferLike, encoding: String = js.native): Buffer = js.native
+  def exportPublicKey(spkac: String | BufferLike, encoding: String): Buffer = js.native
+  def exportPublicKey(spkac: String | BufferLike): Buffer                   = js.native
 
   def verifySpkac(spkac: BufferLike): Boolean = js.native
 }

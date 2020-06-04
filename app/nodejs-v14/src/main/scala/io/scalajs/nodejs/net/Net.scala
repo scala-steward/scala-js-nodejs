@@ -37,17 +37,19 @@ trait Net extends js.Object {
     * parameter will be added as a listener for the 'connect' event once.
     * @example net.createConnection(options[, connectListener])
     */
-  def createConnection(options: ConnectOptions, connectListener: js.Function = js.native): Socket = js.native
-  def createConnection(path: String, connectListener: js.Function): Socket                        = js.native
-  def createConnection(path: String): Socket                                                      = js.native
-  def createConnection(port: Int, host: String, connectListener: js.Function): Socket             = js.native
-  def createConnection(port: Int, connectListener: js.Function): Socket                           = js.native
-  def createConnection(port: Int, host: String): Socket                                           = js.native
-  def createConnection(port: Int): Socket                                                         = js.native
+  def createConnection(options: ConnectOptions, connectListener: js.Function): Socket = js.native
+  def createConnection(options: ConnectOptions): Socket                               = js.native
+  def createConnection(path: String, connectListener: js.Function): Socket            = js.native
+  def createConnection(path: String): Socket                                          = js.native
+  def createConnection(port: Int, host: String, connectListener: js.Function): Socket = js.native
+  def createConnection(port: Int, connectListener: js.Function): Socket               = js.native
+  def createConnection(port: Int, host: String): Socket                               = js.native
+  def createConnection(port: Int): Socket                                             = js.native
 
-  def createServer(options: ServerOptions, connectionListener: js.Function = js.native): Server = js.native
-  def createServer(connectionListener: js.Function): Server                                     = js.native
-  def createServer(): Server                                                                    = js.native
+  def createServer(options: ServerOptions, connectionListener: js.Function): Server = js.native
+  def createServer(options: ServerOptions): Server                                  = js.native
+  def createServer(connectionListener: js.Function): Server                         = js.native
+  def createServer(): Server                                                        = js.native
 
   /**
     * Tests if input is an IP address. Returns 0 for invalid strings, returns 4 for IP version 4 addresses,

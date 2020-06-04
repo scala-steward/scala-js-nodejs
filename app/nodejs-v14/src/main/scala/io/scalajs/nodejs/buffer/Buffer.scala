@@ -58,12 +58,11 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     *         -1 is returned if target should come after buf when sorted.
     * @see [[https://nodejs.org/api/buffer.html#buffer_buf_compare_target_targetstart_targetend_sourcestart_sourceend]]
     */
-  def compare(target: Uint8Array,
-              targetStart: Int = js.native,
-              targetEnd: Int = js.native,
-              sourceStart: Int = js.native,
-              sourceEnd: Int = js.native
-  ): Int = js.native
+  def compare(target: Uint8Array, targetStart: Int, targetEnd: Int, sourceStart: Int, sourceEnd: Int): Int = js.native
+  def compare(target: Uint8Array, targetStart: Int, targetEnd: Int, sourceStart: Int): Int                 = js.native
+  def compare(target: Uint8Array, targetStart: Int, targetEnd: Int): Int                                   = js.native
+  def compare(target: Uint8Array, targetStart: Int): Int                                                   = js.native
+  def compare(target: Uint8Array): Int                                                                     = js.native
 
   /**
     * Copies data from a region of `buf` to a region in `target` even if the `target` memory region overlaps with `buf`.
@@ -77,11 +76,10 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return The number of bytes copied.
     * @see [[https://nodejs.org/api/buffer.html#buffer_buf_copy_target_targetstart_sourcestart_sourceend]]
     */
-  def copy(target: Buffer,
-           targetStart: Int = js.native,
-           sourceStart: Int = js.native,
-           sourceEnd: Int = js.native
-  ): Int = js.native
+  def copy(target: Buffer, targetStart: Int, sourceStart: Int, sourceEnd: Int): Int = js.native
+  def copy(target: Buffer, targetStart: Int, sourceStart: Int): Int                 = js.native
+  def copy(target: Buffer, targetStart: Int): Int                                   = js.native
+  def copy(target: Buffer): Int                                                     = js.native
 
   /**
     * Creates and returns an [[Iterator]] of `[index, byte]` pairs from the contents of `buf`.
@@ -110,11 +108,12 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return A reference to buf
     * @see https://nodejs.org/api/buffer.html#buffer_buf_fill_value_offset_end_encoding
     */
-  def fill(value: Uint8Array | Int | String,
-           offset: Int = js.native,
-           end: Int = js.native,
-           encoding: String = js.native
-  ): this.type = js.native
+  def fill(value: Uint8Array | Int | String, offset: Int, end: Int, encoding: String): this.type = js.native
+  def fill(value: Uint8Array | Int | String, offset: Int, end: Int): this.type                   = js.native
+  def fill(value: Uint8Array | Int | String, offset: Int, encoding: String): this.type           = js.native
+  def fill(value: Uint8Array | Int | String, offset: Int): this.type                             = js.native
+  def fill(value: Uint8Array | Int | String, encoding: String): this.type                        = js.native
+  def fill(value: Uint8Array | Int | String): this.type                                          = js.native
 
   /**
     * Returns the index of the first occurrence of value in buf or -1 if buf does not contain value
@@ -124,7 +123,10 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return The index of the first occurrence of value in buf or -1 if buf does not contain value
     * @example {{{ buf.indexOf(value[, byteOffset][, encoding]) }}}
     */
-  def indexOf(value: Buffer | Int | String, byteOffset: Int = js.native, encoding: String = js.native): Int = js.native
+  def indexOf(value: Buffer | Int | String, byteOffset: Int, encoding: String): Int = js.native
+  def indexOf(value: Buffer | Int | String, byteOffset: Int): Int                   = js.native
+  def indexOf(value: Buffer | Int | String, encoding: String): Int                  = js.native
+  def indexOf(value: Buffer | Int | String): Int                                    = js.native
 
   /**
     * Equivalent to buf.indexOf() !== -1.
@@ -134,8 +136,10 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return true if value was found in buf, false otherwise
     * @example {{{ buf.includes(value[, byteOffset][, encoding]) }}}
     */
-  def includes(value: Buffer | Int | String, byteOffset: Int = js.native, encoding: String = js.native): Boolean =
-    js.native
+  def includes(value: Buffer | Int | String, byteOffset: Int, encoding: String): Boolean = js.native
+  def includes(value: Buffer | Int | String, byteOffset: Int): Boolean                   = js.native
+  def includes(value: Buffer | Int | String, encoding: String): Boolean                  = js.native
+  def includes(value: Buffer | Int | String): Boolean                                    = js.native
 
   /**
     * Creates and returns an iterator of buf keys (indices).
@@ -152,8 +156,10 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return The index of the last occurrence of value in buf or -1 if buf does not contain value
     * @example {{{ buf.lastIndexOf(value[, byteOffset][, encoding]) }}}
     */
-  def lastIndexOf(value: Buffer | Int | String, byteOffset: Int = js.native, encoding: String = js.native): Int =
-    js.native
+  def lastIndexOf(value: Buffer | Int | String, byteOffset: Int, encoding: String): Int = js.native
+  def lastIndexOf(value: Buffer | Int | String, byteOffset: Int): Int                   = js.native
+  def lastIndexOf(value: Buffer | Int | String, encoding: String): Int                  = js.native
+  def lastIndexOf(value: Buffer | Int | String): Int                                    = js.native
 
   /**
     * Returns the amount of memory allocated for buf in bytes.
@@ -174,7 +180,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return a [[Double]] value
     * @example {{{ buf.readDoubleBE(offset[, noAssert]) }}}
     */
-  def readDoubleBE(offset: Int, noAssert: Boolean = js.native): Double = js.native
+  def readDoubleBE(offset: Int, noAssert: Boolean): Double = js.native
+  def readDoubleBE(offset: Int): Double                    = js.native
 
   /**
     * Reads a 64-bit double from buf at the specified offset with specified endian format (readDoubleBE()
@@ -187,7 +194,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return a [[Double]] value
     * @example {{{ buf.readDoubleBE(offset[, noAssert]) }}}
     */
-  def readDoubleLE(offset: Int, noAssert: Boolean = js.native): Double = js.native
+  def readDoubleLE(offset: Int, noAssert: Boolean): Double = js.native
+  def readDoubleLE(offset: Int): Double                    = js.native
 
   /**
     * Reads a 32-bit float from buf at the specified offset with specified endian format (readFloatBE()
@@ -200,7 +208,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return a [[Double]] value
     * @example {{{ buf.readFloatBE(offset[, noAssert]) }}}
     */
-  def readFloatBE(offset: Int, noAssert: Boolean = js.native): Double = js.native
+  def readFloatBE(offset: Int, noAssert: Boolean): Double = js.native
+  def readFloatBE(offset: Int): Double                    = js.native
 
   /**
     * Reads a 32-bit float from buf at the specified offset with specified endian format (readFloatBE()
@@ -213,7 +222,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return a [[Double]] value
     * @example {{{ buf.readFloatLE(offset[, noAssert]) }}}
     */
-  def readFloatLE(offset: Int, noAssert: Boolean = js.native): Double = js.native
+  def readFloatLE(offset: Int, noAssert: Boolean): Double = js.native
+  def readFloatLE(offset: Int): Double                    = js.native
 
   /**
     * Reads a signed 8-bit integer from buf at the specified offset.
@@ -226,7 +236,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the [[Int integer]] value
     * @example {{{ buf.readInt8(offset[, noAssert]) }}}
     */
-  def readInt8(offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def readInt8(offset: Int, noAssert: Boolean): Int = js.native
+  def readInt8(offset: Int): Int                    = js.native
 
   /**
     * Reads a signed 16-bit integer from buf at the specified offset with the specified endian format
@@ -241,7 +252,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the [[Int integer]] value
     * @example {{{ buf.readInt16BE(offset[, noAssert]) }}}
     */
-  def readInt16BE(offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def readInt16BE(offset: Int, noAssert: Boolean): Int = js.native
+  def readInt16BE(offset: Int): Int                    = js.native
 
   /**
     * Reads a signed 16-bit integer from buf at the specified offset with the specified endian format
@@ -256,7 +268,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the [[Int integer]] value
     * @example {{{ buf.readInt16LE(offset[, noAssert]) }}}
     */
-  def readInt16LE(offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def readInt16LE(offset: Int, noAssert: Boolean): Int = js.native
+  def readInt16LE(offset: Int): Int                    = js.native
 
   /**
     * Reads a signed 32-bit integer from buf at the specified offset with the specified endian format
@@ -271,7 +284,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the [[Int integer]] value
     * @example {{{ buf.readInt32BE(offset[, noAssert]) }}}
     */
-  def readInt32BE(offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def readInt32BE(offset: Int, noAssert: Boolean): Int = js.native
+  def readInt32BE(offset: Int): Int                    = js.native
 
   /**
     * Reads a signed 32-bit integer from buf at the specified offset with the specified endian format
@@ -286,7 +300,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the [[Int integer]] value
     * @example {{{ buf.readInt32LE(offset[, noAssert]) }}}
     */
-  def readInt32LE(offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def readInt32LE(offset: Int, noAssert: Boolean): Int = js.native
+  def readInt32LE(offset: Int): Int                    = js.native
 
   /**
     * Reads byteLength number of bytes from buf at the specified offset and interprets the result as a
@@ -300,7 +315,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the [[Int integer]] value
     * @example {{{ buf.readIntBE(offset, byteLength[, noAssert]) }}}
     */
-  def readIntBE(offset: Int, byteLength: Int, noAssert: Boolean = js.native): Int = js.native
+  def readIntBE(offset: Int, byteLength: Int, noAssert: Boolean): Int = js.native
+  def readIntBE(offset: Int, byteLength: Int): Int                    = js.native
 
   /**
     * Reads byteLength number of bytes from buf at the specified offset and interprets the result as a
@@ -314,7 +330,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the [[Int integer]] value
     * @example {{{ buf.readIntLE(offset, byteLength[, noAssert]) }}}
     */
-  def readIntLE(offset: Int, byteLength: Int, noAssert: Boolean = js.native): Int = js.native
+  def readIntLE(offset: Int, byteLength: Int, noAssert: Boolean): Int = js.native
+  def readIntLE(offset: Int, byteLength: Int): Int                    = js.native
 
   /**
     * Reads an unsigned 8-bit integer from buf at the specified offset.
@@ -325,7 +342,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the [[Int integer]] value
     * @example {{{ buf.readUInt8(offset[, noAssert]) }}}
     */
-  def readUInt8(offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def readUInt8(offset: Int, noAssert: Boolean): Int = js.native
+  def readUInt8(offset: Int): Int                    = js.native
 
   /**
     * Reads an unsigned 16-bit integer from buf at the specified offset with specified endian format
@@ -338,7 +356,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the [[Int integer]] value
     * @example {{{ buf.readUInt16BE(offset[, noAssert]) }}}
     */
-  def readUInt16BE(offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def readUInt16BE(offset: Int, noAssert: Boolean): Int = js.native
+  def readUInt16BE(offset: Int): Int                    = js.native
 
   /**
     * Reads an unsigned 16-bit integer from buf at the specified offset with specified endian format
@@ -351,7 +370,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the [[Int integer]] value
     * @example {{{ buf.readUInt16LE(offset[, noAssert]) }}}
     */
-  def readUInt16LE(offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def readUInt16LE(offset: Int, noAssert: Boolean): Int = js.native
+  def readUInt16LE(offset: Int): Int                    = js.native
 
   /**
     * Reads an unsigned 32-bit integer from buf at the specified offset with specified endian format
@@ -364,7 +384,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the [[Int integer]] value
     * @example {{{ buf.readUInt32BE(offset[, noAssert]) }}}
     */
-  def readUInt32BE(offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def readUInt32BE(offset: Int, noAssert: Boolean): Int = js.native
+  def readUInt32BE(offset: Int): Int                    = js.native
 
   /**
     * Reads an unsigned 32-bit integer from buf at the specified offset with specified endian format
@@ -377,7 +398,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the [[Int integer]] value
     * @example {{{ buf.readUInt32LE(offset[, noAssert]) }}}
     */
-  def readUInt32LE(offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def readUInt32LE(offset: Int, noAssert: Boolean): Int = js.native
+  def readUInt32LE(offset: Int): Int                    = js.native
 
   /**
     * Reads byteLength number of bytes from buf at the specified offset and interprets the result
@@ -391,7 +413,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the [[Int integer]] value
     * @example {{{ buf.readUIntBE(offset, byteLength[, noAssert]) }}}
     */
-  def readUIntBE(offset: Int, byteLength: Int, noAssert: Boolean = js.native): Int = js.native
+  def readUIntBE(offset: Int, byteLength: Int, noAssert: Boolean): Int = js.native
+  def readUIntBE(offset: Int, byteLength: Int): Int                    = js.native
 
   /**
     * Reads byteLength number of bytes from buf at the specified offset and interprets the result
@@ -405,7 +428,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the [[Int integer]] value
     * @example {{{ buf.readUIntLE(offset, byteLength[, noAssert]) }}}
     */
-  def readUIntLE(offset: Int, byteLength: Int, noAssert: Boolean = js.native): Int = js.native
+  def readUIntLE(offset: Int, byteLength: Int, noAssert: Boolean): Int = js.native
+  def readUIntLE(offset: Int, byteLength: Int): Int                    = js.native
 
   /**
     * Returns a new Buffer that references the same memory as the original, but offset and cropped by
@@ -418,7 +442,9 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return a [[Buffer]]
     * @example {{{ buf.slice([start[, end]]) }}}
     */
-  def slice(start: Int = js.native, end: Int = js.native): this.type = js.native
+  def slice(start: Int, end: Int): this.type = js.native
+  def slice(start: Int): this.type           = js.native
+  def slice(): this.type                     = js.native
 
   /**
     * Interprets buf as an array of unsigned 16-bit integers and swaps the byte-order in-place.
@@ -461,7 +487,9 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return a string according to the specified character encoding in encoding.
     * @example {{{ buf.toString([encoding[, start[, end]]]) }}}
     */
-  def toString(encoding: String, start: Int = js.native, end: Int = js.native): String = js.native
+  def toString(encoding: String, start: Int, end: Int): String = js.native
+  def toString(encoding: String, start: Int): String           = js.native
+  def toString(encoding: String): String                       = js.native
 
   /**
     * Re-encodes the given Buffer instance from one character encoding to another. Returns a new Buffer instance.
@@ -493,8 +521,11 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the Number of bytes written
     * @example {{{ buf.write(string[, offset[, length]][, encoding]) }}}
     */
-  def write(string: String, offset: Int = js.native, length: Int = js.native, encoding: String = js.native): Int =
-    js.native
+  def write(string: String, offset: Int, length: Int, encoding: String): Int = js.native
+  def write(string: String, offset: Int, length: Int): Int                   = js.native
+  def write(string: String, offset: Int, encoding: String): Int              = js.native
+  def write(string: String, offset: Int): Int                                = js.native
+  def write(string: String): Int                                             = js.native
 
   /**
     * Writes value to buf at the specified offset with specified endian format (writeDoubleBE() writes big endian,
@@ -509,7 +540,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the offset plus the number of bytes written
     * @example {{{ buf.writeDoubleBE(value, offset[, noAssert]) }}}
     */
-  def writeDoubleBE(value: Double, offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def writeDoubleBE(value: Double, offset: Int, noAssert: Boolean): Int = js.native
+  def writeDoubleBE(value: Double, offset: Int): Int                    = js.native
 
   /**
     * Writes value to buf at the specified offset with specified endian format (writeDoubleBE() writes big endian,
@@ -524,7 +556,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the offset plus the number of bytes written
     * @example {{{ buf.writeDoubleLE(value, offset[, noAssert]) }}}
     */
-  def writeDoubleLE(value: Double, offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def writeDoubleLE(value: Double, offset: Int, noAssert: Boolean): Int = js.native
+  def writeDoubleLE(value: Double, offset: Int): Int                    = js.native
 
   /**
     * Writes value to buf at the specified offset with specified endian format (writeFloatBE() writes big endian,
@@ -539,7 +572,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the offset plus the number of bytes written
     * @example {{{ buf.writeFloatBE(value, offset[, noAssert]) }}}
     */
-  def writeFloatBE(value: Float, offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def writeFloatBE(value: Float, offset: Int, noAssert: Boolean): Int = js.native
+  def writeFloatBE(value: Float, offset: Int): Int                    = js.native
 
   /**
     * Writes value to buf at the specified offset with specified endian format (writeFloatBE() writes big endian,
@@ -554,7 +588,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the offset plus the number of bytes written
     * @example {{{ buf.writeFloatLE(value, offset[, noAssert]) }}}
     */
-  def writeFloatLE(value: Float, offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def writeFloatLE(value: Float, offset: Int, noAssert: Boolean): Int = js.native
+  def writeFloatLE(value: Float, offset: Int): Int                    = js.native
 
   /**
     * Writes value to buf at the specified offset. value should be a valid signed 8-bit integer. Behavior is
@@ -570,7 +605,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the offset plus the number of bytes written
     * @example {{{ buf.writeInt8(value, offset[, noAssert]) }}}
     */
-  def writeInt8(value: Int, offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def writeInt8(value: Int, offset: Int, noAssert: Boolean): Int = js.native
+  def writeInt8(value: Int, offset: Int): Int                    = js.native
 
   /**
     * Writes value to buf at the specified offset with specified endian format (writeInt16BE() writes big endian,
@@ -587,7 +623,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the offset plus the number of bytes written
     * @example {{{ buf.writeInt16BE(value, offset[, noAssert]) }}}
     */
-  def writeInt16BE(value: Int, offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def writeInt16BE(value: Int, offset: Int, noAssert: Boolean): Int = js.native
+  def writeInt16BE(value: Int, offset: Int): Int                    = js.native
 
   /**
     * Writes value to buf at the specified offset with specified endian format (writeInt16BE() writes big endian,
@@ -604,7 +641,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the offset plus the number of bytes written
     * @example {{{ buf.writeInt16BE(value, offset[, noAssert]) }}}
     */
-  def writeInt16LE(value: Int, offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def writeInt16LE(value: Int, offset: Int, noAssert: Boolean): Int = js.native
+  def writeInt16LE(value: Int, offset: Int): Int                    = js.native
 
   /**
     * Writes value to buf at the specified offset with specified endian format (writeInt32BE() writes big endian,
@@ -621,7 +659,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the offset plus the number of bytes written
     * @example {{{ buf.writeInt32BE(value, offset[, noAssert]) }}}
     */
-  def writeInt32BE(value: Int, offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def writeInt32BE(value: Int, offset: Int, noAssert: Boolean): Int = js.native
+  def writeInt32BE(value: Int, offset: Int): Int                    = js.native
 
   /**
     * Writes value to buf at the specified offset with specified endian format (writeInt32BE() writes big endian,
@@ -638,7 +677,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the offset plus the number of bytes written
     * @example {{{ buf.writeInt32BE(value, offset[, noAssert]) }}}
     */
-  def writeInt32LE(value: Int, offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def writeInt32LE(value: Int, offset: Int, noAssert: Boolean): Int = js.native
+  def writeInt32LE(value: Int, offset: Int): Int                    = js.native
 
   /**
     * Writes byteLength bytes of value to buf at the specified offset. Supports up to 48 bits of accuracy.
@@ -653,7 +693,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the offset plus the number of bytes written
     * @example {{{ buf.writeIntBE(value, offset, byteLength[, noAssert]) }}}
     */
-  def writeIntBE(value: Int, offset: Int, byteLength: Int, noAssert: Boolean = js.native): Int = js.native
+  def writeIntBE(value: Int, offset: Int, byteLength: Int, noAssert: Boolean): Int = js.native
+  def writeIntBE(value: Int, offset: Int, byteLength: Int): Int                    = js.native
 
   /**
     * Writes byteLength bytes of value to buf at the specified offset. Supports up to 48 bits of accuracy.
@@ -668,7 +709,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the offset plus the number of bytes written
     * @example {{{ buf.writeIntLE(value, offset, byteLength[, noAssert]) }}}
     */
-  def writeIntLE(value: Int, offset: Int, byteLength: Int, noAssert: Boolean = js.native): Int = js.native
+  def writeIntLE(value: Int, offset: Int, byteLength: Int, noAssert: Boolean): Int = js.native
+  def writeIntLE(value: Int, offset: Int, byteLength: Int): Int                    = js.native
 
   /**
     * Writes value to buf at the specified offset. value should be a valid unsigned 8-bit integer. Behavior
@@ -682,7 +724,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the offset plus the number of bytes written
     * @example {{{ buf.writeUInt8(value, offset[, noAssert]) }}}
     */
-  def writeUInt8(value: Int, offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def writeUInt8(value: Int, offset: Int, noAssert: Boolean): Int = js.native
+  def writeUInt8(value: Int, offset: Int): Int                    = js.native
 
   /**
     * Writes value to buf at the specified offset with specified endian format (writeUInt16BE() writes big endian,
@@ -697,7 +740,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the offset plus the number of bytes written
     * @example {{{ buf.writeUInt16BE(value, offset[, noAssert]) }}}
     */
-  def writeUInt16BE(value: Int, offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def writeUInt16BE(value: Int, offset: Int, noAssert: Boolean): Int = js.native
+  def writeUInt16BE(value: Int, offset: Int): Int                    = js.native
 
   /**
     * Writes value to buf at the specified offset with specified endian format (writeUInt16BE() writes big endian,
@@ -712,7 +756,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the offset plus the number of bytes written
     * @example {{{ buf.writeUInt16BE(value, offset[, noAssert]) }}}
     */
-  def writeUInt16LE(value: Int, offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def writeUInt16LE(value: Int, offset: Int, noAssert: Boolean): Int = js.native
+  def writeUInt16LE(value: Int, offset: Int): Int                    = js.native
 
   /**
     * Writes value to buf at the specified offset with specified endian format (writeUInt32BE() writes big endian,
@@ -727,7 +772,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the offset plus the number of bytes written
     * @example {{{ buf.writeUInt32BE(value, offset[, noAssert]) }}}
     */
-  def writeUInt32BE(value: Int, offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def writeUInt32BE(value: Int, offset: Int, noAssert: Boolean): Int = js.native
+  def writeUInt32BE(value: Int, offset: Int): Int                    = js.native
 
   /**
     * Writes value to buf at the specified offset with specified endian format (writeUInt32BE() writes big endian,
@@ -742,7 +788,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the offset plus the number of bytes written
     * @example {{{ buf.writeUInt32LE(value, offset[, noAssert]) }}}
     */
-  def writeUInt32LE(value: Int, offset: Int, noAssert: Boolean = js.native): Int = js.native
+  def writeUInt32LE(value: Int, offset: Int, noAssert: Boolean): Int = js.native
+  def writeUInt32LE(value: Int, offset: Int): Int                    = js.native
 
   /**
     * Writes byteLength bytes of value to buf at the specified offset. Supports up to 48 bits of accuracy.
@@ -757,7 +804,8 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the offset plus the number of bytes written
     * @example {{{ buf.writeUIntBE(value, offset, byteLength[, noAssert]) }}}
     */
-  def writeUIntBE(value: Int, offset: Int, byteLength: Int, noAssert: Boolean = js.native): Int = js.native
+  def writeUIntBE(value: Int, offset: Int, byteLength: Int, noAssert: Boolean): Int = js.native
+  def writeUIntBE(value: Int, offset: Int, byteLength: Int): Int                    = js.native
 
   /**
     * Writes byteLength bytes of value to buf at the specified offset. Supports up to 48 bits of accuracy.
@@ -772,31 +820,45 @@ class Buffer private[this] () extends Uint8Array( /* dummy to trick constructor 
     * @return the offset plus the number of bytes written
     * @example {{{ buf.writeUIntLE(value, offset, byteLength[, noAssert]) }}}
     */
-  def writeUIntLE(value: Int, offset: Int, byteLength: Int, noAssert: Boolean = js.native): Int = js.native
+  def writeUIntLE(value: Int, offset: Int, byteLength: Int, noAssert: Boolean): Int = js.native
+  def writeUIntLE(value: Int, offset: Int, byteLength: Int): Int                    = js.native
 
   /**
     *   @see https://nodejs.org/api/buffer.html#buffer_buf_readbiguint64be_offset
     */
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def readBigInt64BE(offset: Int = js.native): scalajs.js.BigInt = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def readBigInt64BE(
+      offset: Int
+  ): scalajs.js.BigInt                                                                                       = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def readBigInt64BE(): scalajs.js.BigInt = js.native
 
   /**
     *   @see https://nodejs.org/api/buffer.html#buffer_buf_readbiguint64le_offset
     */
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def readBigUInt64LE(offset: Int = js.native): scalajs.js.BigInt = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def readBigUInt64LE(
+      offset: Int
+  ): scalajs.js.BigInt = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def readBigUInt64LE(): scalajs.js.BigInt =
+    js.native
 
   /**
     *   @see https://nodejs.org/api/buffer.html#buffer_buf_writebigint64be_value_offset
     */
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def writeBigInt64BE(value: scalajs.js.BigInt, offset: Int = js.native): Int = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def writeBigInt64BE(value: scalajs.js.BigInt,
+                                                                                         offset: Int
+  ): Int = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def writeBigInt64BE(
+      value: scalajs.js.BigInt
+  ): Int = js.native
 
   /**
     *   @see https://nodejs.org/api/buffer.html#buffer_buf_writebigint64le_value_offset
     */
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def writeBigInt64LE(value: scalajs.js.BigInt, offset: Int = js.native): Int = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def writeBigInt64LE(value: scalajs.js.BigInt,
+                                                                                         offset: Int
+  ): Int = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def writeBigInt64LE(
+      value: scalajs.js.BigInt
+  ): Int = js.native
 }
 
 @js.native
@@ -826,7 +888,11 @@ object Buffer extends js.Object {
     *
     * @see [[https://nodejs.org/api/buffer.html#buffer_class_method_buffer_alloc_size_fill_encoding]]
     */
-  def alloc(size: Int, fill: Uint8Array | Int | String = js.native, encoding: String = js.native): Buffer = js.native
+  def alloc(size: Int, fill: String, encoding: String): Buffer = js.native
+  def alloc(size: Int, fill: String): Buffer                   = js.native
+  def alloc(size: Int, fill: Uint8Array): Buffer               = js.native
+  def alloc(size: Int, fill: Int): Buffer                      = js.native
+  def alloc(size: Int): Buffer                                 = js.native
 
   /**
     * Allocates a new `Buffer` of `size` bytes.
@@ -879,7 +945,8 @@ object Buffer extends js.Object {
     * @see [[https://nodejs.org/api/buffer.html#buffer_class_method_buffer_concat_list_totallength]]
     *
     */
-  def concat(list: js.Array[Buffer] | js.Array[Uint8Array], totalLength: Int = js.native): Buffer = js.native
+  def concat(list: js.Array[Buffer] | js.Array[Uint8Array], totalLength: Int): Buffer = js.native
+  def concat(list: js.Array[Buffer] | js.Array[Uint8Array]): Buffer                   = js.native
 
   /**
     * When passed a reference to the .buffer property of a TypedArray instance, the newly created Buffer
@@ -887,7 +954,9 @@ object Buffer extends js.Object {
     *
     * @see [[https://nodejs.org/api/buffer.html#buffer_class_method_buffer_from_arraybuffer_byteoffset_length]]
     */
-  def from(arrayBuffer: ArrayBuffer, byteOffset: Int = js.native, length: Int = js.native): Buffer = js.native
+  def from(arrayBuffer: ArrayBuffer, byteOffset: Int, length: Int): Buffer = js.native
+  def from(arrayBuffer: ArrayBuffer, byteOffset: Int): Buffer              = js.native
+  def from(arrayBuffer: ArrayBuffer): Buffer                               = js.native
 
   /**
     * Copies the passed `buffer` data onto a new `Buffer` instance.

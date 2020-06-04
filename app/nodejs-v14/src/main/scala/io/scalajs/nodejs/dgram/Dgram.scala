@@ -7,9 +7,10 @@ import scala.scalajs.js.annotation.JSImport
 
 @js.native
 trait Dgram extends js.Object {
-  def createSocket(options: SocketOptions, callback: js.Function = js.native): Socket = js.native
-  def createSocket(`type`: String, callback: js.Function): Socket                     = js.native
-  def createSocket(`type`: String): Socket                                            = js.native
+  def createSocket(options: SocketOptions, callback: js.Function): Socket = js.native
+  def createSocket(options: SocketOptions): Socket                        = js.native
+  def createSocket(`type`: String, callback: js.Function): Socket         = js.native
+  def createSocket(`type`: String): Socket                                = js.native
 }
 
 @Factory
