@@ -10,15 +10,12 @@ import scala.scalajs.js.|
 
 @js.native
 trait Http2 extends js.Object {
-  def createServer(
-      options: Http2ServerOptions,
-      onRequestHandler: js.Function2[Http2ServerRequest, Http2ServerResponse, Any] = js.native
-  ): Http2Server = js.native
+  def createServer(options: Http2ServerOptions, onRequestHandler: ServerCallback): Http2Server = js.native
+  def createServer(options: Http2ServerOptions): Http2Server                                   = js.native
 
-  def createSecureServer(
-      options: Http2SecureServerOptions,
-      onRequestHandler: js.Function2[Http2ServerRequest, Http2ServerResponse, Any] = js.native
-  ): Http2SecureServer = js.native
+  def createSecureServer(options: Http2SecureServerOptions, onRequestHandler: ServerCallback): Http2SecureServer =
+    js.native
+  def createSecureServer(options: Http2SecureServerOptions): Http2SecureServer = js.native
 
   def connect(authority: String | URL, options: Http2ConnectOptions, listener: js.Function): ClientHttp2Session =
     js.native

@@ -7,8 +7,9 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 
 package object http2 {
-  type Origin = String | URL | HasOrigin
-  type Path   = String | Buffer | URL
+  type Origin         = String | URL | HasOrigin
+  type Path           = String | Buffer | URL
+  type ServerCallback = js.Function2[Http2ServerRequest, Http2ServerResponse, Any]
 
   implicit final class Http2SessionExtensions[T <: Http2Session](private val instance: T) extends AnyVal {
     @inline def onClose(handler: () => Any): T                           = instance.on("close", handler)

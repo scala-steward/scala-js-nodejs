@@ -55,8 +55,9 @@ trait Crypto extends js.Object {
   def createCipheriv(algorithm: String,
                      key: String | BufferLike,
                      iv: String | BufferLike,
-                     options: TransformOptions = js.native
-  ): Cipher = js.native
+                     options: TransformOptions
+  ): Cipher                                                                                        = js.native
+  def createCipheriv(algorithm: String, key: String | BufferLike, iv: String | BufferLike): Cipher = js.native
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def createCipheriv(algorithm: String, key: KeyObject, iv: String | BufferLike, options: TransformOptions): Cipher =
     js.native
@@ -80,8 +81,9 @@ trait Crypto extends js.Object {
   def createDecipheriv(algorithm: String,
                        key: String | BufferLike,
                        iv: String | BufferLike,
-                       options: TransformOptions = js.native
-  ): Decipher = js.native
+                       options: TransformOptions
+  ): Decipher                                                                                          = js.native
+  def createDecipheriv(algorithm: String, key: String | BufferLike, iv: String | BufferLike): Decipher = js.native
   def createDecipheriv(algorithm: String,
                        key: KeyObject,
                        iv: String | BufferLike,

@@ -102,10 +102,8 @@ trait Assert extends js.Object {
     * of the message parameter. If the message parameter is undefined, a default error message is assigned.
     * @example assert.throws(block[, error][, message])
     */
-  def throws(block: js.Function,
-             error: js.RegExp | js.Function | js.Object | Error,
-             message: String = js.native
-  ): Unit = js.native
+  def throws(block: js.Function, error: js.RegExp | js.Function | js.Object | Error, message: String): Unit = js.native
+  def throws(block: js.Function, error: js.RegExp | js.Function | js.Object | Error): Unit                  = js.native
 
   def rejects(asyncFn: js.Function | js.Promise[_],
               error: js.RegExp | js.Function | js.Object | Error,
