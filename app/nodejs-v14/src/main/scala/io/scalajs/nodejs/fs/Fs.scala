@@ -1099,17 +1099,13 @@ trait Fs extends js.Object with FSConstants {
     * @return undefined.
     * @example fs.writeFileSync(file, data[, options])
     */
-  def writeFileSync(file: Path | FileDescriptor,
-                    data: js.typedarray.Uint8Array,
-                    options: FileWriteOptions = js.native
-  ): Unit =
+  def writeFileSync(file: Path | FileDescriptor, data: js.typedarray.Uint8Array, options: FileWriteOptions): Unit =
     js.native
-  def writeFileSync(file: Path | FileDescriptor, data: String, options: FileWriteOptions): Unit =
-    js.native
-  def writeFileSync(file: Path | FileDescriptor, data: String): Unit = js.native
-  def writeFileSync(file: Path | FileDescriptor, data: BufferLike, options: FileWriteOptions): Unit =
-    js.native
-  def writeFileSync(file: Path | FileDescriptor, data: BufferLike): Unit = js.native
+  def writeFileSync(file: Path | FileDescriptor, data: js.typedarray.Uint8Array): Unit              = js.native
+  def writeFileSync(file: Path | FileDescriptor, data: String, options: FileWriteOptions): Unit     = js.native
+  def writeFileSync(file: Path | FileDescriptor, data: String): Unit                                = js.native
+  def writeFileSync(file: Path | FileDescriptor, data: BufferLike, options: FileWriteOptions): Unit = js.native
+  def writeFileSync(file: Path | FileDescriptor, data: BufferLike): Unit                            = js.native
 
   /**
     * Write buffer to the file specified by fd.
@@ -1121,13 +1117,9 @@ trait Fs extends js.Object with FSConstants {
     * @param position refers to the offset from the beginning of the file where this data should be written.
     * @example {{{ fs.writeSync(fd, buffer[, offset[, length[, position]]]) }}}
     */
-  def writeSync(fd: FileDescriptor,
-                buffer: js.typedarray.Uint8Array,
-                offset: Int,
-                length: Int,
-                position: Int = js.native
-  ): Unit =
+  def writeSync(fd: FileDescriptor, buffer: js.typedarray.Uint8Array, offset: Int, length: Int, position: Int): Unit =
     js.native
+  def writeSync(fd: FileDescriptor, buffer: js.typedarray.Uint8Array, offset: Int, length: Int): Unit  = js.native
   def writeSync(fd: FileDescriptor, buffer: js.typedarray.Uint8Array, offset: Int): Unit               = js.native
   def writeSync(fd: FileDescriptor, buffer: js.typedarray.Uint8Array): Unit                            = js.native
   def writeSync(fd: FileDescriptor, buffer: BufferLike, offset: Int, length: Int, position: Int): Unit = js.native
@@ -1155,10 +1147,9 @@ trait Fs extends js.Object with FSConstants {
              fsCallback2: FsCallback2[Int, js.Array[js.typedarray.ArrayBufferView]]
   ): Unit = js.native
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def writevSync(fd: FileDescriptor,
-                 buffers: js.Array[js.typedarray.ArrayBufferView],
-                 position: Int = js.native
-  ): Unit = js.native
+  def writevSync(fd: FileDescriptor, buffers: js.Array[js.typedarray.ArrayBufferView], position: Int): Unit = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def writevSync(fd: FileDescriptor, buffers: js.Array[js.typedarray.ArrayBufferView]): Unit = js.native
 }
 
 /**
@@ -1171,10 +1162,10 @@ object Fs extends Fs {
   trait FsPromises extends js.Object {
     def access(path: Path, mode: FileMode): js.Promise[Unit] = js.native
 
-    def appendFile(file: Path | FileDescriptor,
-                   data: String | Buffer,
-                   options: FileAppendOptions | String = js.native
-    ): js.Promise[Unit] = js.native
+    def appendFile(file: Path | FileDescriptor, data: String | Buffer, options: FileAppendOptions): js.Promise[Unit] =
+      js.native
+    def appendFile(file: Path | FileDescriptor, data: String | Buffer, encoding: String): js.Promise[Unit] = js.native
+    def appendFile(file: Path | FileDescriptor, data: String | Buffer): js.Promise[Unit]                   = js.native
 
     def chmod(path: Path, mode: FileMode): js.Promise[Unit]                       = js.native
     def chown(path: Path, uid: UID, gid: GID): js.Promise[Unit]                   = js.native

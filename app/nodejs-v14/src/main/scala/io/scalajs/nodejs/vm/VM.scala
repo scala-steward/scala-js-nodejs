@@ -13,11 +13,9 @@ import scala.scalajs.js.|
   */
 @js.native
 trait VM extends js.Object {
-  def compileFunction(code: String,
-                      params: js.Array[String],
-                      options: CompileFunctionOptions = js.native
-  ): js.Function                                 = js.native
-  def compileFunction(code: String): js.Function = js.native
+  def compileFunction(code: String, params: js.Array[String], options: CompileFunctionOptions): js.Function = js.native
+  def compileFunction(code: String, params: js.Array[String]): js.Function                                  = js.native
+  def compileFunction(code: String): js.Function                                                            = js.native
 
   /**
     * If given a sandbox object, the vm.createContext() method will
@@ -54,10 +52,8 @@ trait VM extends js.Object {
     * @param options             the optional options
     * @example script.runInContext(contextifiedSandbox[, options])
     */
-  def runInContext(code: String,
-                   contextifiedSandbox: ScriptContext,
-                   options: VMRunInContextOptions = js.native
-  ): js.Any = js.native
+  def runInContext(code: String, contextifiedSandbox: ScriptContext, options: VMRunInContextOptions): js.Any = js.native
+  def runInContext(code: String, contextifiedSandbox: ScriptContext): js.Any                                 = js.native
 
   /**
     * First contextifies the given sandbox, runs the compiled code contained by the vm.Script object within the created

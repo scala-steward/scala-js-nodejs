@@ -321,11 +321,8 @@ trait Process extends IEventEmitter {
     * @example {{{ process.send(message[, sendHandle[, options]][, callback]) }}}
     * @since 0.5.9
     */
-  def send(message: js.Any,
-           sendHandle: SendHandle,
-           options: TransferOptions,
-           callback: js.Function = js.native
-  ): Boolean                                                                           = js.native
+  def send(message: js.Any, sendHandle: SendHandle, options: TransferOptions, callback: js.Function): Boolean =
+    js.native
   def send(message: js.Any, sendHandle: SendHandle, options: TransferOptions): Boolean = js.native
   def send(message: js.Any, sendHandle: SendHandle, callback: js.Function): Boolean    = js.native
   def send(message: js.Any, sendHandle: SendHandle): Boolean                           = js.native
