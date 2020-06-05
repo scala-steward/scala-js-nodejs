@@ -244,11 +244,13 @@ package object fs {
     }
 
     @inline
-    def readdirFuture(path: Path, encoding: String = "utf8"): Future[js.Array[String]] = {
-      val callback: FsCallback1[js.Array[String]] => Unit = { callback =>
-        instance.readdir(path, encoding, callback.asInstanceOf[FsCallback1[ReaddirArrays]])
-      }
-      promiseWithError1[FileIOError, js.Array[String]](callback)
+    def readdirFuture(path: Path, encoding: String): Future[js.Array[String]] = {
+      promiseWithError1[FileIOError, js.Array[String]](instance.readdir(path, encoding, _))
+    }
+
+    @inline
+    def readdirFuture(path: Path): Future[js.Array[String]] = {
+      promiseWithError1[FileIOError, js.Array[String]](instance.readdir(path, _))
     }
 
     @inline
@@ -453,9 +455,9 @@ package object fs {
     @inline
     def writeFuture(fd: FileDescriptor,
                     buffer: typedarray.Uint8Array,
-                    offset: Int | Null = null,
-                    length: Int | Null = null,
-                    position: Int | Null = null
+                    offset: Int | Null,
+                    length: Int | Null,
+                    position: Int | Null
     ): Future[(FileType, Buffer)] = {
       promiseWithError2[FileIOError, Int, Buffer](instance.write(fd, buffer, offset, length, position, _))
     }
@@ -486,8 +488,13 @@ package object fs {
     }
 
     @inline
-    def writeFileFuture(file: String, data: typedarray.Uint8Array, options: FileWriteOptions = null): Future[Unit] = {
+    def writeFileFuture(file: String, data: typedarray.Uint8Array, options: FileWriteOptions): Future[Unit] = {
       promiseWithError0[FileIOError](instance.writeFile(file, data, options, _))
+    }
+
+    @inline
+    def writeFileFuture(file: String, data: typedarray.Uint8Array): Future[Unit] = {
+      promiseWithError0[FileIOError](instance.writeFile(file, data, _))
     }
 
     @inline

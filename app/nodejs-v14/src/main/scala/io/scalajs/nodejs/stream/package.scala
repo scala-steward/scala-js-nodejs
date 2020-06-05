@@ -170,8 +170,13 @@ package object stream {
     def endFuture(chunk: Buffer): Future[Unit] = promiseWithError0[Error](writable.end(chunk, _))
 
     @inline
-    def endFuture(chunk: String, encoding: String = null): Future[Unit] = {
+    def endFuture(chunk: String, encoding: String): Future[Unit] = {
       promiseWithError0[Error](writable.end(chunk, encoding, _))
+    }
+
+    @inline
+    def endFuture(chunk: String): Future[Unit] = {
+      promiseWithError0[Error](writable.end(chunk, _))
     }
 
     @inline
@@ -183,8 +188,13 @@ package object stream {
     }
 
     @inline
-    def writeFuture(chunk: String, encoding: String = null): Future[Unit] = {
+    def writeFuture(chunk: String, encoding: String): Future[Unit] = {
       promiseWithError0[Error](writable.write(chunk, encoding, _))
+    }
+
+    @inline
+    def writeFuture(chunk: String): Future[Unit] = {
+      promiseWithError0[Error](writable.write(chunk, _))
     }
   }
 

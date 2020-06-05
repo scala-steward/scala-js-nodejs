@@ -61,7 +61,8 @@ sealed trait Decipher extends Transform {
     * The decipher.setAutoPadding() method must be called before decipher.update().
     * @example decipher.setAutoPadding(auto_padding=true)
     */
-  def setAutoPadding(auto_padding: Boolean = true): Decipher = js.native
+  def setAutoPadding(auto_padding: Boolean): Decipher = js.native
+  def setAutoPadding(): Decipher                      = js.native
 
   /**
     * Updates the decipher with data. If the input_encoding argument is given, it's value must be one of 'binary',

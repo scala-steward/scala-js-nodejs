@@ -25,59 +25,74 @@ package object zlib {
     */
   implicit final class ZlibExtensions[T <: Zlib](private val zlib: T) extends AnyVal {
 
-    /**
-      * Asynchronously compresses a Buffer or string with Deflate.
-      */
     @inline
-    def deflateFuture(buffer: Data, options: CompressionOptions = null): Future[Buffer] = {
+    def deflateFuture(buffer: Data, options: CompressionOptions): Future[Buffer] = {
       promiseWithError1[Error, Buffer](zlib.deflate(buffer, options, _))
     }
 
-    /**
-      * Asynchronously compresses a Buffer or string with DeflateRaw.
-      */
     @inline
-    def deflateRawFuture(buffer: Data, options: CompressionOptions = null): Future[Buffer] = {
+    def deflateFuture(buffer: Data): Future[Buffer] = {
+      promiseWithError1[Error, Buffer](zlib.deflate(buffer, _))
+    }
+
+    @inline
+    def deflateRawFuture(buffer: Data, options: CompressionOptions): Future[Buffer] = {
       promiseWithError1[Error, Buffer](zlib.deflateRaw(buffer, options, _))
     }
 
-    /**
-      * Compress a Buffer or string with Gzip.
-      */
     @inline
-    def gzipFuture(buffer: Data, options: CompressionOptions = null): Future[Buffer] = {
+    def deflateRawFuture(buffer: Data): Future[Buffer] = {
+      promiseWithError1[Error, Buffer](zlib.deflateRaw(buffer, _))
+    }
+
+    @inline
+    def gzipFuture(buffer: Data, options: CompressionOptions): Future[Buffer] = {
       promiseWithError1[Error, Buffer](zlib.gzip(buffer, options, _))
     }
 
-    /**
-      * Decompress a Buffer or string with Gunzip.
-      */
     @inline
-    def gunzipFuture(buffer: Data, options: CompressionOptions = null): Future[Buffer] = {
+    def gzipFuture(buffer: Data): Future[Buffer] = {
+      promiseWithError1[Error, Buffer](zlib.gzip(buffer, _))
+    }
+
+    @inline
+    def gunzipFuture(buffer: Data, options: CompressionOptions): Future[Buffer] = {
       promiseWithError1[Error, Buffer](zlib.gunzip(buffer, options, _))
     }
 
-    /**
-      * Decompress a Buffer or string with Inflate.
-      */
     @inline
-    def inflateFuture(buffer: Data, options: CompressionOptions = null): Future[Buffer] = {
+    def gunzipFuture(buffer: Data): Future[Buffer] = {
+      promiseWithError1[Error, Buffer](zlib.gunzip(buffer, _))
+    }
+
+    @inline
+    def inflateFuture(buffer: Data, options: CompressionOptions): Future[Buffer] = {
       promiseWithError1[Error, Buffer](zlib.inflate(buffer, options, _))
     }
 
-    /**
-      * Decompress a Buffer or string with InflateRaw.
-      */
-    def inflateRawFuture(buffer: Data, options: CompressionOptions = null): Future[Buffer] = {
+    @inline
+    def inflateFuture(buffer: Data): Future[Buffer] = {
+      promiseWithError1[Error, Buffer](zlib.inflate(buffer, _))
+    }
+
+    @inline
+    def inflateRawFuture(buffer: Data, options: CompressionOptions): Future[Buffer] = {
       promiseWithError1[Error, Buffer](zlib.inflateRaw(buffer, options, _))
     }
 
-    /**
-      * Decompress a Buffer or string with Unzip.
-      */
     @inline
-    def unzipFuture(buffer: Data, options: CompressionOptions = null): Future[Buffer] = {
+    def inflateRawFuture(buffer: Data): Future[Buffer] = {
+      promiseWithError1[Error, Buffer](zlib.inflateRaw(buffer, _))
+    }
+
+    @inline
+    def unzipFuture(buffer: Data, options: CompressionOptions): Future[Buffer] = {
       promiseWithError1[Error, Buffer](zlib.unzip(buffer, options, _))
+    }
+
+    @inline
+    def unzipFuture(buffer: Data): Future[Buffer] = {
+      promiseWithError1[Error, Buffer](zlib.unzip(buffer, _))
     }
   }
 }
