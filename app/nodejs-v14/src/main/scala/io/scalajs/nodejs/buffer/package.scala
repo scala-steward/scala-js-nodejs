@@ -15,7 +15,7 @@ package object buffer {
   /**
     * Buffer Extensions
     */
-  implicit final class BufferExtensions(val buffer: Buffer) extends AnyVal {
+  implicit final class BufferExtensions(private val buffer: Buffer) extends AnyVal {
 
     /**
       * Syntactic sugar for concatenating a buffer

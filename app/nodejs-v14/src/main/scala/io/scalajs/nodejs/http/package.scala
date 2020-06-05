@@ -19,7 +19,7 @@ package object http {
   /**
     * Http Extensions
     */
-  implicit final class HttpExtensions(val http: Http) extends AnyVal {
+  implicit final class HttpExtensions(private val http: Http) extends AnyVal {
 
     /**
       * @see [[Http.createServer()]]

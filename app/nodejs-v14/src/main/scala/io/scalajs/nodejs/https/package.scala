@@ -17,7 +17,7 @@ package object https {
   /**
     * Https Extensions
     */
-  implicit final class HttpExtensions(val https: Https) extends AnyVal {
+  implicit final class HttpExtensions(private val https: Https) extends AnyVal {
 
     /**
       * Like http.get() but for HTTPS.
