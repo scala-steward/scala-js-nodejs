@@ -98,7 +98,7 @@ package object nodejs {
   @JSGlobal("setTimeout")
   object setTimeout extends SetTimeout
 
-  implicit final class ErrorExtensions(val error: Error) extends AnyVal {
+  implicit final class ErrorExtensions(private val error: Error) extends AnyVal {
     @inline
     def toException(): Exception = js.JavaScriptException(error.message)
   }
