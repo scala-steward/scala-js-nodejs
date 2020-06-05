@@ -140,7 +140,10 @@ class Socket(options: SocketOptions) extends stream.Duplex with HasHandle {
     * @return socket
     * @example socket.setKeepAlive([enable][, initialDelay])
     */
-  def setKeepAlive(enable: Boolean = false, initialDelay: Int = 0): this.type = js.native
+  def setKeepAlive(enable: Boolean, initialDelay: Int): this.type = js.native
+  def setKeepAlive(enable: Boolean): this.type                    = js.native
+  def setKeepAlive(initialDelay: Int): this.type                  = js.native
+  def setKeepAlive(): this.type                                   = js.native
 
   /**
     * Disables the Nagle algorithm. By default TCP connections use the Nagle algorithm, they buffer data before sending
@@ -161,7 +164,8 @@ class Socket(options: SocketOptions) extends stream.Duplex with HasHandle {
     * @return socket.
     * @example socket.setTimeout(timeout[, callback])
     */
-  def setTimeout(timeout: Int = 0, callback: js.Function = null): this.type = js.native
+  def setTimeout(timeout: Int, callback: js.Function): this.type = js.native
+  def setTimeout(timeout: Int): this.type                        = js.native
 
   /**
     * Calling unref on a socket will allow the program to exit if this is the only active socket in the event system.

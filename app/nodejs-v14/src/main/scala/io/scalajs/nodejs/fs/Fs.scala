@@ -345,7 +345,8 @@ trait Fs extends js.Object with FSConstants {
     * @param length the desired length
     * @return undefined.
     */
-  def ftruncateSync(fd: FileDescriptor, length: Int = 0): Unit = js.native
+  def ftruncateSync(fd: FileDescriptor, length: Int): Unit = js.native
+  def ftruncateSync(fd: FileDescriptor): Unit              = js.native
 
   /**
     * Change the file timestamps of a file referenced by the supplied file descriptor.
@@ -657,18 +658,10 @@ trait Fs extends js.Object with FSConstants {
     *                 of the names of the files in the directory excluding '.' and '..'.
     * @example fs.readdir(path[, options], callback)
     */
-  def readdir(path: Path, options: String, callback: FsCallback1[ReaddirArrays]): Unit              = js.native
+  def readdir(path: Path, options: String, callback: FsCallback1[js.Array[String]]): Unit           = js.native
   def readdir(path: Path, options: FileEncodingOptions, callback: FsCallback1[ReaddirArrays]): Unit = js.native
   def readdir(path: Path, options: ReaddirOptions, callback: FsCallback1[ReaddirArrays2]): Unit     = js.native
-
-  /**
-    * Asynchronous readdir(3). Reads the contents of a directory.
-    * @param path     the path (Buffer | String)
-    * @param callback the callback gets two arguments (err, files) where files is an array
-    *                 of the names of the files in the directory excluding '.' and '..'.
-    * @example fs.readdir(path[, options], callback)
-    */
-  def readdir(path: Path, callback: FsCallback1[js.Array[String]]): Unit = js.native
+  def readdir(path: Path, callback: FsCallback1[js.Array[String]]): Unit                            = js.native
 
   /**
     * Synchronous readdir(3).

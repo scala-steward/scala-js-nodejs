@@ -19,20 +19,33 @@ package object child_process {
 
   implicit final class ChildProcessObjectExtensions(private val cp: ChildProcess.type) extends AnyVal {
     @inline
-    def execFuture(
-        command: String,
-        options: js.UndefOr[ExecOptions] = js.undefined
-    ): Future[(Output, Output)] = {
-      promiseWithError2[nodejs.Error, Output, Output](cp.exec(command, options.orNull, _))
+    def execFuture(command: String, options: ExecOptions): Future[(Output, Output)] = {
+      promiseWithError2[nodejs.Error, Output, Output](cp.exec(command, options, _))
     }
 
     @inline
-    def execFileFuture(
-        file: String,
-        args: js.UndefOr[js.Array[String]] = js.undefined,
-        options: js.UndefOr[ExecOptions] = js.undefined
-    ): Future[(Output, Output)] = {
-      promiseWithError2[nodejs.Error, Output, Output](cp.execFile(file, args.orNull, options.orNull, _))
+    def execFuture(command: String): Future[(Output, Output)] = {
+      promiseWithError2[nodejs.Error, Output, Output](cp.exec(command, _))
+    }
+
+    @inline
+    def execFileFuture(file: String, args: js.Array[String], options: ExecOptions): Future[(Output, Output)] = {
+      promiseWithError2[nodejs.Error, Output, Output](cp.execFile(file, args, options, _))
+    }
+
+    @inline
+    def execFileFuture(file: String, args: js.Array[String]): Future[(Output, Output)] = {
+      promiseWithError2[nodejs.Error, Output, Output](cp.execFile(file, args, _))
+    }
+
+    @inline
+    def execFileFuture(file: String, options: ExecOptions): Future[(Output, Output)] = {
+      promiseWithError2[nodejs.Error, Output, Output](cp.execFile(file, options, _))
+    }
+
+    @inline
+    def execFileFuture(file: String): Future[(Output, Output)] = {
+      promiseWithError2[nodejs.Error, Output, Output](cp.execFile(file, _))
     }
   }
 

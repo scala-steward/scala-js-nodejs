@@ -105,8 +105,13 @@ package object dns {
       * @param hostname the hostname
       */
     @inline
-    def resolveFuture(hostname: String, rrtype: RRType = null): Future[ResolveResult] = {
+    def resolveFuture(hostname: String, rrtype: RRType): Future[ResolveResult] = {
       promiseWithError1[DnsError, ResolveResult](dns.resolve(hostname, rrtype, _))
+    }
+
+    @inline
+    def resolveFuture(hostname: String): Future[js.Array[String]] = {
+      promiseWithError1[DnsError, js.Array[String]](dns.resolve(hostname, _))
     }
 
     /**
