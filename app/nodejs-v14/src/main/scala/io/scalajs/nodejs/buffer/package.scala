@@ -71,13 +71,13 @@ package object buffer {
     * Note that this is a property on the buffer module returned by require('buffer'), not on the
     * Buffer global or a Buffer instance.
     */
-  val INSPECT_MAX_BYTES = BufferNamespace.INSPECT_MAX_BYTES
+  val INSPECT_MAX_BYTES: UID = BufferNamespace.INSPECT_MAX_BYTES
 
   /**
     * On 32-bit architectures, this value is (2^30)-1 (~1GB). On 64-bit architectures, this value is (2^31)-1 (~2GB).F
     * Note that this is a property on the buffer module returned by require('buffer'), not on the Buffer global or a Buffer instance.
     */
-  val kMaxLength = BufferNamespace.kMaxLength
+  val kMaxLength: Double = BufferNamespace.kMaxLength
 
   @js.native
   @JSImport("buffer", JSImport.Namespace)
