@@ -12,6 +12,6 @@ package object crypto {
   type Callback2[T1, T2] = js.Function3[NodeError, T1, T2, Any]
 
   implicit final class CryptoModuleEnrichment(private val crypto: Crypto.type) extends AnyVal {
-    @inline def Certificate: Certificate.type = io.scalajs.nodejs.crypto.Certificate
+    @inline def Certificate: io.scalajs.nodejs.crypto.Certificate.type = io.scalajs.nodejs.crypto.Certificate
   }
 }
