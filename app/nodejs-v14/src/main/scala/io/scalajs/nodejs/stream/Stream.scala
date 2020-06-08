@@ -23,12 +23,25 @@ object Stream extends js.Object {
   def finished(stream: Stream, options: FinishedOptions, callback: ErrorCallback): Wait = js.native
   def finished(stream: Stream, callback: ErrorCallback): Wait                           = js.native
 
-  def pipeline(a: Stream, b: Stream, callback: ErrorCallback): Wait                                  = js.native
-  def pipeline(a: Stream, b: Stream, c: Stream, callback: ErrorCallback): Wait                       = js.native
-  def pipeline(a: Stream, b: Stream, c: Stream, d: Stream, callback: ErrorCallback): Wait            = js.native
-  def pipeline(a: Stream, b: Stream, c: Stream, d: Stream, e: Stream, callback: ErrorCallback): Wait = js.native
-  def pipeline(a: Stream, b: Stream, c: Stream, d: Stream, e: Stream, f: Stream, callback: ErrorCallback): Wait =
+  def pipeline[D <: Stream](source: Stream, destination: D, callback: ErrorCallback): D            = js.native
+  def pipeline[D <: Stream](source: Stream, a: Stream, destination: D, callback: ErrorCallback): D = js.native
+  def pipeline[D <: Stream](source: Stream, a: Stream, b: Stream, destination: D, callback: ErrorCallback): D =
     js.native
+  def pipeline[D <: Stream](source: Stream,
+                            a: Stream,
+                            b: Stream,
+                            c: Stream,
+                            destination: D,
+                            callback: ErrorCallback
+  ): D = js.native
+  def pipeline[D <: Stream](source: Stream,
+                            a: Stream,
+                            b: Stream,
+                            c: Stream,
+                            d: Stream,
+                            destination: D,
+                            callback: ErrorCallback
+  ): D = js.native
 }
 
 /**

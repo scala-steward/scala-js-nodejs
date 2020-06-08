@@ -13,18 +13,23 @@ package object stream {
   type Wait          = js.Function0[js.Promise[Unit]]
 
   implicit final class StreamModuleExtensions(private val stream: Stream.type) extends AnyVal {
-    def pipelineFromSeq(streams: Seq[Stream], errorCallback: ErrorCallback): Wait = {
-      streams match {
-        case Seq(a, b)             => stream.pipeline(a, b, errorCallback)
-        case Seq(a, b, c)          => stream.pipeline(a, b, c, errorCallback)
-        case Seq(a, b, c, d)       => stream.pipeline(a, b, c, d, errorCallback)
-        case Seq(a, b, c, d, e)    => stream.pipeline(a, b, c, d, e, errorCallback)
-        case Seq(a, b, c, d, e, f) => stream.pipeline(a, b, c, d, e, f, errorCallback)
+    def pipelineFromSeq[D <: Stream](source: Stream,
+                                     transforms: Seq[Stream],
+                                     destination: D,
+                                     errorCallback: ErrorCallback
+    ): D = {
+      transforms match {
+        case Seq(a)          => stream.pipeline(source, a, destination, errorCallback)
+        case Seq(a, b)       => stream.pipeline(source, a, b, destination, errorCallback)
+        case Seq(a, b, c)    => stream.pipeline(source, a, b, c, destination, errorCallback)
+        case Seq(a, b, c, d) => stream.pipeline(source, a, b, c, d, destination, errorCallback)
         case _ =>
           import scala.scalajs.js.JSConverters._
-          val arguments: js.Array[js.Any] = streams.toJSArray.asInstanceOf[js.Array[js.Any]]
+          val arguments: js.Array[js.Any] = transforms.toJSArray.asInstanceOf[js.Array[js.Any]]
+          arguments.prepend(source)
+          arguments.push(destination)
           arguments.push(errorCallback)
-          stream.asInstanceOf[js.Dynamic].finished.apply(null, arguments).asInstanceOf[Wait]
+          stream.asInstanceOf[js.Dynamic].pipeline.apply(null, arguments).asInstanceOf[D]
       }
     }
   }
