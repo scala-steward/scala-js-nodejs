@@ -1,5 +1,6 @@
 package io.scalajs.nodejs.repl
 
+import com.thoughtworks.enableIf
 import io.scalajs.nodejs.stream
 import net.exoego.scalajs.types.util.Factory
 
@@ -35,6 +36,9 @@ trait StartOptions extends js.Object {
   var completer: js.UndefOr[js.Function]                                          = js.undefined
   var replMode: js.UndefOr[js.Symbol]                                             = js.undefined
   var breakEvalOnSigint: js.UndefOr[Boolean]                                      = js.undefined
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+  var preview: js.UndefOr[Boolean] = js.undefined
 }
 
 /**
