@@ -11,18 +11,37 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSImport, JSName}
 import scala.scalajs.js.typedarray.Uint8Array
 
+/**
+  * Marker trait as parent of both Readable and Writable.
+  */
+@js.native
+trait Stream extends js.Object
+
 @js.native
 @JSImport("stream", JSImport.Namespace)
 object Stream extends js.Object {
   def finished(stream: Stream, options: FinishedOptions, callback: ErrorCallback): Wait = js.native
   def finished(stream: Stream, callback: ErrorCallback): Wait                           = js.native
 
-  def pipeline(a: Stream, b: Stream, callback: ErrorCallback): Wait                                  = js.native
-  def pipeline(a: Stream, b: Stream, c: Stream, callback: ErrorCallback): Wait                       = js.native
-  def pipeline(a: Stream, b: Stream, c: Stream, d: Stream, callback: ErrorCallback): Wait            = js.native
-  def pipeline(a: Stream, b: Stream, c: Stream, d: Stream, e: Stream, callback: ErrorCallback): Wait = js.native
-  def pipeline(a: Stream, b: Stream, c: Stream, d: Stream, e: Stream, f: Stream, callback: ErrorCallback): Wait =
+  def pipeline[D <: Stream](source: Stream, destination: D, callback: ErrorCallback): D            = js.native
+  def pipeline[D <: Stream](source: Stream, a: Stream, destination: D, callback: ErrorCallback): D = js.native
+  def pipeline[D <: Stream](source: Stream, a: Stream, b: Stream, destination: D, callback: ErrorCallback): D =
     js.native
+  def pipeline[D <: Stream](source: Stream,
+                            a: Stream,
+                            b: Stream,
+                            c: Stream,
+                            destination: D,
+                            callback: ErrorCallback
+  ): D = js.native
+  def pipeline[D <: Stream](source: Stream,
+                            a: Stream,
+                            b: Stream,
+                            c: Stream,
+                            d: Stream,
+                            destination: D,
+                            callback: ErrorCallback
+  ): D = js.native
 }
 
 /**
@@ -98,7 +117,7 @@ class PassThrough() extends Transform
   * @see https://nodejs.org/api/stream.html#stream_readable_streams
   */
 @js.native
-sealed trait IReadable extends LegacyStream {
+sealed trait IReadable extends Stream with LegacyStream {
   def destroyed: Boolean = js.native
 
   /**
@@ -271,7 +290,7 @@ trait ReadableState extends js.Object {
   * The Writable stream interface is an abstraction for a destination that you are writing data to.
   */
 @js.native
-sealed trait IWritable extends LegacyStream {
+sealed trait IWritable extends Stream with LegacyStream {
   /////////////////////////////////////////////////////////////////////////////////
   //      Methods
   /////////////////////////////////////////////////////////////////////////////////
