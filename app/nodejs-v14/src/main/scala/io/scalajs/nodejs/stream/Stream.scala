@@ -11,6 +11,12 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSImport, JSName}
 import scala.scalajs.js.typedarray.Uint8Array
 
+/**
+  * Marker trait as parent of both Readable and Writable.
+  */
+@js.native
+trait Stream extends js.Object
+
 @js.native
 @JSImport("stream", JSImport.Namespace)
 object Stream extends js.Object {
@@ -98,7 +104,7 @@ class PassThrough() extends Transform
   * @see https://nodejs.org/api/stream.html#stream_readable_streams
   */
 @js.native
-sealed trait IReadable extends LegacyStream {
+sealed trait IReadable extends Stream with LegacyStream {
   def destroyed: Boolean = js.native
 
   /**
@@ -271,7 +277,7 @@ trait ReadableState extends js.Object {
   * The Writable stream interface is an abstraction for a destination that you are writing data to.
   */
 @js.native
-sealed trait IWritable extends LegacyStream {
+sealed trait IWritable extends Stream with LegacyStream {
   /////////////////////////////////////////////////////////////////////////////////
   //      Methods
   /////////////////////////////////////////////////////////////////////////////////

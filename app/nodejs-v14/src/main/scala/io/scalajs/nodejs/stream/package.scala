@@ -9,8 +9,6 @@ import scala.scalajs.js.typedarray.Uint8Array
 import scala.scalajs.js.|
 
 package object stream {
-  type Stream = IReadable | IWritable
-
   type ErrorCallback = js.Function1[io.scalajs.nodejs.Error, Any]
   type Wait          = js.Function0[js.Promise[Unit]]
 
