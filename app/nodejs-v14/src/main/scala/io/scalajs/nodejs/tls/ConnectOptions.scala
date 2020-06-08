@@ -1,18 +1,18 @@
 package io.scalajs.nodejs.tls
 
+import io.scalajs.nodejs.net
+
 import io.scalajs.nodejs.buffer.Buffer
 import io.scalajs.nodejs.{net, stream}
 import _root_.net.exoego.scalajs.types.util.Factory
+import com.thoughtworks.enableIf
 
 import scala.scalajs.js
+import scala.scalajs.js.|
 
 @Factory
-trait ConnectOptions extends js.Object {
-  var host: js.UndefOr[String]                                                   = js.undefined
-  var port: js.UndefOr[Int]                                                      = js.undefined
-  var path: js.UndefOr[String]                                                   = js.undefined
+trait ConnectOptions extends net.ConnectOptions with SecureContextOptions {
   var socket: js.UndefOr[stream.IDuplex]                                         = js.undefined
-  var allowHalfOpen: js.UndefOr[Boolean]                                         = js.undefined
   var servername: js.UndefOr[String]                                             = js.undefined
   var checkServerIdentity: js.UndefOr[js.Function2[String, TLSCertificate, Any]] = js.undefined
   var minDHSize: js.UndefOr[Int]                                                 = js.undefined
@@ -29,4 +29,15 @@ trait ConnectOptions extends js.Object {
   var session: js.UndefOr[Buffer]                                     = js.undefined
   var requestOCSP: js.UndefOr[Boolean]                                = js.undefined
   var secureContext: js.UndefOr[SecureContext]                        = js.undefined
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+  var pskCallback: js.UndefOr[js.Function1[String, PSK]] = js.undefined
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+  var highWaterMark: js.UndefOr[Int] = js.undefined
+}
+
+@Factory
+trait PSK extends js.Object {
+  var psk: js.typedarray.TypedArray[_, _] | js.typedarray.DataView
+  var identity: String
 }
