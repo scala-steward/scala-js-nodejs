@@ -30,14 +30,7 @@ trait Tls extends js.Object {
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def rootCertificates: js.Array[String] = js.native
-}
 
-/**
-  * TLS Singleton
-  */
-@js.native
-@JSImport("tls", JSImport.Namespace)
-object Tls extends Tls {
   def DEFAULT_ECDH_CURVE: String = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
@@ -46,3 +39,10 @@ object Tls extends Tls {
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def DEFAULT_MIN_VERSION: String = js.native
 }
+
+/**
+  * TLS Singleton
+  */
+@js.native
+@JSImport("tls", JSImport.Namespace)
+object Tls extends Tls
