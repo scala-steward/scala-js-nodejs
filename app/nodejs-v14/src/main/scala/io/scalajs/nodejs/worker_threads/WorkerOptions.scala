@@ -1,5 +1,6 @@
 package io.scalajs.nodejs.worker_threads
 
+import com.thoughtworks.enableIf
 import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
@@ -13,4 +14,10 @@ trait WorkerOptions extends js.Object {
   var stdout: js.UndefOr[Boolean]            = js.undefined
   var stderr: js.UndefOr[Boolean]            = js.undefined
   var workerData: js.UndefOr[js.Any]         = js.undefined
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+  var transferList: js.UndefOr[js.Array[js.Object]] = js.undefined
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  var resourceLimits: js.UndefOr[ResourceLimits] = js.undefined
 }
