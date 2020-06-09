@@ -18,9 +18,8 @@ trait WorkerThreads extends js.Object {
   def workerData: js.Any = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def moveMessagePortToContext(port: MessagePort,
-                               contextifiedSandbox: io.scalajs.nodejs.vm.ScriptContext
-  ): MessagePort = js.native
+  def moveMessagePortToContext(port: MessagePort, contextifiedSandbox: io.scalajs.nodejs.vm.Context): MessagePort =
+    js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def receiveMessageOnPort(port: MessagePort): js.UndefOr[js.Object] = js.native
