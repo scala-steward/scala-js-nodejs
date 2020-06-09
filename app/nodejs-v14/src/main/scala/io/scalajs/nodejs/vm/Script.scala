@@ -26,8 +26,8 @@ class Script private[this] () extends js.Object {
     * @param options             the optional options
     * @example script.runInContext(contextifiedSandbox[, options])
     */
-  def runInContext(contextifiedSandbox: ScriptContext, options: RunInContextOptions): js.Any = js.native
-  def runInContext(contextifiedSandbox: ScriptContext): js.Any                               = js.native
+  def runInContext(contextifiedSandbox: Context, options: RunInContextOptions): js.Any = js.native
+  def runInContext(contextifiedSandbox: Context): js.Any                               = js.native
 
   /**
     * First contextifies the given sandbox, runs the compiled code contained by the vm.Script object within the created
