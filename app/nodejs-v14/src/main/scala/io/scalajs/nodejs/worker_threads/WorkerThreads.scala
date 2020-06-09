@@ -23,6 +23,9 @@ trait WorkerThreads extends js.Object {
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def receiveMessageOnPort(port: MessagePort): js.UndefOr[js.Object] = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def resourceLimits: ResourceLimits = js.native
 }
 
 @js.native

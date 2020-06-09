@@ -1,5 +1,7 @@
 package io.scalajs.nodejs.worker_threads
 
+import com.thoughtworks.enableIf
+
 import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
@@ -20,4 +22,7 @@ class Worker(filename: String, workerOptions: WorkerOptions) extends js.Object w
   def stderr: io.scalajs.nodejs.stream.Readable       = js.native
   def stdout: io.scalajs.nodejs.stream.Readable       = js.native
   def stdin: io.scalajs.nodejs.stream.Writable | Null = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def resourceLimits: ResourceLimits = js.native
 }
