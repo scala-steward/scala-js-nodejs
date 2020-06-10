@@ -15,8 +15,8 @@ import scala.scalajs.js.annotation.JSGlobal
   */
 @js.native
 @JSGlobal
-class Error(message0: String) extends js.Object {
-  def this() = this(???)
+class Error() extends js.Object {
+  def this(message0: String) = this()
 
   /**
     * The `error.code` property is a string label that identifies the kind of error.

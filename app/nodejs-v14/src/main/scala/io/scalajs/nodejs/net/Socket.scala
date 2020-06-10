@@ -13,8 +13,8 @@ import scala.scalajs.js.annotation.JSImport
   */
 @js.native
 @JSImport("net", "Socket")
-class Socket(options: SocketOptions) extends stream.Duplex with HasHandle {
-  def this() = this(???)
+class Socket() extends stream.Duplex with HasHandle {
+  def this(options: SocketOptions) = this()
 
   /**
     * net.Socket has the property that socket.write() always works. This is to help users get up and running quickly.

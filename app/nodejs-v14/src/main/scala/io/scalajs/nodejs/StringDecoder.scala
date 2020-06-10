@@ -13,8 +13,8 @@ import scala.scalajs.js.|
   */
 @js.native
 @JSImport("string_decoder", "StringDecoder")
-class StringDecoder(encoding: String) extends IEventEmitter {
-  def this() = this(???)
+class StringDecoder() extends IEventEmitter {
+  def this(encoding: String) = this()
 
   /**
     * Returns any trailing bytes that were left in the buffer.

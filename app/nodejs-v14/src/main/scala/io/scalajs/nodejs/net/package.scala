@@ -108,7 +108,7 @@ package object net {
       *
       * See also: the return values of socket.write()
       * @param callback the callback
-      * @example socket.on("drain", function(???) { ... })
+      * @example socket.on("drain", function() { ... })
       */
     @inline def onDrain(callback: () => Any): T = socket.on("drain", callback)
 
@@ -120,7 +120,7 @@ package object net {
       * side allowing the user to write arbitrary amounts of data, with the caveat that the user is required to end()
       * their side now.
       * @param callback the callback
-      * @example socket.on("end", function(???) { ... })
+      * @example socket.on("end", function() { ... })
       */
     @inline def onEnd(callback: () => Any): T = socket.on("end", callback)
 
@@ -147,7 +147,7 @@ package object net {
       *
       * See also: socket.setTimeout()
       * @param callback the callback
-      * @example socket.on("timeout", function(???) { ... })
+      * @example socket.on("timeout", function() { ... })
       */
     @inline def onTimeout(callback: js.Function): T = socket.on("timeout", callback)
   }

@@ -12,7 +12,7 @@ import scala.scalajs.js.|
   */
 @js.native
 @JSImport("vm", "Script")
-class Script private[this] () extends js.Object {
+class Script protected () extends js.Object {
   def this(code: String, options: ScriptOptions) = this()
   def this(code: String, filename: String) = this()
   def this(code: String) = this()

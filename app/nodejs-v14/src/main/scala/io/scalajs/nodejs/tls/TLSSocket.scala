@@ -14,13 +14,12 @@ import scala.scalajs.js.|
   * and all required TLS negotiation.
   *
   * Instances of tls.TLSSocket implement the duplex Stream interface.
-  * @param socket  An instance of [[net.Socket]]
-  * @param options the optional settings
   */
 @js.native
 @JSImport("tls", "TLSSocket")
-class TLSSocket(socket: stream.IDuplex, options: TLSSocketOptions) extends net.Socket {
-  def this(socket: stream.IDuplex) = this(???, ???)
+class TLSSocket protected () extends net.Socket {
+  def this(socket: stream.IDuplex, options: TLSSocketOptions) = this()
+  def this(socket: stream.IDuplex) = this()
 
   def authorizationError: js.UndefOr[Boolean] = js.native
 

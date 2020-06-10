@@ -15,8 +15,8 @@ import scala.scalajs.js.annotation.JSImport
   */
 @js.native
 @JSImport("http", "Agent")
-class Agent(options: AgentOptions) extends IEventEmitter {
-  def this() = this(???)
+class Agent() extends IEventEmitter {
+  def this(options: AgentOptions) = this()
 
   /////////////////////////////////////////////////////////////////////////////////
   //      Properties
