@@ -50,8 +50,8 @@ object Stream extends js.Object {
   */
 @js.native
 @JSImport("stream", "Readable")
-class Readable(options: ReadableOptions) extends IReadable {
-  def this() = this(???)
+class Readable() extends IReadable {
+  def this(options: ReadableOptions) = this()
 }
 
 @js.native
@@ -71,8 +71,8 @@ object Readable extends js.Object {
   */
 @js.native
 @JSImport("stream", "Writable")
-class Writable(options: WritableOptions) extends IWritable {
-  def this() = this(???)
+class Writable() extends IWritable {
+  def this(options: WritableOptions) = this()
 }
 
 /**
@@ -88,8 +88,8 @@ class Writable(options: WritableOptions) extends IWritable {
   */
 @js.native
 @JSImport("stream", "Duplex")
-class Duplex(options: DuplexOptions) extends IDuplex {
-  def this() = this(???)
+class Duplex() extends IDuplex {
+  def this(options: DuplexOptions) = this()
 }
 
 /**
@@ -98,8 +98,8 @@ class Duplex(options: DuplexOptions) extends IDuplex {
   */
 @js.native
 @JSImport("stream", "Transform")
-class Transform(options: TransformOptions) extends ITransform {
-  def this() = this(???)
+class Transform() extends ITransform {
+  def this(options: TransformOptions) = this()
 }
 
 /**

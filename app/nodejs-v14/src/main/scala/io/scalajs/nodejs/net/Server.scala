@@ -13,10 +13,10 @@ import scala.scalajs.js.|
   */
 @js.native
 @JSImport("net", "Server")
-class Server(options: ServerOptions, connectionListener: js.Function) extends IEventEmitter {
-  def this() = this(???, ???)
-  def this(options: ServerOptions) = this(???, ???)
-  def this(connectionListener: js.Function) = this(???, ???)
+class Server() extends IEventEmitter {
+  def this(options: ServerOptions, connectionListener: js.Function) = this()
+  def this(options: ServerOptions) = this()
+  def this(connectionListener: js.Function) = this()
 
   /**
     * A Boolean indicating whether or not the server is listening for connections.

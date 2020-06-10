@@ -120,7 +120,7 @@ package object net {
       * side allowing the user to write arbitrary amounts of data, with the caveat that the user is required to end()
       * their side now.
       * @param callback the callback
-      * @example socket.on("end", function(???) { ... })
+      * @example socket.on("end", function() { ... })
       */
     @inline def onEnd(callback: () => Any): T = socket.on("end", callback)
 
