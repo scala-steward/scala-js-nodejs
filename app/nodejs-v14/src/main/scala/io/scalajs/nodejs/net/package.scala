@@ -108,7 +108,7 @@ package object net {
       *
       * See also: the return values of socket.write()
       * @param callback the callback
-      * @example socket.on("drain", function(???) { ... })
+      * @example socket.on("drain", function() { ... })
       */
     @inline def onDrain(callback: () => Any): T = socket.on("drain", callback)
 
@@ -147,7 +147,7 @@ package object net {
       *
       * See also: socket.setTimeout()
       * @param callback the callback
-      * @example socket.on("timeout", function(???) { ... })
+      * @example socket.on("timeout", function() { ... })
       */
     @inline def onTimeout(callback: js.Function): T = socket.on("timeout", callback)
   }
