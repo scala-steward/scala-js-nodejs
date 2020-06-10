@@ -8,7 +8,10 @@ import scala.scalajs.js.annotation.JSImport
 
 @js.native
 @JSImport("module", JSImport.Namespace)
-object Module extends js.Object {
+object Module extends Module
+
+@js.native
+trait Module extends js.Object {
   var builtinModules: js.Array[String] = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
