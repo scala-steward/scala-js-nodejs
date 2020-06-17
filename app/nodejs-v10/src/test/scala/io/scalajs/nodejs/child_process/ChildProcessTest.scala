@@ -11,7 +11,6 @@ import org.scalatest.funspec.AsyncFunSpec
 
 /**
   * ChildProcess Test
-  *
   */
 class ChildProcessTest extends AsyncFunSpec {
   override implicit val executionContext = ExecutionContext.Implicits.global
