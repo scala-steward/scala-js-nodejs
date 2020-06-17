@@ -27,7 +27,7 @@ trait SpawnOptions extends js.Object {
   /**  Sets the user identity of the process. (See setuid(2).) */
   var uid: js.UndefOr[Int] = js.undefined
 
-  /** Sets the group identity of the process. (See setgid(2).)  */
+  /** Sets the group identity of the process. (See setgid(2).) */
   var gid: js.UndefOr[Int] = js.undefined
 
   /** If true, runs command inside of a shell.

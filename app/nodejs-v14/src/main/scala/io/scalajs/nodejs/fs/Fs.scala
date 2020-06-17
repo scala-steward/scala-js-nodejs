@@ -271,7 +271,6 @@ trait Fs extends js.Object with FSConstants {
     * @param fd   the file descriptor
     * @param uid  the user ID
     * @param gid  the group ID
-    *
     */
   def fchownSync(fd: FileDescriptor, uid: UID, gid: GID): Unit = js.native
 
@@ -1047,7 +1046,7 @@ trait Fs extends js.Object with FSConstants {
     * @param callback will be given three arguments (err, written, buffer) where written specifies how many
     *                 bytes were written from buffer.
     * @example {{{ fs.write(fd, buffer[, offset[, length[, position]]], callback) }}}
-    **/
+    */
   def write(fd: FileDescriptor,
             buffer: js.typedarray.Uint8Array,
             offset: Int | Null,

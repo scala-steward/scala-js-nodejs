@@ -8,7 +8,6 @@ import org.scalatest.funspec.AsyncFunSpec
 
 /**
   * File System (Fs) Tests
-  *
   */
 class FsTest extends AsyncFunSpec {
   override implicit val executionContext = ExecutionContext.Implicits.global
