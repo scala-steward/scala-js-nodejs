@@ -85,7 +85,7 @@ trait VM extends js.Object {
 object VM extends VM
 
 @Factory
-trait CompileFunctionOptions {
+trait CompileFunctionOptions extends js.Object {
   var filename: js.UndefOr[String]                  = js.undefined
   var lineOffset: js.UndefOr[Int]                   = js.undefined
   var columnOffset: js.UndefOr[Int]                 = js.undefined
