@@ -1332,7 +1332,7 @@ trait FileAppendOptions extends js.Object {
 }
 
 @Factory
-trait FileEncodingOptions {
+trait FileEncodingOptions extends js.Object {
   var encoding: js.UndefOr[String] = js.undefined
 }
 
@@ -1400,7 +1400,7 @@ trait FileWatcherOptions extends js.Object {
 }
 
 @Factory
-trait StatOptions {
+trait StatOptions extends js.Object {
   var bigint: js.UndefOr[Boolean] = js.undefined
 }
 
