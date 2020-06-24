@@ -16,7 +16,7 @@ object Dependencies {
   val app = Def.setting(
     Seq(
       scalaReflect.value,
-      "net.exoego"               %%% "scalajs-types-util" % "0.2.1",
+      "net.exoego"               %%% "scalajs-types-util" % "0.2.2",
       "org.scalatest"            %%% "scalatest"          % scalatestVersion % "test",
       "com.thoughtworks.enableIf" %% "enableif"           % "1.1.7"
     )
