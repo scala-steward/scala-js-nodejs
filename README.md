@@ -16,38 +16,8 @@ Scala.js type facades for Node.js v10 and v12.
 
 ## Supported Modules
 
-The following core Node.js modules (v10.0.0+) have been implemented:
-
-| Node Module                                                  | v10 & v12 support  |
-| ------------------------------------------------------------ | ------------------ |
-| [assert](https://nodejs.org/api/assert.html)                 | :heavy_check_mark: |
-| [buffer](https://nodejs.org/api/buffer.html)                 | :heavy_check_mark: |
-| [child_process](https://nodejs.org/api/child_process.html)   | :heavy_check_mark: |
-| [cluster](https://nodejs.org/api/cluster.html)               | :heavy_check_mark: |
-| [console](https://nodejs.org/api/console.html)               | :heavy_check_mark: |
-| [crypto](https://nodejs.org/api/crypto.html)                 | :heavy_check_mark: |
-| [dgram](https://nodejs.org/api/dgram.html)                   | :heavy_check_mark: |
-| [dns](https://nodejs.org/api/dns.html)                       | :heavy_check_mark: |
-| [events](https://nodejs.org/api/events.html)                 | :heavy_check_mark: |
-| [fs](https://nodejs.org/api/fs.html)                         | :heavy_check_mark: |
-| [http](https://nodejs.org/api/http.html)                     | :heavy_check_mark: |
-| [https](https://nodejs.org/api/https.html)                   | :heavy_check_mark: |
-| [net](https://nodejs.org/api/net.html)                       | :heavy_check_mark: |
-| [os](https://nodejs.org/api/os.html)                         | :heavy_check_mark: |
-| [path](https://nodejs.org/api/path.html)                     | :heavy_check_mark: |
-| [process](https://nodejs.org/api/process.html)               | :heavy_check_mark: |
-| [querystring](https://nodejs.org/api/querystring.html)       | :heavy_check_mark: |
-| [readline](https://nodejs.org/api/readline.html)             | :heavy_check_mark: |
-| [repl](https://nodejs.org/api/repl.html)                     | :heavy_check_mark: |
-| [stream](https://nodejs.org/api/stream.html)                 | :heavy_check_mark: |
-| [string-decoder](https://nodejs.org/api/string_decoder.html) | :heavy_check_mark: |
-| [timers](https://nodejs.org/api/timers.html)                 | :heavy_check_mark: |
-| [tls](https://nodejs.org/api/tls.html)                       | :heavy_check_mark: |
-| [tty](https://nodejs.org/api/tty.html)                       | :heavy_check_mark: |
-| [url](https://nodejs.org/api/url.html)                       | :heavy_check_mark: |
-| [util](https://nodejs.org/api/util.html)                     | :heavy_check_mark: |
-| [vm](https://nodejs.org/api/vm.html)                         | :heavy_check_mark: |
-| [zlib](https://nodejs.org/api/zlib.html)                     | :heavy_check_mark: |
+Almost all Node.js modules, except [experimental modules](https://github.com/exoego/scala-js-nodejs/issues?q=is%3Aissue+is%3Aopen+label%3Amissing), are supported.
+Feel free to open issue/send pull request if you find missing module.
 
 ## How to use
 
@@ -131,3 +101,9 @@ for {
   console.log("output3 =", output3)
 }
 ```
+
+## Note
+
+This facade leverages [`@Factory` marcro](https://github.com/exoego/scalajs-types-util#factory-macro) to create highly-optimized factory method without boilerplate.
+
+
