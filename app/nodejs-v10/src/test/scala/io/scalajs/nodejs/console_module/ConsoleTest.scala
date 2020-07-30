@@ -40,6 +40,16 @@ class ConsoleTest extends AnyFunSpec with BeforeAndAfterEach {
     Console.trace("", 6)
   }
 
+  it("should be passed to foreach") {
+    val s: Seq[js.Any] = Seq("s", true)
+    s.foreach(Console.log)
+    s.foreach(Console.info)
+    s.foreach(Console.warn)
+    s.foreach(Console.debug)
+    s.foreach(Console.error)
+    s.foreach(Console.trace)
+  }
+
   it("have table added in v10.0.0") {
     Console.table(js.Array("x", "y"))
   }

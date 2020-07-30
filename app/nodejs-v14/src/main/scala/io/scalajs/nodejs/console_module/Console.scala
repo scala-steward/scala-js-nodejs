@@ -80,6 +80,7 @@ class Console protected () extends js.Object {
     * @param args
     */
   def debug(args: js.Any*): Unit = js.native
+  def debug(arg: js.Any): Unit   = js.native
 
   /**
     * Uses [[io.scalajs.nodejs.util.Util.inspect()]] on `obj` and prints the resulting string to `stdout`.
@@ -106,6 +107,7 @@ class Console protected () extends js.Object {
     * @param args
     */
   def error(args: js.Any*): Unit = js.native
+  def error(arg: js.Any): Unit   = js.native
 
   /**
     * Increases indentation of subsequent lines by two spaces.
@@ -131,6 +133,7 @@ class Console protected () extends js.Object {
     * The `console.info()` function is an alias for [[log()]].
     */
   def info(args: js.Any*): Unit = js.native
+  def info(arg: js.Any): Unit   = js.native
 
   /**
     * Prints to `stdout` with newline.
@@ -138,6 +141,7 @@ class Console protected () extends js.Object {
     * substitution values similar to `printf(3)` (the arguments are all passed to `util.format()`).
     */
   def log(args: js.Any*): Unit = js.native
+  def log(arg: js.Any): Unit   = js.native
 
   /**
     * Try to construct a table with the columns of the properties of `tabularData` (or use `properties`) and
@@ -175,11 +179,13 @@ class Console protected () extends js.Object {
     * message and stack trace to the current position in the code.
     */
   def trace(args: js.Any*): Unit = js.native
+  def trace(arg: js.Any): Unit   = js.native
 
   /**
     * The `console.warn()` function is an alias for [[error()]
     */
   def warn(args: js.Any*): Unit = js.native
+  def warn(arg: js.Any): Unit   = js.native
 
   /**
     * This method does not display anything unless used in the inspector.
