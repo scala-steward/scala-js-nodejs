@@ -13,6 +13,33 @@ class ConsoleTest extends AnyFunSpec with BeforeAndAfterEach {
     if (Fs.existsSync(logFileName)) Fs.unlinkSync(logFileName)
   }
 
+  it("should accept no-arguments") {
+    Console.log()
+    Console.info()
+    Console.warn()
+    Console.debug()
+    Console.error()
+    Console.trace()
+  }
+
+  it("should accept single arguments") {
+    Console.log("a")
+    Console.info("a")
+    Console.warn("a")
+    Console.debug("a")
+    Console.error("a")
+    Console.trace("")
+  }
+
+  it("should accept multiple arguments") {
+    Console.log("a", 1)
+    Console.info("a", 2)
+    Console.warn("a", 3)
+    Console.debug("a", 4)
+    Console.error("a", 5)
+    Console.trace("", 6)
+  }
+
   it("have table added in v10.0.0") {
     Console.table(js.Array("x", "y"))
   }
