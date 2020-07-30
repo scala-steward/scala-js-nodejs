@@ -5,7 +5,6 @@ import com.thoughtworks.enableIf
 import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSBracketAccess, JSGlobal, JSImport}
 import scala.scalajs.js.typedarray.{ArrayBuffer, DataView, TypedArray, Uint8Array}
-import scala.scalajs.js.|
 
 /**
   * @see [[https://nodejs.org/api/buffer.html]]

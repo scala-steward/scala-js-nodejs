@@ -7,7 +7,6 @@ import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSGlobal
-import scala.scalajs.js.|
 
 /**
   * The process object is a global object and can be accessed from anywhere. It is an instance of EventEmitter.
