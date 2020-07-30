@@ -33,7 +33,7 @@ class FsTest extends AsyncFunSpec {
           "Hello",
           error => {
             if (isDefined(error)) {
-              promise.failure(error.toException)
+              promise.failure(error.toException())
             }
           }
         )
