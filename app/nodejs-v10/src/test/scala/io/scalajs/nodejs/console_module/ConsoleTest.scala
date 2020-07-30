@@ -29,15 +29,22 @@ class ConsoleTest extends AnyFunSpec with BeforeAndAfterEach {
     Console.debug("a")
     Console.error("a")
     Console.trace("")
+
+    Console.log(ScalaNativeObject(1))
+    Console.info(ScalaNativeObject(1))
+    Console.warn(ScalaNativeObject(1))
+    Console.debug(ScalaNativeObject(1))
+    Console.error(ScalaNativeObject(1))
+    Console.trace(ScalaNativeObject(1))
   }
 
   it("should accept multiple arguments") {
-    Console.log("a", 1)
-    Console.info("a", 2)
-    Console.warn("a", 3)
-    Console.debug("a", 4)
-    Console.error("a", 5)
-    Console.trace("", 6)
+    Console.log("a", 1, ScalaNativeObject(1))
+    Console.info("a", 2, ScalaNativeObject(1))
+    Console.warn("a", 3, ScalaNativeObject(1))
+    Console.debug(ScalaNativeObject(1), "a", 4)
+    Console.error(ScalaNativeObject(1), "a", 5)
+    Console.trace(ScalaNativeObject(1), "a", 6)
   }
 
   it("should be passed to foreach") {
@@ -73,3 +80,5 @@ class ConsoleTest extends AnyFunSpec with BeforeAndAfterEach {
     console.timeEnd(label)
   }
 }
+
+case class ScalaNativeObject(a: Int, b: Option[Int] = None)
