@@ -78,9 +78,9 @@ class Console protected () extends js.Object {
   /**
     * The `console.debug()` function is an alias for `console.log()`.
     */
-  def debug(data: Any, args: Any*): Unit = js.native
-  def debug(data: Any): Unit             = js.native
-  def debug(): Unit                      = js.native
+  def debug(data: Any, arg1: Any, args: Any*): Unit = js.native
+  def debug(data: Any): Unit                        = js.native
+  def debug(): Unit                                 = js.native
 
   /**
     * Uses [[io.scalajs.nodejs.util.Util.inspect()]] on `obj` and prints the resulting string to `stdout`.
@@ -103,12 +103,10 @@ class Console protected () extends js.Object {
     * If formatting elements (e.g. `%d`) are not found in the first string then[[io.scalajs.nodejs.util.Util.inspect()]]
     * is called on each argument and the resulting string values are concatenated. See [[io.scalajs.nodejs.util.Util.format()]]
     * for more information.
-    *
-    * @param args
     */
-  def error(data: Any, args: Any*): Unit = js.native
-  def error(data: Any): Unit             = js.native
-  def error(): Unit                      = js.native
+  def error(data: Any, arg1: Any, args: Any*): Unit = js.native
+  def error(data: Any): Unit                        = js.native
+  def error(): Unit                                 = js.native
 
   /**
     * Increases indentation of subsequent lines by two spaces.
@@ -133,18 +131,18 @@ class Console protected () extends js.Object {
   /**
     * The `console.info()` function is an alias for [[log()]].
     */
-  def info(data: Any, args: Any*): Unit = js.native
-  def info(data: Any): Unit             = js.native
-  def info(): Unit                      = js.native
+  def info(data: Any, arg1: Any, args: Any*): Unit = js.native
+  def info(data: Any): Unit                        = js.native
+  def info(): Unit                                 = js.native
 
   /**
     * Prints to `stdout` with newline.
     * Multiple arguments can be passed, with the first used as the primary message and all additional used as
     * substitution values similar to `printf(3)` (the arguments are all passed to `util.format()`).
     */
-  def log(data: Any, args: Any*): Unit = js.native
-  def log(data: Any): Unit             = js.native
-  def log(): Unit                      = js.native
+  def log(data: Any, arg1: Any, args: Any*): Unit = js.native
+  def log(data: Any): Unit                        = js.native
+  def log(): Unit                                 = js.native
 
   /**
     * Try to construct a table with the columns of the properties of `tabularData` (or use `properties`) and
@@ -181,16 +179,16 @@ class Console protected () extends js.Object {
     * Prints to `stderr` the string `'Trace: '`, followed by the [[io.scalajs.nodejs.util.Util.format()]] formatted
     * message and stack trace to the current position in the code.
     */
-  def trace(data: Any, args: Any*): Unit = js.native
-  def trace(data: Any): Unit             = js.native
-  def trace(): Unit                      = js.native
+  def trace(data: Any, arg1: Any, args: Any*): Unit = js.native
+  def trace(data: Any): Unit                        = js.native
+  def trace(): Unit                                 = js.native
 
   /**
     * The `console.warn()` function is an alias for [[error()]
     */
-  def warn(data: Any, args: Any*): Unit = js.native
-  def warn(data: Any): Unit             = js.native
-  def warn(): Unit                      = js.native
+  def warn(data: Any, arg1: Any, args: Any*): Unit = js.native
+  def warn(data: Any): Unit                        = js.native
+  def warn(): Unit                                 = js.native
 
   /**
     * This method does not display anything unless used in the inspector.
