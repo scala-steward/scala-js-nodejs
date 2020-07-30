@@ -1,5 +1,6 @@
 package io.scalajs.nodejs.vm
 
+import com.thoughtworks.enableIf
 import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
@@ -101,6 +102,9 @@ trait CreateContextOptions extends js.Object {
   var name: js.UndefOr[String]                   = js.undefined
   var origin: js.UndefOr[String]                 = js.undefined
   var codeGeneration: js.UndefOr[CodeGeneration] = js.undefined
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+  var microtaskMode: js.UndefOr[String] = js.undefined
 }
 
 @Factory
