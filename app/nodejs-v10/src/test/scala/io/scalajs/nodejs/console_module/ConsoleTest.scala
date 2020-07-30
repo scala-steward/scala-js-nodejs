@@ -39,6 +39,12 @@ class ConsoleTest extends AnyFunSpec with BeforeAndAfterEach {
   }
 
   it("should accept multiple arguments") {
+    Console.log("a", 1)
+    Console.info("a", 2)
+    Console.warn("a", 3)
+    Console.debug("a", 4)
+    Console.error(ScalaNativeObject(1), 5)
+    Console.trace("", ScalaNativeObject(1))
     Console.log("a", 1, ScalaNativeObject(1))
     Console.info("a", 2, ScalaNativeObject(1))
     Console.warn("a", 3, ScalaNativeObject(1))
