@@ -1,15 +1,15 @@
 # scala-js-nodejs
 
-Scala.js type facades for Node.js v10 and v12.
+Scala.js type facades for Node.js v10, v12 and v14.
 
 ## Support matrix
 
-|            |   ScalaJS 0.6.28+  |           ScalaJS 1.x           |
-| ---------- | :----------------: | :-----------------------------: |
-| Scala 2.13 | :heavy_check_mark: | :heavy_check_mark: from v0.10.0 |
-| Scala 2.12 | :heavy_check_mark: | :heavy_check_mark: from v0.10.0 |
-| Scala 2.11 |         N/A        |               N/A               |
-| Scala 2.10 |         N/A        |               N/A               |
+|            |            ScalaJS 0.6.28+            |           ScalaJS 1.x           |
+| ---------- | :-----------------------------------: | :-----------------------------: |
+| Scala 2.13 | :heavy_check_mark: (v0.12.0 is final) | :heavy_check_mark: from v0.10.0 |
+| Scala 2.12 | :heavy_check_mark: (v0.12.0 is final) | :heavy_check_mark: from v0.10.0 |
+| Scala 2.11 |                  N/A                  |               N/A               |
+| Scala 2.10 |                  N/A                  |               N/A               |
 
 -   :heavy_check_mark: Supported
 -   :construction: Not supported but planned
@@ -24,10 +24,12 @@ Feel free to open issue/send pull request if you find missing module.
 Add below line to your SBT project.
 
 ```sbt
-// For Node.js v10 LTS
-libraryDependencies += "net.exoego" %%% "scala-js-nodejs-v10" % "0.11.0"
-// For Node.js v12 (supposed to be next LTS)
-libraryDependencies += "net.exoego" %%% "scala-js-nodejs-v12" % "0.11.0"
+// For Node.js v10 LTS (Will be dropped on 2021-4-30)
+libraryDependencies += "net.exoego" %%% "scala-js-nodejs-v10" % "0.12.0"
+// For Node.js v12 LTS
+libraryDependencies += "net.exoego" %%% "scala-js-nodejs-v12" % "0.12.0"
+// For Node.js v14 LTS
+libraryDependencies += "net.exoego" %%% "scala-js-nodejs-v14" % "0.12.0"
 ```
 
 ## Example of code
@@ -105,5 +107,3 @@ for {
 ## Note
 
 This facade leverages [`@Factory` marcro](https://github.com/exoego/scalajs-types-util#factory-macro) to create highly-optimized factory method without boilerplate.
-
-
