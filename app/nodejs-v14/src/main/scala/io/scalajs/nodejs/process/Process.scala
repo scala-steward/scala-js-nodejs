@@ -312,9 +312,6 @@ trait Process extends IEventEmitter {
     */
   def nextTick(callback: js.Function0[Any], args: js.Any*): Unit = js.native
 
-  @deprecated("Use process.stdin instead", "Node.js v0.3.3")
-  def openStdin(): ReadStream = js.native
-
   /**
     * When Node.js is spawned with an IPC channel attached, it can send messages to its parent process
     * using process.send(). Each will be received as a 'message' event on the parent's ChildProcess object.
