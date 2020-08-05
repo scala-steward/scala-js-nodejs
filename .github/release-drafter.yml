@@ -21,7 +21,9 @@ categories:
       - 'chore'
       - 'internal'
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+sort-by: 'title'
 template: |
-  ## Changes
+  ### Remakrs
+  Icon 💥 stands for breaking change.
 
   $CHANGES
