@@ -25,7 +25,7 @@ lazy val core = (project in file("./core"))
     libraryDependencies ++= Dependencies.core.value
   )
 
-lazy val nodejs_v14 = createNodeVersionSpecificProject("14.7.0")
+lazy val nodejs_v14 = createNodeVersionSpecificProject("14.10.0")
 lazy val nodejs_v12 = createNodeVersionSpecificProject("12.18.3")
 lazy val nodejs_v10 = createNodeVersionSpecificProject("10.22.0")
 
