@@ -52,10 +52,9 @@ class OSTest extends AnyFunSpec {
     it("supports networkInterfaces()") {
       val networkInterfaces = OS.networkInterfaces()
       assert(isDefined(networkInterfaces))
-      networkInterfaces foreach {
-        case (name, iface) =>
-          assert(name.nonEmpty)
-          assert(iface.nonEmpty)
+      networkInterfaces foreach { case (name, iface) =>
+        assert(name.nonEmpty)
+        assert(iface.nonEmpty)
       }
     }
 

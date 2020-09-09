@@ -38,10 +38,9 @@ class ChildProcessTest extends AsyncFunSpec {
           }
         }
       )
-      promise.future.map {
-        case (stdout, stderr) =>
-          assert(stdout.toString.trim.toInt === 19)
-          assert(stderr.toString.trim === "")
+      promise.future.map { case (stdout, stderr) =>
+        assert(stdout.toString.trim.toInt === 19)
+        assert(stderr.toString.trim === "")
       }
     }
 
@@ -58,10 +57,9 @@ class ChildProcessTest extends AsyncFunSpec {
           }
         }
       )
-      promise.future.map {
-        case (stdout, stderr) =>
-          assert(stdout.toString.trim.linesIterator.length > 1)
-          assert(stderr.toString.trim === "")
+      promise.future.map { case (stdout, stderr) =>
+        assert(stdout.toString.trim.linesIterator.length > 1)
+        assert(stderr.toString.trim === "")
       }
     }
 
