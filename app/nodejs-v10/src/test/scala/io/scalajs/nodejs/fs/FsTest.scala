@@ -39,10 +39,9 @@ class FsTest extends AsyncFunSpec {
         )
       )
 
-      promise.future.map {
-        case (eventType, file) =>
-          assert(eventType === "change")
-          assert(file === "1.txt")
+      promise.future.map { case (eventType, file) =>
+        assert(eventType === "change")
+        assert(file === "1.txt")
       }
     }
 
@@ -96,9 +95,8 @@ class FsTest extends AsyncFunSpec {
         promise.success((Fs.statSync(file1), Fs.statSync(file2)))
       }
 
-      promise.future.map {
-        case (stat1, stat2) =>
-          assert(stat1.size === stat2.size)
+      promise.future.map { case (stat1, stat2) =>
+        assert(stat1.size === stat2.size)
       }
     }
 

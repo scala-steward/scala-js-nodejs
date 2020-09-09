@@ -27,10 +27,9 @@ class VMTest extends AnyFunSpec {
 
       val script  = new Script("""count += 1; name = "kitty" + count""")
       val context = VM.createContext(sandbox)
-      expectedSet foreach {
-        case ExpectedData(animal, count, name) =>
-          script.runInContext(context)
-          assert(sandbox.animal === animal && sandbox.count === count && sandbox.name === name)
+      expectedSet foreach { case ExpectedData(animal, count, name) =>
+        script.runInContext(context)
+        assert(sandbox.animal === animal && sandbox.count === count && sandbox.name === name)
       }
     }
 

@@ -39,10 +39,9 @@ class DNSAsyncTest extends AsyncFunSpec {
           promise.success((hostname, service))
         }
       )
-      promise.future.map {
-        case (host, service) =>
-          assert(host === "localhost")
-          assert(service === "ssh")
+      promise.future.map { case (host, service) =>
+        assert(host === "localhost")
+        assert(service === "ssh")
       }
     }
 
@@ -64,16 +63,14 @@ class DNSAsyncTest extends AsyncFunSpec {
 
   describe("DNS future extension") {
     it("supports lookupFuture") {
-      DNS.lookupFuture(domain) map {
-        case (ipAddress, ttl) =>
-          assert(ttl > 0 && ipAddress.nonEmpty)
+      DNS.lookupFuture(domain) map { case (ipAddress, ttl) =>
+        assert(ttl > 0 && ipAddress.nonEmpty)
       }
     }
 
     it("supports lookupServiceFuture:SSH") {
-      DNS.lookupServiceFuture("127.0.0.1", 22) map {
-        case (hostname, service) =>
-          assert(hostname.nonEmpty && service.nonEmpty)
+      DNS.lookupServiceFuture("127.0.0.1", 22) map { case (hostname, service) =>
+        assert(hostname.nonEmpty && service.nonEmpty)
       }
     }
 
