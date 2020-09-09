@@ -8,8 +8,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 
 package object process {
-  // TODO: js.Set
-  type EnvironmentFlags = js.Any
+  type EnvironmentFlags = js.Set[String]
   type ExitCode         = Int
   type SendHandle       = net.Socket | net.Server
 
