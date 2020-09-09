@@ -10,7 +10,7 @@ jdk:
 
 env:
   matrix:
-    - TRAVIS_NODE_VERSION="14.7.0"
+    - TRAVIS_NODE_VERSION="14.10.0"
     - TRAVIS_NODE_VERSION="12.18.3"
     - TRAVIS_NODE_VERSION="10.22.0"
 
