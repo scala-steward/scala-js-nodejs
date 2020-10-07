@@ -5,8 +5,7 @@ import io.scalajs.nodejs.events.IEventEmitter
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
-/**
-  * A single instance of Node.js runs in a single thread. To take advantage of multi-core systems the user will
+/** A single instance of Node.js runs in a single thread. To take advantage of multi-core systems the user will
   * sometimes want to launch a cluster of Node.js processes to handle the load.
   *
   * The cluster module allows you to easily create child processes that all share server ports.
@@ -25,19 +24,16 @@ trait Cluster extends IEventEmitter {
   //      Properties
   /////////////////////////////////////////////////////////////////////////////////
 
-  /**
-    * True if the process is a master. This is determined by the process.env.NODE_UNIQUE_ID.
+  /** True if the process is a master. This is determined by the process.env.NODE_UNIQUE_ID.
     * If process.env.NODE_UNIQUE_ID is undefined, then isMaster is true.
     */
   def isMaster: Boolean = js.native
 
-  /**
-    * True if the process is not a master (it is the negation of cluster.isMaster).
+  /** True if the process is not a master (it is the negation of cluster.isMaster).
     */
   def isWorker: Boolean = js.native
 
-  /**
-    * The scheduling policy, either cluster.SCHED_RR for round-robin or cluster.SCHED_NONE to leave it to the operating
+  /** The scheduling policy, either cluster.SCHED_RR for round-robin or cluster.SCHED_NONE to leave it to the operating
     * system. This is a global setting and effectively frozen once you spawn the first worker or call cluster.setupMaster(),
     * whatever comes first.
     *
@@ -49,20 +45,17 @@ trait Cluster extends IEventEmitter {
     */
   def schedulingPolicy: Int = js.native
 
-  /**
-    * After calling .setupMaster() (or .fork()) this settings object will contain the settings, including the default values.
+  /** After calling .setupMaster() (or .fork()) this settings object will contain the settings, including the default values.
     * It is effectively frozen after being set, because .setupMaster() can only be called once.
     * This object is not supposed to be changed or set manually, by you.
     */
   def settings: ClusterSettings = js.native
 
-  /**
-    * A reference to the current worker object. Not available in the master process.
+  /** A reference to the current worker object. Not available in the master process.
     */
   def worker: Worker = js.native
 
-  /**
-    * A hash that stores the active worker objects, keyed by id field. Makes it easy to loop through all the workers.
+  /** A hash that stores the active worker objects, keyed by id field. Makes it easy to loop through all the workers.
     * It is only available in the master process.
     *
     * A worker is removed from cluster.workers after the worker has disconnected and exited. The order between these
@@ -75,8 +68,7 @@ trait Cluster extends IEventEmitter {
   //      Methods
   /////////////////////////////////////////////////////////////////////////////////
 
-  /**
-    * When they are disconnected all internal handles will be closed, allowing the master process to die gracefully if
+  /** When they are disconnected all internal handles will be closed, allowing the master process to die gracefully if
     * no other event is waiting.
     *
     * The method takes an optional callback argument which will be called when finished.
@@ -87,8 +79,7 @@ trait Cluster extends IEventEmitter {
   def disconnect(callback: js.Function): Unit = js.native
   def disconnect(): Unit                      = js.native
 
-  /**
-    * Spawn a new worker process.
+  /** Spawn a new worker process.
     * This can only be called from the master process.
     * @return a new worker
     * @example cluster.fork([env])
@@ -96,8 +87,7 @@ trait Cluster extends IEventEmitter {
   def fork(env: js.Any): Worker = js.native
   def fork(): Worker            = js.native
 
-  /**
-    * setupMaster is used to change the default 'fork' behavior. Once called, the settings will be present in cluster.settings.
+  /** setupMaster is used to change the default 'fork' behavior. Once called, the settings will be present in cluster.settings.
     * Note that:
     * <ul>
     * <li>any settings changes only affect future calls to .fork() and have no effect on workers that are already running</li>
@@ -110,8 +100,7 @@ trait Cluster extends IEventEmitter {
   def setupMaster(settings: ClusterSettings): Unit = js.native
 }
 
-/**
-  * Cluster Singleton
+/** Cluster Singleton
   */
 @js.native
 @JSImport("cluster", JSImport.Namespace)

@@ -2,15 +2,13 @@ package io.scalajs.nodejs.timers
 
 import scala.scalajs.js
 
-/**
-  * Schedules repeated execution of callback every delay milliseconds. Returns a intervalObject for possible
+/** Schedules repeated execution of callback every delay milliseconds. Returns a intervalObject for possible
   * use with clearInterval. Additional optional arguments may be passed to the callback.
   */
 @js.native
 trait SetInterval extends js.Object {
 
-  /**
-    * Schedules repeated execution of callback every delay milliseconds. Returns a intervalObject for possible
+  /** Schedules repeated execution of callback every delay milliseconds. Returns a intervalObject for possible
     * use with clearInterval. Additional optional arguments may be passed to the callback.
     *
     * To follow browser behavior, when using delays larger than 2147483647 milliseconds (approximately 25 days)

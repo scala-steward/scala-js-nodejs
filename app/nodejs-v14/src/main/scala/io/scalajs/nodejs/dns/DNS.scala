@@ -5,8 +5,7 @@ import com.thoughtworks.enableIf
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
-/**
-  * The dns module contains functions belonging to two different categories:
+/** The dns module contains functions belonging to two different categories:
   * 1) Functions that use the underlying operating system facilities to perform name resolution, and that do not
   * necessarily perform any network communication. This category contains only one function: dns.lookup(). Developers
   * looking to perform name resolution in the same way that other applications on the same operating system behave
@@ -16,8 +15,7 @@ import scala.scalajs.js.annotation.JSImport
 @js.native
 trait DNS extends IResolver {
 
-  /**
-    * Resolves a hostname (e.g. 'nodejs.org') into the first found A (IPv4) or AAAA (IPv6) record. options can be an
+  /** Resolves a hostname (e.g. 'nodejs.org') into the first found A (IPv4) or AAAA (IPv6) record. options can be an
     * object or integer. If options is not provided, then IPv4 and IPv6 addresses are both valid. If options is an
     * integer, then it must be 4 or 6.
     *
@@ -38,8 +36,7 @@ trait DNS extends IResolver {
   def lookup(hostname: String, options: Int, callback: DnsCallback2[String, Int]): Unit        = js.native
   def lookup(hostname: String, callback: DnsCallback2[String, Int]): Unit                      = js.native
 
-  /**
-    * Resolves a hostname (e.g. 'nodejs.org') into the first found A (IPv4) or AAAA (IPv6) record. options can be an
+  /** Resolves a hostname (e.g. 'nodejs.org') into the first found A (IPv4) or AAAA (IPv6) record. options can be an
     * object or integer. If options is not provided, then IPv4 and IPv6 addresses are both valid. If options is an
     * integer, then it must be 4 or 6.
     *
@@ -58,8 +55,7 @@ trait DNS extends IResolver {
     */
   def lookup(hostname: String, callback: DnsCallback1[String]): Unit = js.native
 
-  /**
-    * Resolves the given address and port into a hostname and service using the operating system's underlying
+  /** Resolves the given address and port into a hostname and service using the operating system's underlying
     * getnameinfo implementation.
     *
     * If address is not a valid IP address, a TypeError will be thrown. The port will be coerced to a number. If it is
@@ -75,8 +71,7 @@ trait DNS extends IResolver {
   def lookupService(address: String, port: Int, callback: DnsCallback2[String, String]): Unit = js.native
 }
 
-/**
-  * DNS Singleton
+/** DNS Singleton
   */
 @js.native
 @JSImport("dns", JSImport.Namespace)

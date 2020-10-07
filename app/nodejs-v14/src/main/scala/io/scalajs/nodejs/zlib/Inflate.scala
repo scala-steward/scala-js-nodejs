@@ -4,8 +4,7 @@ package zlib
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
-/**
-  * Decompress a deflate stream.
+/** Decompress a deflate stream.
   */
 @js.native
 @JSImport("zlib", "Inflate")

@@ -11,18 +11,15 @@ import scala.concurrent.{Future, Promise}
 import scala.scalajs.js
 import scala.scalajs.js.typedarray.Uint8Array
 
-/**
-  * http package object
+/** http package object
   */
 package object http {
 
-  /**
-    * Http Extensions
+  /** Http Extensions
     */
   implicit final class HttpExtensions(private val http: Http) extends AnyVal {
 
-    /**
-      * @see [[Http.createServer()]]
+    /** @see [[Http.createServer()]]
       */
     @inline
     def createServerFuture: Future[(Server, ClientRequest, ServerResponse)] = {
@@ -34,30 +31,26 @@ package object http {
       task.future
     }
 
-    /**
-      * @see [[Http.get()]]
+    /** @see [[Http.get()]]
       */
     @inline
     def getFuture(options: RequestOptions): Future[ServerResponse] = {
       promiseCallback1[ServerResponse](http.get(options, _))
     }
 
-    /**
-      * @see [[Http.get()]]
+    /** @see [[Http.get()]]
       */
     @inline
     def getFuture(url: String): Future[ServerResponse] = promiseCallback1[ServerResponse](http.get(url, _))
 
-    /**
-      * @see [[Http.request()]]
+    /** @see [[Http.request()]]
       */
     @inline
     def requestFuture(options: RequestOptions): Future[ServerResponse] = {
       promiseCallback1[ServerResponse](http.request(options, _))
     }
 
-    /**
-      * @see [[Http.request()]]
+    /** @see [[Http.request()]]
       */
     @inline
     def requestFuture(url: String): Future[ServerResponse] = {
@@ -67,8 +60,7 @@ package object http {
 
   implicit final class ServerExtensions[T <: Server](private val server: T) extends AnyVal {
 
-    /**
-      * Emitted each time a request with an HTTP Expect: 100-continue is received. If this event is not listened for,
+    /** Emitted each time a request with an HTTP Expect: 100-continue is received. If this event is not listened for,
       * the server will automatically respond with a 100 Continue as appropriate.
       *
       * Handling this event involves calling response.writeContinue() if the client should continue to send the request
@@ -82,8 +74,7 @@ package object http {
       server.on("checkContinue", callback)
     }
 
-    /**
-      * Emitted each time a request with an http Expect header is received, where the value is not 100-continue.
+    /** Emitted each time a request with an http Expect header is received, where the value is not 100-continue.
       * If this event isn't listened for, the server will automatically respond with a 417 Expectation Failed as appropriate.
       * <b>Note</b> that when this event is emitted and handled, the request event will not be emitted.
       * - request <http.IncomingMessage>
@@ -94,8 +85,7 @@ package object http {
       server.on("checkExpectation", callback)
     }
 
-    /**
-      * If a client connection emits an 'error' event, it will be forwarded here. Listener of this event is
+    /** If a client connection emits an 'error' event, it will be forwarded here. Listener of this event is
       * responsible for closing/destroying the underlying socket. For example, one may wish to more gracefully
       * close the socket with an HTTP '400 Bad Request' response instead of abruptly severing the connection.
       *
@@ -106,14 +96,12 @@ package object http {
     @inline
     def onClientError(callback: (nodejs.Error, Duplex) => Any): T = server.on("clientError", callback)
 
-    /**
-      * Emitted when the server closes.
+    /** Emitted when the server closes.
       */
     @inline
     def onClose(handler: () => Any): T = server.on("close", handler)
 
-    /**
-      * Emitted each time a client requests an HTTP CONNECT method. If this event is not listened for, then clients
+    /** Emitted each time a client requests an HTTP CONNECT method. If this event is not listened for, then clients
       * requesting a CONNECT method will have their connections closed.
       *
       * After this event is emitted, the request's socket will not have a 'data' event listener, meaning you will need
@@ -125,8 +113,7 @@ package object http {
     @inline
     def onConnect(handler: (IncomingMessage, Duplex, Buffer) => Any): T = server.on("connect", handler)
 
-    /**
-      * When a new TCP stream is established. socket is an object of type net.Socket. Usually users will not want
+    /** When a new TCP stream is established. socket is an object of type net.Socket. Usually users will not want
       * to access this event. In particular, the socket will not emit 'readable' events because of how the protocol
       * parser attaches to the socket. The socket can also be accessed at request.connection.
       * - socket <stream.Duplex>
@@ -134,8 +121,7 @@ package object http {
     @inline
     def onConnection(handler: Duplex => Any): T = server.on("connection", handler)
 
-    /**
-      * Emitted each time there is a request. Note that there may be multiple requests per connection (in the case
+    /** Emitted each time there is a request. Note that there may be multiple requests per connection (in the case
       * of HTTP Keep-Alive connections).
       * - request <http.IncomingMessage>
       * - response <http.ServerResponse>
@@ -143,8 +129,7 @@ package object http {
     @inline
     def onRequest(handler: (IncomingMessage, ServerResponse) => Any): T = server.on("request", handler)
 
-    /**
-      * Emitted each time a client requests an HTTP upgrade. If this event is not listened for, then clients
+    /** Emitted each time a client requests an HTTP upgrade. If this event is not listened for, then clients
       * requesting an upgrade will have their connections closed.
       *
       * After this event is emitted, the request's socket will not have a 'data' event listener, meaning you will
@@ -168,8 +153,7 @@ package object http {
 
   implicit final class AgentExtensions[T <: Agent](private val agent: T) extends AnyVal {
 
-    /**
-      * Produces a socket/stream to be used for HTTP requests. By default, this function is the same
+    /** Produces a socket/stream to be used for HTTP requests. By default, this function is the same
       * as net.createConnection(). However, custom Agents may override this method in case greater
       * flexibility is desired.
       */
@@ -183,14 +167,12 @@ package object http {
 
   implicit final class ClientRequestExtensions[T <: ClientRequest](private val client: T) extends AnyVal {
 
-    /**
-      * Emitted when the request has been aborted by the client. This event is only emitted on the first call to abort().
+    /** Emitted when the request has been aborted by the client. This event is only emitted on the first call to abort().
       */
     @inline
     def onAbort(callback: () => Any): T = client.on("abort", callback)
 
-    /**
-      * Emitted each time a server responds to a request with a CONNECT method. If this event is not being listened for,
+    /** Emitted each time a server responds to a request with a CONNECT method. If this event is not being listened for,
       * clients receiving a CONNECT method will have their connections closed.
       * - response <http.IncomingMessage>
       * - socket <stream.Duplex>
@@ -199,8 +181,7 @@ package object http {
     @inline
     def onConnect(callback: (IncomingMessage, Duplex, Buffer) => Any): T = client.on("connect", callback)
 
-    /**
-      * Emitted when the server sends a '100 Continue' HTTP response, usually because the request
+    /** Emitted when the server sends a '100 Continue' HTTP response, usually because the request
       * contained 'Expect: 100-continue'. This is an instruction that the client should send the request body.
       */
     @inline
@@ -209,16 +190,14 @@ package object http {
     @inline
     def onInformation(callback: Information => Any): T = client.on("information", callback)
 
-    /**
-      * Emitted when a response is received to this request. This event is emitted only once.
+    /** Emitted when a response is received to this request. This event is emitted only once.
       * The response argument will be an instance of http.IncomingMessage.
       * - response <http.IncomingMessage>
       */
     @inline
     def onResponse(callback: IncomingMessage => Any): T = client.on("response", callback)
 
-    /**
-      * Emitted after a socket is assigned to this request.
+    /** Emitted after a socket is assigned to this request.
       * - socket <net.Socket>
       */
     @inline
@@ -227,8 +206,7 @@ package object http {
     @inline
     def onTimeout(callback: () => Any): T = client.on("timeout", callback)
 
-    /**
-      * Emitted each time a server responds to a request with an upgrade. If this event isn't being listened for,
+    /** Emitted each time a server responds to a request with an upgrade. If this event isn't being listened for,
       * clients receiving an upgrade header will have their connections closed.
       * - response <http.IncomingMessage>
       * - socket <net.Socket>
@@ -270,8 +248,7 @@ package object http {
       message.setTimeout(duration.toMillis.toDouble, callback)
   }
 
-  /**
-    * Server Response Events
+  /** Server Response Events
     */
   implicit final class ServerResponseExtensions[T <: ServerResponse](private val response: T) extends AnyVal {
     @inline
@@ -283,8 +260,7 @@ package object http {
     @inline
     def onFinish(handler: () => Any): T = response.on("finish", handler)
 
-    /**
-      * Sets the content-type for the response
+    /** Sets the content-type for the response
       * @param contentType the given MIME type
       */
     @inline

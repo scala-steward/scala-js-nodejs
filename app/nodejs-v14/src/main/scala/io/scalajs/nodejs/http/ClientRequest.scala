@@ -7,8 +7,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import scala.scalajs.js.|
 
-/**
-  * http.ClientRequest - This object is created internally and returned from http.request(). It represents an in-progress
+/** http.ClientRequest - This object is created internally and returned from http.request(). It represents an in-progress
   * request whose header has already been queued. The header is still mutable using the setHeader(name, value),
   * getHeader(name), removeHeader(name) API. The actual header will be sent along with the first data chunk or when
   * closing the connection.
@@ -48,16 +47,14 @@ class ClientRequest extends stream.Writable {
   //      Methods
   /////////////////////////////////////////////////////////////////////////////////
 
-  /**
-    * Marks the request as aborting. Calling this will cause remaining data in the response
+  /** Marks the request as aborting. Calling this will cause remaining data in the response
     * to be dropped and the socket to be destroyed.
     * @see [[https://nodejs.org/api/http.html#http_request_abort]]
     */
   @deprecated("Use destroy()", "Node.js v14.1.0")
   def abort(): Unit = js.native
 
-  /**
-    * Flush the request headers.
+  /** Flush the request headers.
     *
     * For efficiency reasons, Node.js normally buffers the request headers until you call
     * request.end() or write the first chunk of request data. It then tries hard to pack the
@@ -76,19 +73,16 @@ class ClientRequest extends stream.Writable {
 
   def setHeader(name: String, value: js.Any): Unit = js.native
 
-  /**
-    * Once a socket is assigned to this request and is connected socket.setNoDelay() will be called.
+  /** Once a socket is assigned to this request and is connected socket.setNoDelay() will be called.
     */
   def setNoDelay(noDelay: Int): Unit = js.native
 
-  /**
-    * Once a socket is assigned to this request and is connected socket.setNoDelay() will be called.
+  /** Once a socket is assigned to this request and is connected socket.setNoDelay() will be called.
     */
   def setNoDelay(noDelay: Boolean): Unit = js.native
   def setNoDelay(): Unit                 = js.native
 
-  /**
-    * Once a socket is assigned to this request and is connected socket.setKeepAlive() will be called.
+  /** Once a socket is assigned to this request and is connected socket.setKeepAlive() will be called.
     * @see [[https://nodejs.org/api/http.html#http_request_setsocketkeepalive_enable_initialdelay]]
     */
   def setSocketKeepAlive(enable: Boolean, initialDelay: Int): Unit = js.native
@@ -96,8 +90,7 @@ class ClientRequest extends stream.Writable {
   def setSocketKeepAlive(initialDelay: Int): Unit                  = js.native
   def setSocketKeepAlive(): Unit                                   = js.native
 
-  /**
-    * Once a socket is assigned to this request and is connected socket.setTimeout() will be called.
+  /** Once a socket is assigned to this request and is connected socket.setTimeout() will be called.
     * <ul>
     * <li>timeout {Number} Milliseconds before a request is considered to be timed out.</li>
     * <li>callback {Function} Optional function to be called when a timeout occurs.

@@ -8,8 +8,7 @@ import scala.scalajs.js.annotation.JSImport
 import scala.scalajs.js.typedarray.{DataView, Uint8Array}
 import scala.scalajs.js.|
 
-/**
-  * Contextify Script
+/** Contextify Script
   */
 @js.native
 @JSImport("vm", "Script")
@@ -20,8 +19,7 @@ class Script protected () extends js.Object {
 
   def createCachedData(): io.scalajs.nodejs.buffer.Buffer = js.native
 
-  /**
-    * Runs the compiled code contained by the vm.Script object within the given contextifiedSandbox and returns the
+  /** Runs the compiled code contained by the vm.Script object within the given contextifiedSandbox and returns the
     * result. Running code does not have access to local scope.
     * @param contextifiedSandbox A contextified object as returned by the vm.createContext() method.
     * @param options             the optional options
@@ -30,8 +28,7 @@ class Script protected () extends js.Object {
   def runInContext(contextifiedSandbox: Context, options: RunInContextOptions): js.Any = js.native
   def runInContext(contextifiedSandbox: Context): js.Any                               = js.native
 
-  /**
-    * First contextifies the given sandbox, runs the compiled code contained by the vm.Script object within the created
+  /** First contextifies the given sandbox, runs the compiled code contained by the vm.Script object within the created
     * sandbox, and returns the result. Running code does not have access to local scope.
     * @param sandbox An object that will be contextified. If undefined, a new object will be created.
     * @param options the optional options
@@ -41,8 +38,7 @@ class Script protected () extends js.Object {
   def runInNewContext(sandbox: js.Object): js.Any                                  = js.native
   def runInNewContext(): js.Any                                                    = js.native
 
-  /**
-    * Runs the compiled code contained by the vm.Script within the context of the current global object. Running code
+  /** Runs the compiled code contained by the vm.Script within the context of the current global object. Running code
     * does not have access to local scope, but does have access to the current global object.
     * @param options the optional options
     * @example script.runInThisContext([options])

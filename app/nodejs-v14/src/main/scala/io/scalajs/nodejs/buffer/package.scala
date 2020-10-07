@@ -4,21 +4,18 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import scala.scalajs.js.typedarray.Uint8Array
 
-/**
-  * buffer package object
+/** buffer package object
   */
 package object buffer {
   /////////////////////////////////////////////////////////////////////////////////
   //      Buffer Extensions
   /////////////////////////////////////////////////////////////////////////////////
 
-  /**
-    * Buffer Extensions
+  /** Buffer Extensions
     */
   implicit final class BufferExtensions(private val buffer: Buffer) extends AnyVal {
 
-    /**
-      * Syntactic sugar for concatenating a buffer
+    /** Syntactic sugar for concatenating a buffer
       *
       * @param aBuffer another buffer
       * @return a new buffer with the concatenated contents of both buffers
@@ -26,15 +23,13 @@ package object buffer {
     @inline
     def +(aBuffer: Buffer): Buffer = Buffer.concat(js.Array(buffer, aBuffer))
 
-    /**
-      * Returns the actual byte length of a string. This is not the same as String.prototype.length since that returns
+    /** Returns the actual byte length of a string. This is not the same as String.prototype.length since that returns
       * the number of characters in a string.
       */
     @inline
     def byteLength(encoding: String): Int = Buffer.byteLength(buffer)
 
-    /**
-      * Returns the hex-formatted string
+    /** Returns the hex-formatted string
       *
       * @return the hex-formatted string
       */
@@ -43,8 +38,7 @@ package object buffer {
       js.Iterator.IteratorOps(buffer.entries()).toIterator.flatMap(_.lastOption).map(n => f"$n%02x").mkString
   }
 
-  /**
-    * Re-encodes the given `Buffer` or `Uint8Array` instance from one character encoding to another.
+  /** Re-encodes the given `Buffer` or `Uint8Array` instance from one character encoding to another.
     * Returns a new `Buffer` instance.
     *
     * Throws if the `fromEnc` or `toEnc` specify invalid character encodings or if conversion from `fromEnc` to `toEnc``
@@ -64,8 +58,7 @@ package object buffer {
   def transcode(source: Uint8Array, fromEnc: String, toEnc: String): Buffer =
     BufferNamespace.transcode(source, fromEnc, toEnc)
 
-  /**
-    * Returns the maximum number of bytes that will be returned when buf.inspect() is called.
+  /** Returns the maximum number of bytes that will be returned when buf.inspect() is called.
     * This can be overridden by user modules. See util.inspect() for more details on buf.inspect() behavior.
     *
     * Note that this is a property on the buffer module returned by require('buffer'), not on the
@@ -73,8 +66,7 @@ package object buffer {
     */
   val INSPECT_MAX_BYTES: UID = BufferNamespace.INSPECT_MAX_BYTES
 
-  /**
-    * On 32-bit architectures, this value is (2^30)-1 (~1GB). On 64-bit architectures, this value is (2^31)-1 (~2GB).F
+  /** On 32-bit architectures, this value is (2^30)-1 (~1GB). On 64-bit architectures, this value is (2^31)-1 (~2GB).F
     * Note that this is a property on the buffer module returned by require('buffer'), not on the Buffer global or a Buffer instance.
     */
   val kMaxLength: Double = BufferNamespace.kMaxLength
@@ -91,16 +83,14 @@ package object buffer {
   @JSImport("buffer", "constants")
   object constants extends js.Object {
 
-    /**
-      * The largest size allowed for a single `Buffer` instance.
+    /** The largest size allowed for a single `Buffer` instance.
       *
       * On 32-bit architectures, this value is `(2^30)-1` (~1GB).
       * On 64-bit architectures, this value is `(2^31)-1` (~2GB).
       */
     val MAX_LENGTH: Double = js.native
 
-    /**
-      * The largest length allowed for a single `String` instance.
+    /** The largest length allowed for a single `String` instance.
       *
       * Represents the largest `length` that a `String` primitive can have, counted in UTF-16 code units.
       *

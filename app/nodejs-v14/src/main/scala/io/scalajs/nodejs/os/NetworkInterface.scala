@@ -4,8 +4,7 @@ import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
 
-/**
-  * Represents a Network Interface
+/** Represents a Network Interface
   */
 @Factory
 trait NetworkInterface extends js.Object {

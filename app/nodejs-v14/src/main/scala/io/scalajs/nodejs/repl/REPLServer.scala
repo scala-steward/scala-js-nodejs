@@ -7,21 +7,18 @@ import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
 
-/**
-  * REPL Server
+/** REPL Server
   */
 @js.native
 trait REPLServer extends IEventEmitter with Interface {
 
-  /**
-    * The REPL's context
+  /** The REPL's context
     */
   val context: REPLContext = js.native
 
   def clearBufferedCommand(): Unit = js.native
 
-  /**
-    * The replServer.defineCommand() method is used to add new .-prefixed commands to the REPL instance.
+  /** The replServer.defineCommand() method is used to add new .-prefixed commands to the REPL instance.
     * Such commands are invoked by typing a period (.) followed by the keyword. The cmd is either a Function
     * or an object with the following properties:
     * <ul>
@@ -34,8 +31,7 @@ trait REPLServer extends IEventEmitter with Interface {
   def defineCommand(keyword: String, cmd: DefinedCommand): Unit            = js.native
   def defineCommand(keyword: String, cmd: js.Function1[String, Any]): Unit = js.native
 
-  /**
-    * The replServer.displayPrompt() method readies the REPL instance for input from the user, printing the
+  /** The replServer.displayPrompt() method readies the REPL instance for input from the user, printing the
     * configured prompt to a new line in the output and resuming the input to accept new input.
     *
     * When multi-line input is being entered, an ellipsis is printed rather than the 'prompt'.
@@ -48,8 +44,7 @@ trait REPLServer extends IEventEmitter with Interface {
     */
   def displayPrompt(preserveCursor: Boolean): Unit = js.native
 
-  /**
-    * Like readline.prompt except also adding indents with ellipses when inside blocks. The preserveCursor argument
+  /** Like readline.prompt except also adding indents with ellipses when inside blocks. The preserveCursor argument
     * is passed to readline.prompt. This is used primarily with defineCommand. It's also used internally to render
     * each prompt line.
     * @example replServer.displayPrompt([preserveCursor])

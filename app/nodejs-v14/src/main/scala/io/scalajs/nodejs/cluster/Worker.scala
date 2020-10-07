@@ -6,8 +6,7 @@ import io.scalajs.nodejs.events.IEventEmitter
 
 import scala.scalajs.js
 
-/**
-  * A Worker object contains all public information and method about a worker. In the master it can be obtained using
+/** A Worker object contains all public information and method about a worker. In the master it can be obtained using
   * cluster.workers. In a worker it can be obtained using cluster.worker.
   */
 @js.native
@@ -16,22 +15,19 @@ trait Worker extends IEventEmitter {
   //      Properties
   /////////////////////////////////////////////////////////////////////////////////
 
-  /**
-    * Set by calling .kill() or .disconnect(). Until then, it is undefined.
+  /** Set by calling .kill() or .disconnect(). Until then, it is undefined.
     *
     * The boolean worker.exitedAfterDisconnect lets you distinguish between voluntary and accidental exit, the master
     * may choose not to respawn a worker based on this value.
     */
   def exitedAfterDisconnect: js.UndefOr[Boolean] = js.native
 
-  /**
-    * Each new worker is given its own unique id, this id is stored in the id.
+  /** Each new worker is given its own unique id, this id is stored in the id.
     * While a worker is alive, this is the key that indexes it in cluster.workers
     */
   def id: Int = js.native
 
-  /**
-    * All workers are created using child_process.fork(), the returned object from this function is stored as .process.
+  /** All workers are created using child_process.fork(), the returned object from this function is stored as .process.
     * In a worker, the global process is stored.
     *
     * Note that workers will call process.exit(0) if the 'disconnect' event occurs on process and .exitedAfterDisconnect
@@ -43,8 +39,7 @@ trait Worker extends IEventEmitter {
   //      Methods
   /////////////////////////////////////////////////////////////////////////////////
 
-  /**
-    * In a worker, this function will close all servers, wait for the 'close' event on those servers, and then
+  /** In a worker, this function will close all servers, wait for the 'close' event on those servers, and then
     * disconnect the IPC channel.
     *
     * In the master, an internal message is sent to the worker causing it to call .disconnect() on itself.
@@ -65,20 +60,17 @@ trait Worker extends IEventEmitter {
     */
   def disconnect(): Unit = js.native
 
-  /**
-    * This function returns true if the worker is connected to its master via its IPC channel, false otherwise.
+  /** This function returns true if the worker is connected to its master via its IPC channel, false otherwise.
     * A worker is connected to its master after it's been created. It is disconnected after the 'disconnect' event is emitted.
     */
   def isConnected(): Boolean = js.native
 
-  /**
-    * This function returns true if the worker's process has terminated (either because of exiting or being signaled).
+  /** This function returns true if the worker's process has terminated (either because of exiting or being signaled).
     * Otherwise, it returns false.
     */
   def isDead(): Boolean = js.native
 
-  /**
-    * This function will kill the worker. In the master, it does this by disconnecting the worker.process, and once
+  /** This function will kill the worker. In the master, it does this by disconnecting the worker.process, and once
     * disconnected, killing with signal. In the worker, it does it by disconnecting the channel, and then exiting with code 0.
     *
     * Causes .exitedAfterDisconnect to be set.
@@ -91,8 +83,7 @@ trait Worker extends IEventEmitter {
   def kill(signal: String): Unit = js.native
   def kill(): Unit               = js.native
 
-  /**
-    * Send a message to a worker or master, optionally with a handle.
+  /** Send a message to a worker or master, optionally with a handle.
     * In the master this sends a message to a specific worker. It is identical to ChildProcess.send().
     * In a worker this sends a message to the master. It is identical to process.send().
     * @example worker.send(message[, sendHandle][, callback])

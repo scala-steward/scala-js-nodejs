@@ -9,8 +9,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import scala.scalajs.js.|
 
-/**
-  * The tls.TLSSocket is a subclass of net.Socket that performs transparent encryption of written data
+/** The tls.TLSSocket is a subclass of net.Socket that performs transparent encryption of written data
   * and all required TLS negotiation.
   *
   * Instances of tls.TLSSocket implement the duplex Stream interface.
@@ -35,8 +34,7 @@ class TLSSocket protected () extends net.Socket {
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def getCertificate(): TLSCertificate = js.native
 
-  /**
-    * Returns an object representing the peer's certificate. The returned object has some properties corresponding to
+  /** Returns an object representing the peer's certificate. The returned object has some properties corresponding to
     * the fields of the certificate.
     *
     * If the full certificate chain was requested, each certificate will include a issuerCertificate property
@@ -48,16 +46,14 @@ class TLSSocket protected () extends net.Socket {
 
   def getPeerFinished(): js.UndefOr[Buffer] = js.native
 
-  /**
-    * Returns a string containing the negotiated SSL/TLS protocol version of the current connection.
+  /** Returns a string containing the negotiated SSL/TLS protocol version of the current connection.
     * The value 'unknown' will be returned for connected sockets that have not completed the handshaking process.
     * The value null will be returned for server sockets or disconnected client sockets.
     * @return a string containing the negotiated SSL/TLS protocol version
     */
   def getProtocol(): String | Null = js.native
 
-  /**
-    * Returns the ASN.1 encoded TLS session or undefined if no session was negotiated.
+  /** Returns the ASN.1 encoded TLS session or undefined if no session was negotiated.
     * Can be used to speed up handshake establishment when reconnecting to the server.
     * @return the ASN.1 encoded TLS session
     */

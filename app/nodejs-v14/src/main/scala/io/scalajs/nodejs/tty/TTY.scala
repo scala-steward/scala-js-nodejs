@@ -5,8 +5,7 @@ import io.scalajs.nodejs.FileDescriptor
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
-/**
-  * The tty module provides the tty.ReadStream and tty.WriteStream classes. In most cases, it will not be necessary
+/** The tty module provides the tty.ReadStream and tty.WriteStream classes. In most cases, it will not be necessary
   * or possible to use this module directly.
   * @see https://nodejs.org/api/tty.html
   */
@@ -16,16 +15,14 @@ trait TTY extends js.Object {
   //      Methods
   /////////////////////////////////////////////////////////////////////////////////
 
-  /**
-    * The tty.isatty() method returns true if the given fd is associated with a TTY and false if is not.
+  /** The tty.isatty() method returns true if the given fd is associated with a TTY and false if is not.
     * @param fd A numeric file descriptor
     * @since 0.5.8
     */
   def isatty(fd: FileDescriptor): Boolean = js.native
 }
 
-/**
-  * TTY Singleton
+/** TTY Singleton
   */
 @js.native
 @JSImport("tty", JSImport.Namespace)

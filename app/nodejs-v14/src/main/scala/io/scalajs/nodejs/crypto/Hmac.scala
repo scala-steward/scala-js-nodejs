@@ -5,8 +5,7 @@ import io.scalajs.nodejs.stream.Transform
 
 import scala.scalajs.js
 
-/**
-  * The Hmac Class is a utility for creating cryptographic HMAC digests. It can be used in one of two ways:
+/** The Hmac Class is a utility for creating cryptographic HMAC digests. It can be used in one of two ways:
   * <ul>
   * <li>As a stream that is both readable and writable, where data is written to produce a computed HMAC digest on the readable side, or</li>
   * <li>Using the hmac.update() and hmac.digest() methods to produce the computed HMAC digest.</li>
@@ -18,8 +17,7 @@ import scala.scalajs.js
 @js.native
 sealed trait Hmac extends Transform {
 
-  /**
-    * Calculates the HMAC digest of all of the data passed using hmac.update(). The encoding can be 'hex', 'binary'
+  /** Calculates the HMAC digest of all of the data passed using hmac.update(). The encoding can be 'hex', 'binary'
     * or 'base64'. If encoding is provided a string is returned; otherwise a Buffer is returned;
     *
     * The Hmac object can not be used again after hmac.digest() has been called. Multiple calls to hmac.digest() will
@@ -29,8 +27,7 @@ sealed trait Hmac extends Transform {
     */
   def digest(encoding: String): String = js.native
 
-  /**
-    * Calculates the HMAC digest of all of the data passed using hmac.update(). The encoding can be 'hex', 'binary'
+  /** Calculates the HMAC digest of all of the data passed using hmac.update(). The encoding can be 'hex', 'binary'
     * or 'base64'. If encoding is provided a string is returned; otherwise a Buffer is returned;
     *
     * The Hmac object can not be used again after hmac.digest() has been called. Multiple calls to hmac.digest() will
@@ -39,8 +36,7 @@ sealed trait Hmac extends Transform {
     */
   def digest(): Buffer = js.native
 
-  /**
-    * Updates the Hmac content with the given data, the encoding of which is given in input_encoding and can be 'utf8',
+  /** Updates the Hmac content with the given data, the encoding of which is given in input_encoding and can be 'utf8',
     * 'ascii' or 'binary'. If encoding is not provided, and the data is a string, an encoding of 'utf8' is enforced.
     * If data is a Buffer then input_encoding is ignored.
     *
@@ -49,8 +45,7 @@ sealed trait Hmac extends Transform {
     */
   def update(data: String): Unit = js.native
 
-  /**
-    * Updates the Hmac content with the given data, the encoding of which is given in input_encoding and can be 'utf8',
+  /** Updates the Hmac content with the given data, the encoding of which is given in input_encoding and can be 'utf8',
     * 'ascii' or 'binary'. If encoding is not provided, and the data is a string, an encoding of 'utf8' is enforced.
     * If data is a Buffer then input_encoding is ignored.
     *
@@ -60,8 +55,7 @@ sealed trait Hmac extends Transform {
     */
   def update(data: String, inputEncoding: String): Hmac = js.native
 
-  /**
-    * Updates the Hmac content with the given data, the encoding of which is given in input_encoding and can be 'utf8',
+  /** Updates the Hmac content with the given data, the encoding of which is given in input_encoding and can be 'utf8',
     * 'ascii' or 'binary'. If encoding is not provided, and the data is a string, an encoding of 'utf8' is enforced.
     * If data is a Buffer then input_encoding is ignored.
     *

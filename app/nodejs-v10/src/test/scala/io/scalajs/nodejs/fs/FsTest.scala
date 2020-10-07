@@ -6,8 +6,7 @@ import io.scalajs.nodejs.TestHelper._
 import scala.concurrent.{ExecutionContext, Promise}
 import org.scalatest.funspec.AsyncFunSpec
 
-/**
-  * File System (Fs) Tests
+/** File System (Fs) Tests
   */
 class FsTest extends AsyncFunSpec {
   override implicit val executionContext = ExecutionContext.Implicits.global

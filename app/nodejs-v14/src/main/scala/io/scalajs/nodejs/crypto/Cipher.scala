@@ -6,8 +6,7 @@ import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
 
-/**
-  * Instances of the Cipher class are used to encrypt data. The class can be used in one of two ways:
+/** Instances of the Cipher class are used to encrypt data. The class can be used in one of two ways:
   * <ul>
   * <li>As a stream that is both readable and writable, where plain unencrypted data is written to produce encrypted
   * data on the readable side, or</li>
@@ -19,8 +18,7 @@ import scala.scalajs.js
 @js.native
 sealed trait Cipher extends Transform {
 
-  /**
-    * Returns any remaining enciphered contents. If output_encoding parameter is one of 'binary', 'base64' or 'hex',
+  /** Returns any remaining enciphered contents. If output_encoding parameter is one of 'binary', 'base64' or 'hex',
     * a string is returned. If an output_encoding is not provided, a Buffer is returned.
     *
     * Once the cipher.final() method has been called, the Cipher object can no longer be used to encrypt data.
@@ -29,8 +27,7 @@ sealed trait Cipher extends Transform {
     */
   def `final`(outputEncoding: String): String = js.native
 
-  /**
-    * Returns any remaining enciphered contents. If output_encoding parameter is one of 'binary', 'base64' or 'hex',
+  /** Returns any remaining enciphered contents. If output_encoding parameter is one of 'binary', 'base64' or 'hex',
     * a string is returned. If an output_encoding is not provided, a Buffer is returned.
     *
     * Once the cipher.final() method has been called, the Cipher object can no longer be used to encrypt data.
@@ -39,16 +36,14 @@ sealed trait Cipher extends Transform {
     */
   def `final`(): Buffer = js.native
 
-  /**
-    * When using an authenticated encryption mode (only GCM is currently supported), the cipher.setAAD() method sets
+  /** When using an authenticated encryption mode (only GCM is currently supported), the cipher.setAAD() method sets
     * the value used for the additional authenticated data (AAD) input parameter.
     * @example cipher.setAAD(buffer)
     */
   def setAAD(buffer: Buffer, options: SetAADOptions): Cipher = js.native
   def setAAD(buffer: Buffer): Cipher                         = js.native
 
-  /**
-    * When using an authenticated encryption mode (only GCM is currently supported), the cipher.getAuthTag() method
+  /** When using an authenticated encryption mode (only GCM is currently supported), the cipher.getAuthTag() method
     * returns a Buffer containing the authentication tag that has been computed from the given data.
     *
     * The cipher.getAuthTag() method should only be called after encryption has been completed using the cipher.final() method.
@@ -56,8 +51,7 @@ sealed trait Cipher extends Transform {
     */
   def getAuthTag(): Buffer = js.native
 
-  /**
-    * When using block encryption algorithms, the Cipher class will automatically add padding to the input data to the
+  /** When using block encryption algorithms, the Cipher class will automatically add padding to the input data to the
     * appropriate block size. To disable the default padding call cipher.setAutoPadding(false).
     *
     * When auto_padding is false, the length of the entire input data must be a multiple of the cipher's block size
@@ -70,8 +64,7 @@ sealed trait Cipher extends Transform {
   def setAutoPadding(auto_padding: Boolean): Cipher = js.native
   def setAutoPadding(): Cipher                      = js.native
 
-  /**
-    * Updates the cipher with data. If the input_encoding argument is given, it's value must be one of 'utf8', 'ascii',
+  /** Updates the cipher with data. If the input_encoding argument is given, it's value must be one of 'utf8', 'ascii',
     * or 'binary' and the data argument is a string using the specified encoding. If the input_encoding argument is not
     * given, data must be a Buffer. If data is a Buffer then input_encoding is ignored.
     *

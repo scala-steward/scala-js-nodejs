@@ -2,8 +2,7 @@ package io.scalajs.nodejs.http
 
 import scala.scalajs.js
 
-/**
-  * NodeJS HTTP Client
+/** NodeJS HTTP Client
   */
 @js.native
 trait Client extends js.Object {
@@ -11,23 +10,19 @@ trait Client extends js.Object {
   //      Properties
   /////////////////////////////////////////////////////////////////////////////////
 
-  /**
-    * The client's domain name
+  /** The client's domain name
     */
   def domain: String = js.native
 
-  /**
-    * The client's host name
+  /** The client's host name
     */
   def host: String = js.native
 
-  /**
-    * The client's port number
+  /** The client's port number
     */
   def port: Int = js.native
 
-  /**
-    * The client's agent
+  /** The client's agent
     */
   def agent: Agent = js.native
 }

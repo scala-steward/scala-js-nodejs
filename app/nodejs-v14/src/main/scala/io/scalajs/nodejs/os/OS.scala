@@ -5,8 +5,7 @@ import com.thoughtworks.enableIf
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
-/**
-  * Provides a few basic operating-system related utility functions.
+/** Provides a few basic operating-system related utility functions.
   * @see https://nodejs.org/api/os.html
   */
 @js.native
@@ -15,16 +14,14 @@ trait OS extends js.Object {
   //      Properties
   /////////////////////////////////////////////////////////////////////////////////
 
-  /**
-    * Returns an object containing commonly used operating system specific constants for
+  /** Returns an object containing commonly used operating system specific constants for
     * error codes, process signals, and so on. The specific constants currently defined
     * are described in OS Constants.
     * @see https://nodejs.org/api/os.html#os_os_constants_1
     */
   def constants: OSConstants = js.native
 
-  /**
-    * A constant defining the appropriate End-of-line marker for the operating system.
+  /** A constant defining the appropriate End-of-line marker for the operating system.
     * <ul>
     * <li>\n on POSIX</li>
     * <li>\r\n on Windows</li>
@@ -37,29 +34,25 @@ trait OS extends js.Object {
   //      Methods
   /////////////////////////////////////////////////////////////////////////////////
 
-  /**
-    * Returns the operating system CPU architecture. Possible values are 'x64', 'arm' and 'ia32'.
+  /** Returns the operating system CPU architecture. Possible values are 'x64', 'arm' and 'ia32'.
     * Returns the value of process.arch.
     * @example os.arch()
     */
   def arch(): String = js.native
 
-  /**
-    * Returns an array of objects containing information about each CPU/core installed: model,
+  /** Returns an array of objects containing information about each CPU/core installed: model,
     * speed (in MHz), and times (an object containing the number of milliseconds the CPU/core
     * spent in: user, nice, sys, idle, and irq).
     * @example os.cpus()
     */
   def cpus(): js.Array[CPUInfo] = js.native
 
-  /**
-    * Returns the endianness of the CPU. Possible values are 'BE' for big endian or 'LE' for little endian.
+  /** Returns the endianness of the CPU. Possible values are 'BE' for big endian or 'LE' for little endian.
     * @example os.endianness()
     */
   def endianness(): String = js.native
 
-  /**
-    * Returns the amount of free system memory in bytes.
+  /** Returns the amount of free system memory in bytes.
     * @example os.freemem()
     */
   def freemem(): Double = js.native
@@ -67,20 +60,17 @@ trait OS extends js.Object {
   def getPriority(pid: Int): Int = js.native
   def getPriority(): Int         = js.native
 
-  /**
-    * Returns the home directory of the current user.
+  /** Returns the home directory of the current user.
     * @example os.homedir()
     */
   def homedir(): String = js.native
 
-  /**
-    * Returns the hostname of the operating system.
+  /** Returns the hostname of the operating system.
     * @example os.hostname()
     */
   def hostname(): String = js.native
 
-  /**
-    * Returns an array containing the 1, 5, and 15 minute load averages.
+  /** Returns an array containing the 1, 5, and 15 minute load averages.
     *
     * The load average is a measure of system activity, calculated by the operating system and expressed
     * as a fractional number. As a rule of thumb, the load average should ideally be less than the number
@@ -92,21 +82,18 @@ trait OS extends js.Object {
     */
   def loadavg(): js.Array[Int] = js.native
 
-  /**
-    * Get a list of network interfaces
+  /** Get a list of network interfaces
     * @example os.networkInterfaces()
     */
   def networkInterfaces(): js.Dictionary[js.Array[NetworkInterface]] = js.native
 
-  /**
-    * Returns the operating system platform. Possible values are 'darwin', 'freebsd', 'linux', 'sunos' or 'win32'.
+  /** Returns the operating system platform. Possible values are 'darwin', 'freebsd', 'linux', 'sunos' or 'win32'.
     * Returns the value of process.platform.
     * @example os.platform()
     */
   def platform(): String = js.native
 
-  /**
-    * Returns the operating system release.
+  /** Returns the operating system release.
     * @example os.release()
     */
   def release(): String = js.native
@@ -114,32 +101,27 @@ trait OS extends js.Object {
   def setPriority(pid: Int, priority: Int): Unit = js.native
   def setPriority(priority: Int): Unit           = js.native
 
-  /**
-    * Returns the operating system's default directory for temporary files.
+  /** Returns the operating system's default directory for temporary files.
     * @example os.tmpdir()
     */
   def tmpdir(): String = js.native
 
-  /**
-    * Returns the total amount of system memory in bytes.
+  /** Returns the total amount of system memory in bytes.
     * @example os.totalmem()
     */
   def totalmem(): Double = js.native
 
-  /**
-    * Returns the operating system name. For example 'Linux' on Linux, 'Darwin' on OS X and 'Windows_NT' on Windows.
+  /** Returns the operating system name. For example 'Linux' on Linux, 'Darwin' on OS X and 'Windows_NT' on Windows.
     * @example os.type()
     */
   def `type`(): String = js.native
 
-  /**
-    * Returns the system uptime in seconds.
+  /** Returns the system uptime in seconds.
     * @example os.uptime()
     */
   def uptime(): Int = js.native
 
-  /**
-    * The os.userInfo() method returns information about the currently effective user -- on POSIX platforms,
+  /** The os.userInfo() method returns information about the currently effective user -- on POSIX platforms,
     * this is typically a subset of the password file. The returned object includes the username, uid, gid,
     * shell, and homedir. On Windows, the uid and gid fields are -1, and shell is null.
     *
@@ -151,16 +133,14 @@ trait OS extends js.Object {
   def userInfo(options: UserInfoOptions): UserInfoObject = js.native
   def userInfo(): UserInfoObject                         = js.native
 
-  /**
-    * Returns a string identifying the kernel version.
+  /** Returns a string identifying the kernel version.
     * Added in: v13.11.0
     */
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
   def version(): String = js.native
 }
 
-/**
-  * Operating System Singleton
+/** Operating System Singleton
   */
 @js.native
 @JSImport("os", JSImport.Namespace)

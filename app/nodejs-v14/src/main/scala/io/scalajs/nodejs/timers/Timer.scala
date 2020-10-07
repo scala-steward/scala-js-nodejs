@@ -2,8 +2,7 @@ package io.scalajs.nodejs.timers
 
 import scala.scalajs.js
 
-/**
-  * Timer
+/** Timer
   */
 @js.native
 trait Timer extends js.Object

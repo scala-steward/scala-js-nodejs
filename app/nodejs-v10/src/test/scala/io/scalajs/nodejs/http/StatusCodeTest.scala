@@ -3,8 +3,7 @@ package io.scalajs.nodejs.http
 import scala.scalajs.js
 import org.scalatest.funspec.AnyFunSpec
 
-/**
-  * Http Tests
+/** Http Tests
   */
 class StatusCodeTest extends AnyFunSpec {
   describe("Http") {

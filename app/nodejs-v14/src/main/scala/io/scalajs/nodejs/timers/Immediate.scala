@@ -4,8 +4,7 @@ import com.thoughtworks.enableIf
 
 import scala.scalajs.js
 
-/**
-  * Immediate Handle
+/** Immediate Handle
   */
 @js.native
 trait Immediate extends js.Object {

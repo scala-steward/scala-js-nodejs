@@ -2,8 +2,7 @@ package io.scalajs.nodejs.net
 
 import org.scalatest.funspec.AnyFunSpec
 
-/**
-  * Network (Net) Tests
+/** Network (Net) Tests
   */
 class NetTest extends AnyFunSpec {
   describe("Net") {

@@ -4,13 +4,11 @@ import scala.concurrent.{Future, Promise}
 import scala.scalajs.js
 import scala.scalajs.runtime.wrapJavaScriptException
 
-/**
-  * Promise Helper
+/** Promise Helper
   */
 object PromiseHelper {
 
-  /**
-    * Converts a JavaScript-style callback to a Scala.js promise
+  /** Converts a JavaScript-style callback to a Scala.js promise
     * @param f the given callback function
     * @return a Scala.js promise
     */
@@ -21,8 +19,7 @@ object PromiseHelper {
     task.future
   }
 
-  /**
-    * Converts a JavaScript-style callback to a Scala.js promise
+  /** Converts a JavaScript-style callback to a Scala.js promise
     * @param f the given callback function
     * @return a Scala.js promise
     */
@@ -33,8 +30,7 @@ object PromiseHelper {
     task.future
   }
 
-  /**
-    * Converts a JavaScript-style callback to a Scala.js promise
+  /** Converts a JavaScript-style callback to a Scala.js promise
     * @param f the given callback function
     * @return a Scala.js promise
     */
@@ -45,8 +41,7 @@ object PromiseHelper {
     task.future
   }
 
-  /**
-    * Converts a JavaScript-style callback to a Scala.js promise
+  /** Converts a JavaScript-style callback to a Scala.js promise
     * @param f the given callback function
     * @return a Scala.js promise
     */
@@ -57,8 +52,7 @@ object PromiseHelper {
     task.future
   }
 
-  /**
-    * Converts a JavaScript-style callback to a Scala.js promise
+  /** Converts a JavaScript-style callback to a Scala.js promise
     * @param f the given callback function
     * @return a Scala.js promise
     */
@@ -69,8 +63,7 @@ object PromiseHelper {
     task.future
   }
 
-  /**
-    * Converts a JavaScript-style callback to a Scala.js promise
+  /** Converts a JavaScript-style callback to a Scala.js promise
     * @param f the given callback function
     * @return a Scala.js promise
     */
@@ -81,8 +74,7 @@ object PromiseHelper {
     task.future
   }
 
-  /**
-    * Converts a JavaScript-style callback to a Scala.js promise
+  /** Converts a JavaScript-style callback to a Scala.js promise
     * @param f the given callback function
     * @return a Scala.js promise
     */
@@ -93,8 +85,7 @@ object PromiseHelper {
     task.future
   }
 
-  /**
-    * Converts a JavaScript-style callback to a Scala.js promise
+  /** Converts a JavaScript-style callback to a Scala.js promise
     * @param f the given callback function
     * @return a Scala.js promise
     */
@@ -107,8 +98,7 @@ object PromiseHelper {
     task.future
   }
 
-  /**
-    * Converts a JavaScript-style callback to a Scala.js promise
+  /** Converts a JavaScript-style callback to a Scala.js promise
     * @param f the given callback function
     * @return a Scala.js promise
     */
@@ -121,8 +111,7 @@ object PromiseHelper {
     task.future
   }
 
-  /**
-    * Converts a JavaScript-style callback to a Scala.js promise.
+  /** Converts a JavaScript-style callback to a Scala.js promise.
     * Promise always success and contains true if callback does not receive error, otherwise contains false.
     *
     * @param f the given callback function
@@ -135,8 +124,7 @@ object PromiseHelper {
     task.future
   }
 
-  /**
-    * Converts a JavaScript-style callback to a Scala.js promise
+  /** Converts a JavaScript-style callback to a Scala.js promise
     * @param f the given callback function
     * @return a Scala.js promise
     */
@@ -149,8 +137,7 @@ object PromiseHelper {
     task.future
   }
 
-  /**
-    * Converts a JavaScript-style callback to a Scala.js promise
+  /** Converts a JavaScript-style callback to a Scala.js promise
     * @param f the given callback function
     * @return a Scala.js promise
     */
@@ -163,8 +150,7 @@ object PromiseHelper {
     task.future
   }
 
-  /**
-    * Converts a JavaScript-style callback to a Scala.js promise
+  /** Converts a JavaScript-style callback to a Scala.js promise
     * @param f the given callback function
     * @return a Scala.js promise
     */
@@ -177,8 +163,7 @@ object PromiseHelper {
     task.future
   }
 
-  /**
-    * Converts a JavaScript-style callback to a Scala.js promise
+  /** Converts a JavaScript-style callback to a Scala.js promise
     * @param f the given callback function
     * @return a Scala.js promise
     */
@@ -191,8 +176,7 @@ object PromiseHelper {
     task.future
   }
 
-  /**
-    * Converts a JavaScript-style callback to a Scala.js promise
+  /** Converts a JavaScript-style callback to a Scala.js promise
     * @param f the given callback function
     * @return a Scala.js promise
     */
@@ -206,8 +190,7 @@ object PromiseHelper {
     task.future
   }
 
-  /**
-    * Converts a JavaScript-style callback to a Scala.js promise
+  /** Converts a JavaScript-style callback to a Scala.js promise
     * @param f the given callback function
     * @return a Scala.js promise
     */
@@ -221,8 +204,7 @@ object PromiseHelper {
     task.future
   }
 
-  /**
-    * Converts a JavaScript-style callback to a Scala.js promise
+  /** Converts a JavaScript-style callback to a Scala.js promise
     * @param f the given callback function
     * @return a Scala.js promise
     */

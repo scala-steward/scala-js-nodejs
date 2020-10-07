@@ -7,8 +7,7 @@ import scala.concurrent.Future
 import scala.scalajs.js.typedarray.{ArrayBuffer, DataView, TypedArray}
 import scala.scalajs.js.|
 
-/**
-  * zlib package object
+/** zlib package object
   */
 package object zlib {
   type Data                  = String | TypedArray[_, _] | DataView | ArrayBuffer
@@ -20,8 +19,7 @@ package object zlib {
   type DataType              = Int
   type DeflateCompressMethod = Int
 
-  /**
-    * Zlib Extensions
+  /** Zlib Extensions
     */
   implicit final class ZlibExtensions[T <: Zlib](private val zlib: T) extends AnyVal {
 

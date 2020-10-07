@@ -5,8 +5,7 @@ import io.scalajs.nodejs.stream.IWritable
 import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSGlobal, JSImport}
 
-/**
-  * The console module provides a simple debugging console that is similar to the JavaScript console mechanism
+/** The console module provides a simple debugging console that is similar to the JavaScript console mechanism
   * provided by web browsers.
   *
   * The module exports two specific components:
@@ -32,8 +31,7 @@ class Console protected () extends js.Object {
   def this(stdout: IWritable) = this()
   def this(options: ConsoleOptions) = this()
 
-  /**
-    * A simple assertion test that verifies whether `value` is truthy.
+  /** A simple assertion test that verifies whether `value` is truthy.
     * If it is not, an `AssertionError` is thrown.
     * If provided, the error `message` is formatted using `util.format()` and used as the error message.
     * @param value The value tested for being truthy
@@ -42,8 +40,7 @@ class Console protected () extends js.Object {
     */
   def assert(value: Any, message: String, optionalParams: Any*): Unit = js.native
 
-  /**
-    * A simple assertion test that verifies whether `value` is truthy.
+  /** A simple assertion test that verifies whether `value` is truthy.
     * If it is not, an `AssertionError` is thrown.
     * If provided, the error `message` is formatted using `util.format()` and used as the error message.
     * @param value The value tested for being truthy
@@ -51,8 +48,7 @@ class Console protected () extends js.Object {
     */
   def assert(value: Any, optionalParams: Any*): Unit = js.native
 
-  /**
-    * When `stdout` is a TTY, calling `console.clear()` will attempt to clear the TTY.
+  /** When `stdout` is a TTY, calling `console.clear()` will attempt to clear the TTY.
     * When `stdout` is not a TTY, this method does nothing.
     *
     * The specific operation of `console.clear()` can vary across operating systems and terminal types.
@@ -61,42 +57,36 @@ class Console protected () extends js.Object {
     */
   def clear(): Unit = js.native
 
-  /**
-    * Maintains an internal counter specific to `label` and outputs to `stdout` the number of times `console.count()` has been called with the given `label`.
+  /** Maintains an internal counter specific to `label` and outputs to `stdout` the number of times `console.count()` has been called with the given `label`.
     * @param label The display label for the counter. Default: 'default'.
     */
   def count(label: String): Unit = js.native
   def count(): Unit              = js.native
 
-  /**
-    * Resets the internal counter specific to `label`.
+  /** Resets the internal counter specific to `label`.
     * @param label The display label for the counter. Default: 'default'.
     */
   def countReset(label: String): Unit = js.native
   def countReset(): Unit              = js.native
 
-  /**
-    * The `console.debug()` function is an alias for `console.log()`.
+  /** The `console.debug()` function is an alias for `console.log()`.
     */
   def debug(data: Any, arg1: Any, args: Any*): Unit = js.native
   def debug(data: Any): Unit                        = js.native
   def debug(): Unit                                 = js.native
 
-  /**
-    * Uses [[io.scalajs.nodejs.util.Util.inspect()]] on `obj` and prints the resulting string to `stdout`.
+  /** Uses [[io.scalajs.nodejs.util.Util.inspect()]] on `obj` and prints the resulting string to `stdout`.
     * This function bypasses any custom `inspect()` function defined on `obj`.
     */
   def dir(obj: Any, options: ConsoleDirOptions): Unit = js.native
   def dir(obj: Any): Unit                             = js.native
 
-  /**
-    * This method calls[[log()]] passing it the arguments received.
+  /** This method calls[[log()]] passing it the arguments received.
     * Please note that this method does not produce any XML formatting
     */
   def dirxml(data: Any*): Unit = js.native
 
-  /**
-    * Prints to `stderr` with newline.
+  /** Prints to `stderr` with newline.
     * Multiple arguments can be passed, with the first used as the primary message and all additional used as
     * substitution values similar to `printf(3)` (the arguments are all passed to [[io.scalajs.nodejs.util.Util.format()]].
     *
@@ -108,8 +98,7 @@ class Console protected () extends js.Object {
   def error(data: Any): Unit                        = js.native
   def error(): Unit                                 = js.native
 
-  /**
-    * Increases indentation of subsequent lines by two spaces.
+  /** Increases indentation of subsequent lines by two spaces.
     *
     * If one or more `label`s are provided, those are printed first without the additional indentation.
     *
@@ -117,26 +106,22 @@ class Console protected () extends js.Object {
     */
   def group(label: Any*): Unit = js.native
 
-  /**
-    * An alias for [[group()]]
+  /** An alias for [[group()]]
     * @param label
     */
   def groupCollapsed(label: Any*): Unit = js.native
 
-  /**
-    * Decreases indentation of subsequent lines by two spaces.
+  /** Decreases indentation of subsequent lines by two spaces.
     */
   def groupEnd(): Unit = js.native
 
-  /**
-    * The `console.info()` function is an alias for [[log()]].
+  /** The `console.info()` function is an alias for [[log()]].
     */
   def info(data: Any, arg1: Any, args: Any*): Unit = js.native
   def info(data: Any): Unit                        = js.native
   def info(): Unit                                 = js.native
 
-  /**
-    * Prints to `stdout` with newline.
+  /** Prints to `stdout` with newline.
     * Multiple arguments can be passed, with the first used as the primary message and all additional used as
     * substitution values similar to `printf(3)` (the arguments are all passed to `util.format()`).
     */
@@ -144,8 +129,7 @@ class Console protected () extends js.Object {
   def log(data: Any): Unit                        = js.native
   def log(): Unit                                 = js.native
 
-  /**
-    * Try to construct a table with the columns of the properties of `tabularData` (or use `properties`) and
+  /** Try to construct a table with the columns of the properties of `tabularData` (or use `properties`) and
     * rows of `tabularData` and log it.
     * Falls back to just logging the argument if it can’t be parsed as tabular.
     * @param tabularData
@@ -154,8 +138,7 @@ class Console protected () extends js.Object {
   def table(tabularData: Any, properties: js.Array[String]): Unit = js.native
   def table(tabularData: Any): Unit                               = js.native
 
-  /**
-    * Starts a timer that can be used to compute the duration of an operation.
+  /** Starts a timer that can be used to compute the duration of an operation.
     * Timers are identified by a unique `label`.
     * Use the same `label` when calling [[timeEnd()]] to stop the timer and output the elapsed time in milliseconds to
     * `stdout`.
@@ -164,42 +147,36 @@ class Console protected () extends js.Object {
   def time(label: String): Unit = js.native
   def time(): Unit              = js.native
 
-  /**
-    * Stops a timer that was previously started by calling [[time()]] and prints the result to `stdout`.
+  /** Stops a timer that was previously started by calling [[time()]] and prints the result to `stdout`.
     */
   def timeEnd(label: String): Unit = js.native
   def timeEnd(): Unit              = js.native
 
-  /**
-    * Stops a timer that was previously started by calling [[time()]] and prints the result to `.stdout`.`
+  /** Stops a timer that was previously started by calling [[time()]] and prints the result to `.stdout`.`
     */
   def timeLog(label: String, data: Any*): Unit = js.native
 
-  /**
-    * Prints to `stderr` the string `'Trace: '`, followed by the [[io.scalajs.nodejs.util.Util.format()]] formatted
+  /** Prints to `stderr` the string `'Trace: '`, followed by the [[io.scalajs.nodejs.util.Util.format()]] formatted
     * message and stack trace to the current position in the code.
     */
   def trace(data: Any, arg1: Any, args: Any*): Unit = js.native
   def trace(data: Any): Unit                        = js.native
   def trace(): Unit                                 = js.native
 
-  /**
-    * The `console.warn()` function is an alias for [[error()]
+  /** The `console.warn()` function is an alias for [[error()]
     */
   def warn(data: Any, arg1: Any, args: Any*): Unit = js.native
   def warn(data: Any): Unit                        = js.native
   def warn(): Unit                                 = js.native
 
-  /**
-    * This method does not display anything unless used in the inspector.
+  /** This method does not display anything unless used in the inspector.
     * The `console.profile()` method starts a JavaScript CPU profile with an optional label until [[profileEnd()]] is called.
     * The profile is then added to the **Profile** panel of the inspector.
     */
   def profile(label: String): Unit = js.native
   def profile(): Unit              = js.native
 
-  /**
-    * This method does not display anything unless used in the inspector.
+  /** This method does not display anything unless used in the inspector.
     * Stops the current JavaScript CPU profiling session if one has been started and prints the report to the **Profiles** panel of the inspector.
     * See [[profile()]] for an example.
     *
@@ -208,16 +185,14 @@ class Console protected () extends js.Object {
   def profileEnd(label: String): Unit = js.native
   def profileEnd(): Unit              = js.native
 
-  /**
-    * This method does not display anything unless used in the inspector.
+  /** This method does not display anything unless used in the inspector.
     * The `console.timeStamp()` method adds an event with the label `'label'` to the **Timeline** panel of the inspector.
     */
   def timeStamp(label: String): Unit = js.native
   def timeStamp(): Unit              = js.native
 }
 
-/**
-  * A global `Console` instance configured to write to [[io.scalajs.nodejs.process.Process.stdout]] and [[io.scalajs.nodejs.process.Process.stderr]].
+/** A global `Console` instance configured to write to [[io.scalajs.nodejs.process.Process.stdout]] and [[io.scalajs.nodejs.process.Process.stderr]].
   */
 @js.native
 @JSGlobal("console")

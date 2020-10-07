@@ -5,8 +5,7 @@ import io.scalajs.nodejs.{GID, UID}
 import scala.scalajs.js
 import scala.scalajs.js.|
 
-/**
-  * Spawns a shell then executes the command within that shell, buffering any generated output.
+/** Spawns a shell then executes the command within that shell, buffering any generated output.
   *
   * Note: Never pass unsanitized user input to this function. Any input containing shell meta-characters
   * may be used to trigger arbitrary command execution.

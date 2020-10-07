@@ -6,8 +6,7 @@ import io.scalajs.nodejs.stream.Writable
 
 import scala.scalajs.js
 
-/**
-  * The Verify class is a utility for verifying signatures. It can be used in one of two ways:
+/** The Verify class is a utility for verifying signatures. It can be used in one of two ways:
   * <ul>
   * <li>As a writable stream where written data is used to validate against the supplied signature, or</li>
   * <li>Using the verify.update() and verify.verify() methods to verify the signature.</li>
@@ -18,8 +17,7 @@ import scala.scalajs.js
 @js.native
 trait Verify extends Writable {
 
-  /**
-    * Updates the Verify content with the given data.
+  /** Updates the Verify content with the given data.
     * This can be called many times with new data as it is streamed.
     * @param data           with the given data
     * @param inputEncoding the encoding of which is given in input_encoding and can be
@@ -30,8 +28,7 @@ trait Verify extends Writable {
   def update(data: String): Unit                        = js.native
   def update(data: BufferLike): Unit                    = js.native
 
-  /**
-    * Verifies the provided data using the given object and signature.
+  /** Verifies the provided data using the given object and signature.
     *
     * The verifier object can not be used again after verify.verify() has been called. Multiple calls to verify.verify()
     * will result in an error being thrown.

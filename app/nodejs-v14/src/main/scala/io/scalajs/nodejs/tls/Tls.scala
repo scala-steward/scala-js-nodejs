@@ -6,8 +6,7 @@ import com.thoughtworks.enableIf
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
-/**
-  * The tls module provides an implementation of the Transport Layer Security (TLS) and Secure Socket Layer (SSL)
+/** The tls module provides an implementation of the Transport Layer Security (TLS) and Secure Socket Layer (SSL)
   * protocols that is built on top of OpenSSL.
   * @see https://nodejs.org/dist/v7.6.0/docs/api/tls.html
   */
@@ -40,8 +39,7 @@ trait Tls extends js.Object {
   def DEFAULT_MIN_VERSION: String = js.native
 }
 
-/**
-  * TLS Singleton
+/** TLS Singleton
   */
 @js.native
 @JSImport("tls", JSImport.Namespace)

@@ -9,8 +9,7 @@ import _root_.net.exoego.scalajs.types.util.Factory
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
-/**
-  * The dgram.Socket object is an EventEmitter that encapsulates the datagram functionality.
+/** The dgram.Socket object is an EventEmitter that encapsulates the datagram functionality.
   *
   * New instances of dgram.Socket are created using dgram.createSocket(). The new keyword is not
   * to be used to create dgram.Socket instances.
@@ -19,8 +18,7 @@ import scala.scalajs.js.annotation.JSImport
 @JSImport("dgram", "Socket")
 class Socket protected () extends IEventEmitter {
 
-  /**
-    * Tells the kernel to join a multicast group at the given multicastAddress and multicastInterface using the
+  /** Tells the kernel to join a multicast group at the given multicastAddress and multicastInterface using the
     * IP_ADD_MEMBERSHIP socket option. If the multicastInterface argument is not specified, the operating system
     * will choose one interface and will add membership to it. To add membership to every available interface,
     * call addMembership multiple times, once per interface.
@@ -37,15 +35,13 @@ class Socket protected () extends IEventEmitter {
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def addSourceSpecificMembership(sourceAddress: String, groupAddress: String): Unit = js.native
 
-  /**
-    * Returns an object containing the address information for a socket. For UDP sockets,
+  /** Returns an object containing the address information for a socket. For UDP sockets,
     * this object will contain address, family and port properties.
     * @return an [[Address object]] containing the address
     */
   def address(): Address = js.native
 
-  /**
-    * For UDP sockets, causes the dgram.Socket to listen for datagram messages on a named port and optional address.
+  /** For UDP sockets, causes the dgram.Socket to listen for datagram messages on a named port and optional address.
     * If port is not specified or is 0, the operating system will attempt to bind to a random port. If address is not
     * specified, the operating system will attempt to listen on all addresses. Once binding is complete, a 'listening'
     * event is emitted and the optional callback function is called.
@@ -62,8 +58,7 @@ class Socket protected () extends IEventEmitter {
   def bind(callback: js.Function0[Any]): Unit                             = js.native
   def bind(address: String): Unit                                         = js.native
 
-  /**
-    * For UDP sockets, causes the dgram.Socket to listen for datagram messages on a named port and optional address.
+  /** For UDP sockets, causes the dgram.Socket to listen for datagram messages on a named port and optional address.
     * If port is not specified or is 0, the operating system will attempt to bind to a random port. If address is not
     * specified, the operating system will attempt to listen on all addresses. Once binding is complete, a 'listening'
     * event is emitted and the optional callback function is called.
@@ -125,8 +120,7 @@ class Socket protected () extends IEventEmitter {
   def send(msg: Message, address: String): Unit                                   = js.native
   def send(msg: Message): Unit                                                    = js.native
 
-  /**
-    * Sets or clears the SO_BROADCAST socket option. When set to true, UDP packets may be sent to a
+  /** Sets or clears the SO_BROADCAST socket option. When set to true, UDP packets may be sent to a
     * local interface's broadcast address.
     * @param flag the flag to set
     */

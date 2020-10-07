@@ -6,8 +6,7 @@ import io.scalajs.util.PromiseHelper._
 import scala.concurrent.Future
 import scala.scalajs.js
 
-/**
-  * cluster package object
+/** cluster package object
   */
 package object cluster {
   type Message = js.Any
@@ -16,14 +15,12 @@ package object cluster {
   //      Cluster Events and Extensions
   /////////////////////////////////////////////////////////////////////////////////
 
-  /**
-    * Cluster Events
+  /** Cluster Events
     * @param cluster the given [[Cluster cluster]]
     */
   implicit final class ClusterExtensions(private val cluster: Cluster) extends AnyVal {
 
-    /**
-      * Emitted after the worker IPC channel has disconnected. This can occur when a worker exits gracefully, is killed,
+    /** Emitted after the worker IPC channel has disconnected. This can occur when a worker exits gracefully, is killed,
       * or is disconnected manually (such as with worker.disconnect()).
       *
       * There may be a delay between the 'disconnect' and 'exit' events. These events can be used to detect if the process
@@ -33,8 +30,7 @@ package object cluster {
     @inline
     def onDisconnect(callback: Worker => Any): Cluster = cluster.on("disconnect", callback)
 
-    /**
-      * Similar to the cluster.on('exit') event, but specific to this worker.
+    /** Similar to the cluster.on('exit') event, but specific to this worker.
       * @param callback the event handler
       *                 <ul>
       *                 <il>worker <Worker> the worker</li>
@@ -45,16 +41,14 @@ package object cluster {
     @inline
     def onExit(callback: (Worker, Int, String) => Any): Cluster = cluster.on("exit", callback)
 
-    /**
-      * When a new worker is forked the cluster module will emit a 'fork' event. This can be used to log worker activity,
+    /** When a new worker is forked the cluster module will emit a 'fork' event. This can be used to log worker activity,
       * and create your own timeout.
       * @param callback the event handler
       */
     @inline
     def onFork(callback: Worker => Any): Cluster = cluster.on("fork", callback)
 
-    /**
-      * After calling listen() from a worker, when the 'listening' event is emitted on the server, a 'listening' event
+    /** After calling listen() from a worker, when the 'listening' event is emitted on the server, a 'listening' event
       * will also be emitted on cluster in the master.
       *
       * The event handler is executed with two arguments, the worker contains the worker object and the address object
@@ -65,8 +59,7 @@ package object cluster {
     @inline
     def onListening(callback: (Worker, Address) => Any): Cluster = cluster.on("listening", callback)
 
-    /**
-      * Emitted when any worker receives a message.
+    /** Emitted when any worker receives a message.
       * See child_process event: 'message'.
       *
       * Before Node.js v6.0, this event emitted only the message and the handle, but not the worker object,
@@ -76,8 +69,7 @@ package object cluster {
     @inline
     def onMessage(callback: (Worker, Message, js.Any) => Any): Cluster = cluster.on("message", callback)
 
-    /**
-      * After forking a new worker, the worker should respond with an online message. When the master receives an online
+    /** After forking a new worker, the worker should respond with an online message. When the master receives an online
       * message it will emit this event. The difference between 'fork' and 'online' is that fork is emitted when the master
       * forks a worker, and 'online' is emitted when the worker is running.
       * @param callback the event handler
@@ -85,8 +77,7 @@ package object cluster {
     @inline
     def onOnline(callback: Worker => Any): Cluster = cluster.on("online", callback)
 
-    /**
-      * Emitted every time .setupMaster() is called.
+    /** Emitted every time .setupMaster() is called.
       * The settings object is the cluster.settings object at the time .setupMaster() was called and is advisory only,
       * since multiple calls to .setupMaster() can be made in a single tick.
       *
@@ -101,8 +92,7 @@ package object cluster {
   //      Worker Events and Extensions
   /////////////////////////////////////////////////////////////////////////////////
 
-  /**
-    * Worker Events and Extensions
+  /** Worker Events and Extensions
     * @param worker the given [[Worker worker]]
     */
   implicit final class WorkerExtensions(private val worker: Worker) extends AnyVal {
@@ -110,8 +100,7 @@ package object cluster {
     //      Worker Extensions
     /////////////////////////////////////////////////////////////////////////////////
 
-    /**
-      * Send a message to a worker or master, optionally with a handle.
+    /** Send a message to a worker or master, optionally with a handle.
       * In the master this sends a message to a specific worker. It is identical to ChildProcess.send().
       * In a worker this sends a message to the master. It is identical to process.send().
       * @example worker.send(message[, sendHandle][, callback])
@@ -123,23 +112,20 @@ package object cluster {
     //      Worker Events
     /////////////////////////////////////////////////////////////////////////////////
 
-    /**
-      * Similar to the cluster.on('disconnect') event, but specific to this worker.
+    /** Similar to the cluster.on('disconnect') event, but specific to this worker.
       * @param callback the event handler
       */
     @inline
     def onDisconnect(callback: () => Any): Worker = worker.on("disconnect", callback)
 
-    /**
-      * This event is the same as the one provided by child_process.fork().
+    /** This event is the same as the one provided by child_process.fork().
       * In a worker you can also use process.on('error').
       * @param callback the error handler
       */
     @inline
     def onError(callback: nodejs.Error => Any): Worker = worker.on("error", callback)
 
-    /**
-      * Similar to the cluster.on('exit') event, but specific to this worker.
+    /** Similar to the cluster.on('exit') event, but specific to this worker.
       * @param callback the callback
       *                 <ul>
       *                 <il>worker <Worker> the worker</li>
@@ -150,15 +136,13 @@ package object cluster {
     @inline
     def onExit(callback: (Int, String) => Any): Worker = worker.on("exit", callback)
 
-    /**
-      * Similar to the cluster.on('listening') event, but specific to this worker.
+    /** Similar to the cluster.on('listening') event, but specific to this worker.
       * @param callback the event handler
       */
     @inline
     def onListening(callback: Address => Any): Worker = worker.on("listening", callback)
 
-    /**
-      * Similar to the cluster.on('message') event, but specific to this worker.
+    /** Similar to the cluster.on('message') event, but specific to this worker.
       * This event is the same as the one provided by child_process.fork().
       * In a worker you can also use process.on('message').
       * @param callback the event handler
@@ -166,8 +150,7 @@ package object cluster {
     @inline
     def onMessage(callback: Message => Any, handle: js.UndefOr[js.Object]): Worker = worker.on("message", callback)
 
-    /**
-      * Similar to the cluster.on('online') event, but specific to this worker.
+    /** Similar to the cluster.on('online') event, but specific to this worker.
       * @param callback the event handler
       */
     @inline

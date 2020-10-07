@@ -2,15 +2,13 @@ package io.scalajs.nodejs.timers
 
 import scala.scalajs.js
 
-/**
-  * Schedules execution of a one-time callback after delay milliseconds. Returns a timeoutObject for possible
+/** Schedules execution of a one-time callback after delay milliseconds. Returns a timeoutObject for possible
   * use with clearTimeout. Additional optional arguments may be passed to the callback.
   */
 @js.native
 trait SetTimeout extends js.Object {
 
-  /**
-    * Schedules execution of a one-time callback after delay milliseconds. Returns a timeoutObject for possible
+  /** Schedules execution of a one-time callback after delay milliseconds. Returns a timeoutObject for possible
     * use with clearTimeout. Additional optional arguments may be passed to the callback.
     *
     * The callback will likely not be invoked in precisely delay milliseconds. Node.js makes no guarantees about

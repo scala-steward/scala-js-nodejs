@@ -3,8 +3,7 @@ package io.scalajs.nodejs
 import scala.scalajs.js
 import org.scalatest.funspec.AnyFunSpec
 
-/**
-  * Assert Test
+/** Assert Test
   */
 class AssertTest extends AnyFunSpec {
   describe("Assert") {

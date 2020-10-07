@@ -30,30 +30,26 @@ trait IStats[TInt, TFloat] extends js.Object {
 
   def blocks: TInt = js.native
 
-  /**
-    * "Access Time" - Time when file data last accessed. Changed by the mknod(2), utimes(2), and read(2) system calls.
+  /** "Access Time" - Time when file data last accessed. Changed by the mknod(2), utimes(2), and read(2) system calls.
     */
   def atime: js.Date = js.native
 
   def atimeMs: TFloat = js.native
 
-  /**
-    * "Modified Time" - Time when file data last modified. Changed by the mknod(2), utimes(2), and write(2) system calls.
+  /** "Modified Time" - Time when file data last modified. Changed by the mknod(2), utimes(2), and write(2) system calls.
     */
   def mtime: js.Date = js.native
 
   def mtimeMs: TFloat = js.native
 
-  /**
-    * "Change Time" - Time when file status was last changed (inode data modification). Changed by the chmod(2),
+  /** "Change Time" - Time when file status was last changed (inode data modification). Changed by the chmod(2),
     * chown(2), link(2), mknod(2), rename(2), unlink(2), utimes(2), read(2), and write(2) system calls.
     */
   def ctime: js.Date = js.native
 
   def ctimeMs: TFloat = js.native
 
-  /**
-    * "Birth Time" - Time of file creation. Set once when the file is created. On filesystems where birthtime is not
+  /** "Birth Time" - Time of file creation. Set once when the file is created. On filesystems where birthtime is not
     * available, this field may instead hold either the ctime or 1970-01-01T00:00Z (ie, unix epoch timestamp 0).
     * Note that this value may be greater than atime or mtime in this case. On Darwin and other FreeBSD variants,
     * also set if the atime is explicitly set to an earlier value than the current birthtime using the utimes(2) system call.
@@ -74,8 +70,7 @@ trait IStats[TInt, TFloat] extends js.Object {
 
   def isCharacterDevice(): Boolean = js.native
 
-  /**
-    * (only valid with fs.lstat())
+  /** (only valid with fs.lstat())
     */
   def isSymbolicLink(): Boolean = js.native
 
@@ -84,8 +79,7 @@ trait IStats[TInt, TFloat] extends js.Object {
   def isSocket(): Boolean = js.native
 }
 
-/**
-  * fs.Stats (Stat Time Values) - Objects returned from fs.stat(), fs.lstat() and fs.fstat() and their synchronous
+/** fs.Stats (Stat Time Values) - Objects returned from fs.stat(), fs.lstat() and fs.fstat() and their synchronous
   * counterparts are of this type.
   * @example
   * {{{
@@ -115,8 +109,7 @@ trait IStats[TInt, TFloat] extends js.Object {
 @js.native
 trait Stats extends IStats[Int, Double]
 
-/**
-  * fs.Stats (Stat Time Values) - Objects returned from fs.stat(), fs.lstat() and fs.fstat() and their synchronous
+/** fs.Stats (Stat Time Values) - Objects returned from fs.stat(), fs.lstat() and fs.fstat() and their synchronous
   * counterparts are of this type.
   *
   * @example

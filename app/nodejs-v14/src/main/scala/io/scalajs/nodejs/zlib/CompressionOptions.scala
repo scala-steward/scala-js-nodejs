@@ -28,8 +28,7 @@ trait CompressionOptions extends js.Object {
     */
   var strategy: js.UndefOr[CompressionStrategy] = js.undefined
 
-  /**
-    * deflate/inflate only, empty dictionary by default
+  /** deflate/inflate only, empty dictionary by default
     */
   var dictionary: js.UndefOr[TypedArray[_, _] | DataView | ArrayBuffer] = js.undefined
 

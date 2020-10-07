@@ -4,14 +4,12 @@ import com.thoughtworks.enableIf
 
 import scala.scalajs.js
 
-/**
-  * Timeout Handle
+/** Timeout Handle
   */
 @js.native
 trait Timeout extends js.Object {
 
-  /**
-    * Indicates whether the timeout has been called
+  /** Indicates whether the timeout has been called
     * @return true, if the timeout has already been called
     */
   def _called: Boolean = js.native

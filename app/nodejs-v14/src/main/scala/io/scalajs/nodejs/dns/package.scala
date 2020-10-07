@@ -6,8 +6,7 @@ import scala.concurrent.Future
 import scala.scalajs.js
 import scala.scalajs.js.|
 
-/**
-  * dns package object
+/** dns package object
   */
 package object dns {
   /////////////////////////////////////////////////////////////////////////////////
@@ -58,14 +57,12 @@ package object dns {
   // name authority pointer record
   final val RRTYPE_NAPTR: RRType = "NAPTR"
 
-  /**
-    * DNS Extensions
+  /** DNS Extensions
     * @param dns the DNS instance
     */
   implicit final class DNSExtensions(private val dns: DNS) extends AnyVal {
 
-    /**
-      * Resolves a hostname (e.g. 'nodejs.org') into the first found A (IPv4) or AAAA (IPv6) record. options can be an
+    /** Resolves a hostname (e.g. 'nodejs.org') into the first found A (IPv4) or AAAA (IPv6) record. options can be an
       * object or integer. If options is not provided, then IPv4 and IPv6 addresses are both valid. If options is an
       * integer, then it must be 4 or 6.
       */
@@ -82,8 +79,7 @@ package object dns {
       promiseWithError2[DnsError, String, Int](dns.lookup(hostname, _))
     }
 
-    /**
-      * Resolves the given address and port into a hostname and service using the operating system's underlying
+    /** Resolves the given address and port into a hostname and service using the operating system's underlying
       * getnameinfo implementation.
       *
       * If address is not a valid IP address, a TypeError will be thrown. The port will be coerced to a number. If it is
@@ -99,8 +95,7 @@ package object dns {
       promiseWithError2[DnsError, String, String](dns.lookupService(address, port, _))
     }
 
-    /**
-      * Uses the DNS protocol to resolve a hostname (e.g. 'nodejs.org') into an array of the record types specified by rrtype.
+    /** Uses the DNS protocol to resolve a hostname (e.g. 'nodejs.org') into an array of the record types specified by rrtype.
       * On error, err is an Error object, where err.code is one of the error codes listed here.
       * @param hostname the hostname
       */
@@ -114,8 +109,7 @@ package object dns {
       promiseWithError1[DnsError, js.Array[String]](dns.resolve(hostname, _))
     }
 
-    /**
-      * Performs a reverse DNS query that resolves an IPv4 or IPv6 address to an array of hostnames.
+    /** Performs a reverse DNS query that resolves an IPv4 or IPv6 address to an array of hostnames.
       * The callback function has arguments (err, hostnames), where hostnames is an array of resolved hostnames for the given ip.
       * On error, err is an Error object, where err.code is one of the DNS error codes.
       * @param ipAddress the IP Address

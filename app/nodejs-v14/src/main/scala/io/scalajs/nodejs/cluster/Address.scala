@@ -9,8 +9,7 @@ trait Address extends js.Object {
 
   def port: Int = js.native
 
-  /**
-    * The addressType is one of:
+  /** The addressType is one of:
     * 4 (TCPv4)
     * 6 (TCPv6)
     * -1 (unix domain socket)

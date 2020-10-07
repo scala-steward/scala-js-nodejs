@@ -35,36 +35,31 @@ package object stream {
 
   implicit final class ReadableExtensions[R <: IReadable](private val readable: R) extends AnyVal {
 
-    /**
-      * Emitted when the stream and any of its underlying resources (a file descriptor, for example) have been closed.
+    /** Emitted when the stream and any of its underlying resources (a file descriptor, for example) have been closed.
       * The event indicates that no more events will be emitted, and no further computation will occur.
       */
     @inline
     def onClose(listener: () => Any): R = readable.on("close", listener)
 
-    /**
-      * Attaching a 'data' event listener to a stream that has not been explicitly paused will switch the stream into
+    /** Attaching a 'data' event listener to a stream that has not been explicitly paused will switch the stream into
       * flowing mode. Data will then be passed as soon as it is available.
       */
     @inline
     def onData[A](listener: A => Any): R = readable.on("data", listener)
 
-    /**
-      * This event fires when there will be no more data to read. Note that the 'end' event will not fire unless the
+    /** This event fires when there will be no more data to read. Note that the 'end' event will not fire unless the
       * data is completely consumed. This can be done by switching into flowing mode, or by calling stream.read()
       * repeatedly until you get to the end.
       */
     @inline
     def onEnd(listener: () => Any): R = readable.on("end", listener)
 
-    /**
-      * Emitted if there was an error when writing or piping data.
+    /** Emitted if there was an error when writing or piping data.
       */
     @inline
     def onError(listener: Error => Any): R = readable.on("error", listener)
 
-    /**
-      * When a chunk of data can be read from the stream, it will emit a 'readable' event. In some cases, listening
+    /** When a chunk of data can be read from the stream, it will emit a 'readable' event. In some cases, listening
       * for a 'readable' event will cause some data to be read into the internal buffer from the underlying system,
       * if it hadn't already.
       */
@@ -127,42 +122,36 @@ package object stream {
   }
   implicit final class WritableExtensions[W <: IWritable](private val writable: W) extends AnyVal {
 
-    /**
-      * Emitted when the stream and any of its underlying resources (a file descriptor, for example) have been closed.
+    /** Emitted when the stream and any of its underlying resources (a file descriptor, for example) have been closed.
       * The event indicates that no more events will be emitted, and no further computation will occur.
       */
     @inline
     def onClose(listener: () => Any): W = writable.on("close", listener)
 
-    /**
-      * If a stream.write(chunk) call returns false, then the 'drain' event will indicate when it is appropriate
+    /** If a stream.write(chunk) call returns false, then the 'drain' event will indicate when it is appropriate
       * to begin writing more data to the stream.
       */
     @inline
     def onDrain(listener: () => Any): W = writable.on("drain", listener)
 
-    /**
-      * Emitted if there was an error when writing or piping data.
+    /** Emitted if there was an error when writing or piping data.
       */
     @inline
     def onError(listener: Error => Any): W = writable.on("error", listener)
 
-    /**
-      * When the stream.end() method has been called, and all data has been flushed to the underlying system,
+    /** When the stream.end() method has been called, and all data has been flushed to the underlying system,
       * this event is emitted.
       */
     @inline
     def onFinish(listener: () => Any): W = writable.on("finish", listener)
 
-    /**
-      * This is emitted whenever the stream.pipe() method is called on a readable stream, adding this writable to
+    /** This is emitted whenever the stream.pipe() method is called on a readable stream, adding this writable to
       * its set of destinations.
       */
     @inline
     def onPipe[R <: IReadable](listener: R => Any): W = writable.on("pipe", listener)
 
-    /**
-      * This is emitted whenever the stream.unpipe() method is called on a readable stream, removing this writable
+    /** This is emitted whenever the stream.unpipe() method is called on a readable stream, removing this writable
       * from its set of destinations.
       */
     @inline

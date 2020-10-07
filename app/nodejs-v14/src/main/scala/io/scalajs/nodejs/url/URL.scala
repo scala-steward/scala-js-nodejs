@@ -11,74 +11,61 @@ class URL protected () extends js.Object {
   def this(input: String, base: URL) = this()
   def this(input: String) = this()
 
-  /**
-    * The auth property is the username and password portion of the URL, also referred to as "userinfo".
+  /** The auth property is the username and password portion of the URL, also referred to as "userinfo".
     * This string subset follows the protocol and double slashes (if present) and precedes the host component,
     * delimited by an ASCII "at sign" (@). The format of the string is {username}[:{password}],
     * with the [:{password}] portion being optional.
     */
   var auth: String = js.native
 
-  /**
-    * Gets and sets the fragment portion of the URL.
+  /** Gets and sets the fragment portion of the URL.
     */
   var hash: String = js.native
 
-  /**
-    * Gets and sets the host portion of the URL.
+  /** Gets and sets the host portion of the URL.
     */
   var host: String = js.native
 
-  /**
-    * Gets and sets the hostname portion of the URL.
+  /** Gets and sets the hostname portion of the URL.
     * The key difference between url.host and url.hostname is that url.hostname does not include the port.
     */
   var hostname: String = js.native
 
-  /**
-    * Gets and sets the serialized URL.
+  /** Gets and sets the serialized URL.
     */
   var href: String = js.native
 
-  /**
-    * Gets the read-only serialization of the URL's origin.
+  /** Gets the read-only serialization of the URL's origin.
     */
   var origin: String = js.native
 
-  /**
-    * Gets and sets the password portion of the URL.
+  /** Gets and sets the password portion of the URL.
     */
   var password: String = js.native
 
-  /**
-    * Gets and sets the path portion of the URL.
+  /** Gets and sets the path portion of the URL.
     */
   var pathname: String = js.native
 
-  /**
-    * Gets and sets the port portion of the URL.
+  /** Gets and sets the port portion of the URL.
     */
   var port: String = js.native
 
-  /**
-    * Gets and sets the protocol portion of the URL.
+  /** Gets and sets the protocol portion of the URL.
     */
   var protocol: String = js.native
 
-  /**
-    * Gets and sets the serialized query portion of the URL.
+  /** Gets and sets the serialized query portion of the URL.
     */
   var search: String = js.native
 
-  /**
-    * Gets the URLSearchParams object representing the query parameters of the URL. This property is read-only;
+  /** Gets the URLSearchParams object representing the query parameters of the URL. This property is read-only;
     * to replace the entirety of query parameters of the URL, use the url.search setter.
     * See URLSearchParams documentation for details.
     */
   var searchParams: URLSearchParams = js.native
 
-  /**
-    * Gets and sets the username portion of the URL.
+  /** Gets and sets the username portion of the URL.
     */
   var username: String = js.native
 
@@ -86,8 +73,7 @@ class URL protected () extends js.Object {
   //      Methods
   /////////////////////////////////////////////////////////////////////////////////
 
-  /**
-    * The toJSON() method on the URL object returns the serialized URL. The value returned is equivalent to that of
+  /** The toJSON() method on the URL object returns the serialized URL. The value returned is equivalent to that of
     * url.href and url.toString().
     *
     * This method is automatically called when an URL object is serialized with JSON.stringify().
@@ -96,22 +82,19 @@ class URL protected () extends js.Object {
   def toJSON(): String = js.native
 }
 
-/**
-  * This module has utilities for URL resolution and parsing. Call require('url') to use it.
+/** This module has utilities for URL resolution and parsing. Call require('url') to use it.
   */
 @js.native
 @JSImport("url", JSImport.Namespace)
 object URL extends js.Object {
 
-  /**
-    * Take a parsed URL object, and return a formatted URL string.
+  /** Take a parsed URL object, and return a formatted URL string.
     * @example url.format(urlObj)
     */
   @deprecated("Use URL instead", "Node.js v11.0.0")
   def format(urlObj: URLObject): String = js.native
 
-  /**
-    * Returns a customizable serialization of a URL String representation of a WHATWG URL object.
+  /** Returns a customizable serialization of a URL String representation of a WHATWG URL object.
     * @param url     the given [[URL]]
     * @param options the given [[UrlFormatOptions options]]
     * @return a customizable serialization of a URL String representation of a WHATWG URL object.
@@ -119,8 +102,7 @@ object URL extends js.Object {
   def format(url: URL, options: UrlFormatOptions): String = js.native
   def format(url: URL): String                            = js.native
 
-  /**
-    * Take a URL string, and return an object.
+  /** Take a URL string, and return an object.
     *
     * Pass true as the second argument to also parse the query string using the querystring module. If true then the
     * query property will always be assigned an object, and the search property will always be a (possibly empty)
@@ -139,8 +121,7 @@ object URL extends js.Object {
   @deprecated("Use URL instead", "Node.js v11.0.0")
   def parse(urlStr: String): URLObject = js.native
 
-  /**
-    * Take a base URL, and a href URL, and resolve them as a browser would for an anchor tag.
+  /** Take a base URL, and a href URL, and resolve them as a browser would for an anchor tag.
     * Examples:
     * url.resolve('/one/two/three', 'four')         // '/one/two/four'
     * url.resolve('http://example.com/', '/one')    // 'http://example.com/one'
@@ -150,15 +131,13 @@ object URL extends js.Object {
   @deprecated("Use URL instead", "Node.js v11.0.0")
   def resolve(from: String, to: String): String = js.native
 
-  /**
-    * Returns the Punycode ASCII serialization of the domain. If domain is an invalid domain, the empty string is returned.
+  /** Returns the Punycode ASCII serialization of the domain. If domain is an invalid domain, the empty string is returned.
     * @param domain the domain
     * @return the Punycode ASCII serialization of the domain
     */
   def domainToASCII(domain: String): String = js.native
 
-  /**
-    * Returns the Unicode serialization of the domain. If domain is an invalid domain, the empty string is returned.
+  /** Returns the Unicode serialization of the domain. If domain is an invalid domain, the empty string is returned.
     * @param domain the domain
     * @return the Unicode serialization of the domain
     */
