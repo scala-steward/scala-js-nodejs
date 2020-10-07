@@ -8,8 +8,7 @@ import scala.scalajs.js.annotation.JSImport
 import scala.scalajs.js.typedarray.{DataView, Uint8Array}
 import scala.scalajs.js.|
 
-/**
-  * The vm module provides APIs for compiling and running code within V8 Virtual Machine contexts.
+/** The vm module provides APIs for compiling and running code within V8 Virtual Machine contexts.
   * @see https://nodejs.org/api/vm.html
   */
 @js.native
@@ -18,8 +17,7 @@ trait VM extends js.Object {
   def compileFunction(code: String, params: js.Array[String]): js.Function                                  = js.native
   def compileFunction(code: String): js.Function                                                            = js.native
 
-  /**
-    * If given a sandbox object, the vm.createContext() method will
+  /** If given a sandbox object, the vm.createContext() method will
     * [prepare that sandbox][#vm_what_does_it_mean_to_contextify_an_object] so that it can be used in calls to
     * vm.runInContext() or script.runInContext(). Inside such scripts, the sandbox object will be the global object,
     * retaining all of its existing properties but also having the built-in objects and functions any standard global
@@ -38,15 +36,13 @@ trait VM extends js.Object {
   def createContext(sandbox: js.Object): Context                                = js.native
   def createContext(): Context                                                  = js.native
 
-  /**
-    * Returns true if the given sandbox object has been contextified using vm.createContext().
+  /** Returns true if the given sandbox object has been contextified using vm.createContext().
     * @param sandbox the sandbox
     * @return true if the given sandbox object has been contextified using vm.createContext().
     */
   def isContext(sandbox: js.Object): Boolean = js.native
 
-  /**
-    * Runs the compiled code contained by the vm.Script object within the given contextifiedSandbox and returns the
+  /** Runs the compiled code contained by the vm.Script object within the given contextifiedSandbox and returns the
     * result. Running code does not have access to local scope.
     * @param code                The JavaScript code to compile and run.
     * @param contextifiedSandbox A contextified object as returned by the vm.createContext() method.
@@ -56,8 +52,7 @@ trait VM extends js.Object {
   def runInContext(code: String, contextifiedSandbox: Context, options: VMRunInContextOptions): js.Any = js.native
   def runInContext(code: String, contextifiedSandbox: Context): js.Any                                 = js.native
 
-  /**
-    * First contextifies the given sandbox, runs the compiled code contained by the vm.Script object within the created
+  /** First contextifies the given sandbox, runs the compiled code contained by the vm.Script object within the created
     * sandbox, and returns the result. Running code does not have access to local scope.
     * @param code    The JavaScript code to compile and run.
     * @param sandbox An object that will be contextified. If undefined, a new object will be created.
@@ -67,8 +62,7 @@ trait VM extends js.Object {
   def runInNewContext(code: String, sandbox: js.Any, options: VMRunInNewContextOptions): js.Any = js.native
   def runInNewContext(code: String, sandbox: js.Any): js.Any                                    = js.native
 
-  /**
-    * Runs the compiled code contained by the vm.Script within the context of the current global object. Running code
+  /** Runs the compiled code contained by the vm.Script within the context of the current global object. Running code
     * does not have access to local scope, but does have access to the current global object.
     * @param code    The JavaScript code to compile and run.
     * @param options the optional options
@@ -78,8 +72,7 @@ trait VM extends js.Object {
   def runInThisContext(code: String): Script                                 = js.native
 }
 
-/**
-  * Virtual Machine Singleton
+/** Virtual Machine Singleton
   */
 @js.native
 @JSImport("vm", JSImport.Namespace)

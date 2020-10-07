@@ -5,8 +5,7 @@ import scala.concurrent.{ExecutionContext, Promise}
 import scala.scalajs.js
 import org.scalatest.funspec.AsyncFunSpec
 
-/**
-  * DNS Tests
+/** DNS Tests
   */
 class DNSAsyncTest extends AsyncFunSpec {
   private val domain   = "google.com"

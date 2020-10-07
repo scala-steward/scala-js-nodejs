@@ -7,34 +7,29 @@ import io.scalajs.nodejs.url.URL
 
 import scala.concurrent.Future
 
-/**
-  * https package object
+/** https package object
   */
 package object https {
 
-  /**
-    * Https Extensions
+  /** Https Extensions
     */
   implicit final class HttpExtensions(private val https: Https) extends AnyVal {
 
-    /**
-      * Like http.get() but for HTTPS.
+    /** Like http.get() but for HTTPS.
       */
     @inline
     def getFuture(options: RequestOptions): Future[ServerResponse] = {
       promiseCallback1[ServerResponse](https.get(options, _))
     }
 
-    /**
-      * Like http.get() but for HTTPS.
+    /** Like http.get() but for HTTPS.
       */
     @inline
     def getFuture(url: String): Future[ServerResponse] = {
       promiseCallback1[ServerResponse](https.get(url, _))
     }
 
-    /**
-      * Makes a request to a secure web server.
+    /** Makes a request to a secure web server.
       */
     @inline
     def requestFuture(options: RequestOptions): Future[ServerResponse] = {

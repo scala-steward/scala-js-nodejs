@@ -5,8 +5,7 @@ import org.scalatest.funspec.AnyFunSpec
 
 import scala.scalajs.js
 
-/**
-  * URLObject Tests
+/** URLObject Tests
   */
 class URLObjectTest extends AnyFunSpec {
   describe("URLObject") {

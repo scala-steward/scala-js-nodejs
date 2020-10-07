@@ -2,13 +2,11 @@ package io.scalajs.nodejs
 
 import scala.scalajs.js
 
-/**
-  * query string package object
+/** query string package object
   */
 package object querystring {
 
-  /**
-    * Query String Enrichment
+  /** Query String Enrichment
     * @param qs the given [[QueryString]]
     */
   implicit final class QueryStringEnrichment(private val qs: QueryString) extends AnyVal {

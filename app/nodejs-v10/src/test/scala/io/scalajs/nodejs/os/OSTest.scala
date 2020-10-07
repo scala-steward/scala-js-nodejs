@@ -3,8 +3,7 @@ package io.scalajs.nodejs.os
 import io.scalajs.nodejs.TestHelper._
 import org.scalatest.funspec.AnyFunSpec
 
-/**
-  * OS Tests
+/** OS Tests
   */
 class OSTest extends AnyFunSpec {
   describe("OS") {

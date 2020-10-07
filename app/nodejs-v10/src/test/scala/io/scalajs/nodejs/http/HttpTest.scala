@@ -4,8 +4,7 @@ package http
 import scala.scalajs.js
 import org.scalatest.funspec.AnyFunSpec
 
-/**
-  * Http Tests
+/** Http Tests
   */
 class HttpTest extends AnyFunSpec {
   describe("Http") {

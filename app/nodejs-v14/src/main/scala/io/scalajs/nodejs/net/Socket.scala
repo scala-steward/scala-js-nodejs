@@ -6,8 +6,7 @@ import com.thoughtworks.enableIf
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
-/**
-  * net.Socket - This object is an abstraction of a TCP or local socket. net.Socket instances implement a duplex Stream
+/** net.Socket - This object is an abstraction of a TCP or local socket. net.Socket instances implement a duplex Stream
   * interface. They can be created by the user and used as a client (with connect()) or they can be created by Node.js
   * and passed to the user through the 'connection' event of a server.
   */
@@ -16,8 +15,7 @@ import scala.scalajs.js.annotation.JSImport
 class Socket() extends stream.Duplex with HasHandle {
   def this(options: SocketOptions) = this()
 
-  /**
-    * net.Socket has the property that socket.write() always works. This is to help users get up and running quickly.
+  /** net.Socket has the property that socket.write() always works. This is to help users get up and running quickly.
     * The computer cannot always keep up with the amount of data that is written to a socket - the network connection
     * simply might be too slow. Node.js will internally queue up the data written to a socket and send it out over the
     * wire when it is possible. (Internally it is polling on the socket's file descriptor for being writable).
@@ -31,60 +29,50 @@ class Socket() extends stream.Duplex with HasHandle {
     */
   var bufferSize: Int = js.native
 
-  /**
-    * The amount of received bytes.
+  /** The amount of received bytes.
     */
   def bytesRead: Int = js.native
 
-  /**
-    * The amount of bytes sent.
+  /** The amount of bytes sent.
     */
   def bytesWritten: Int = js.native
 
-  /**
-    * If true - socket.connect(options[, connectListener]) was called and haven't yet finished. Will be set to false
+  /** If true - socket.connect(options[, connectListener]) was called and haven't yet finished. Will be set to false
     * before emitting connect event and/or calling socket.connect(options[, connectListener])'s callback.
     */
   def connecting: Boolean = js.native
 
-  /**
-    * The string representation of the local IP address the remote client is connecting on. For example, if you are
+  /** The string representation of the local IP address the remote client is connecting on. For example, if you are
     * listening on '0.0.0.0' and the client connects on '192.168.1.1', the value would be '192.168.1.1'.
     */
   def localAddress: String = js.native
 
-  /**
-    * The numeric representation of the local port. For example, 80 or 21.
+  /** The numeric representation of the local port. For example, 80 or 21.
     */
   def localPort: Int = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def pending: Boolean = js.native
 
-  /**
-    * The string representation of the remote IP address. For example, '74.125.127.100' or '2001:4860:a005::68'.
+  /** The string representation of the remote IP address. For example, '74.125.127.100' or '2001:4860:a005::68'.
     * Value may be undefined if the socket is destroyed (for example, if the client disconnected).
     */
   def remoteAddress: js.UndefOr[String] = js.native
 
-  /**
-    * The string representation of the remote IP family. 'IPv4' or 'IPv6'.
+  /** The string representation of the remote IP family. 'IPv4' or 'IPv6'.
     */
   def remoteFamily: String = js.native
 
-  /**
-    * The numeric representation of the remote port. For example, 80 or 21.
+  /** The numeric representation of the remote port. For example, 80 or 21.
     */
   def remotePort: Int = js.native
 
-  /**
-    * Returns the bound address, the address family name and port of the socket as reported by the operating system.
+  /** Returns the bound address, the address family name and port of the socket as reported by the operating system.
     * @return an object with three properties, e.g. { port: 12346, family: 'IPv4', address: '127.0.0.1' }
     */
   def address(): Address = js.native
 
-  /**
-    * Opens the connection for a given socket.
+  /** Opens the connection for a given socket.
     * For TCP sockets, options argument should be an object which specifies:
     * <ul>
     * <li>port: Port the client should connect to (Required).</li>
@@ -124,15 +112,13 @@ class Socket() extends stream.Duplex with HasHandle {
   def connect(path: String, connectListener: js.Function): Unit = js.native
   def connect(path: String): Unit                               = js.native
 
-  /**
-    * Opposite of unref, calling ref on a previously unrefd socket will not let the program exit if it's the only socket
+  /** Opposite of unref, calling ref on a previously unrefd socket will not let the program exit if it's the only socket
     * left (the default behavior). If the socket is refd calling ref again will have no effect.
     * @return socket
     */
   def ref(): this.type = js.native
 
-  /**
-    * Enable/disable keep-alive functionality, and optionally set the initial delay before the first keepalive probe is
+  /** Enable/disable keep-alive functionality, and optionally set the initial delay before the first keepalive probe is
     * sent on an idle socket. enable defaults to false.
     *
     * Set initialDelay (in milliseconds) to set the delay between the last data packet received and the first keepalive
@@ -145,8 +131,7 @@ class Socket() extends stream.Duplex with HasHandle {
   def setKeepAlive(initialDelay: Int): this.type                  = js.native
   def setKeepAlive(): this.type                                   = js.native
 
-  /**
-    * Disables the Nagle algorithm. By default TCP connections use the Nagle algorithm, they buffer data before sending
+  /** Disables the Nagle algorithm. By default TCP connections use the Nagle algorithm, they buffer data before sending
     * it off. Setting true for noDelay will immediately fire off data each time socket.write() is called. noDelay
     * defaults to true.
     * @return socket
@@ -155,8 +140,7 @@ class Socket() extends stream.Duplex with HasHandle {
   def setNoDelay(noDelay: Boolean): this.type = js.native
   def setNoDelay(): this.type                 = js.native
 
-  /**
-    * Sets the socket to timeout after timeout milliseconds of inactivity on the socket. By default net.Socket do not have a timeout.
+  /** Sets the socket to timeout after timeout milliseconds of inactivity on the socket. By default net.Socket do not have a timeout.
     * When an idle timeout is triggered the socket will receive a 'timeout' event but the connection will not be severed.
     * The user must manually end() or destroy() the socket.
     * If timeout is 0, then the existing idle timeout is disabled.
@@ -167,8 +151,7 @@ class Socket() extends stream.Duplex with HasHandle {
   def setTimeout(timeout: Int, callback: js.Function): this.type = js.native
   def setTimeout(timeout: Int): this.type                        = js.native
 
-  /**
-    * Calling unref on a socket will allow the program to exit if this is the only active socket in the event system.
+  /** Calling unref on a socket will allow the program to exit if this is the only active socket in the event system.
     * If the socket is already unrefd calling unref again will have no effect.
     * @return socket.
     */

@@ -3,22 +3,19 @@ package io.scalajs.nodejs.querystring
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
-/**
-  * Query String
+/** Query String
   * @see https://nodejs.org/api/querystring.html
   */
 @js.native
 @JSImport("querystring", JSImport.Namespace)
 object QueryString extends QueryString
 
-/**
-  * Query String Type Definition
+/** Query String Type Definition
   */
 @js.native
 trait QueryString extends js.Object {
 
-  /**
-    * The querystring.escape() method performs URL percent-encoding on the given str in a manner that is optimized
+  /** The querystring.escape() method performs URL percent-encoding on the given str in a manner that is optimized
     * for the specific requirements of URL query strings.
     *
     * The querystring.escape() method is used by querystring.stringify() and is generally not expected to be used
@@ -29,8 +26,7 @@ trait QueryString extends js.Object {
     */
   def escape(str: String): String = js.native
 
-  /**
-    * The querystring.parse() method parses a URL query string (str) into a collection of key and value pairs.
+  /** The querystring.parse() method parses a URL query string (str) into a collection of key and value pairs.
     * @param str     The URL query string to parse
     * @param sep     The substring used to delimit key and value pairs in the query string. Defaults to '&'.
     * @param eq      The substring used to delimit keys and values in the query string. Defaults to '='.
@@ -42,8 +38,7 @@ trait QueryString extends js.Object {
   def parse(str: String, sep: String): js.Dictionary[String]                                          = js.native
   def parse(str: String): js.Dictionary[String]                                                       = js.native
 
-  /**
-    * The querystring.stringify() method produces a URL query string from a given obj by iterating through the
+  /** The querystring.stringify() method produces a URL query string from a given obj by iterating through the
     * object's "own properties".
     * @param obj     The object to serialize into a URL query string
     * @param sep     The substring used to delimit key and value pairs in the query string. Defaults to '&'.
@@ -55,8 +50,7 @@ trait QueryString extends js.Object {
   def stringify(obj: js.Any, sep: String): String                                          = js.native
   def stringify(obj: js.Any): String                                                       = js.native
 
-  /**
-    * The querystring.unescape() method performs decoding of URL percent-encoded characters on the given str.
+  /** The querystring.unescape() method performs decoding of URL percent-encoded characters on the given str.
     *
     * The querystring.unescape() method is used by querystring.parse() and is generally not expected to be used directly.
     * It is exported primarily to allow application code to provide a replacement decoding implementation if necessary

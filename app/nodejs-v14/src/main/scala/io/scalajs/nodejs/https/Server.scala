@@ -6,8 +6,7 @@ import com.thoughtworks.enableIf
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
-/**
-  * This class is a subclass of tls.Server and emits events same as http.Server. See http.Server for more information.
+/** This class is a subclass of tls.Server and emits events same as http.Server. See http.Server for more information.
   */
 @js.native
 @JSImport("https", "Server")

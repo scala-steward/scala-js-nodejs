@@ -7,14 +7,12 @@ import io.scalajs.nodejs.events.IEventEmitter
 
 import scala.scalajs.js
 
-/**
-  * fs.FSWatcher - Objects returned from fs.watch() are of this type.
+/** fs.FSWatcher - Objects returned from fs.watch() are of this type.
   */
 @js.native
 trait FSWatcher extends IEventEmitter {
 
-  /**
-    * Stop watching for changes on the given fs.FSWatcher.
+  /** Stop watching for changes on the given fs.FSWatcher.
     * @example watcher.close()
     * @since 0.5.8
     */
@@ -27,8 +25,7 @@ trait FSWatcher extends IEventEmitter {
   def unref(): FSWatcher = js.native
 }
 
-/**
-  * A successful call to fs.watchFile() method will return a new fs.StatWatcher object.
+/** A successful call to fs.watchFile() method will return a new fs.StatWatcher object.
   */
 @js.native
 trait FSStatWatcher extends IEventEmitter {

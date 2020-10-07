@@ -2,8 +2,7 @@ package io.scalajs.nodejs.net
 
 import scala.scalajs.js
 
-/**
-  * Server IP Address
+/** Server IP Address
   */
 @js.native
 trait Address extends js.Object {

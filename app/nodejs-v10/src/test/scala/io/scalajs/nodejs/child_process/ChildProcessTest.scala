@@ -9,8 +9,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import org.scalatest.funspec.AsyncFunSpec
 
-/**
-  * ChildProcess Test
+/** ChildProcess Test
   */
 class ChildProcessTest extends AsyncFunSpec {
   override implicit val executionContext = ExecutionContext.Implicits.global

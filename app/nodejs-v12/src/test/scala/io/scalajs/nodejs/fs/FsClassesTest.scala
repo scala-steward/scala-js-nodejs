@@ -5,8 +5,7 @@ import org.scalatest.funspec.AnyFunSpec
 
 import scala.scalajs.js.JavaScriptException
 
-/**
-  * File System (Fs) Tests
+/** File System (Fs) Tests
   */
 class FsClassesTest extends AnyFunSpec {
   describe("ReadStream") {

@@ -2,8 +2,7 @@ package io.scalajs.nodejs.tty
 
 import org.scalatest.funspec.AnyFunSpec
 
-/**
-  * TTY Test
+/** TTY Test
   */
 class TTYTest extends AnyFunSpec {
   describe("TTY") {

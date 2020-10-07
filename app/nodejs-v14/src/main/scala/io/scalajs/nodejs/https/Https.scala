@@ -6,8 +6,7 @@ import io.scalajs.nodejs.url.URL
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
-/**
-  * HTTPS is the HTTP protocol over TLS/SSL. In Node.js this is implemented as a separate module.
+/** HTTPS is the HTTP protocol over TLS/SSL. In Node.js this is implemented as a separate module.
   * @see https://nodejs.org/api/https.html
   */
 @js.native
@@ -16,8 +15,7 @@ trait Https extends js.Object {
   //      Properties
   /////////////////////////////////////////////////////////////////////////////////
 
-  /**
-    * Global instance of https.Agent for all HTTPS client requests.
+  /** Global instance of https.Agent for all HTTPS client requests.
     */
   def globalAgent: Agent = js.native
 
@@ -25,8 +23,7 @@ trait Https extends js.Object {
   //      Methods
   /////////////////////////////////////////////////////////////////////////////////
 
-  /**
-    * Returns a new HTTPS web server object. The options is similar to tls.createServer().
+  /** Returns a new HTTPS web server object. The options is similar to tls.createServer().
     * The requestListener is a function which is automatically added to the 'request' event.
     * @example https.createServer(options[, requestListener])
     */
@@ -53,8 +50,7 @@ trait Https extends js.Object {
   def request(options: RequestOptions, callback: js.Function1[ServerResponse, Any]): Unit              = js.native
 }
 
-/**
-  * Https Singleton
+/** Https Singleton
   */
 @js.native
 @JSImport("https", JSImport.Namespace)

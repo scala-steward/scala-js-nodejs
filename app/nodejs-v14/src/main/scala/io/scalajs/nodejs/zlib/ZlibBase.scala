@@ -4,8 +4,7 @@ import io.scalajs.nodejs.stream
 
 import scala.scalajs.js
 
-/**
-  * Not exported by the zlib module.
+/** Not exported by the zlib module.
   * It is documented here because it is the base class of the compressor/decompressor classes.
   *
   * This class inherits from stream.Transform, allowing zlib objects to be used in pipes and

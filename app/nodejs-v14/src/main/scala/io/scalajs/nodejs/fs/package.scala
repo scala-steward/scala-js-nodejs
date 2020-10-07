@@ -9,8 +9,7 @@ import scala.concurrent.Future
 import scala.scalajs.js
 import scala.scalajs.js.{typedarray, |}
 
-/**
-  * fs package object
+/** fs package object
   */
 package object fs {
   type Path             = typedarray.Uint8Array | String | URL
@@ -30,8 +29,7 @@ package object fs {
   //      Implicit conversions and classes
   /////////////////////////////////////////////////////////////////////////////////
 
-  /**
-    * File System Extensions
+  /** File System Extensions
     *
     * @param instance the given [[Fs file system]] instance
     */
@@ -529,8 +527,7 @@ package object fs {
     }
   }
 
-  /**
-    * Dir Extensions
+  /** Dir Extensions
     *
     * @param instance the given [[Fs.Dir]] instance
     */
@@ -552,13 +549,11 @@ package object fs {
     }
   }
 
-  /**
-    * File System Watcher Extensions
+  /** File System Watcher Extensions
     */
   implicit final class FSWatcherExtensions[T <: FSWatcher](private val watcher: T) extends AnyVal {
 
-    /**
-      * Emitted when something changes in a watched directory or file. See more details in fs.watch().
+    /** Emitted when something changes in a watched directory or file. See more details in fs.watch().
       *
       * The filename argument may not be provided depending on operating system support. If filename is provided,
       * it will be provided as a Buffer if fs.watch() is called with it's encoding option set to 'buffer', otherwise
@@ -573,15 +568,13 @@ package object fs {
     @inline
     def onChange(listener: (String, js.Any) => Any): T = watcher.on("change", listener)
 
-    /**
-      * Added in Node.js v10.0.0
+    /** Added in Node.js v10.0.0
       * @see https://nodejs.org/api/fs.html#fs_event_close
       */
     @inline
     def onClose(listener: () => Any): T = watcher.on("close", listener)
 
-    /**
-      * Emitted when an error occurs.
+    /** Emitted when an error occurs.
       * @param listener the event handler
       * @since 0.5.8
       */
@@ -591,16 +584,14 @@ package object fs {
 
   implicit final class ReadStreamExtensions[R <: ReadStream](private val stream: R) extends AnyVal {
 
-    /**
-      * Emitted when the ReadStream's underlying file descriptor has been closed using the fs.close() method.
+    /** Emitted when the ReadStream's underlying file descriptor has been closed using the fs.close() method.
       * @param listener the event handler
       * @since 0.1.93
       */
     @inline
     def onClose(listener: () => Any): R = stream.on("close", listener)
 
-    /**
-      * Emitted when the ReadStream's file is opened.
+    /** Emitted when the ReadStream's file is opened.
       * @param listener the event handler
       *                 <ul>
       *                 <li>fd: Integer - file descriptor used by the ReadStream.</li>
@@ -610,8 +601,7 @@ package object fs {
     @inline
     def onOpen(listener: FileDescriptor => Any): R = stream.on("open", listener)
 
-    /**
-      * Added in Node.js v9.11.0
+    /** Added in Node.js v9.11.0
       * @see https://nodejs.org/api/fs.html#fs_event_ready
       */
     @inline
@@ -621,21 +611,18 @@ package object fs {
     def closeFuture: Future[Unit] = promiseCallback1[Unit](stream.close)
   }
 
-  /**
-    * Write Stream Events
+  /** Write Stream Events
     */
   implicit final class WriteStreamExtensions[T <: WriteStream](private val stream: T) extends AnyVal {
 
-    /**
-      * Emitted when the WriteStream's underlying file descriptor has been closed using the fs.close() method.
+    /** Emitted when the WriteStream's underlying file descriptor has been closed using the fs.close() method.
       * @param listener the event handler
       * @since 0.1.93
       */
     @inline
     def onClose(listener: () => Any): T = stream.on("close", listener)
 
-    /**
-      * Emitted when the WriteStream's file is opened.
+    /** Emitted when the WriteStream's file is opened.
       * @param listener the event handler
       *                 <ul>
       *                 <li>fd: Integer - file descriptor used by the ReadStream.</li>
@@ -645,8 +632,7 @@ package object fs {
     @inline
     def onOpen(listener: FileDescriptor => Any): T = stream.on("open", listener)
 
-    /**
-      * Added in Node.js v9.11.0
+    /** Added in Node.js v9.11.0
       * @see https://nodejs.org/api/fs.html#fs_event_ready_1
       */
     @inline

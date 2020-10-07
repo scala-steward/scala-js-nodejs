@@ -4,8 +4,7 @@ import io.scalajs.nodejs.stream
 
 import scala.scalajs.js
 
-/**
-  * Outgoing Message
+/** Outgoing Message
   */
 @js.native
 trait OutgoingMessage extends stream.Writable

@@ -5,8 +5,7 @@ import io.scalajs.nodejs.vm.VMTest.{ExpectedData, Sandbox}
 import scala.scalajs.js
 import org.scalatest.funspec.AnyFunSpec
 
-/**
-  * VM Tests
+/** VM Tests
   */
 class VMTest extends AnyFunSpec {
   describe("VM") {
@@ -41,13 +40,11 @@ class VMTest extends AnyFunSpec {
   }
 }
 
-/**
-  * VM Test Companion
+/** VM Test Companion
   */
 object VMTest {
 
-  /**
-    * Sandbox Object
+  /** Sandbox Object
     */
   class Sandbox(var animal: String, var count: Int, var name: String) extends js.Object
 

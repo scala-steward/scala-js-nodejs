@@ -3,8 +3,7 @@ package io.scalajs.nodejs.buffer
 import scala.scalajs.js
 import org.scalatest.funspec.AnyFunSpec
 
-/**
-  * Buffer Tests
+/** Buffer Tests
   */
 class BufferTest extends AnyFunSpec {
   it("should support writeBigInt64BE, writeBigInt64LE, writeBigInt64BE and writeBigInt64BE") {

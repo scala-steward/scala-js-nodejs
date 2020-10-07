@@ -7,8 +7,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSGlobal
 import scala.scalajs.js.|
 
-/**
-  * nodejs package object
+/** nodejs package object
   */
 package object nodejs {
   /////////////////////////////////////////////////////////////////////////////////
@@ -17,8 +16,7 @@ package object nodejs {
 
   type EventType = String
 
-  /**
-    * Represents a file descriptor
+  /** Represents a file descriptor
     */
   type FileDescriptor = Integer
 
@@ -51,13 +49,11 @@ package object nodejs {
   //      Built-in Properties
   /////////////////////////////////////////////////////////////////////////////////
 
-  /**
-    * The directory name of the current module. This the same as the path.dirname() of the [[__filename]].
+  /** The directory name of the current module. This the same as the path.dirname() of the [[__filename]].
     */
   def __dirname: String = js.Dynamic.global.__dirname.asInstanceOf[String]
 
-  /**
-    * The file name of the current module. This is the resolved absolute path of the current module file.
+  /** The file name of the current module. This is the resolved absolute path of the current module file.
     * For a main program this is not necessarily the same as the file name used in the command line.
     * See [[__dirname]] for the directory name of the current module.
     */

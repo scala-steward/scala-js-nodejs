@@ -5,8 +5,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import scala.scalajs.js.|
 
-/**
-  * http.Server - This class inherits from net.Server and has the following additional events
+/** http.Server - This class inherits from net.Server and has the following additional events
   */
 @js.native
 @JSImport("http", "Server")

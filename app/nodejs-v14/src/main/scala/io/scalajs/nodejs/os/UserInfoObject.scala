@@ -5,8 +5,7 @@ import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
 
-/**
-  * User Information Object
+/** User Information Object
   * @example {{{ {"uid":501,"gid":20,"username":"ldaniels","homedir":"/Users/ldaniels","shell":"/bin/bash"} }}}
   */
 @Factory

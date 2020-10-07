@@ -6,8 +6,7 @@ import io.scalajs.nodejs.process.Process
 import scala.concurrent.{ExecutionContext, Promise}
 import org.scalatest.funspec.AsyncFunSpec
 
-/**
-  * Readline Tests
+/** Readline Tests
   */
 class ReadlineTest extends AsyncFunSpec {
   override implicit val executionContext = ExecutionContext.Implicits.global
