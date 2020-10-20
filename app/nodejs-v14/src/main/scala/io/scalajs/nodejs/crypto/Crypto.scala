@@ -310,13 +310,13 @@ trait Crypto extends js.Object {
     js.native
   def randomFill[T <: scala.scalajs.js.typedarray.TypedArray[_, T]](buffer: T, callback: Callback1[T]): T = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def randomInt(max: Int): Int = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def randomInt(max: Int, callback: Callback1[Int]): Unit = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def randomInt(min: Int, max: Int): Int = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def randomInt(min: Int, max: Int, callback: Callback1[Int]): Unit = js.native
 
   def scrypt(password: String, salt: String, keylen: Int, options: ScryptOptions, callback: Callback1[Buffer]): Unit =
