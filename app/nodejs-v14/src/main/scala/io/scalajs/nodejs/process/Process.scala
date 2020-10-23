@@ -340,6 +340,7 @@ trait Process extends IEventEmitter {
     * Returns the old mask if mask argument is given, otherwise returns the current mask.
     * @example process.umask([mask])
     */
+  @deprecated("DEP0139: Use umask(mask) instead.", "Node.js v12.19.0")
   def umask(): Int = js.native
 
   /** Number of seconds Node.js has been running.

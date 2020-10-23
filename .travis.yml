@@ -10,9 +10,9 @@ jdk:
 
 env:
   matrix:
-    - TRAVIS_NODE_VERSION="14.10.0"
-    - TRAVIS_NODE_VERSION="12.18.3"
-    - TRAVIS_NODE_VERSION="10.22.0"
+    - TRAVIS_NODE_VERSION="14.14.0"
+    - TRAVIS_NODE_VERSION="12.19.0"
+    - TRAVIS_NODE_VERSION="10.22.1"
 
 script:
   - sbt ++$TRAVIS_SCALA_VERSION test
