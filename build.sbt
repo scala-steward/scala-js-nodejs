@@ -1,4 +1,5 @@
 organization in ThisBuild := "net.exoego"
+crossScalaVersions in ThisBuild := Seq("2.13.3","2.12.12")
 
 lazy val root = {
   val p = (project in file("."))
@@ -9,9 +10,9 @@ lazy val root = {
     .settings(
       name := "scala-js-nodejs"
     )
-  val travisNodeVersion = Option(System.getenv("TRAVIS_NODE_VERSION")).filter(_.nonEmpty).getOrElse("")
-  if (travisNodeVersion.startsWith("10.")) p.aggregate(nodejs_v10)
-  else if (travisNodeVersion.startsWith("12.")) p.aggregate(nodejs_v10, nodejs_v12)
+  val nodejsVersion = Option(System.getenv("NODEJS_VERSION")).filter(_.nonEmpty).getOrElse("")
+  if (nodejsVersion.startsWith("10.")) p.aggregate(nodejs_v10)
+  else if (nodejsVersion.startsWith("12.")) p.aggregate(nodejs_v10, nodejs_v12)
   else p.aggregate(nodejs_v10, nodejs_v12, nodejs_v14)
 }
 
