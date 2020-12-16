@@ -2,8 +2,7 @@ pull_request_rules:
   - name: Automatic merge on approval
     conditions:
       - "author=scala-steward"
-      - "check-success~=CI"
-      - "check-success=format"
+      - "#check-success>=8"
     actions:
       merge:
         method: merge
