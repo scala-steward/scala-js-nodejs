@@ -1,5 +1,8 @@
+lazy val scala213 = "2.13.4"
+lazy val scala212 = "2.12.12"
 organization in ThisBuild := "net.exoego"
-crossScalaVersions in ThisBuild := Seq("2.13.3", "2.12.12")
+crossScalaVersions in ThisBuild := Seq(scala213, scala212)
+scalaVersion in ThisBuild := scala213
 
 lazy val root = {
   val p = (project in file("."))
