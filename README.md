@@ -11,8 +11,8 @@ Scala.js type facades for Node.js v10, v12 and v14.
 | Scala 2.11 |                  N/A                  |               N/A               |
 | Scala 2.10 |                  N/A                  |               N/A               |
 
--   :heavy_check_mark: Supported
--   :construction: Not supported but planned
+*   :heavy_check_mark: Supported
+*   :construction: Not supported but planned
 
 ## Supported Modules
 
