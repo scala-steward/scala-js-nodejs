@@ -29,9 +29,9 @@ lazy val core = (project in file("./core"))
     libraryDependencies ++= Dependencies.core.value
   )
 
-lazy val nodejs_v14 = createNodeVersionSpecificProject("14.14.0")
-lazy val nodejs_v12 = createNodeVersionSpecificProject("12.19.0")
-lazy val nodejs_v10 = createNodeVersionSpecificProject("10.22.1")
+lazy val nodejs_v14 = createNodeVersionSpecificProject("14.15.2")
+lazy val nodejs_v12 = createNodeVersionSpecificProject("12.20.0")
+lazy val nodejs_v10 = createNodeVersionSpecificProject("10.23.0")
 
 def createNodeVersionSpecificProject(nodeFullVersion: String) = {
   val majorVersion = nodeFullVersion.split("\\.")(0)
