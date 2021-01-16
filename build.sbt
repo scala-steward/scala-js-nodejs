@@ -1,5 +1,5 @@
 lazy val scala213 = "2.13.4"
-lazy val scala212 = "2.12.12"
+lazy val scala212 = "2.12.13"
 organization in ThisBuild := "net.exoego"
 crossScalaVersions in ThisBuild := Seq(scala213, scala212)
 scalaVersion in ThisBuild := scala213
@@ -29,9 +29,9 @@ lazy val core = (project in file("./core"))
     libraryDependencies ++= Dependencies.core.value
   )
 
-lazy val nodejs_v14 = createNodeVersionSpecificProject("14.15.2")
-lazy val nodejs_v12 = createNodeVersionSpecificProject("12.20.0")
-lazy val nodejs_v10 = createNodeVersionSpecificProject("10.23.0")
+lazy val nodejs_v14 = createNodeVersionSpecificProject("14.15.4")
+lazy val nodejs_v12 = createNodeVersionSpecificProject("12.20.1")
+lazy val nodejs_v10 = createNodeVersionSpecificProject("10.23.1")
 
 def createNodeVersionSpecificProject(nodeFullVersion: String) = {
   val majorVersion = nodeFullVersion.split("\\.")(0)
