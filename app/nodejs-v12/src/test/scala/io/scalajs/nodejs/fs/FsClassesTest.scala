@@ -31,4 +31,12 @@ class FsClassesTest extends AnyFunSpec {
       assert(ex.getMessage().contains("ERR_DIR_CLOSED"))
     }
   }
+
+  it("adds new members on bigint stats") {
+    val stats = Fs.statSync("./package.json", StatOptions(bigint = true)).asInstanceOf[BigIntStats]
+    assert(stats.asInstanceOf[BigIntStats].birthtimeNs.toString.toLong > 0L)
+    assert(stats.asInstanceOf[BigIntStats].ctimeNs.toString.toLong > 0L)
+    assert(stats.asInstanceOf[BigIntStats].atimeNs.toString.toLong > 0L)
+    assert(stats.asInstanceOf[BigIntStats].mtimeNs.toString.toLong > 0L)
+  }
 }
