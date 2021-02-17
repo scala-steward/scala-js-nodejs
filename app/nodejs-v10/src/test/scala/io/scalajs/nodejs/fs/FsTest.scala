@@ -118,14 +118,14 @@ class FsTest extends AsyncFunSpec {
 
     it("support double stats") {
       Fs.statFuture("./package.json").map { stats =>
-        assert(stats.birthtimeMs.toLong === 1613560503159L)
+        assert(stats.birthtimeMs.toLong > 0L)
       }
     }
 
     it("support bigint stats") {
       Fs.statFuture("./package.json", StatOptions(bigint = true)).map { stats =>
-        assert(stats.asInstanceOf[BigIntStats].birthtimeNs.toString.toLong === 1613560503159156027L)
-        assert(stats.asInstanceOf[BigIntStats].birthtimeMs.toString.toLong === 1613560503159L)
+        assert(stats.asInstanceOf[BigIntStats].birthtimeNs.toString.toLong > 0L)
+        assert(stats.asInstanceOf[BigIntStats].birthtimeMs.toString.toLong > 0L)
       }
     }
   }
