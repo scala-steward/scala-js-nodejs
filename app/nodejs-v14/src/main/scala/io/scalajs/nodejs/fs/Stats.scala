@@ -1,6 +1,8 @@
 package io.scalajs.nodejs
 package fs
 
+import com.thoughtworks.enableIf
+
 import scala.scalajs.js
 
 @js.native
@@ -142,9 +144,16 @@ trait Stats extends IStats[Int, Double]
   * @since 0.1.21
   */
 @js.native
-trait BigIntStats extends IStats[BigInt, BigInt] {
-  def atimeNs: BigInt     = js.native
-  def mtimeNs: BigInt     = js.native
-  def ctimeNs: BigInt     = js.native
-  def birthtimeNs: BigInt = js.native
+trait BigIntStats extends IStats[js.BigInt, js.BigInt] {
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def atimeNs: js.BigInt = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def mtimeNs: js.BigInt = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def ctimeNs: js.BigInt = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def birthtimeNs: js.BigInt = js.native
 }
