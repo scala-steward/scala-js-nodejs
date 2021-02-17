@@ -25,11 +25,11 @@ Add below line to your SBT project.
 
 ```sbt
 // For Node.js v10 LTS (Will be dropped on 2021-4-30)
-libraryDependencies += "net.exoego" %%% "scala-js-nodejs-v10" % "0.12.0"
+libraryDependencies += "net.exoego" %%% "scala-js-nodejs-v10" % "0.13.0"
 // For Node.js v12 LTS
-libraryDependencies += "net.exoego" %%% "scala-js-nodejs-v12" % "0.12.0"
+libraryDependencies += "net.exoego" %%% "scala-js-nodejs-v12" % "0.13.0"
 // For Node.js v14 LTS
-libraryDependencies += "net.exoego" %%% "scala-js-nodejs-v14" % "0.12.0"
+libraryDependencies += "net.exoego" %%% "scala-js-nodejs-v14" % "0.13.0"
 ```
 
 ## Example of code

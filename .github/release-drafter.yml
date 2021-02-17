@@ -23,7 +23,7 @@ categories:
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 sort-by: 'title'
 template: |
-  ### Remakrs
+  ### Remarks
   Icon 💥 stands for breaking change.
 
   $CHANGES
