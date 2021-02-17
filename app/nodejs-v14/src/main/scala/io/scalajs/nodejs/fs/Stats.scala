@@ -142,9 +142,9 @@ trait Stats extends IStats[Int, Double]
   * @since 0.1.21
   */
 @js.native
-trait BigIntStats extends IStats[BigInt, BigInt] {
-  def atimeNs: BigInt     = js.native
-  def mtimeNs: BigInt     = js.native
-  def ctimeNs: BigInt     = js.native
-  def birthtimeNs: BigInt = js.native
+trait BigIntStats extends IStats[js.BigInt, js.BigInt] {
+  def atimeNs: js.BigInt     = js.native
+  def mtimeNs: js.BigInt     = js.native
+  def ctimeNs: js.BigInt     = js.native
+  def birthtimeNs: js.BigInt = js.native
 }
