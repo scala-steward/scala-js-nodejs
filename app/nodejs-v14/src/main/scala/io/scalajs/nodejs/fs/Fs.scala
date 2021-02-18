@@ -528,15 +528,17 @@ trait Fs extends js.Object with FSConstants {
   def openSync(path: Path): FileDescriptor = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def opendir(path: Path, options: OpendirOptions, callback: FsCallback1[Fs.Dir]): Unit = js.native
+  def opendir(path: Path, options: OpendirOptions, callback: FsCallback1[Fs.Dir[String] | Fs.Dir[Buffer]]): Unit =
+    js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def opendir(path: Path, callback: FsCallback1[Fs.Dir]): Unit = js.native
+  def opendir(path: Path, callback: FsCallback1[Fs.Dir[String]]): Unit = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def opendirSync(path: Path,
                                                                                      options: OpendirOptions
-  ): Fs.Dir                                                                                              = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def opendirSync(path: Path): Fs.Dir = js.native
+  ): Fs.Dir[String] | Fs.Dir[Buffer] = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def opendirSync(path: Path): Fs.Dir[String] =
+    js.native
 
   /** Read data from the file specified by fd.
     * @param fd       is the file descriptor
@@ -600,7 +602,7 @@ trait Fs extends js.Object with FSConstants {
     *                 of the names of the files in the directory excluding '.' and '..'.
     * @example fs.readdir(path[, options], callback)
     */
-  def readdir(path: Path, options: String, callback: FsCallback1[js.Array[String]]): Unit           = js.native
+  def readdir(path: Path, options: String, callback: FsCallback1[ReaddirArrays]): Unit              = js.native
   def readdir(path: Path, options: FileEncodingOptions, callback: FsCallback1[ReaddirArrays]): Unit = js.native
   def readdir(path: Path, options: ReaddirOptions, callback: FsCallback1[ReaddirArrays2]): Unit     = js.native
   def readdir(path: Path, callback: FsCallback1[js.Array[String]]): Unit                            = js.native
@@ -613,9 +615,10 @@ trait Fs extends js.Object with FSConstants {
     *                to 'buffer', the filenames returned will be passed as Buffer objects.
     * @return an array of filenames excluding '.' and '..'.
     */
-  def readdirSync(path: Path, options: String): js.Array[String]         = js.native
-  def readdirSync(path: Path, options: ReaddirOptions): js.Array[String] = js.native
-  def readdirSync(path: Path): js.Array[String]                          = js.native
+  def readdirSync(path: Path, options: String): ReaddirArrays              = js.native
+  def readdirSync(path: Path, options: FileEncodingOptions): ReaddirArrays = js.native
+  def readdirSync(path: Path, options: ReaddirOptions): ReaddirArrays2     = js.native
+  def readdirSync(path: Path): js.Array[String]                            = js.native
 
   /** Asynchronously reads the entire contents of a file.
     * @param file     filename or file descriptor
@@ -1108,18 +1111,20 @@ object Fs extends Fs {
     def open(path: Path): js.Promise[FileHandle] = js.native
     @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def opendir(path: Path,
                                                                                    options: OpendirOptions
-    ): js.Promise[Dir] = js.native
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def opendir(path: Path): js.Promise[Dir] =
+    ): js.Promise[Dir[String] | Dir[Buffer]] = js.native
+    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def opendir(
+        path: Path
+    ): js.Promise[Dir[String]] =
       js.native
-    def readdir(path: Path, options: ReaddirOptions): js.Promise[js.Array[String] | js.Array[Dirent]] = js.native
-    def readdir(path: Path, encoding: String): js.Promise[js.Array[String]]                           = js.native
-    def readdir(path: Path, options: FileEncodingOptions): js.Promise[js.Array[String]]               = js.native
-    def readdir(path: Path): js.Promise[js.Array[String]]                                             = js.native
-    def readlink(path: Path): js.Promise[String]                                                      = js.native
-    def readlink(path: Path, options: String): js.Promise[Output]                                     = js.native
-    def readlink(path: Path, options: FileEncodingOptions): js.Promise[Output]                        = js.native
-    def rename(oldPath: Path, newPath: Path): js.Promise[Unit]                                        = js.native
-    def rmdir(path: Path): js.Promise[Unit]                                                           = js.native
+    def readdir(path: Path, options: ReaddirOptions): js.Promise[ReaddirArrays2]     = js.native
+    def readdir(path: Path, encoding: String): js.Promise[ReaddirArrays]             = js.native
+    def readdir(path: Path, options: FileEncodingOptions): js.Promise[ReaddirArrays] = js.native
+    def readdir(path: Path): js.Promise[js.Array[String]]                            = js.native
+    def readlink(path: Path): js.Promise[String]                                     = js.native
+    def readlink(path: Path, options: String): js.Promise[Output]                    = js.native
+    def readlink(path: Path, options: FileEncodingOptions): js.Promise[Output]       = js.native
+    def rename(oldPath: Path, newPath: Path): js.Promise[Unit]                       = js.native
+    def rmdir(path: Path): js.Promise[Unit]                                          = js.native
     @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     def rmdir(path: Path, options: RmdirOptions): js.Promise[Unit]                                 = js.native
     def stat(path: Path, options: StatOptions): js.Promise[StatsVariant]                           = js.native
@@ -1194,7 +1199,7 @@ object Fs extends Fs {
   val promises: FsPromises = js.native
 
   @js.native
-  class Dirent() extends js.Object {
+  class Dirent[TName]() extends js.Object {
     def isBlockDevice(): Boolean     = js.native
     def isCharacterDevice(): Boolean = js.native
     def isDirectory(): Boolean       = js.native
@@ -1202,19 +1207,19 @@ object Fs extends Fs {
     def isFile(): Boolean            = js.native
     def isSocket(): Boolean          = js.native
     def isSymbolicLink(): Boolean    = js.native
-    val name: String | Buffer        = js.native
+    val name: TName                  = js.native
   }
 
   @enableMembersIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   @js.native
-  trait Dir extends js.Object {
-    def close(): js.Promise[Unit]                                 = js.native
-    def close(callback: js.Function1[js.Error, Any]): Unit        = js.native
-    def closeSync(): Unit                                         = js.native
-    def path: String                                              = js.native
-    def read(): js.Promise[Dirent]                                = js.native
-    def read(callback: js.Function2[js.Error, Dirent, Any]): Unit = js.native
-    def readSync(): Dirent                                        = js.native
+  trait Dir[T] extends js.Object {
+    def close(): js.Promise[Unit]                                    = js.native
+    def close(callback: js.Function1[js.Error, Any]): Unit           = js.native
+    def closeSync(): Unit                                            = js.native
+    def path: String                                                 = js.native
+    def read(): js.Promise[Dirent[T]]                                = js.native
+    def read(callback: js.Function2[js.Error, Dirent[T], Any]): Unit = js.native
+    def readSync(): Dirent[T]                                        = js.native
 
     // TODO: Implement AsyncIterable[Dirent]
   }
