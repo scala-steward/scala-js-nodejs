@@ -1082,63 +1082,113 @@ object Fs extends Fs {
   @js.native
   trait FsPromises extends js.Object {
     def access(path: Path, mode: FileMode): js.Promise[Unit] = js.native
+    def access(path: Path): js.Promise[Unit]                 = js.native
 
-    def appendFile(file: Path, data: String, options: FileAppendOptions): js.Promise[Unit]           = js.native
-    def appendFile(file: FileDescriptor, data: Buffer, options: FileAppendOptions): js.Promise[Unit] = js.native
-    def appendFile(file: Path, data: String, encoding: String): js.Promise[Unit]                     = js.native
-    def appendFile(file: FileDescriptor, data: Buffer, encoding: String): js.Promise[Unit]           = js.native
-    def appendFile(file: Path, data: String): js.Promise[Unit]                                       = js.native
-    def appendFile(file: Path, data: Buffer): js.Promise[Unit]                                       = js.native
-    def appendFile(file: FileDescriptor, data: String): js.Promise[Unit]                             = js.native
-    def appendFile(file: FileDescriptor, data: Buffer): js.Promise[Unit]                             = js.native
+    def appendFile(file: Path, data: Buffer, options: FileAppendOptions): js.Promise[Unit]       = js.native
+    def appendFile(file: FileHandle, data: Buffer, options: FileAppendOptions): js.Promise[Unit] = js.native
 
-    def chmod(path: Path, mode: FileMode): js.Promise[Unit]                       = js.native
-    def chown(path: Path, uid: UID, gid: GID): js.Promise[Unit]                   = js.native
-    def copyFile(src: Path, target: Path, flag: Int): js.Promise[Unit]            = js.native
-    def lchmod(path: Path, mode: FileMode): js.Promise[Unit]                      = js.native
-    def lchown(path: Path, uid: UID, gid: GID): js.Promise[Unit]                  = js.native
-    def link(existingPath: Path, newPath: Path): js.Promise[Unit]                 = js.native
-    def lstat(path: Path, options: StatOptions): js.Promise[StatsVariant]         = js.native
-    def mkdir(path: Path, options: MkdirOptions): js.Promise[Unit]                = js.native
-    def mkdir(path: Path): js.Promise[Unit]                                       = js.native
-    def mkdir(path: Path, mode: FileMode): js.Promise[Unit]                       = js.native
+    def appendFile(file: Path, data: String, options: FileAppendOptions): js.Promise[Unit]       = js.native
+    def appendFile(file: FileHandle, data: String, options: FileAppendOptions): js.Promise[Unit] = js.native
+
+    def appendFile(file: Path, data: String, encoding: String): js.Promise[Unit]       = js.native
+    def appendFile(file: FileHandle, data: String, encoding: String): js.Promise[Unit] = js.native
+
+    def appendFile(file: Path, data: String): js.Promise[Unit]       = js.native
+    def appendFile(file: FileHandle, data: String): js.Promise[Unit] = js.native
+
+    def appendFile(file: Path, data: Buffer): js.Promise[Unit]       = js.native
+    def appendFile(file: FileHandle, data: Buffer): js.Promise[Unit] = js.native
+
+    def chmod(path: Path, mode: FileMode): js.Promise[Unit] = js.native
+
+    def chown(path: Path, uid: UID, gid: GID): js.Promise[Unit] = js.native
+
+    def copyFile(src: Path, target: Path, mode: FileMode): js.Promise[Unit] = js.native
+    def copyFile(src: Path, target: Path): js.Promise[Unit]                 = js.native
+
+    def lchmod(path: Path, mode: FileMode): js.Promise[Unit] = js.native
+
+    def lchown(path: Path, uid: UID, gid: GID): js.Promise[Unit] = js.native
+
+    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+    def lutimes(path: Path, atime: Time, mtime: Time): js.Promise[Unit] = js.native
+
+    def link(existingPath: Path, newPath: Path): js.Promise[Unit] = js.native
+
+    def lstat(path: Path, options: StatOptions): js.Promise[StatsVariant] = js.native
+    def lstat(path: Path): js.Promise[StatsVariant]                       = js.native
+
+    def mkdir(path: Path, options: MkdirOptions): js.Promise[Unit] = js.native
+    def mkdir(path: Path, mode: FileMode): js.Promise[Unit]        = js.native
+    def mkdir(path: Path): js.Promise[Unit]                        = js.native
+
     def mkdtemp(prefix: String, options: FileEncodingOptions): js.Promise[String] = js.native
     def mkdtemp(prefix: String, encoding: String): js.Promise[String]             = js.native
     def mkdtemp(prefix: String): js.Promise[String]                               = js.native
-    def open(path: Path, flags: Flags, mode: FileMode): js.Promise[FileHandle]    = js.native
-    def open(path: Path, flags: Flags): js.Promise[FileHandle]                    = js.native
+
+    def open(path: Path, flags: Flags, mode: FileMode): js.Promise[FileHandle] = js.native
+    def open(path: Path, flags: Flags, mode: String): js.Promise[FileHandle]   = js.native
+    def open(path: Path, flags: Flags): js.Promise[FileHandle]                 = js.native
     @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     def open(path: Path): js.Promise[FileHandle] = js.native
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def opendir(path: Path,
-                                                                                   options: OpendirOptions
-    ): js.Promise[Dir[String] | Dir[Buffer]] = js.native
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def opendir(
-        path: Path
-    ): js.Promise[Dir[String]] =
-      js.native
+
+    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+    def opendir(path: Path, options: OpendirOptions): js.Promise[Dir[String] | Dir[Buffer]] = js.native
+    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+    def opendir(path: Path): js.Promise[Dir[String]] = js.native
+
     def readdir(path: Path, options: ReaddirOptions): js.Promise[ReaddirArrays2]     = js.native
     def readdir(path: Path, encoding: String): js.Promise[ReaddirArrays]             = js.native
     def readdir(path: Path, options: FileEncodingOptions): js.Promise[ReaddirArrays] = js.native
     def readdir(path: Path): js.Promise[js.Array[String]]                            = js.native
-    def readlink(path: Path): js.Promise[String]                                     = js.native
-    def readlink(path: Path, options: String): js.Promise[Output]                    = js.native
-    def readlink(path: Path, options: FileEncodingOptions): js.Promise[Output]       = js.native
-    def rename(oldPath: Path, newPath: Path): js.Promise[Unit]                       = js.native
-    def rmdir(path: Path): js.Promise[Unit]                                          = js.native
+
+    def readFile(path: Path, options: String): js.Promise[Output]                = js.native
+    def readFile(path: Path, options: ReadFileOptions): js.Promise[Output]       = js.native
+    def readFile(path: Path): js.Promise[String]                                 = js.native
+    def readFile(path: FileHandle, options: String): js.Promise[Output]          = js.native
+    def readFile(path: FileHandle, options: ReadFileOptions): js.Promise[Output] = js.native
+    def readFile(path: FileHandle): js.Promise[String]                           = js.native
+
+    def readlink(path: Path): js.Promise[String]                               = js.native
+    def readlink(path: Path, options: String): js.Promise[Output]              = js.native
+    def readlink(path: Path, options: FileEncodingOptions): js.Promise[Output] = js.native
+
+    def realpath(path: Path, options: ReadFileOptions): js.Promise[Output] = js.native
+    def realpath(path: Path, options: String): js.Promise[Output]          = js.native
+    def realpath(path: Path): js.Promise[String]                           = js.native
+
+    def rename(oldPath: Path, newPath: Path): js.Promise[Unit] = js.native
+
+    def rmdir(path: Path): js.Promise[Unit] = js.native
     @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-    def rmdir(path: Path, options: RmdirOptions): js.Promise[Unit]                                 = js.native
-    def stat(path: Path, options: StatOptions): js.Promise[StatsVariant]                           = js.native
-    def stat(path: Path): js.Promise[StatsVariant]                                                 = js.native
-    def symlink(target: Path, path: Path, `type`: String): js.Promise[Unit]                        = js.native
-    def symlink(target: Path, path: Path): js.Promise[Unit]                                        = js.native
-    def truncate(path: Path, length: Int): js.Promise[Unit]                                        = js.native
-    def truncate(path: Path): js.Promise[Unit]                                                     = js.native
-    def unlink(path: Path): js.Promise[Unit]                                                       = js.native
-    def utimes(path: Path, atime: Time, mtime: Time): js.Promise[Unit]                             = js.native
+    def rmdir(path: Path, options: RmdirOptions): js.Promise[Unit] = js.native
+
+    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+    def rm(path: Path, options: RmOptions): js.Promise[Unit] = js.native
+    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+    def rm(path: Path): js.Promise[Unit] = js.native
+
+    def stat(path: Path, options: StatOptions): js.Promise[StatsVariant] = js.native
+    def stat(path: Path): js.Promise[Stats]                              = js.native
+
+    def symlink(target: Path, path: Path, `type`: String): js.Promise[Unit] = js.native
+    def symlink(target: Path, path: Path): js.Promise[Unit]                 = js.native
+
+    def truncate(path: Path, length: Int): js.Promise[Unit] = js.native
+    def truncate(path: Path): js.Promise[Unit]              = js.native
+
+    def unlink(path: Path): js.Promise[Unit] = js.native
+
+    def utimes(path: Path, atime: Time, mtime: Time): js.Promise[Unit] = js.native
+
     def writeFile(file: Path, data: String, options: FileWriteOptions): js.Promise[Unit]           = js.native
     def writeFile(file: Path, data: BufferLike, options: FileWriteOptions): js.Promise[Unit]       = js.native
+    def writeFile(file: Path, data: String): js.Promise[Unit]                                      = js.native
+    def writeFile(file: Path, data: BufferLike): js.Promise[Unit]                                  = js.native
     def writeFile(file: FileHandle, data: String, options: FileWriteOptions): js.Promise[Unit]     = js.native
     def writeFile(file: FileHandle, data: BufferLike, options: FileWriteOptions): js.Promise[Unit] = js.native
+    def writeFile(file: FileHandle, data: String): js.Promise[Unit]                                = js.native
+    def writeFile(file: FileHandle, data: BufferLike): js.Promise[Unit]                            = js.native
   }
 
   @js.native
@@ -1313,8 +1363,8 @@ trait StatOptions extends js.Object {
 
 @Factory
 trait MkdirOptions extends js.Object {
-  var recursive: js.UndefOr[Boolean] = js.undefined
-  var mode: js.UndefOr[FileMode]     = js.undefined
+  var recursive: js.UndefOr[Boolean]      = js.undefined
+  var mode: js.UndefOr[FileMode | String] = js.undefined
 }
 
 @Factory
@@ -1327,10 +1377,16 @@ trait RmdirOptions extends js.Object {
   @deprecated("Use maxRetries", "Node.js v13.3.0, v12.16.0")
   var maxBusyTries: js.UndefOr[Int] = js.undefined
   var maxRetries: js.UndefOr[Int]   = js.undefined
-  @deprecated(
-    "Tha option has been removed, and EMFILE errors use the same retry logic as other errors.",
-    "Node.js v13.3.0, v12.16.0"
-  )
+  var retryDelay: js.UndefOr[Int]   = js.undefined
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  var recursive: js.UndefOr[Boolean] = js.undefined
+}
+
+@enableMembersIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+@Factory
+trait RmOptions extends js.Object {
+  var force: js.UndefOr[Boolean]     = js.undefined
+  var maxRetries: js.UndefOr[Int]    = js.undefined
   var retryDelay: js.UndefOr[Int]    = js.undefined
   var recursive: js.UndefOr[Boolean] = js.undefined
 }
