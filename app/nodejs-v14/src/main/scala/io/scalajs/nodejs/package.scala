@@ -36,7 +36,7 @@ package object nodejs {
 
   type FsCallback3[A, B, C] = js.Function4[FileIOError, A, B, C, Any]
 
-  type FsRecursiveCallback0 = js.Function2[FileIOError, fs.Path, Any]
+  type FsRecursiveCallback0 = js.Function2[FileIOError, String, Any]
 
   type GID = Int
 
