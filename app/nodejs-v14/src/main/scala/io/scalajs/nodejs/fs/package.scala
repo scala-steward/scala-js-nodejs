@@ -19,9 +19,9 @@ package object fs {
   type FileWriteOptions = FileAppendOptions
 
   type ReaddirArrays  = js.Array[String] | js.Array[Buffer]
-  type ReaddirArrays2 = ReaddirArrays | js.Array[fs.Dirent]
+  type ReaddirArrays2 = ReaddirArrays | js.Array[fs.Dirent[String]] | js.Array[fs.Dirent[Buffer]]
 
-  type Dirent = Fs.Dirent
+  type Dirent[T] = Fs.Dirent[T]
 
   type StatsVariant = Stats | BigIntStats
 
@@ -221,14 +221,14 @@ package object fs {
 
     @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline
-    def opendirFuture(path: Path, options: OpendirOptions): Future[Fs.Dir] = {
-      promiseWithError1[FileIOError, Fs.Dir](instance.opendir(path, options, _))
+    def opendirFuture(path: Path, options: OpendirOptions): Future[Fs.Dir[String] | Fs.Dir[Buffer]] = {
+      promiseWithError1[FileIOError, Fs.Dir[String] | Fs.Dir[Buffer]](instance.opendir(path, options, _))
     }
 
     @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline
-    def opendirFuture(path: Path): Future[Fs.Dir] = {
-      promiseWithError1[FileIOError, Fs.Dir](instance.opendir(path, _))
+    def opendirFuture(path: Path): Future[Fs.Dir[String]] = {
+      promiseWithError1[FileIOError, Fs.Dir[String]](instance.opendir(path, _))
     }
 
     @inline
@@ -242,8 +242,8 @@ package object fs {
     }
 
     @inline
-    def readdirFuture(path: Path, encoding: String): Future[js.Array[String]] = {
-      promiseWithError1[FileIOError, js.Array[String]](instance.readdir(path, encoding, _))
+    def readdirFuture(path: Path, encoding: String): Future[ReaddirArrays] = {
+      promiseWithError1[FileIOError, ReaddirArrays](instance.readdir(path, encoding, _))
     }
 
     @inline
@@ -252,11 +252,8 @@ package object fs {
     }
 
     @inline
-    def readdirFuture(path: Path, options: FileEncodingOptions): Future[js.Array[String]] = {
-      val callback: FsCallback1[js.Array[String]] => Unit = { callback =>
-        instance.readdir(path, options, callback.asInstanceOf[FsCallback1[ReaddirArrays]])
-      }
-      promiseWithError1[FileIOError, js.Array[String]](callback)
+    def readdirFuture(path: Path, options: FileEncodingOptions): Future[ReaddirArrays] = {
+      promiseWithError1[FileIOError, ReaddirArrays](instance.readdir(path, options, _))
     }
 
     @inline
@@ -272,26 +269,53 @@ package object fs {
     }
 
     @inline
-    def readdirDirentFuture(path: Buffer): Future[js.Array[Dirent]] = {
-      val callback: FsCallback1[js.Array[Dirent]] => Unit = { callback =>
+    def readdirDirentFuture(path: Buffer): Future[js.Array[Dirent[String]]] = {
+      val callback: FsCallback1[js.Array[Dirent[String]]] => Unit = { callback =>
         instance.readdir(
           path,
           ReaddirOptions(withFileTypes = true),
           callback.asInstanceOf[FsCallback1[ReaddirArrays2]]
         )
       }
-      promiseWithError1[FileIOError, js.Array[Dirent]](callback)
+      promiseWithError1[FileIOError, js.Array[Dirent[String]]](callback)
     }
     @inline
-    def readdirDirentFuture(path: String): Future[js.Array[Dirent]] = {
-      val callback: FsCallback1[js.Array[Dirent]] => Unit = { callback =>
+    def readdirDirentFuture(path: String): Future[js.Array[Dirent[String]]] = {
+      val callback: FsCallback1[js.Array[Dirent[String]]] => Unit = { callback =>
         instance.readdir(
           path,
           ReaddirOptions(withFileTypes = true),
           callback.asInstanceOf[FsCallback1[ReaddirArrays2]]
         )
       }
-      promiseWithError1[FileIOError, js.Array[Dirent]](callback)
+      promiseWithError1[FileIOError, js.Array[Dirent[String]]](callback)
+    }
+
+    @inline
+    def readdirDirentFuture(path: Buffer,
+                            encoding: String
+    ): Future[js.Array[Dirent[String]] | js.Array[Dirent[Buffer]]] = {
+      val callback: FsCallback1[js.Array[Dirent[String]]] => Unit = { callback =>
+        instance.readdir(
+          path,
+          ReaddirOptions(withFileTypes = true, encoding = encoding),
+          callback.asInstanceOf[FsCallback1[ReaddirArrays2]]
+        )
+      }
+      promiseWithError1[FileIOError, js.Array[Dirent[String]]](callback)
+    }
+    @inline
+    def readdirDirentFuture(path: String,
+                            encoding: String
+    ): Future[js.Array[Dirent[String]] | js.Array[Dirent[Buffer]]] = {
+      val callback: FsCallback1[js.Array[Dirent[String]]] => Unit = { callback =>
+        instance.readdir(
+          path,
+          ReaddirOptions(withFileTypes = true, encoding = encoding),
+          callback.asInstanceOf[FsCallback1[ReaddirArrays2]]
+        )
+      }
+      promiseWithError1[FileIOError, js.Array[Dirent[String]]](callback)
     }
 
     @inline
@@ -531,11 +555,11 @@ package object fs {
     *
     * @param instance the given [[Fs.Dir]] instance
     */
-  implicit final class FsDirExtensions(private val instance: Fs.Dir) extends AnyVal {
+  implicit final class FsDirExtensions[T](private val instance: Fs.Dir[T]) extends AnyVal {
     @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline
-    def readFuture(): Future[Option[Fs.Dirent]] = {
-      promiseWithError1[js.Error, Option[Fs.Dirent]](f => {
+    def readFuture(): Future[Option[Fs.Dirent[T]]] = {
+      promiseWithError1[js.Error, Option[Fs.Dirent[T]]](f => {
         instance.read((err, dir) => {
           f(err, Option(dir))
         })
