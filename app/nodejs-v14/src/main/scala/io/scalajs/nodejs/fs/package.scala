@@ -13,7 +13,7 @@ import scala.scalajs.js.{typedarray, |}
   */
 package object fs {
   type Path             = typedarray.Uint8Array | String | URL
-  type Time             = Int | String | js.Date
+  type Time             = Double | String | js.Date
   type BufferLike       = typedarray.TypedArray[_, _] | typedarray.DataView
   type Output           = String | Buffer
   type FileWriteOptions = FileAppendOptions
