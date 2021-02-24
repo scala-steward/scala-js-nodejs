@@ -164,11 +164,11 @@ trait Fs extends js.Object with FSConstants {
     * fs.constants.COPYFILE_EXCL, which causes the copy operation to fail if dest already exists.
     * @param src      the source filename to copy
     * @param dest     the  destination filename of the copy operation
-    * @param flags    the modifiers for copy operation. Default: 0
+    * @param mode    the modifiers for copy operation. Default: 0
     * @param callback the callback function
     * @example {{{ fs.copyFile(src, dest[, flags], callback) }}}
     */
-  def copyFile(src: Path, dest: Path, flags: Flags, callback: FsCallback0): Unit =
+  def copyFile(src: Path, dest: Path, mode: FileMode, callback: FsCallback0): Unit =
     js.native
 
   /** Asynchronously copies src to dest. By default, dest is overwritten if it already exists. No arguments other
@@ -194,10 +194,10 @@ trait Fs extends js.Object with FSConstants {
     * fs.constants.COPYFILE_EXCL, which causes the copy operation to fail if dest already exists.
     * @param src   the source filename to copy
     * @param dest  the  destination filename of the copy operation
-    * @param flags the modifiers for copy operation. Default: 0
+    * @param mode the modifiers for copy operation. Default: 0
     * @example {{{ fs.copyFileSync(src, dest[, flags]) }}}
     */
-  def copyFileSync(src: Path, dest: Path, flags: Flags): Unit = js.native
+  def copyFileSync(src: Path, dest: Path, mode: FileMode): Unit = js.native
 
   /** Returns a new ReadStream object. (See Readable Stream). Be aware that, unlike the default value
     * set for highWaterMark on a readable stream (16 kb), the stream returned by this method has a
@@ -275,7 +275,7 @@ trait Fs extends js.Object with FSConstants {
     * @return an instance of [[fs.Stats]].
     */
   def fstatSync(fd: FileDescriptor, options: StatOptions): StatsVariant = js.native
-  def fstatSync(fd: FileDescriptor): StatsVariant                       = js.native
+  def fstatSync(fd: FileDescriptor): Stats                              = js.native
 
   /** Asynchronous fsync(2). No arguments other than a possible exception are given to the completion callback.
     * @param fd       the file descriptor
@@ -355,6 +355,12 @@ trait Fs extends js.Object with FSConstants {
     */
   def lchownSync(path: Path, uid: UID, gid: GID): Unit = js.native
 
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def lutimes(path: Path, atime: Time, mtime: Time, callback: FsCallback0): Unit = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def lutimesSync(path: Path, atime: Time, mtime: Time): Unit = js.native
+
   /** Asynchronous link(2). No arguments other than a possible exception are given to the completion callback.
     * @param existingPath the existing path
     * @param newPath      the new path
@@ -418,7 +424,7 @@ trait Fs extends js.Object with FSConstants {
 
   /** @return After Node.js v13.11.0, in recursive mode, the first created path is returned now. Otherwise undefined
     */
-  def mkdirSync(path: Path, mode: MkdirOptions): js.UndefOr[Path] = js.native
+  def mkdirSync(path: Path, mode: MkdirOptions): js.UndefOr[String] = js.native
 
   /** Creates a unique temporary directory.
     * Generates six random characters to be appended behind a required prefix to create a unique temporary directory.
@@ -534,11 +540,10 @@ trait Fs extends js.Object with FSConstants {
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def opendir(path: Path, callback: FsCallback1[Fs.Dir[String]]): Unit = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def opendirSync(path: Path,
-                                                                                     options: OpendirOptions
-  ): Fs.Dir[String] | Fs.Dir[Buffer] = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def opendirSync(path: Path): Fs.Dir[String] =
-    js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def opendirSync(path: Path, options: OpendirOptions): Fs.Dir[String] | Fs.Dir[Buffer] = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def opendirSync(path: Path): Fs.Dir[String] = js.native
 
   /** Read data from the file specified by fd.
     * @param fd       is the file descriptor
@@ -549,14 +554,6 @@ trait Fs extends js.Object with FSConstants {
     *                 data will be read from the current file position.
     * @param callback the callback is given the three arguments, (err, bytesRead, buffer).
     */
-  def read(fd: FileDescriptor,
-           buffer: Buffer,
-           offset: Int | Null,
-           length: Int | Null,
-           position: Int | Null,
-           callback: FsCallback2[Int, Buffer]
-  ): Unit = js.native
-
   def read(fd: FileDescriptor,
            buffer: BufferLike,
            offset: Int | Null,
@@ -581,16 +578,25 @@ trait Fs extends js.Object with FSConstants {
 
   def readSync(fd: FileDescriptor, buffer: BufferLike, offset: Int, length: Int, position: Int): Int = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def readv(fd: FileDescriptor,
             buffers: js.Array[js.typedarray.ArrayBufferView],
-            options: ReadOptions,
+            position: Int | Null,
+            callback: FsCallback2[Int, js.Array[js.typedarray.ArrayBufferView]]
+  ): Unit = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def readv(fd: FileDescriptor,
+            buffers: js.Array[js.typedarray.ArrayBufferView],
             callback: FsCallback2[Int, js.Array[js.typedarray.ArrayBufferView]]
   ): Unit = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
-  def readvSync(fd: FileDescriptor, buffers: js.Array[js.typedarray.ArrayBufferView], options: ReadOptions): Unit =
+  def readvSync(fd: FileDescriptor, buffers: js.Array[js.typedarray.ArrayBufferView], position: Integer): Int =
     js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+  def readvSync(fd: FileDescriptor, buffers: js.Array[js.typedarray.ArrayBufferView]): Int = js.native
 
   /** Asynchronous readdir(3). Reads the contents of a directory.
     * @param path     the path (Buffer | String)
@@ -735,9 +741,11 @@ trait Fs extends js.Object with FSConstants {
     * @example fs.realpathSync(path[, options])
     */
   def realpathSync(path: Path, options: FileEncodingOptions): Output = js.native
+  def realpathSync(path: Path, options: String): Output              = js.native
   def realpathSync(path: Path): String                               = js.native
 
-  val realpath: RealpathObject = js.native
+  val realpath: RealpathObject         = js.native
+  val realpathSync: RealpathSyncObject = js.native
 
   /** Asynchronous rename(2). No arguments other than a possible exception are given to the completion callback.
     * @example fs.rename(oldPath, newPath, callback)
@@ -770,13 +778,22 @@ trait Fs extends js.Object with FSConstants {
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def rmdirSync(path: Path, options: RmdirOptions): Unit = js.native
 
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+  def rm(path: Path, options: RmOptions, callback: FsCallback0): Unit = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+  def rm(path: Path, callback: FsCallback0): Unit = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+  def rmSync(path: Path, options: RmOptions): Unit = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+  def rmSync(path: Path): Unit = js.native
+
   /** Asynchronous stat(2). The callback gets two arguments (err, stats) where stats is a [[fs.Stats]] object.
     * See the fs.Stats section for more information.
     * @example fs.stat(path, callback)
     */
-  def stat(path: Path, callback: FsCallback1[Stats]): Stats = js.native
+  def stat(path: Path, callback: FsCallback1[Stats]): Unit = js.native
 
-  def stat(path: Path, options: StatOptions, callback: FsCallback1[StatsVariant]): StatsVariant = js.native
+  def stat(path: Path, options: StatOptions, callback: FsCallback1[StatsVariant]): Unit = js.native
 
   /** Synchronous stat(2). Returns an instance of [[fs.Stats]].
     * @example fs.statSync(path)
@@ -849,8 +866,8 @@ trait Fs extends js.Object with FSConstants {
     * fs.watchFile() and fs.unwatchFile() when possible.
     * @example fs.unwatchFile(filename[, listener])
     */
-  def unwatchFile(path: Path, listener: FsCallback0): Unit = js.native
-  def unwatchFile(path: Path): Unit                        = js.native
+  def unwatchFile(path: Path, listener: FileWatchListener): Unit = js.native
+  def unwatchFile(path: Path): Unit                              = js.native
 
   /** Change file timestamps of the file referenced by the supplied path.
     *
@@ -882,8 +899,7 @@ trait Fs extends js.Object with FSConstants {
     * @return a [[FSWatcher]]
     * @example fs.watch(filename[, options][, listener])
     */
-  def watch(filename: Path, options: FSWatcherOptions, listener: js.Function2[EventType, String, Any]): FSWatcher =
-    js.native
+  def watch(filename: Path, options: FSWatcherOptions, listener: WatchListener): FSWatcher = js.native
 
   /** Watch for changes on filename, where filename is either a file or a directory.
     * The returned object is a [[fs.FSWatcher]].
@@ -900,7 +916,7 @@ trait Fs extends js.Object with FSConstants {
     * @return a [[FSWatcher]]
     * @example fs.watch(filename[, options][, listener])
     */
-  def watch(filename: Path, listener: js.Function2[EventType, String, Any]): FSWatcher = js.native
+  def watch(filename: Path, listener: WatchListener): FSWatcher = js.native
 
   /** Watch for changes on filename, where filename is either a file or a directory.
     * The returned object is a [[fs.FSWatcher]].
@@ -928,8 +944,7 @@ trait Fs extends js.Object with FSConstants {
     * @param options  the [[FSWatcherOptions optional settings]]
     * @param listener the callback
     */
-  def watchFile(filename: Path, options: FileWatcherOptions, listener: js.Function2[Stats, Stats, Any]): FSStatWatcher =
-    js.native
+  def watchFile(filename: Path, options: FileWatcherOptions, listener: FileWatchListener): FSStatWatcher = js.native
 
   /** Watch for changes on filename. The callback listener will be called each time the file is accessed.
     *
@@ -940,7 +955,7 @@ trait Fs extends js.Object with FSConstants {
     * @param filename the filename (Buffer | String)
     * @param listener the callback
     */
-  def watchFile(filename: Path, listener: js.Function2[Stats, Stats, Any]): FSStatWatcher = js.native
+  def watchFile(filename: Path, listener: FileWatchListener): FSStatWatcher = js.native
 
   /** Write buffer to the file specified by fd.
     * <p><b>Note</b>: that it is unsafe to use fs.write multiple times on the same file without waiting for the callback.
@@ -959,19 +974,11 @@ trait Fs extends js.Object with FSConstants {
     * @example {{{ fs.write(fd, buffer[, offset[, length[, position]]], callback) }}}
     */
   def write(fd: FileDescriptor,
-            buffer: js.typedarray.Uint8Array,
-            offset: Int | Null,
-            length: Int | Null,
-            position: Int | Null,
-            callback: FsCallback2[Int, Buffer]
-  ): Unit = js.native
-
-  def write(fd: FileDescriptor,
             buffer: BufferLike,
             offset: Int | Null,
             length: Int | Null,
             position: Int | Null,
-            callback: FsCallback2[Int, Buffer]
+            callback: FsCallback2[Int, js.typedarray.ArrayBufferView]
   ): Unit = js.native
 
   /** Write string to the file specified by fd. If string is not a string, then the value will be coerced to one.
@@ -1065,7 +1072,12 @@ trait Fs extends js.Object with FSConstants {
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def writev(fd: FileDescriptor,
              buffers: js.Array[js.typedarray.ArrayBufferView],
-             position: Int,
+             position: Int | Null,
+             fsCallback2: FsCallback2[Int, js.Array[js.typedarray.ArrayBufferView]]
+  ): Unit = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def writev(fd: FileDescriptor,
+             buffers: js.Array[js.typedarray.ArrayBufferView],
              fsCallback2: FsCallback2[Int, js.Array[js.typedarray.ArrayBufferView]]
   ): Unit = js.native
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
@@ -1352,6 +1364,7 @@ trait FileOutputOptions extends js.Object {
 
 @Factory
 trait FileWatcherOptions extends js.Object {
+  var bigint: js.UndefOr[Boolean]     = js.undefined
   var persistent: js.UndefOr[Boolean] = js.undefined
   var interval: js.UndefOr[Int]       = js.undefined
 }
@@ -1394,6 +1407,13 @@ trait RmOptions extends js.Object {
 @js.native
 trait RealpathObject extends js.Object {
   def native(path: Path, options: FileEncodingOptions, callback: FsCallback1[Output]): Unit = js.native
-  def native(path: Path, encoding: String, callback: FsCallback1[Output]): Unit             = js.native
+  def native(path: Path, options: String, callback: FsCallback1[Output]): Unit              = js.native
   def native(path: Path, callback: FsCallback1[String]): Unit                               = js.native
+}
+
+@js.native
+trait RealpathSyncObject extends js.Object {
+  def native(path: Path, options: FileEncodingOptions): Output = js.native
+  def native(path: Path, options: String): Output              = js.native
+  def native(path: Path): String                               = js.native
 }
