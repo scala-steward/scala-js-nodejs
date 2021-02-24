@@ -29,9 +29,20 @@ lazy val core = (project in file("./core"))
     libraryDependencies ++= Dependencies.core.value
   )
 
-lazy val nodejs_v14 = createNodeVersionSpecificProject("14.15.4")
-lazy val nodejs_v12 = createNodeVersionSpecificProject("12.20.1")
-lazy val nodejs_v10 = createNodeVersionSpecificProject("10.23.1")
+lazy val nodeVerMap = {
+  val ciYaml = scala.io.Source.fromFile(".github/workflows/ci.yaml")
+  try {
+    val nodejsVersionLine = ciYaml.getLines().filter(_.contains("nodejs:")).toSeq.head
+    "\\d+\\.\\d+\\.\\d+".r.findAllIn(nodejsVersionLine).toSeq match {
+      case Seq(a, b, c) => Map("14" -> a, "12" -> b, "10" -> c)
+    }
+  } finally {
+    ciYaml.close()
+  }
+}
+lazy val nodejs_v14 = createNodeVersionSpecificProject(nodeVerMap("14"))
+lazy val nodejs_v12 = createNodeVersionSpecificProject(nodeVerMap("12"))
+lazy val nodejs_v10 = createNodeVersionSpecificProject(nodeVerMap("10"))
 
 def createNodeVersionSpecificProject(nodeFullVersion: String) = {
   val majorVersion = nodeFullVersion.split("\\.")(0)
