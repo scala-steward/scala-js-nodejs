@@ -240,6 +240,7 @@ package object fs {
       promiseWithError1[FileIOError, Fs.Dir[String]](instance.opendir(path, _))
     }
 
+    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline
     def readvFuture(fd: FileDescriptor,
                     buffers: js.Array[js.typedarray.ArrayBufferView],
@@ -248,6 +249,7 @@ package object fs {
       promiseWithError2[FileIOError, Int, js.Array[js.typedarray.ArrayBufferView]](Fs.readv(fd, buffers, position, _))
     }
 
+    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline
     def readvFuture(fd: FileDescriptor,
                     buffers: js.Array[js.typedarray.ArrayBufferView]
