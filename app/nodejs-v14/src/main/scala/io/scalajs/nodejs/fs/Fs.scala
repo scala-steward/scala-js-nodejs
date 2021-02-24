@@ -20,7 +20,7 @@ import scala.scalajs.js.|
   * or allow them to bubble up.
   */
 @js.native
-trait Fs extends js.Object with FSConstants {
+trait Fs extends js.Object {
 
   /** Returns an object containing commonly used constants for file system operations
     * @return an [[FSConstants object]] containing commonly used constants for file system operations
