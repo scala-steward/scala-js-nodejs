@@ -6,15 +6,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        scala: [2.13.4, 2.12.13]
-        nodejs: [14.15.4, 12.20.1, 10.23.1]
+        scala: [2.13.5, 2.12.13]
+        nodejs: [14.16.0, 12.21.0, 10.24.0]
     steps:
       - uses: actions/checkout@v2
       - uses: olafurpg/setup-scala@v10
         with:
           java-version: adopt@1.11
-      - uses: coursier/cache-action@v5
-      - uses: actions/setup-node@v1
+      - uses: coursier/cache-action@v6
+      - uses: actions/setup-node@v2.1.5
         with:
           node-version: ${{ matrix.nodejs }}
       - run: npm install

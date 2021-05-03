@@ -25,6 +25,9 @@ package object fs {
 
   type StatsVariant = Stats | BigIntStats
 
+  type WatchListener     = js.Function2[EventType, String, Any]
+  type FileWatchListener = js.Function2[Stats, Stats, Any] | js.Function2[BigIntStats, BigIntStats, Any]
+
   /////////////////////////////////////////////////////////////////////////////////
   //      Implicit conversions and classes
   /////////////////////////////////////////////////////////////////////////////////
@@ -88,8 +91,8 @@ package object fs {
     }
 
     @inline
-    def copyFileFuture(src: Path, dest: Path, flags: Flags): Future[Unit] = {
-      promiseWithError0[FileIOError](instance.copyFile(src, dest, flags, _))
+    def copyFileFuture(src: Path, dest: Path, mode: FileMode): Future[Unit] = {
+      promiseWithError0[FileIOError](instance.copyFile(src, dest, mode, _))
     }
 
     @inline
@@ -151,6 +154,12 @@ package object fs {
     @inline
     def linkFuture(srcpath: Path, dstpath: Path): Future[Unit] = {
       promiseWithError0[FileIOError](instance.link(srcpath, dstpath, _))
+    }
+
+    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+    @inline
+    def lutimesFuture(path: Path, atime: Time, mtime: Time): Future[Unit] = {
+      promiseWithError0[FileIOError](instance.lutimes(path, atime, mtime, _))
     }
 
     @inline
@@ -231,14 +240,21 @@ package object fs {
       promiseWithError1[FileIOError, Fs.Dir[String]](instance.opendir(path, _))
     }
 
+    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline
-    def readFuture(fd: FileDescriptor,
-                   buffer: Buffer,
-                   offset: Int | Null,
-                   length: Int | Null,
-                   position: Int | Null
-    ): Future[(Int, Buffer)] = {
-      promiseWithError2[FileIOError, Int, Buffer](Fs.read(fd, buffer, offset, length, position, _))
+    def readvFuture(fd: FileDescriptor,
+                    buffers: js.Array[js.typedarray.ArrayBufferView],
+                    position: Int | Null
+    ): Future[(Int, js.Array[js.typedarray.ArrayBufferView])] = {
+      promiseWithError2[FileIOError, Int, js.Array[js.typedarray.ArrayBufferView]](Fs.readv(fd, buffers, position, _))
+    }
+
+    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+    @inline
+    def readvFuture(fd: FileDescriptor,
+                    buffers: js.Array[js.typedarray.ArrayBufferView]
+    ): Future[(Int, js.Array[js.typedarray.ArrayBufferView])] = {
+      promiseWithError2[FileIOError, Int, js.Array[js.typedarray.ArrayBufferView]](Fs.readv(fd, buffers, _))
     }
 
     @inline
@@ -409,6 +425,15 @@ package object fs {
       promiseWithError0[FileIOError](instance.rmdir(path, recursiveEnabled, _))
     }
 
+    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+    @inline
+    def rmFuture(path: Path): Future[Unit] = promiseWithError0[FileIOError](instance.rm(path, _))
+
+    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+    @inline
+    def rmFuture(path: Path, options: RmOptions): Future[Unit] =
+      promiseWithError0[FileIOError](instance.rm(path, options, _))
+
     @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline
     def rmdirRecursiveFuture(path: Path): Future[Unit] = {
@@ -447,32 +472,8 @@ package object fs {
     def unlinkFuture(path: Path): Future[Unit] = promiseWithError0[FileIOError](instance.unlink(path, _))
 
     @inline
-    def unwatchFileFuture(filename: Path): Future[Unit] =
-      promiseWithError0[FileIOError](instance.unwatchFile(filename, _))
-
-    @inline
     def utimesFuture(path: Path, atime: Time, mtime: Time): Future[Unit] =
       promiseWithError0[FileIOError](instance.utimes(path, atime, mtime, _))
-
-    @inline
-    def watchFuture(filename: Path): Future[(EventType, String)] = {
-      promiseCallback2[EventType, String](instance.watch(filename, _))
-    }
-
-    @inline
-    def watchFuture(filename: Path, options: FSWatcherOptions): Future[(EventType, String)] = {
-      promiseCallback2[EventType, String](instance.watch(filename, options, _))
-    }
-
-    @inline
-    def watchFileFuture(filename: Path): Future[(Stats, Stats)] = {
-      promiseCallback2[Stats, Stats](instance.watchFile(filename, _))
-    }
-
-    @inline
-    def watchFileFuture(filename: Path, options: FileWatcherOptions): Future[(Stats, Stats)] = {
-      promiseCallback2[Stats, Stats](instance.watchFile(filename, options, _))
-    }
 
     @inline
     def writeFuture(fd: FileDescriptor,
@@ -480,8 +481,10 @@ package object fs {
                     offset: Int | Null,
                     length: Int | Null,
                     position: Int | Null
-    ): Future[(FileType, Buffer)] = {
-      promiseWithError2[FileIOError, Int, Buffer](instance.write(fd, buffer, offset, length, position, _))
+    ): Future[(FileType, js.typedarray.ArrayBufferView)] = {
+      promiseWithError2[FileIOError, Int, js.typedarray.ArrayBufferView](
+        instance.write(fd, buffer, offset, length, position, _)
+      )
     }
 
     @inline
@@ -490,8 +493,10 @@ package object fs {
                     offset: Int | Null,
                     length: Int | Null,
                     position: Int | Null
-    ): Future[(FileType, Buffer)] = {
-      promiseWithError2[FileIOError, Int, Buffer](instance.write(fd, buffer, offset, length, position, _))
+    ): Future[(FileType, js.typedarray.ArrayBufferView)] = {
+      promiseWithError2[FileIOError, Int, js.typedarray.ArrayBufferView](
+        instance.write(fd, buffer, offset, length, position, _)
+      )
     }
 
     @inline
@@ -543,10 +548,20 @@ package object fs {
     @inline
     def writevFuture(fd: FileDescriptor,
                      buffers: js.Array[typedarray.ArrayBufferView],
-                     position: Int
+                     position: Int | Null
     ): Future[(Int, js.Array[typedarray.ArrayBufferView])] = {
       promiseWithError2[FileIOError, Int, js.Array[typedarray.ArrayBufferView]](
         instance.writev(fd, buffers, position, _)
+      )
+    }
+
+    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+    @inline
+    def writevFuture(fd: FileDescriptor,
+                     buffers: js.Array[typedarray.ArrayBufferView]
+    ): Future[(Int, js.Array[typedarray.ArrayBufferView])] = {
+      promiseWithError2[FileIOError, Int, js.Array[typedarray.ArrayBufferView]](
+        instance.writev(fd, buffers, _)
       )
     }
   }
