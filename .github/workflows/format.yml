@@ -7,7 +7,7 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2.3.4
-      - uses: olafurpg/setup-scala@v10
+      - uses: olafurpg/setup-scala@v11
       - name: Check Scalafmt/Scaladoc
         run: sbt scalafmtSbtCheck scalafmtCheck test:scalafmtCheck nodejs_v14/doc core/doc
       - name: Install NPM deps
