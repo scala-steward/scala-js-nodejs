@@ -10,7 +10,7 @@ pull_request_rules:
         add: ["chore"]
   - name: Automatic merge Dependabot
     conditions:
-      - "author=depandabot"
+      - "author~=^dependabot"
       - "#check-success>=8"
     actions:
       merge:
