@@ -578,6 +578,15 @@ trait Fs extends js.Object {
 
   def readSync(fd: FileDescriptor, buffer: BufferLike, offset: Int, length: Int, position: Int): Int = js.native
 
+  def readSync(fd: FileDescriptor,
+               buffer: BufferLike,
+               offset: Int | Null,
+               length: Int | Null,
+               position: Int | Null
+  ): Unit                                                                        = js.native
+  def readSync(fd: FileDescriptor, buffer: BufferLike, offset: Int | Null): Unit = js.native
+  def readSync(fd: FileDescriptor, buffer: BufferLike): Unit                     = js.native
+
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def readv(fd: FileDescriptor,
             buffers: js.Array[js.typedarray.ArrayBufferView],
