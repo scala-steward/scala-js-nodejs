@@ -42,6 +42,7 @@ lazy val nodeVerMap = {
     ciYaml.close()
   }
 }
+val latestNodeVersion = "16"
 lazy val nodejs_v16 = createNodeVersionSpecificProject(nodeVerMap("16"))
 lazy val nodejs_v14 = createNodeVersionSpecificProject(nodeVerMap("14"))
 lazy val nodejs_v12 = createNodeVersionSpecificProject(nodeVerMap("12"))
@@ -49,6 +50,7 @@ lazy val nodejs_v10 = createNodeVersionSpecificProject(nodeVerMap("10"))
 
 def createNodeVersionSpecificProject(nodeFullVersion: String) = {
   val majorVersion = nodeFullVersion.split("\\.")(0)
+  val isLatest = majorVersion == latestNodeVersion
   sbt
     .Project(id = s"nodejs_v${majorVersion}", base = file(s"./app/nodejs-v${majorVersion}"))
     .enablePlugins(ScalaJSPlugin)
@@ -60,7 +62,7 @@ def createNodeVersionSpecificProject(nodeFullVersion: String) = {
       Compile / unmanagedSourceDirectories ++= {
         val symlinkDir = baseDirectory.value / "src" / "main"
         val hasSymlink = symlinkDir.exists && symlinkDir.isDirectory
-        Seq(file("app") / "nodejs-v14" / "src" / "main" / "scala").filter(_ => majorVersion != "14" && !hasSymlink)
+        Seq(file("app") / s"nodejs-v${latestNodeVersion}" / "src" / "main" / "scala").filter(_ => !isLatest && !hasSymlink)
       },
       scalacOptions ++= Seq(
         s"-Xmacro-settings:nodeJs${nodeFullVersion}"
