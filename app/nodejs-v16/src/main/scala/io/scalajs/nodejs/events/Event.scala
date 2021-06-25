@@ -33,6 +33,7 @@ trait Event extends js.Object {
   def timeStamp: Double  = js.native
 }
 
+@js.native
 @JSGlobal("Event")
 object Event extends js.Object {
   val NONE: Int            = js.native
