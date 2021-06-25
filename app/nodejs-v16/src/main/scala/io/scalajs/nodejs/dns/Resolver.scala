@@ -1,12 +1,21 @@
 package io.scalajs.nodejs.dns
 
+import com.thoughtworks.enableIf
+
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
 @js.native
 @JSImport("dns", "Resolver")
 class Resolver extends IResolver {
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
   def cancel(): Unit = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def setLocalAddress(ipv4OrIpv6: String): Unit = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def setLocalAddress(ipv4: String, ipv6: String): Unit = js.native
 }
 
 @js.native
@@ -22,6 +31,9 @@ trait IResolver extends js.Object {
 
   def resolve6(hostname: String, callback: DnsCallback1[js.Array[String]]): Unit                      = js.native
   def resolve6(hostname: String, options: TtlOptions, callback: DnsCallback1[js.Array[String]]): Unit = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+  def resolveCaa(hostname: String, callback: DnsCallback1[js.Array[ResolveObject]]): Unit = js.native
 
   def resolveAny(hostname: String, callback: DnsCallback1[js.Array[ResolveObject]]): Unit = js.native
 
