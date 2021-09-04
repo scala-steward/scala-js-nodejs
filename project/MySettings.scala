@@ -44,10 +44,10 @@ object MySettings {
       "-feature",
       "-language:implicitConversions"
     ) ++ lintSettings.value,
-    Compile / scalacOptions ++= Seq(
+    Compile / compile / scalacOptions ++= Seq(
       "-Xfatal-warnings"
     ),
-    doc / scalacOptions ++= Seq(
+    Compile / doc / scalacOptions ++= Seq(
       "-Xfatal-warnings",
       "-no-link-warnings"
     ),
