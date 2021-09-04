@@ -6,6 +6,8 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.scalajs.js.annotation.JSImport
 
+import io.scalajs.nodejs.perf_hooks
+
 @js.native
 @JSImport("worker_threads", "Worker")
 class Worker protected () extends js.Object with MessagePoster {
@@ -26,4 +28,21 @@ class Worker protected () extends js.Object with MessagePoster {
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def resourceLimits: ResourceLimits = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def getHeapSnapshot(): js.Promise[io.scalajs.nodejs.stream.Readable] = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def performance: PerformanceObject = js.native
+
+}
+
+@js.native
+trait PerformanceObject extends js.Object {
+  def eventLoopUtilization(): perf_hooks.EventLoopUtilizationResult = js.native
+  def eventLoopUtilization(utilization1: perf_hooks.EventLoopUtilizationResult): perf_hooks.EventLoopUtilizationResult =
+    js.native
+  def eventLoopUtilization(utilization1: perf_hooks.EventLoopUtilizationResult,
+                           utilization2: perf_hooks.EventLoopUtilizationResult
+  ): perf_hooks.EventLoopUtilizationResult = js.native
 }

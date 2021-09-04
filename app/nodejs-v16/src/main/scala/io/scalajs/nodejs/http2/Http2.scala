@@ -1,5 +1,6 @@
 package io.scalajs.nodejs.http2
 
+import com.thoughtworks.enableIf
 import io.scalajs.nodejs.buffer.Buffer
 import io.scalajs.nodejs.url.URL
 
@@ -9,6 +10,10 @@ import scala.scalajs.js.typedarray.Uint8Array
 
 @js.native
 trait Http2 extends js.Object {
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.ltNodeJs16)
+  def sensitiveHeaders: js.Symbol = js.native
+
   def createServer(options: Http2ServerOptions, onRequestHandler: ServerCallback): Http2Server = js.native
   def createServer(options: Http2ServerOptions): Http2Server                                   = js.native
 

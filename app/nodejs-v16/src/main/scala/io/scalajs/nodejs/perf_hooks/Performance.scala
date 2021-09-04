@@ -1,5 +1,4 @@
-package io.scalajs.nodejs
-package perf_hooks
+package io.scalajs.nodejs.perf_hooks
 
 import _root_.net.exoego.scalajs.types.util.Factory
 import com.thoughtworks.enableIf
@@ -10,6 +9,7 @@ import scala.scalajs.js.annotation.JSImport
 @js.native
 @JSImport("perf_hooks", "Performance")
 class Performance extends js.Object {
+
   def clearMarks(): Unit             = js.native
   def clearMarks(name: String): Unit = js.native
 
@@ -31,7 +31,10 @@ class Performance extends js.Object {
   def timerify[T <: js.Function](fn: T): T = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
-  def toJSON(): js.Object = js.native
+  def toJSON(): PerformanceResultJson = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def eventLoopUtilization(): EventLoopUtilizationResult = js.native
 }
 
 @js.native
@@ -55,12 +58,15 @@ trait PerformanceEntry extends js.Object {
 
 @Factory
 trait PerformanceNodeTiming extends PerformanceEntry {
-  def bootstrapComplete: Double
-  def environment: Double
-  def loopExit: Double
-  def loopStart: Double
-  def nodeStart: Double
-  def v8Start: Double
+  var bootstrapComplete: Double
+  var environment: Double
+  var loopExit: Double
+  var loopStart: Double
+  var nodeStart: Double
+  var v8Start: Double
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+  var idleTime: Double
 }
 
 @js.native

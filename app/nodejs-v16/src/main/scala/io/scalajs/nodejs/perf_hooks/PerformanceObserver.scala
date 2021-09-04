@@ -1,7 +1,6 @@
-package io.scalajs.nodejs
-package perf_hooks
+package io.scalajs.nodejs.perf_hooks
 
-import com.thoughtworks.enableMembersIf
+import com.thoughtworks.{enableIf, enableMembersIf}
 import _root_.net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
@@ -38,7 +37,7 @@ trait PerformanceObserverEntryList extends js.Object {
 @enableMembersIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
 @js.native
 trait Histogram extends js.Object {
-  def disble(): Boolean                 = js.native
+  def disable(): Boolean                = js.native
   def enable(): Boolean                 = js.native
   def exceeds: Double                   = js.native
   def max: Double                       = js.native
@@ -47,10 +46,17 @@ trait Histogram extends js.Object {
   def percentile(value: Double): Double = js.native
   def stddev: Double                    = js.native
 
-  // TODO: Return js.Map
-  def percentiles: js.Object = js.native
+  def percentiles: js.Map[Double, Double] = js.native
 
   def reset(): Unit = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def record(value: Double): Unit = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def record(value: js.BigInt): Unit = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def recordDelta(): Unit = js.native
 }
 
 @Factory

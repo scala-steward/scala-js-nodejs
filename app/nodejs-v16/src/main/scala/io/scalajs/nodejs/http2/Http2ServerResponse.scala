@@ -1,6 +1,7 @@
 package io.scalajs.nodejs.http2
 
-import io.scalajs.nodejs.{net, tls, stream}
+import com.thoughtworks.enableIf
+import io.scalajs.nodejs.{net, stream, tls}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -15,6 +16,9 @@ class Http2ServerResponse extends stream.Writable with Http2TimeoutOps {
   def connection: net.Socket | tls.TLSSocket = js.native
   def socket: net.Socket | tls.TLSSocket     = js.native
   def stream: Http2Stream                    = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.ltNodeJs16)
+  def req: Http2ServerRequest = js.native
 
   def writeHead(statusCode: Int, statusMessage: String, http2Headers: Http2Headers): Unit = js.native
   def writeHead(statusCode: Int, http2Headers: Http2Headers): Unit                        = js.native
