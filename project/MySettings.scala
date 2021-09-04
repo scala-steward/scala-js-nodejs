@@ -44,10 +44,10 @@ object MySettings {
       "-feature",
       "-language:implicitConversions"
     ) ++ lintSettings.value,
-    scalacOptions in Compile in compile ++= Seq(
+    Compile / scalacOptions ++= Seq(
       "-Xfatal-warnings"
     ),
-    scalacOptions in Compile in doc ++= Seq(
+    doc / scalacOptions ++= Seq(
       "-Xfatal-warnings",
       "-no-link-warnings"
     ),
@@ -58,7 +58,7 @@ object MySettings {
     scalaJSLinkerConfig ~= {
       _.withModuleKind(ModuleKind.CommonJSModule)
     },
-    logBuffered in Test := true
+    Test / logBuffered := true
   )
 
   lazy val commonMacroParadiseSetting = Seq(
@@ -77,7 +77,7 @@ object MySettings {
   )
 
   lazy val nonPublishingSetting = Seq(
-    skip in publish := true,
+    publish / skip := true,
     publishArtifact := false,
     publish := {},
     publishLocal := {}
@@ -101,10 +101,10 @@ object MySettings {
       )
     ),
     publishMavenStyle := true,
-    publishArtifact in Test := false,
-    publishArtifact in (Compile, packageDoc) := true,
-    publishArtifact in (Compile, packageSrc) := true,
-    publishArtifact in packageDoc := true,
+    Test / publishArtifact := false,
+    Compile / packageDoc / publishArtifact := true,
+    Compile / packageSrc / publishArtifact := true,
+    packageDoc / publishArtifact := true,
     pomIncludeRepository := { _ =>
       false
     },
