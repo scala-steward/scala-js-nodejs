@@ -1,8 +1,9 @@
 lazy val scala213 = "2.13.6"
 lazy val scala212 = "2.12.14"
-organization in ThisBuild := "net.exoego"
-crossScalaVersions in ThisBuild := Seq(scala213, scala212)
-scalaVersion in ThisBuild := scala213
+ThisBuild / organization := "net.exoego"
+ThisBuild / crossScalaVersions := Seq(scala213, scala212)
+ThisBuild / scalaVersion := scala213
+Global / excludeLintKeys ++= Set(publishArtifact, scalacOptions)
 
 lazy val root = {
   val p = (project in file("."))
@@ -54,7 +55,7 @@ def createNodeVersionSpecificProject(nodeFullVersion: String) = {
     .settings(MySettings.commonMacroParadiseSetting)
     .settings(MySettings.publishingSettings)
     .settings(
-      unmanagedSourceDirectories in Compile ++= {
+      Compile / unmanagedSourceDirectories ++= {
         val symlinkDir = baseDirectory.value / "src" / "main"
         val hasSymlink = symlinkDir.exists && symlinkDir.isDirectory
         Seq(file("app") / "nodejs-v14" / "src" / "main" / "scala").filter(_ => majorVersion != "14" && !hasSymlink)
