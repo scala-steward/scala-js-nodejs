@@ -1,8 +1,8 @@
 lazy val scala213 = "2.13.6"
 lazy val scala212 = "2.12.14"
-ThisBuild / organization := "net.exoego"
+ThisBuild / organization       := "net.exoego"
 ThisBuild / crossScalaVersions := Seq(scala213, scala212)
-ThisBuild / scalaVersion := scala213
+ThisBuild / scalaVersion       := scala213
 Global / excludeLintKeys ++= Set(publishArtifact, scalacOptions)
 
 lazy val root = {
@@ -63,7 +63,7 @@ def createNodeVersionSpecificProject(nodeFullVersion: String) = {
       scalacOptions ++= Seq(
         s"-Xmacro-settings:nodeJs${nodeFullVersion}"
       ),
-      name := s"scala-js-nodejs-v${majorVersion}",
+      name        := s"scala-js-nodejs-v${majorVersion}",
       description := s"NodeJS v${majorVersion} API for Scala.js",
       libraryDependencies ++= Dependencies.app.value
     )
