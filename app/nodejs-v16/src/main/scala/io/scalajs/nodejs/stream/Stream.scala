@@ -5,11 +5,11 @@ import com.thoughtworks.enableIf
 import _root_.net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js.|
-import io.scalajs.nodejs.buffer.Buffer
+import io.scalajs.nodejs.buffer.{Blob, Buffer}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSImport, JSName}
-import scala.scalajs.js.typedarray.Uint8Array
+import scala.scalajs.js.typedarray.{ArrayBuffer, Uint8Array}
 
 /** Marker trait as parent of both Readable and Writable.
   */
@@ -53,6 +53,12 @@ object Stream extends js.Object {
 @JSImport("stream", "Readable")
 class Readable() extends IReadable {
   def this(options: ReadableOptions) = this()
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def readableAborted: Boolean = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def readableDidRead: Boolean = js.native
 }
 
 @js.native
@@ -63,6 +69,11 @@ object Readable extends js.Object {
   ): Readable = js.native
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def from(iterable: js.Iterable[_]): Readable =
     js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def isDistributed(stream: Readable): Boolean = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def isDistributed(stream: IReadable): Boolean = js.native
 }
 
 /** Custom Writable streams must call the new stream.Writable([options]) constructor and pass the writable._write()
@@ -88,6 +99,24 @@ class Writable() extends IWritable {
 @JSImport("stream", "Duplex")
 class Duplex() extends IDuplex {
   def this(options: DuplexOptions) = this()
+}
+
+@js.native
+@JSImport("stream", "Duplex")
+object Duplex extends js.Object {
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def from(src: Stream): Duplex = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def from(src: Blob): Duplex = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def from(src: ArrayBuffer): Duplex = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def from(src: String): Duplex = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def from(src: js.Iterable[js.Any]): Duplex = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def from(src: js.Promise[js.Any]): Duplex = js.native
+  // TODO* AsyncIterable<any> | AsyncGeneratorFunction
 }
 
 /** Transform streams are Duplex streams where the output is in some way computed from the input. They implement both
