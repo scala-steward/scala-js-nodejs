@@ -374,7 +374,7 @@ trait Process extends IEventEmitter {
     * @example
     *   process.uptime()
     */
-  def uptime(): Int = js.native
+  def uptime(): Double = js.native
 }
 
 @js.native
