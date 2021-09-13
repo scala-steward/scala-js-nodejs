@@ -1,6 +1,7 @@
 package io.scalajs.nodejs.zlib
 
 import com.thoughtworks.enableIf
+import io.scalajs.nodejs.buffer.Buffer
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -75,8 +76,8 @@ trait Zlib extends js.Object with UncategorizedConstants with ZlibConstants {
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def brotliCompressSync(buffer: Data,
                                                                                             options: BrotliOptions
-  ): Unit = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def brotliCompressSync(buffer: Data): Unit =
+  ): Buffer = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def brotliCompressSync(buffer: Data): Buffer =
     js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
@@ -86,8 +87,8 @@ trait Zlib extends js.Object with UncategorizedConstants with ZlibConstants {
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def brotliDecompressSync(buffer: Data,
                                                                                               options: BrotliOptions
-  ): Unit = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def brotliDecompressSync(buffer: Data): Unit =
+  ): Buffer = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def brotliDecompressSync(buffer: Data): Buffer =
     js.native
 
   /** Compress a Buffer or string with Deflate.
@@ -99,17 +100,17 @@ trait Zlib extends js.Object with UncategorizedConstants with ZlibConstants {
   /** Compress a Buffer or string with Deflate.
     * @example zlib.deflateSync(buf[, options])
     */
-  def deflateSync(buffer: Data, options: CompressionOptions): Unit = js.native
-  def deflateSync(buffer: Data): Unit                              = js.native
+  def deflateSync(buffer: Data, options: CompressionOptions): Buffer = js.native
+  def deflateSync(buffer: Data): Buffer                              = js.native
 
   /** Compress a Buffer or string with DeflateRaw.
     * @example zlib.deflateRaw(buf[, options], callback)
     */
   def deflateRaw(buffer: Data, options: CompressionOptions, callback: js.Function): Unit =
     js.native
-  def deflateRaw(buffer: Data, callback: js.Function): Unit           = js.native
-  def deflateRawSync(buffer: Data, options: CompressionOptions): Unit = js.native
-  def deflateRawSync(buffer: Data): Unit                              = js.native
+  def deflateRaw(buffer: Data, callback: js.Function): Unit             = js.native
+  def deflateRawSync(buffer: Data, options: CompressionOptions): Buffer = js.native
+  def deflateRawSync(buffer: Data): Buffer                              = js.native
 
   /** Decompress a Buffer or string with Gunzip.
     * @example zlib.gunzip(buf[, options], callback)
@@ -120,8 +121,8 @@ trait Zlib extends js.Object with UncategorizedConstants with ZlibConstants {
   /** Decompress a Buffer or string with Gunzip.
     * @example zlib.gunzipSync(buf[, options])
     */
-  def gunzipSync(buffer: Data, options: CompressionOptions): Unit = js.native
-  def gunzipSync(buffer: Data): Unit                              = js.native
+  def gunzipSync(buffer: Data, options: CompressionOptions): Buffer = js.native
+  def gunzipSync(buffer: Data): Buffer                              = js.native
 
   /** Compress a Buffer or string with Gzip.
     * @example zlib.gzip(buf[, options], callback)
@@ -132,8 +133,8 @@ trait Zlib extends js.Object with UncategorizedConstants with ZlibConstants {
   /** Compress a Buffer or string with Gzip.
     * @example zlib.gzipSync(buf[, options])
     */
-  def gzipSync(buffer: Data, options: CompressionOptions): Unit = js.native
-  def gzipSync(buffer: Data): Unit                              = js.native
+  def gzipSync(buffer: Data, options: CompressionOptions): Buffer = js.native
+  def gzipSync(buffer: Data): Buffer                              = js.native
 
   /** Decompress a Buffer or string with Inflate.
     * @example zlib.inflate(buf[, options], callback)
@@ -144,8 +145,8 @@ trait Zlib extends js.Object with UncategorizedConstants with ZlibConstants {
   /** Decompress a Buffer or string with Inflate.
     * @example zlib.inflateSync(buf[, options])
     */
-  def inflateSync(buffer: Data, options: CompressionOptions): Unit = js.native
-  def inflateSync(buffer: Data): Unit                              = js.native
+  def inflateSync(buffer: Data, options: CompressionOptions): Buffer = js.native
+  def inflateSync(buffer: Data): Buffer                              = js.native
 
   /** Decompress a Buffer or string with InflateRaw.
     * @example zlib.inflateRaw(buf[, options], callback)
@@ -157,8 +158,8 @@ trait Zlib extends js.Object with UncategorizedConstants with ZlibConstants {
   /** Decompress a Buffer or string with InflateRaw.
     * @example zlib.inflateRawSync(buf[, options])
     */
-  def inflateRawSync(buffer: Data, options: CompressionOptions): Unit = js.native
-  def inflateRawSync(buffer: Data): Unit                              = js.native
+  def inflateRawSync(buffer: Data, options: CompressionOptions): Buffer = js.native
+  def inflateRawSync(buffer: Data): Buffer                              = js.native
 
   /** Decompress a Buffer or string with Unzip.
     * @example zlib.unzip(buf[, options], callback)
@@ -169,8 +170,8 @@ trait Zlib extends js.Object with UncategorizedConstants with ZlibConstants {
   /** Decompress a Buffer or string with Unzip.
     * @example zlib.unzipSync(buf[, options])
     */
-  def unzipSync(buffer: Data, options: CompressionOptions): Unit = js.native
-  def unzipSync(buffer: Data): Unit                              = js.native
+  def unzipSync(buffer: Data, options: CompressionOptions): Buffer = js.native
+  def unzipSync(buffer: Data): Buffer                              = js.native
 }
 
 /** Zlib Singleton
