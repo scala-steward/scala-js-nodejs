@@ -107,11 +107,7 @@ class BufferTest extends AnyFunSpec {
 
       it("should support isEncoding") {
         assert(!Buffer.isEncoding(null))
-        if (TestEnvironment.isExecutedInExactNode8) {
-          assert(Buffer.isEncoding(""))
-        } else {
-          assert(!Buffer.isEncoding(""))
-        }
+        assert(!Buffer.isEncoding(""))
         assert(Buffer.isEncoding("utf8"))
         assert(Buffer.isEncoding("UTF-8"))
       }
