@@ -1,8 +1,8 @@
 lazy val scala213 = "2.13.6"
 lazy val scala212 = "2.12.14"
-ThisBuild / organization := "net.exoego"
+ThisBuild / organization       := "net.exoego"
 ThisBuild / crossScalaVersions := Seq(scala213, scala212)
-ThisBuild / scalaVersion := scala213
+ThisBuild / scalaVersion       := scala213
 Global / excludeLintKeys ++= Set(publishArtifact, scalacOptions)
 
 lazy val root = {
@@ -43,14 +43,14 @@ lazy val nodeVerMap = {
   }
 }
 val latestNodeVersion = "16"
-lazy val nodejs_v16 = createNodeVersionSpecificProject(nodeVerMap("16"))
-lazy val nodejs_v14 = createNodeVersionSpecificProject(nodeVerMap("14"))
-lazy val nodejs_v12 = createNodeVersionSpecificProject(nodeVerMap("12"))
-lazy val nodejs_v10 = createNodeVersionSpecificProject(nodeVerMap("10"))
+lazy val nodejs_v16   = createNodeVersionSpecificProject(nodeVerMap("16"))
+lazy val nodejs_v14   = createNodeVersionSpecificProject(nodeVerMap("14"))
+lazy val nodejs_v12   = createNodeVersionSpecificProject(nodeVerMap("12"))
+lazy val nodejs_v10   = createNodeVersionSpecificProject(nodeVerMap("10"))
 
 def createNodeVersionSpecificProject(nodeFullVersion: String) = {
   val majorVersion = nodeFullVersion.split("\\.")(0)
-  val isLatest = majorVersion == latestNodeVersion
+  val isLatest     = majorVersion == latestNodeVersion
   sbt
     .Project(id = s"nodejs_v${majorVersion}", base = file(s"./app/nodejs-v${majorVersion}"))
     .enablePlugins(ScalaJSPlugin)
@@ -62,12 +62,14 @@ def createNodeVersionSpecificProject(nodeFullVersion: String) = {
       Compile / unmanagedSourceDirectories ++= {
         val symlinkDir = baseDirectory.value / "src" / "main"
         val hasSymlink = symlinkDir.exists && symlinkDir.isDirectory
-        Seq(file("app") / s"nodejs-v${latestNodeVersion}" / "src" / "main" / "scala").filter(_ => !isLatest && !hasSymlink)
+        Seq(file("app") / s"nodejs-v${latestNodeVersion}" / "src" / "main" / "scala").filter(_ =>
+          !isLatest && !hasSymlink
+        )
       },
       scalacOptions ++= Seq(
         s"-Xmacro-settings:nodeJs${nodeFullVersion}"
       ),
-      name := s"scala-js-nodejs-v${majorVersion}",
+      name        := s"scala-js-nodejs-v${majorVersion}",
       description := s"NodeJS v${majorVersion} API for Scala.js",
       libraryDependencies ++= Dependencies.app.value
     )
