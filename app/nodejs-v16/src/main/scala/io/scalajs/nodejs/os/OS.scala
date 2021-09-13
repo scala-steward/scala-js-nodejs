@@ -130,7 +130,7 @@ trait OS extends js.Object {
     * @example
     *   os.uptime()
     */
-  def uptime(): Int = js.native
+  def uptime(): Double = js.native
 
   /** The os.userInfo() method returns information about the currently effective user -- on POSIX platforms, this is
     * typically a subset of the password file. The returned object includes the username, uid, gid, shell, and homedir.
