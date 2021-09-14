@@ -1,0 +1,129 @@
+package io.scalajs.nodejs
+
+import com.thoughtworks.enableIf
+
+import scala.scalajs.js
+import scala.scalajs.js.annotation.JSImport
+import scala.scalajs.js.typedarray.Uint8Array
+import scala.scalajs.js.typedarray.ArrayBuffer
+import scala.scalajs.js.typedarray.DataView
+import scala.scalajs.js.typedarray.TypedArray
+import scala.scalajs.js.|
+
+/** buffer package object
+  */
+package object buffer {
+  type BlobSources =
+    js.Array[String] | js.Array[ArrayBuffer] | js.Array[TypedArray[_, _]] | js.Array[DataView] | js.Array[Blob]
+
+  /////////////////////////////////////////////////////////////////////////////////
+  //      Buffer Extensions
+  /////////////////////////////////////////////////////////////////////////////////
+
+  /** Buffer Extensions
+    */
+  implicit final class BufferExtensions(private val buffer: Buffer) extends AnyVal {
+
+    /** Syntactic sugar for concatenating a buffer
+      *
+      * @param aBuffer
+      *   another buffer
+      * @return
+      *   a new buffer with the concatenated contents of both buffers
+      */
+    @inline
+    def +(aBuffer: Buffer): Buffer = Buffer.concat(js.Array(buffer, aBuffer))
+
+    /** Returns the actual byte length of a string. This is not the same as String.prototype.length since that returns
+      * the number of characters in a string.
+      */
+    @inline
+    def byteLength(encoding: String): Int = Buffer.byteLength(buffer)
+
+    /** Returns the hex-formatted string
+      *
+      * @return
+      *   the hex-formatted string
+      */
+    @inline
+    def toHexString: String =
+      js.Iterator.IteratorOps(buffer.entries()).toIterator.flatMap(_.lastOption).map(n => f"$n%02x").mkString
+  }
+
+  /** Re-encodes the given `Buffer` or `Uint8Array` instance from one character encoding to another. Returns a new
+    * `Buffer` instance.
+    *
+    * Throws if the `fromEnc` or `toEnc` specify invalid character encodings or if conversion from `fromEnc` to `toEnc``
+    * is not permitted.
+    *
+    * Encodings supported by `buffer.transcode()` are: 'ascii', 'utf8', 'utf16le', 'ucs2', 'latin1', and 'binary'.
+    *
+    * The transcoding process will use substitution characters if a given byte sequence cannot be adequately represented
+    * in the target encoding.
+    *
+    * @param source
+    *   A Buffer instance
+    * @param fromEnc
+    *   The current encoding
+    * @param toEnc
+    *   To target encoding
+    * @return
+    *   a new Buffer instance.
+    * @see
+    *   [[https://nodejs.org/api/buffer.html#buffer_buffer_transcode_source_fromenc_toenc]]
+    */
+  def transcode(source: Uint8Array, fromEnc: String, toEnc: String): Buffer =
+    BufferNamespace.transcode(source, fromEnc, toEnc)
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  @deprecated("Use Buffer.from(data, 'base64') instead.", "Node.js v15.13.0")
+  def atob(data: String): String = BufferNamespace.atob(data)
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  @deprecated("Use buf.toString('base64') instead.", "Node.js v15.13.0")
+  def btoa(data: String): String = BufferNamespace.btoa(data)
+
+  /** Returns the maximum number of bytes that will be returned when buf.inspect() is called. This can be overridden by
+    * user modules. See util.inspect() for more details on buf.inspect() behavior.
+    *
+    * Note that this is a property on the buffer module returned by require('buffer'), not on the Buffer global or a
+    * Buffer instance.
+    */
+  val INSPECT_MAX_BYTES: UID = BufferNamespace.INSPECT_MAX_BYTES
+
+  /** On 32-bit architectures, this value is (2^30)-1 (~1GB). On 64-bit architectures, this value is (2^31)-1 (~2GB).F
+    * Note that this is a property on the buffer module returned by require('buffer'), not on the Buffer global or a
+    * Buffer instance.
+    */
+  val kMaxLength: Double = BufferNamespace.kMaxLength
+
+  @js.native
+  @JSImport("buffer", JSImport.Namespace)
+  private object BufferNamespace extends js.Object {
+    val INSPECT_MAX_BYTES: Int                                                = js.native
+    val kMaxLength: Double                                                    = js.native
+    def transcode(source: Uint8Array, fromEnc: String, toEnc: String): Buffer = js.native
+    def atob(data: String): String                                            = js.native
+    def btoa(data: String): String                                            = js.native
+  }
+
+  @js.native
+  @JSImport("buffer", "constants")
+  object constants extends js.Object {
+
+    /** The largest size allowed for a single `Buffer` instance.
+      *
+      * On 32-bit architectures, this value is `(2^30)-1` (~1GB). On 64-bit architectures, this value is `(2^31)-1`
+      * (~2GB).
+      */
+    val MAX_LENGTH: Double = js.native
+
+    /** The largest length allowed for a single `String` instance.
+      *
+      * Represents the largest `length` that a `String` primitive can have, counted in UTF-16 code units.
+      *
+      * This value may depend on the JS engine that is being used.
+      */
+    val MAX_STRING_LENGTH: Int = js.native
+  }
+}
