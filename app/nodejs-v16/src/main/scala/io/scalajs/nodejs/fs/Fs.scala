@@ -718,7 +718,7 @@ trait Fs extends js.Object {
                offset: Int | Null,
                length: Int | Null,
                position: Int | Null
-  ): Unit                                                                        = js.native
+  ): Unit = js.native
   def readSync(fd: FileDescriptor, buffer: BufferLike, offset: Int | Null): Unit = js.native
   def readSync(fd: FileDescriptor, buffer: BufferLike): Unit                     = js.native
 
@@ -1237,7 +1237,7 @@ trait Fs extends js.Object {
             position: Int,
             encoding: String,
             callback: FsCallback2[Int, String]
-  ): Unit                                                                                                = js.native
+  ): Unit = js.native
   def write(fd: FileDescriptor, string: String, position: Int, callback: FsCallback2[Int, String]): Unit = js.native
   def write(fd: FileDescriptor, string: String, callback: FsCallback2[Int, String]): Unit                = js.native
 
@@ -1494,7 +1494,7 @@ object Fs extends Fs {
               offset: Int | Null,
               length: Int | Null,
               position: Int | Null
-    ): js.Promise[BufferIOResult[js.typedarray.DataView]]                                                 = js.native
+    ): js.Promise[BufferIOResult[js.typedarray.DataView]] = js.native
     def write(string: String, position: Int | Null, encoding: String): js.Promise[BufferIOResult[String]] = js.native
 
     def writeFile(data: String, options: FileWriteOptions): js.Promise[Unit]     = js.native

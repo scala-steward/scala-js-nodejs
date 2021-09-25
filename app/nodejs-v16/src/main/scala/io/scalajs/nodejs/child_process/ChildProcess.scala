@@ -38,7 +38,7 @@ trait ForkedChildProcess extends ChildProcess {
            sendHandle: Handle,
            options: SendOptions,
            callback: js.Function1[nodejs.Error, Any]
-  ): Boolean                                                                                        = js.native
+  ): Boolean = js.native
   def send(message: js.Any, sendHandle: Handle, options: SendOptions): Boolean                      = js.native
   def send(message: js.Any, sendHandle: Handle, callback: js.Function1[nodejs.Error, Any]): Boolean = js.native
   def send(message: js.Any, sendHandle: Handle): Boolean                                            = js.native

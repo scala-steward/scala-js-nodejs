@@ -975,7 +975,7 @@ class Buffer protected () extends Uint8Array( /* dummy to trick constructor */ -
     */
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def readBigInt64BE(
       offset: Int
-  ): scalajs.js.BigInt                                                                                       = js.native
+  ): scalajs.js.BigInt = js.native
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def readBigInt64BE(): scalajs.js.BigInt = js.native
 
   /** @see

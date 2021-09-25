@@ -108,7 +108,7 @@ trait Crypto extends js.Object {
                           primeEncoding: String,
                           generator: String,
                           generatorEncoding: String
-  ): DiffieHellman                                                                                        = js.native
+  ): DiffieHellman = js.native
   def createDiffieHellman(prime: BufferLike, generator: String, generatorEncoding: String): DiffieHellman = js.native
   def createDiffieHellman(prime: BufferLike, generator: Int): DiffieHellman                               = js.native
   def createDiffieHellman(prime: BufferLike, generator: BufferLike): DiffieHellman                        = js.native
@@ -376,7 +376,7 @@ trait Crypto extends js.Object {
              keylen: Int,
              options: ScryptOptions,
              callback: Callback1[Buffer]
-  ): Unit                                                                                            = js.native
+  ): Unit = js.native
   def scrypt(password: String, salt: String, keylen: Int, callback: Callback1[Buffer]): Unit         = js.native
   def scrypt(password: String, salt: BufferLike, keylen: Int, callback: Callback1[Buffer]): Unit     = js.native
   def scrypt(password: BufferLike, salt: String, keylen: Int, callback: Callback1[Buffer]): Unit     = js.native

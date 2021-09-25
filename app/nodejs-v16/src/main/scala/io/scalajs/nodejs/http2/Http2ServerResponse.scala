@@ -14,8 +14,8 @@ class Http2ServerResponse extends stream.Writable with Http2TimeoutOps {
 
   @deprecated("Use response.socket", "Node.js v13.0.0")
   def connection: net.Socket | tls.TLSSocket = js.native
-  def socket: net.Socket | tls.TLSSocket     = js.native
-  def stream: Http2Stream                    = js.native
+  def socket: net.Socket | tls.TLSSocket = js.native
+  def stream: Http2Stream                = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.ltNodeJs16)
   def req: Http2ServerRequest = js.native
@@ -40,7 +40,7 @@ class Http2ServerResponse extends stream.Writable with Http2TimeoutOps {
   def setHeader(name: String, value: js.Array[String]): Unit = js.native
 
   @deprecated("Use writableEnd", "Node.js v13.4.0, v12.16.0")
-  def finished: Boolean    = js.native
+  def finished: Boolean = js.native
   def headersSent: Boolean = js.native
   def sendDate: Boolean    = js.native
 
