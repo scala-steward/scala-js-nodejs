@@ -20,13 +20,13 @@ class PromisesResolver extends js.Object {
   def resolveAny(hostname: String): js.Promise[js.Array[ResolveObject]]             = js.native
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
   def resolveCaa(hostname: String): js.Promise[js.Array[ResolveObject]] = js.native
-  def resolveCname(hostname: String): js.Promise[js.Array[String]]      = js.native
-  def resolveMx(hostname: String): js.Promise[js.Array[MX]]             = js.native
-  def resolveNaptr(hostname: String): js.Promise[js.Array[NAPTR]]       = js.native
-  def resolveNs(hostname: String): js.Promise[js.Array[String]]         = js.native
-  def resolveSoa(hostname: String): js.Promise[js.Array[SOA]]           = js.native
-  def resolveSrv(hostname: String): js.Promise[js.Array[SRV]]           = js.native
-  def resolvePtr(hostname: String): js.Promise[js.Array[String]]        = js.native
-  def resolveTxt(hostname: String): js.Promise[js.Array[String]]        = js.native
-  def reverse(ipAddress: String): js.Promise[js.Array[String]]          = js.native
+  def resolveCname(hostname: String): js.Promise[js.Array[String]] = js.native
+  def resolveMx(hostname: String): js.Promise[js.Array[MX]]        = js.native
+  def resolveNaptr(hostname: String): js.Promise[js.Array[NAPTR]]  = js.native
+  def resolveNs(hostname: String): js.Promise[js.Array[String]]    = js.native
+  def resolveSoa(hostname: String): js.Promise[js.Array[SOA]]      = js.native
+  def resolveSrv(hostname: String): js.Promise[js.Array[SRV]]      = js.native
+  def resolvePtr(hostname: String): js.Promise[js.Array[String]]   = js.native
+  def resolveTxt(hostname: String): js.Promise[js.Array[String]]   = js.native
+  def reverse(ipAddress: String): js.Promise[js.Array[String]]     = js.native
 }

@@ -86,9 +86,9 @@ class FsV8AsyncTest extends AsyncFunSpec with BeforeAndAfterEach {
 
     it("should support copyFileFuture") {
       for {
-        _    <- Fs.appendFileFuture("x.CopyFile.txt", "yay")
-        _    <- Fs.copyFileFuture("x.CopyFile.txt", "x.CopyFile_2.txt")
-        _    <- Fs.copyFileFuture("x.CopyFile.txt", "x.CopyFile_2.txt") // succeed
+        _ <- Fs.appendFileFuture("x.CopyFile.txt", "yay")
+        _ <- Fs.copyFileFuture("x.CopyFile.txt", "x.CopyFile_2.txt")
+        _ <- Fs.copyFileFuture("x.CopyFile.txt", "x.CopyFile_2.txt") // succeed
         _    <- Fs.copyFileFuture("x.CopyFile.txt", "x.CopyFile_2.txt", Fs.constants.COPYFILE_EXCL).failed
         stat <- Fs.statFuture("x.CopyFile_2.txt")
         _    <- Fs.unlinkFuture("x.CopyFile.txt")
