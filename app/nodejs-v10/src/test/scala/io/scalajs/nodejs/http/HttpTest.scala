@@ -17,8 +17,8 @@ class HttpTest extends AnyFunSpec {
       assert(server !== null)
 
       // don't listen on a port
-      //server.listen(58888)
-      //setTimeout(() => server.close(), 100.millis)
+      // server.listen(58888)
+      // setTimeout(() => server.close(), 100.millis)
     }
 
     it("should provide statusCode") {
