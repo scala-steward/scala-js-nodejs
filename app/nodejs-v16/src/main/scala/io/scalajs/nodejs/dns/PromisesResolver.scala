@@ -29,4 +29,7 @@ class PromisesResolver extends js.Object {
   def resolvePtr(hostname: String): js.Promise[js.Array[String]]   = js.native
   def resolveTxt(hostname: String): js.Promise[js.Array[String]]   = js.native
   def reverse(ipAddress: String): js.Promise[js.Array[String]]     = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
+  def setDefaultResultOrder(order: String): js.Promise[Unit] = js.native
 }

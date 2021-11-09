@@ -1332,6 +1332,16 @@ trait Fs extends js.Object {
   def writevSync(fd: FileDescriptor, buffers: js.Array[js.typedarray.ArrayBufferView], position: Int): Unit = js.native
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def writevSync(fd: FileDescriptor, buffers: js.Array[js.typedarray.ArrayBufferView]): Unit = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def cpSync(src: Path, dest: Path, options: CpOptions): Unit = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def cpSync(src: Path, dest: Path): Unit = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def cp(src: Path, dest: Path, options: CpOptions, fsCallback2: FsCallback0): Unit = js.native
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def cp(src: Path, dest: Path, fsCallback2: FsCallback0): Unit = js.native
 }
 
 /** File System Singleton
@@ -1451,6 +1461,11 @@ object Fs extends Fs {
     def writeFile(file: FileHandle, data: BufferLike, options: FileWriteOptions): js.Promise[Unit] = js.native
     def writeFile(file: FileHandle, data: String): js.Promise[Unit]                                = js.native
     def writeFile(file: FileHandle, data: BufferLike): js.Promise[Unit]                            = js.native
+
+    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+    def cp(src: Path, dest: Path): js.Promise[Unit] = js.native
+    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+    def cp(src: Path, dest: Path, options: CpOptions): js.Promise[Unit] = js.native
   }
 
   @js.native
@@ -1679,4 +1694,14 @@ trait FsPromiseWatchOptions extends js.Object {
   var encoding: js.UndefOr[String]    = js.undefined
   var persistent: js.UndefOr[Boolean] = js.undefined
   var recursive: js.UndefOr[Boolean]  = js.undefined
+}
+
+@Factory
+trait CpOptions extends js.Object {
+  var filter: js.UndefOr[js.Function1[String, Boolean]] = js.undefined
+  var dereference: js.UndefOr[Boolean]                  = js.undefined
+  var errorOnExist: js.UndefOr[Boolean]                 = js.undefined
+  var force: js.UndefOr[Boolean]                        = js.undefined
+  var preserveTimestamps: js.UndefOr[Boolean]           = js.undefined
+  var recursive: js.UndefOr[Boolean]                    = js.undefined
 }

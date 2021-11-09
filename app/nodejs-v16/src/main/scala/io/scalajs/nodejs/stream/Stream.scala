@@ -19,6 +19,15 @@ trait Stream extends js.Object
 @js.native
 @JSImport("stream", JSImport.Namespace)
 object Stream extends js.Object {
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def compose(first: Stream, rest: Stream*): Duplex = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def compose(first: js.Iterable[Stream], rest: js.Iterable[Stream]*): Duplex = js.native
+
+  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
+  def compose(first: js.Function0[Stream], rest: js.Function0[Stream]*): Duplex = js.native
+
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
   def addAbortSignal[T <: Stream](signal: AbortSignal, stream: T): T = js.native
 
