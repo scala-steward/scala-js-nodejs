@@ -1,6 +1,6 @@
 # scala-js-nodejs
 
-Scala.js type facades for Node.js v10, v12 and v14.
+Scala.js type facades for Node.js v10, v12, v14 and v16.
 
 ## Support matrix
 
@@ -25,11 +25,13 @@ Add below line to your SBT project.
 
 ```sbt
 // For Node.js v10 LTS (Will be dropped on 2021-4-30)
-libraryDependencies += "net.exoego" %%% "scala-js-nodejs-v10" % "0.13.0"
+libraryDependencies += "net.exoego" %%% "scala-js-nodejs-v10" % "0.14.0"
 // For Node.js v12 LTS
-libraryDependencies += "net.exoego" %%% "scala-js-nodejs-v12" % "0.13.0"
+libraryDependencies += "net.exoego" %%% "scala-js-nodejs-v12" % "0.14.0"
 // For Node.js v14 LTS
-libraryDependencies += "net.exoego" %%% "scala-js-nodejs-v14" % "0.13.0"
+libraryDependencies += "net.exoego" %%% "scala-js-nodejs-v14" % "0.14.0"
+// For Node.js v16 LTS
+libraryDependencies += "net.exoego" %%% "scala-js-nodejs-v16" % "0.14.0"
 ```
 
 ## Example of code
