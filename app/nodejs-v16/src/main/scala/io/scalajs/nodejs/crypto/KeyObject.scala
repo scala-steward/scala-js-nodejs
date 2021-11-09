@@ -10,8 +10,8 @@ import scala.scalajs.js.|
 @js.native
 // TODO: Can be exposed as newable class when Node.js v10 dropped
 sealed trait KeyObject extends js.Object {
-  def export(options: KeyObjectExportOptions): Buffer | String = js.native
-  def export(): Buffer                                         = js.native
+  def `export`(options: KeyObjectExportOptions): Buffer | String = js.native
+  def `export`(): Buffer                                         = js.native
 
   /** For asymmetric keys, this property represents the type of the key. This property is undefined for unrecognized
     * KeyObject types and symmetric keys.
