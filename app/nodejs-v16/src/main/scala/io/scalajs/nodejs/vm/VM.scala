@@ -97,12 +97,10 @@ object VM extends VM
 
 @Factory
 trait CompileFunctionOptions extends js.Object {
-  var filename: js.UndefOr[String]                  = js.undefined
-  var lineOffset: js.UndefOr[Int]                   = js.undefined
-  var columnOffset: js.UndefOr[Int]                 = js.undefined
-  var cachedData: js.UndefOr[Uint8Array | DataView] = js.undefined
-  @deprecated("Use script.createCachedData", "Node.js v10")
-  var produceCachedData: js.UndefOr[Boolean]             = js.undefined
+  var filename: js.UndefOr[String]                       = js.undefined
+  var lineOffset: js.UndefOr[Int]                        = js.undefined
+  var columnOffset: js.UndefOr[Int]                      = js.undefined
+  var cachedData: js.UndefOr[Uint8Array | DataView]      = js.undefined
   var parsingContext: js.UndefOr[js.Object]              = js.undefined
   var contextExtensions: js.UndefOr[js.Array[js.Object]] = js.undefined
 }

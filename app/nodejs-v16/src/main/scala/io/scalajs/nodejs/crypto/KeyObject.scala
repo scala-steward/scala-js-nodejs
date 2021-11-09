@@ -8,8 +8,7 @@ import scala.scalajs.js.typedarray.{DataView, TypedArray}
 import scala.scalajs.js.|
 
 @js.native
-// TODO: Can be exposed as newable class when Node.js v10 dropped
-sealed trait KeyObject extends js.Object {
+class KeyObject private () extends js.Object {
   def `export`(options: KeyObjectExportOptions): Buffer | String = js.native
   def `export`(): Buffer                                         = js.native
 

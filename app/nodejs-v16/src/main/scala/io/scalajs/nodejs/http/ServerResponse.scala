@@ -115,8 +115,7 @@ trait ServerResponse extends stream.Writable {
     */
   def writeContinue(): Unit = js.native
 
-  // Todo: Return this.type when Node.js v10 dropped
-  def writeHead(statusCode: Int, statusMessage: String, headers: js.Object): Unit        = js.native
+  def writeHead(statusCode: Int, statusMessage: String, headers: js.Object): this.type   = js.native
   def writeHead(statusCode: Int, statusMessage: String, headers: js.Dictionary[_]): Unit = js.native
   def writeHead(statusCode: Int, statusMessage: String): Unit                            = js.native
   def writeHead(statusCode: Int, headers: js.Object): Unit                               = js.native

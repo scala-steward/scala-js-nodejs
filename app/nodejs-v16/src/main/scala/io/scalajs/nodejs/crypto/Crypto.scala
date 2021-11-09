@@ -21,44 +21,8 @@ import scala.scalajs.js.|
 @js.native
 trait Crypto extends js.Object {
   // ///////////////////////////////////////////////////////////////////////////////
-  //      Properties
-  // ///////////////////////////////////////////////////////////////////////////////
-
-  /** The default encoding to use for functions that can take either strings or buffers. The default value is 'buffer',
-    * which makes methods default to Buffer objects.
-    *
-    * The crypto.DEFAULT_ENCODING mechanism is provided for backwards compatibility with legacy programs that expect
-    * 'binary' to be the default encoding.
-    */
-  @deprecated("New applications should expect the default to be 'buffer'.", "Node.js v10.0")
-  val DEFAULT_ENCODING: String = js.native
-
-  /** Property for checking and controlling whether a FIPS compliant crypto provider is currently in use. Setting to
-    * true requires a FIPS build of Node.js.
-    */
-  @deprecated("Please use crypto.setFips() and crypto.getFips() instead.", "Node.js v10.0")
-  var fips: Boolean = js.native
-
-  // ///////////////////////////////////////////////////////////////////////////////
   //      Methods
   // ///////////////////////////////////////////////////////////////////////////////
-
-  /** Creates and returns a Cipher object that uses the given algorithm and password.
-    * @param algorithm
-    *   The algorithm is dependent on OpenSSL, examples are 'aes192', etc. On recent OpenSSL releases, openssl
-    *   list-cipher-algorithms will display the available cipher algorithms.
-    * @param password
-    *   The password is used to derive the cipher key and initialization vector (IV). The value must be either a
-    *   'binary' encoded string or a Buffer.
-    * @example
-    *   crypto.createCipher(algorithm, password)
-    */
-  @deprecated("Use crypto.createCipheriv() instead.", "Node.js v10.0") def createCipher(algorithm: String,
-                                                                                        password: Buffer
-  ): Cipher = js.native
-  @deprecated("Use crypto.createCipheriv() instead.", "Node.js v10.0") def createCipher(algorithm: String,
-                                                                                        password: String
-  ): Cipher = js.native
 
   def createCipheriv(algorithm: String, key: String, iv: String, options: TransformOptions): Cipher        = js.native
   def createCipheriv(algorithm: String, key: String, iv: BufferLike): Cipher                               = js.native
@@ -68,25 +32,6 @@ trait Crypto extends js.Object {
   def createCipheriv(algorithm: String, key: KeyObject, iv: BufferLike, options: TransformOptions): Cipher = js.native
   def createCipheriv(algorithm: String, key: KeyObject, iv: String): Cipher                                = js.native
   def createCipheriv(algorithm: String, key: KeyObject, iv: BufferLike): Cipher                            = js.native
-
-  /** Creates and returns a Decipher object that uses the given algorithm and password (key). The implementation of
-    * crypto.createDecipher() derives keys using the OpenSSL function EVP_BytesToKey with the digest algorithm set to
-    * MD5, one iteration, and no salt. The lack of salt allows dictionary attacks as the same password always creates
-    * the same key. The low iteration count and non-cryptographically secure hash algorithm allow passwords to be tested
-    * very rapidly.
-    *
-    * In line with OpenSSL's recommendation to use pbkdf2 instead of EVP_BytesToKey it is recommended that developers
-    * derive a key and IV on their own using crypto.pbkdf2() and to use crypto.createDecipheriv() to create the Decipher
-    * object.
-    * @example
-    *   crypto.createDecipher(algorithm, password)
-    */
-  @deprecated("Use crypto.createDecipheriv() instead.", "Node.js v10.0") def createDecipher(algorithm: String,
-                                                                                            password: Buffer
-  ): Decipher = js.native
-  @deprecated("Use crypto.createDecipheriv() instead.", "Node.js v10.0") def createDecipher(algorithm: String,
-                                                                                            password: String
-  ): Decipher = js.native
 
   def createDecipheriv(algorithm: String, key: String, iv: String, options: TransformOptions): Decipher     = js.native
   def createDecipheriv(algorithm: String, key: String, iv: BufferLike, options: TransformOptions): Decipher = js.native

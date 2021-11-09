@@ -597,8 +597,7 @@ package object fs {
     @inline
     def onChange(listener: (String, js.Any) => Any): T = watcher.on("change", listener)
 
-    /** Added in Node.js v10.0.0
-      * @see
+    /** @see
       *   https://nodejs.org/api/fs.html#fs_event_close
       */
     @inline

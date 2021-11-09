@@ -17,8 +17,7 @@ class Worker protected () extends js.Object with MessagePoster {
   def ref(): Unit   = js.native
   def unref(): Unit = js.native
 
-  // TODO: No need to UnderOr when Node.js v10 dropepd
-  def terminate(): js.UndefOr[js.Promise[Unit]] = js.native
+  def terminate(): js.Promise[Unit] = js.native
 
   def threadId: Int = js.native
 
