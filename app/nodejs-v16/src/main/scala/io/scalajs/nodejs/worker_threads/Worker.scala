@@ -26,13 +26,10 @@ class Worker protected () extends js.Object with MessagePoster {
   def stdout: io.scalajs.nodejs.stream.Readable       = js.native
   def stdin: io.scalajs.nodejs.stream.Writable | Null = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def resourceLimits: ResourceLimits = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def getHeapSnapshot(): js.Promise[io.scalajs.nodejs.stream.Readable] = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def performance: PerformanceObject = js.native
 
 }

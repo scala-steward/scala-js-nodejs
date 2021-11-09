@@ -18,7 +18,6 @@ package object tls {
     Buffer | TypedArray[_, _] | DataView | js.Array[String] | js.Array[TypedArray[_, _]] | js.Array[DataView]
 
   implicit final class ServerExtensions[T <: Server](private val instance: T) extends AnyVal {
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline def onKeylog(handler: (Buffer, TLSSocket) => Any): T = instance.on("keylog", handler)
 
     @inline def onNewSession(handler: (Buffer, Buffer, js.Function0[Unit]) => Any): T =
@@ -32,7 +31,6 @@ package object tls {
   }
 
   implicit final class TLSSocketExtensions[T <: TLSSocket](private val instance: T) extends AnyVal {
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline def onKeylog(handler: (Buffer, TLSSocket) => Any): T = instance.on("keylog", handler)
 
     @inline def onOCSPResponse(handler: (Buffer) => Any): T = instance.on("OCSPResponse", handler)

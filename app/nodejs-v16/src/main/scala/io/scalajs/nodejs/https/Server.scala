@@ -1,8 +1,6 @@
 package io.scalajs.nodejs
 package https
 
-import com.thoughtworks.enableIf
-
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
@@ -11,7 +9,6 @@ import scala.scalajs.js.annotation.JSImport
 @js.native
 @JSImport("https", "Server")
 class Server extends tls.Server {
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def headersTimeout: Int = js.native
 
   def maxHeaderCount: Int   = js.native

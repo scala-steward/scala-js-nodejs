@@ -1,6 +1,5 @@
 package io.scalajs.nodejs
 
-import com.thoughtworks.enableIf
 import io.scalajs.nodejs.buffer.Buffer
 
 import scala.scalajs.js
@@ -13,7 +12,6 @@ package object dgram {
   type BufferMessage = Uint8Array | js.Array[Uint8Array]
 
   implicit final class SocketExtensions[T <: Socket](private val instance: T) extends AnyVal {
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline def onConnect(handler: () => Any): T = instance.on("connect", handler)
 
     @inline def onClose(handler: () => Any): T                            = instance.on("close", handler)

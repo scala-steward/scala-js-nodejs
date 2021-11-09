@@ -42,12 +42,10 @@ trait Verify extends Writable {
     * @return
     *   true or false depending on the validity of the signature for the data and public key.
     */
-  def verify(obj: String, signature: String, signatureEncoding: String): Boolean = js.native
-  def verify(obj: Buffer, signature: String, signatureEncoding: String): Boolean = js.native
-  def verify(obj: String, signature: BufferLike): Boolean                        = js.native
-  def verify(obj: Buffer, signature: BufferLike): Boolean                        = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def verify(obj: String, signature: String, signatureEncoding: String): Boolean    = js.native
+  def verify(obj: Buffer, signature: String, signatureEncoding: String): Boolean    = js.native
+  def verify(obj: String, signature: BufferLike): Boolean                           = js.native
+  def verify(obj: Buffer, signature: BufferLike): Boolean                           = js.native
   def verify(obj: KeyObject, signature: String, signatureEncoding: String): Boolean = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def verify(obj: KeyObject, signature: BufferLike): Boolean = js.native
+  def verify(obj: KeyObject, signature: BufferLike): Boolean                        = js.native
 }

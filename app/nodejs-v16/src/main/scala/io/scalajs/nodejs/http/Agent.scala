@@ -42,7 +42,6 @@ class Agent() extends IEventEmitter {
     */
   var maxSockets: Int = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def maxTotalSockets: Double = js.native
 
   /** An object which contains queues of requests that have not yet been assigned to sockets. Do not modify.

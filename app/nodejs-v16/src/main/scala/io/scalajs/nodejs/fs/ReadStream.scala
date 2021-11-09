@@ -39,6 +39,5 @@ class ReadStream(path: Path) extends stream.Readable {
     */
   def close(callback: js.Function1[Unit, Any]): Unit = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   val pending: Boolean = js.native
 }

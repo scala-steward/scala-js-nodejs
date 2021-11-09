@@ -14,13 +14,10 @@ object Module extends Module
 trait Module extends js.Object {
   var builtinModules: js.Array[String] = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def createRequire(filename: String): Require = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def createRequire(filename: io.scalajs.nodejs.url.URL): Require = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def syncBuiltinESMExports(): Unit = js.native
 
   @deprecated("Use createRequire", "Node.js v12.2.0")

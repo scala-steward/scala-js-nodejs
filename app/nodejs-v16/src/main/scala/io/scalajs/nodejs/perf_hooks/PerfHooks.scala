@@ -11,15 +11,12 @@ import scala.scalajs.js.annotation.JSImport
 trait PerfHooks extends js.Object {
   def constants: Constants = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def eventLoopUtilization(utilization1: EventLoopUtilizationResult,
                            utilization2: EventLoopUtilizationResult
   ): EventLoopUtilizationResult = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def monitorEventLoopDelay(): Histogram = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def monitorEventLoopDelay(
-      options: MonitorEventLoopDelayOptions
-  ): Histogram = js.native
+  def monitorEventLoopDelay(): Histogram                                      = js.native
+  def monitorEventLoopDelay(options: MonitorEventLoopDelayOptions): Histogram = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
   def performance: Performance = js.native

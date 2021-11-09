@@ -1,6 +1,5 @@
 package io.scalajs.nodejs.http2
 
-import com.thoughtworks.enableIf
 import io.scalajs.nodejs.stream
 
 import scala.scalajs.js
@@ -9,7 +8,6 @@ import scala.scalajs.js
 trait Http2Stream extends stream.Duplex {
   def aborted: Boolean = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def bufferSize: Int = js.native
 
   def close(code: Int, callback: js.Function): Unit = js.native

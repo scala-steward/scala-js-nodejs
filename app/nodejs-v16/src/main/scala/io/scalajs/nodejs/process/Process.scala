@@ -111,10 +111,8 @@ trait Process extends IEventEmitter {
     */
   def release: ReleaseInfo = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def report: js.UndefOr[Reporter] = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def resourceUsage(): ResourceUsage = js.native
 
   /** process.stderr and process.stdout are unlike other streams in Node.js in that they cannot be closed (end() will
@@ -447,7 +445,6 @@ trait HrTime extends js.Function1[js.Array[Int], js.Array[Int]] with js.Function
   def bigint(): js.BigInt = js.native
 }
 
-@enableMembersIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
 @js.native
 trait ResourceUsage extends js.Object {
   var userCPUTime: Int                = js.native
@@ -478,9 +475,7 @@ trait Features extends js.Object {
   val tls_ocsp: Boolean = js.native
   val tls: Boolean      = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   val inspector: Boolean = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   val cached_builtins: Boolean = js.native
 }

@@ -1,6 +1,5 @@
 package io.scalajs.nodejs.cluster
 
-import com.thoughtworks.enableIf
 import net.exoego.scalajs.types.util.Factory
 
 import io.scalajs.nodejs.{GID, UID}
@@ -31,7 +30,6 @@ trait ClusterSettings extends js.Object {
     *
     * From Node.js v13.2.0, v12.16.0.
     */
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   var serialization: js.UndefOr[String] = js.native
 
   /** <Number> Sets the user identity of the process. (See setuid(2).) */

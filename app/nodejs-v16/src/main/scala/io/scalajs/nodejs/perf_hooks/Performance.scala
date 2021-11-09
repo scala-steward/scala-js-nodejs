@@ -33,7 +33,6 @@ class Performance extends js.Object {
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
   def toJSON(): PerformanceResultJson = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def eventLoopUtilization(): EventLoopUtilizationResult = js.native
 }
 

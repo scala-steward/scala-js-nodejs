@@ -12,11 +12,6 @@ import scala.scalajs.js.|
 class Http2ServerRequest extends stream.Readable with Http2TimeoutOps {
   def authority: String = js.native
 
-  /** Added in Node.js v12.10.0
-    * @see
-    *   v12.10.0
-    */
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def complete: Boolean = js.native
 
   @deprecated("Use socket", "Node.js v13.0.0")

@@ -1,6 +1,5 @@
 package io.scalajs.nodejs.crypto
 
-import com.thoughtworks.enableIf
 import io.scalajs.nodejs.buffer.Buffer
 import io.scalajs.nodejs.stream.Writable
 
@@ -16,13 +15,11 @@ import scala.scalajs.js
   */
 @js.native
 sealed trait Sign extends Writable {
-  def sign(privateKey: String): Buffer                         = js.native
-  def sign(privateKey: Buffer): Buffer                         = js.native
-  def sign(privateKey: String, outputEncoding: String): String = js.native
-  def sign(privateKey: Buffer, outputEncoding: String): String = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def sign(privateKey: KeyObject): Buffer = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def sign(privateKey: String): Buffer                            = js.native
+  def sign(privateKey: Buffer): Buffer                            = js.native
+  def sign(privateKey: String, outputEncoding: String): String    = js.native
+  def sign(privateKey: Buffer, outputEncoding: String): String    = js.native
+  def sign(privateKey: KeyObject): Buffer                         = js.native
   def sign(privateKey: KeyObject, outputEncoding: String): String = js.native
 
   def update(data: String, inputEncoding: String): Unit = js.native

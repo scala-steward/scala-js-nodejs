@@ -35,12 +35,10 @@ trait Http2SecureServerOptions extends js.Object {
     js.undefined
   var ticketKeys: js.UndefOr[Buffer] = js.undefined
   // Options for net.createServers
-  var allowHalfOpen: js.UndefOr[Boolean]  = js.undefined
-  var pauseOnConnect: js.UndefOr[Boolean] = js.undefined
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) var maxSessionRejectedStreams: js.UndefOr[Int] =
-    js.undefined
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) var maxSessionInvalidFrames: js.UndefOr[Int] =
-    js.undefined
+  var allowHalfOpen: js.UndefOr[Boolean]         = js.undefined
+  var pauseOnConnect: js.UndefOr[Boolean]        = js.undefined
+  var maxSessionRejectedStreams: js.UndefOr[Int] = js.undefined
+  var maxSessionInvalidFrames: js.UndefOr[Int]   = js.undefined
   // Options for tls.createSecureContext
   var ca: js.UndefOr[SecureData]                                   = js.undefined
   var cert: js.UndefOr[SecureData]                                 = js.undefined
