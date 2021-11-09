@@ -1,16 +1,23 @@
 package io.scalajs.nodejs.fs
 
-import io.scalajs.nodejs.fs
+import io.scalajs.nodejs.{fs, process}
+import io.scalajs.nodejs.buffer.Buffer
+import io.scalajs.nodejs.url.URL
 import org.scalatest.funspec.AnyFunSpec
 
 import scala.scalajs.js.JavaScriptException
 
-/** File System (Fs) Tests
-  */
 class FsClassesTest extends AnyFunSpec {
+  val dirname = process.Process.cwd()
+
   describe("ReadStream") {
     it("supports pending added in v11.2.0") {
       assert(new ReadStream("package.json").pending)
+    }
+    it("supports constructor(") {
+      assert(new ReadStream("package.json").readableLength === 0)
+      assert(new ReadStream(Buffer.from("package.json")) !== null)
+      assert(new ReadStream(new URL(s"file:///${dirname}/package.json")) !== null)
     }
   }
 
@@ -38,5 +45,13 @@ class FsClassesTest extends AnyFunSpec {
     assert(stats.asInstanceOf[BigIntStats].ctimeNs.toString.toLong > 0L)
     assert(stats.asInstanceOf[BigIntStats].atimeNs.toString.toLong > 0L)
     assert(stats.asInstanceOf[BigIntStats].mtimeNs.toString.toLong > 0L)
+  }
+
+  describe("WriteStream") {
+    it("supports constructor") {
+      assert(new WriteStream("NO_SUCH_FILE").writableLength === 0)
+      assert(new WriteStream(Buffer.from("NO_SUCH_FILE")) !== null)
+      assert(new WriteStream(new URL(s"file:///${dirname}/NO_SUCH_FILE")) !== null)
+    }
   }
 }
