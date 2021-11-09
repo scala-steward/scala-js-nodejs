@@ -36,23 +36,6 @@ class CryptoTest extends AnyFunSpec with Matchers {
 
       computedHash mustEqual expectedHash
     }
-
-    it("should be able to encrypt and decrypt text from a private key (AES-256-ctr)") {
-      val alg             = "aes-256-ctr"
-      val key             = "this-is-a-private-key"
-      val stringToEncrypt = "text-to-encrypt"
-
-      val cipher              = Crypto.createCipher(alg, key)
-      val encrypted           = cipher.update(stringToEncrypt, "utf8", "base64")
-      val finalEncryptedValue = encrypted + cipher.`final`("base64")
-
-      val decipher            = Crypto.createDecipher(alg, key)
-      val decrypted           = decipher.update(finalEncryptedValue, "base64", "utf8")
-      val finalDecryptedValue = decrypted + decipher.`final`("utf8")
-
-      finalEncryptedValue mustNot equal(stringToEncrypt)
-      finalDecryptedValue must equal(stringToEncrypt)
-    }
   }
 
   describe("Crypto module") {
