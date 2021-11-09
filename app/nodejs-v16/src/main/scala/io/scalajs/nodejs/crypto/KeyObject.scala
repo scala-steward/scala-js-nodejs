@@ -10,7 +10,7 @@ import scala.scalajs.js.|
 
 @js.native
 @JSImport("crypto", "KeyObject")
-class KeyObject (`type_`: String, handle: js.Object) extends js.Object {
+class KeyObject(`type_`: String, handle: js.Object) extends js.Object {
   def `export`(options: KeyObjectExportOptions): Buffer | String = js.native
   def `export`(): Buffer                                         = js.native
 
