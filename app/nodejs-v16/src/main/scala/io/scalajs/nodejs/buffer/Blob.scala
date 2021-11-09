@@ -1,6 +1,7 @@
 package io.scalajs.nodejs.buffer
 
 import com.thoughtworks.enableMembersIf
+import io.scalajs.nodejs.webstream
 import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
@@ -31,6 +32,8 @@ class Blob() extends js.Object {
     */
   @JSName("type")
   def contentType: String = js.native
+
+  def stream(): webstream.ReadableStream = js.native
 }
 
 @Factory
