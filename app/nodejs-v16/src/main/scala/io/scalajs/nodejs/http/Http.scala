@@ -56,7 +56,6 @@ trait Http extends js.Object {
   def get(options: RequestOptions): ClientRequest                                                           = js.native
   def get(options: RequestOptions, callback: js.Function): ClientRequest                                    = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def maxHeaderSize: Int = js.native
 
   def request(url: String, options: RequestOptions): Unit                                              = js.native

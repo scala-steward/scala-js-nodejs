@@ -60,7 +60,6 @@ package object nodejs {
   def __filename: String = js.Dynamic.global.__filename.asInstanceOf[String]
 
   @js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   @JSGlobal("queueMicrotask")
   object queueMicrotask extends js.Function1[js.Function, Unit] {
     override def apply(arg1: js.Function): Unit = js.native

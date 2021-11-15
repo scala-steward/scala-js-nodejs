@@ -17,7 +17,6 @@ import scala.scalajs.js.annotation.JSImport
 @js.native
 @JSImport("events", "EventEmitter")
 class EventEmitter() extends IEventEmitter {
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def this(options: EventEmitterOptions) = this()
 }
 
@@ -28,7 +27,6 @@ trait EventEmitterOptions extends js.Object {
     *
     * Experimental !
     */
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   var captureRejections: Boolean
 }
 
@@ -165,24 +163,18 @@ object EventEmitter extends js.Object {
     *
     * experimental!
     */
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   var captureRejections: Boolean = js.native
 
   /** experimental! */
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   var captureRejectionSymbol: js.Symbol = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def once(emitter: IEventEmitter, eventName: String): js.Promise[js.Array[js.Any]] = js.native
   // TODO: Return AsyncIterator
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def on(emitter: IEventEmitter, eventName: String): js.Any = js.native
 
   // TODO: Return AsyncIterator
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def on(emitter: IEventEmitter, eventName: js.Symbol): js.Any = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   var errorMonitor: js.Symbol = js.native
 }
 

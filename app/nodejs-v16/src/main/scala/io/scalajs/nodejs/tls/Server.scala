@@ -25,7 +25,6 @@ class Server extends net.Server {
     */
   def addContext(hostname: String, context: SecureContextOptions): Unit = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def setSecureContext(context: SecureContextOptions): Unit = js.native
 
   /** Returns a Buffer instance holding the keys currently used for encryption/decryption of the TLS Session Tickets

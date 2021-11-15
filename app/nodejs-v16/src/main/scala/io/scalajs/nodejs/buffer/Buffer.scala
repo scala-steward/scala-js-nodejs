@@ -973,39 +973,26 @@ class Buffer protected () extends Uint8Array( /* dummy to trick constructor */ -
   /** @see
     *   https://nodejs.org/api/buffer.html#buffer_buf_readbiguint64be_offset
     */
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def readBigInt64BE(
-      offset: Int
-  ): scalajs.js.BigInt = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def readBigInt64BE(): scalajs.js.BigInt = js.native
+  def readBigInt64BE(offset: Int): scalajs.js.BigInt = js.native
+  def readBigInt64BE(): scalajs.js.BigInt            = js.native
 
   /** @see
     *   https://nodejs.org/api/buffer.html#buffer_buf_readbiguint64le_offset
     */
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def readBigUInt64LE(
-      offset: Int
-  ): scalajs.js.BigInt = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def readBigUInt64LE(): scalajs.js.BigInt =
-    js.native
+  def readBigUInt64LE(offset: Int): scalajs.js.BigInt = js.native
+  def readBigUInt64LE(): scalajs.js.BigInt            = js.native
 
   /** @see
     *   https://nodejs.org/api/buffer.html#buffer_buf_writebigint64be_value_offset
     */
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def writeBigInt64BE(value: scalajs.js.BigInt,
-                                                                                         offset: Int
-  ): Int = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def writeBigInt64BE(
-      value: scalajs.js.BigInt
-  ): Int = js.native
+  def writeBigInt64BE(value: scalajs.js.BigInt, offset: Int): Int = js.native
+  def writeBigInt64BE(value: scalajs.js.BigInt): Int              = js.native
 
   /** @see
     *   https://nodejs.org/api/buffer.html#buffer_buf_writebigint64le_value_offset
     */
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def writeBigInt64LE(value: scalajs.js.BigInt,
-                                                                                         offset: Int
-  ): Int = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def writeBigInt64LE(
-      value: scalajs.js.BigInt
-  ): Int = js.native
+  def writeBigInt64LE(value: scalajs.js.BigInt, offset: Int): Int = js.native
+  def writeBigInt64LE(value: scalajs.js.BigInt): Int              = js.native
 }
 
 @js.native

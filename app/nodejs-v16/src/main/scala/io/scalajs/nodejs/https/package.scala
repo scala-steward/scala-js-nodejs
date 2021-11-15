@@ -55,7 +55,6 @@ package object https {
   }
 
   implicit final class AgentExtensions[T <: Agent](private val instance: T) extends AnyVal {
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline def onKeylog(handler: (io.scalajs.nodejs.buffer.Buffer, tls.TLSSocket) => Any): T =
       instance.on("keylog", handler)
   }

@@ -27,12 +27,10 @@ class TLSSocket protected () extends net.Socket {
 
   def disableRenegotiation(): Unit = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def enableTrace(): Unit = js.native
 
   def encrypted: Boolean = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def getCertificate(): TLSCertificate = js.native
 
   /** Returns an object representing the peer's certificate. The returned object has some properties corresponding to
@@ -64,7 +62,6 @@ class TLSSocket protected () extends net.Socket {
     */
   def getSession(): js.UndefOr[Buffer] = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def getSharedSigalgs(): js.Array[String] = js.native
 
   def getTLSTicket(): Buffer = js.native

@@ -32,10 +32,8 @@ class Socket protected () extends IEventEmitter {
   def addMembership(multicastAddress: String, multicastInterface: String): Unit = js.native
   def addMembership(multicastAddress: String): Unit                             = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def addSourceSpecificMembership(sourceAddress: String, groupAddress: String, multicastInterface: String): Unit =
     js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def addSourceSpecificMembership(sourceAddress: String, groupAddress: String): Unit = js.native
 
   /** Returns an object containing the address information for a socket. For UDP sockets, this object will contain
@@ -83,25 +81,18 @@ class Socket protected () extends IEventEmitter {
   def close(callback: js.Function): Unit = js.native
   def close(): Unit                      = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def connect(port: Int, address: String, callback: js.Function0[Any]): Unit = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def connect(port: Int, address: String): Unit = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def connect(port: Int, callback: js.Function0[Any]): Unit = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def connect(port: Int): Unit = js.native
+  def connect(port: Int, address: String): Unit                              = js.native
+  def connect(port: Int, callback: js.Function0[Any]): Unit                  = js.native
+  def connect(port: Int): Unit                                               = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def disconnect(): Unit = js.native
 
   def dropMembership(multicastAddress: String, multicastInterface: String): Unit = js.native
   def dropMembership(multicastAddress: String): Unit                             = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def dropSourceSpecificMembership(sourceAddress: String, groupAddress: String, multicastInterface: String): Unit =
     js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def dropSourceSpecificMembership(sourceAddress: String, groupAddress: String): Unit = js.native
 
   def getRecvBufferSize(): Int = js.native
@@ -109,7 +100,6 @@ class Socket protected () extends IEventEmitter {
 
   def ref(): this.type = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def remoteAddress(): RemoteAddress = js.native
 
   def send(msg: BufferMessage, offset: Int, length: Int, port: Int, address: String, callback: js.Function): Unit =

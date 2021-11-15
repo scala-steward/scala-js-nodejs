@@ -20,6 +20,5 @@ trait WorkerOptions extends js.Object {
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
   var transferList: js.UndefOr[js.Array[js.Object]] = js.undefined
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   var resourceLimits: js.UndefOr[ResourceLimits] = js.undefined
 }

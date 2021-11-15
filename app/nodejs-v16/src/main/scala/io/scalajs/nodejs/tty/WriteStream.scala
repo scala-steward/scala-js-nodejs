@@ -27,21 +27,14 @@ class WriteStream(fd: FileDescriptor) extends net.Socket {
     */
   def columns: Int = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def clearLine(dir: Int, callback: js.Function): Boolean = js.native
-  // TODO: Return value should be boolean when dropping Node.js v10
-  def clearLine(dir: Int): Unit = js.native
+  def clearLine(dir: Int): Boolean                        = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def clearScreenDown(callback: js.Function): Boolean = js.native
-  // TODO: Return value should be boolean when dropping Node.js v10
-  def clearScreenDown(): Unit = js.native
+  def clearScreenDown(): Boolean                      = js.native
 
-  // TODO: Return value should be boolean when dropping Node.js v10
-  def cursorTo(x: Int): Unit = js.native
-  // TODO: Return value should be boolean when dropping Node.js v10
-  def cursorTo(x: Int, y: Int): Unit = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def cursorTo(x: Int): Boolean                                = js.native
+  def cursorTo(x: Int, y: Int): Boolean                        = js.native
   def cursorTo(x: Int, y: Int, callback: js.Function): Boolean = js.native
 
   def getColorDepth(env: io.scalajs.nodejs.process.Environment): Int = js.native
@@ -67,8 +60,6 @@ class WriteStream(fd: FileDescriptor) extends net.Socket {
     */
   def rows: Int = js.native
 
-  // TODO: Return value should be boolean when dropping Node.js v10
-  def moveCursor(dx: Int, dy: Int): Unit = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  def moveCursor(dx: Int, dy: Int): Boolean                        = js.native
   def moveCursor(dx: Int, dy: Int, callback: js.Function): Boolean = js.native
 }

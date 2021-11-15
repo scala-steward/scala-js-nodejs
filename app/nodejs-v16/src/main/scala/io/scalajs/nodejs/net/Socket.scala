@@ -52,7 +52,6 @@ class Socket() extends stream.Duplex with HasHandle {
     */
   def localPort: Int = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def pending: Boolean = js.native
 
   /** The string representation of the remote IP address. For example, '74.125.127.100' or '2001:4860:a005::68'. Value

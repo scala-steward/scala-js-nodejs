@@ -160,7 +160,6 @@ package object fs {
       promiseWithError0[FileIOError](instance.link(srcpath, dstpath, _))
     }
 
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline
     def lutimesFuture(path: Path, atime: Time, mtime: Time): Future[Unit] = {
       promiseWithError0[FileIOError](instance.lutimes(path, atime, mtime, _))
@@ -226,25 +225,21 @@ package object fs {
       promiseWithError1[FileIOError, FileDescriptor](instance.open(path, flags, _))
     }
 
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline
     def openFuture(path: Path): Future[FileDescriptor] = {
       promiseWithError1[FileIOError, FileDescriptor](instance.open(path, _))
     }
 
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline
     def opendirFuture(path: Path, options: OpendirOptions): Future[Fs.Dir[String] | Fs.Dir[Buffer]] = {
       promiseWithError1[FileIOError, Fs.Dir[String] | Fs.Dir[Buffer]](instance.opendir(path, options, _))
     }
 
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline
     def opendirFuture(path: Path): Future[Fs.Dir[String]] = {
       promiseWithError1[FileIOError, Fs.Dir[String]](instance.opendir(path, _))
     }
 
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline
     def readvFuture(fd: FileDescriptor,
                     buffers: js.Array[js.typedarray.ArrayBufferView],
@@ -253,7 +248,6 @@ package object fs {
       promiseWithError2[FileIOError, Int, js.Array[js.typedarray.ArrayBufferView]](Fs.readv(fd, buffers, position, _))
     }
 
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline
     def readvFuture(fd: FileDescriptor,
                     buffers: js.Array[js.typedarray.ArrayBufferView]
@@ -416,12 +410,10 @@ package object fs {
     @inline
     def rmdirFuture(path: Path): Future[Unit] = promiseWithError0[FileIOError](instance.rmdir(path, _))
 
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline
     def rmdirFuture(path: Path, options: RmdirOptions): Future[Unit] =
       promiseWithError0[FileIOError](instance.rmdir(path, options, _))
 
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline
     def rmdirRecursiveFuture(path: Path, options: RmdirOptions): Future[Unit] = {
       val recursiveEnabled = js.Object.assign(js.Object(), options).asInstanceOf[RmdirOptions]
@@ -438,7 +430,6 @@ package object fs {
     def rmFuture(path: Path, options: RmOptions): Future[Unit] =
       promiseWithError0[FileIOError](instance.rm(path, options, _))
 
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline
     def rmdirRecursiveFuture(path: Path): Future[Unit] = {
       promiseWithError0[FileIOError](instance.rmdir(path, RmdirOptions(recursive = true), _))
@@ -548,7 +539,6 @@ package object fs {
       promiseWithError0[FileIOError](instance.writeFile(file, data, _))
     }
 
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline
     def writevFuture(fd: FileDescriptor,
                      buffers: js.Array[typedarray.ArrayBufferView],
@@ -559,7 +549,6 @@ package object fs {
       )
     }
 
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline
     def writevFuture(fd: FileDescriptor,
                      buffers: js.Array[typedarray.ArrayBufferView]
@@ -576,7 +565,6 @@ package object fs {
     *   the given [[Fs.Dir]] instance
     */
   implicit final class FsDirExtensions[T](private val instance: Fs.Dir[T]) extends AnyVal {
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline
     def readFuture(): Future[Option[Fs.Dirent[T]]] = {
       promiseWithError1[js.Error, Option[Fs.Dirent[T]]](f => {
@@ -586,7 +574,6 @@ package object fs {
       })
     }
 
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline
     def closeFuture(): Future[Unit] = {
       promiseWithError0[js.Error](instance.close _)
@@ -610,8 +597,7 @@ package object fs {
     @inline
     def onChange(listener: (String, js.Any) => Any): T = watcher.on("change", listener)
 
-    /** Added in Node.js v10.0.0
-      * @see
+    /** @see
       *   https://nodejs.org/api/fs.html#fs_event_close
       */
     @inline

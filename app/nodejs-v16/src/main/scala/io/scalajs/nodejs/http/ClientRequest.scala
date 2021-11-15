@@ -29,8 +29,7 @@ import scala.scalajs.js.|
 @js.native
 @JSImport("http", "ClientRequest")
 class ClientRequest extends stream.Writable {
-  // TODO: Remove Int when dropping Node.js v10
-  def aborted: Int | Boolean = js.native
+  def aborted: Boolean = js.native
 
   @deprecated("Use request.socket", "Node.js v13.0.0")
   def connection: net.Socket = js.native
@@ -99,12 +98,10 @@ class ClientRequest extends stream.Writable {
   def setTimeout(timeout: Int, callback: js.Function): Unit = js.native
   def setTimeout(timeout: Int): Unit                        = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def reusedSocket: Boolean = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
   def getRawHeaderNames(): js.Array[String] = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def host: String = js.native
 }
 

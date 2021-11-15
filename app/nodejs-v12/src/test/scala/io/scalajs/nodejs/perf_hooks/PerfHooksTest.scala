@@ -7,5 +7,8 @@ class PerfHooksTest extends AnyFunSpec {
     it("monitorEventLoopDelay") {
       assert(PerfHooks.monitorEventLoopDelay().exceeds === 0)
     }
+    it("constants") {
+      assert(PerfHooks.constants.NODE_PERFORMANCE_GC_MAJOR === 2)
+    }
   }
 }

@@ -53,7 +53,6 @@ trait REPLServer extends IEventEmitter with Interface {
     */
   def displayPrompt(): Unit = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def setupHistory(historyPath: String, callback: js.Function2[io.scalajs.nodejs.Error, REPLServer, Any]): Unit =
     js.native
 }

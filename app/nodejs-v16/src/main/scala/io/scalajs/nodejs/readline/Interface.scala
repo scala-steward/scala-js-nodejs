@@ -88,7 +88,6 @@ trait Interface extends IEventEmitter {
 
   def cursor: js.UndefOr[Int] = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def getCursorPos(): CursorPos = js.native
 }
 

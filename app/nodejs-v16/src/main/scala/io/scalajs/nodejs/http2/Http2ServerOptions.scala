@@ -24,9 +24,7 @@ trait Http2ServerOptions extends js.Object {
   var pauseOnConnect: js.UndefOr[Boolean]                                       = js.undefined
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.ltNodeJs14) var selectPadding
-      : js.UndefOr[js.Function2[Int, Int, Int]] = js.undefined
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) var maxSessionRejectedStreams: js.UndefOr[Int] =
-    js.undefined
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) var maxSessionInvalidFrames: js.UndefOr[Int] =
-    js.undefined
+      : js.UndefOr[js.Function2[Int, Int, Int]]  = js.undefined
+  var maxSessionRejectedStreams: js.UndefOr[Int] = js.undefined
+  var maxSessionInvalidFrames: js.UndefOr[Int]   = js.undefined
 }

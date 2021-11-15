@@ -67,9 +67,6 @@ trait Assert extends js.Object {
     */
   def fail(message: js.Error): Unit = js.native
 
-  @deprecated("Use assert.fail([message]) or other assert functions instead.", "Node.js v10.0.0")
-  def fail(actual: js.Any, expected: js.Any, message: String, operator: String): Unit = js.native
-
   /** Throws value if value is truthy. This is useful when testing the error argument in callbacks.
     * @example
     *   assert.ifError(value)

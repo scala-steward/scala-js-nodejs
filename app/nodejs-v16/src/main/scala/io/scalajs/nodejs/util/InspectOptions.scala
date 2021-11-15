@@ -51,7 +51,6 @@ trait InspectOptions extends js.Object {
 
   var sorted: js.UndefOr[Boolean | js.Function2[String, String, Int]] = js.undefined
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   var getters: js.UndefOr[Boolean | String] = js.undefined
 
   /** Fot Node.js v14.0.0+ Specifies the maximum number of characters to include when formatting. Set to null or

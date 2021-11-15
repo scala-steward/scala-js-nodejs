@@ -97,7 +97,6 @@ package object process {
       */
     @inline def onUncaughtException(listener: Error => Any): Process = process.on("uncaughtException", listener)
 
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     @inline def onUncaughtException(listener: (Error, String) => Any): Process =
       process.on("uncaughtException", listener)
 

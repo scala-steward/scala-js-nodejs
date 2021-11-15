@@ -458,10 +458,8 @@ trait Fs extends js.Object {
     */
   def lchownSync(path: Path, uid: UID, gid: GID): Unit = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def lutimes(path: Path, atime: Time, mtime: Time, callback: FsCallback0): Unit = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def lutimesSync(path: Path, atime: Time, mtime: Time): Unit = js.native
 
   /** Asynchronous link(2). No arguments other than a possible exception are given to the completion callback.
@@ -635,7 +633,6 @@ trait Fs extends js.Object {
     */
   def open(path: Path, flags: Flags, callback: FsCallback1[FileDescriptor]): Unit = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def open(path: Path, callback: FsCallback1[FileDescriptor]): Unit = js.native
 
   /** Synchronous version of fs.open().
@@ -653,20 +650,15 @@ trait Fs extends js.Object {
   def openSync(path: Path, flags: Flags, mode: FileMode): FileDescriptor = js.native
   def openSync(path: Path, flags: Flags): FileDescriptor                 = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def openSync(path: Path): FileDescriptor = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def opendir(path: Path, options: OpendirOptions, callback: FsCallback1[Fs.Dir[String] | Fs.Dir[Buffer]]): Unit =
     js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def opendir(path: Path, callback: FsCallback1[Fs.Dir[String]]): Unit = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def opendirSync(path: Path, options: OpendirOptions): Fs.Dir[String] | Fs.Dir[Buffer] = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def opendirSync(path: Path): Fs.Dir[String] = js.native
+  def opendirSync(path: Path): Fs.Dir[String]                                           = js.native
 
   /** Read data from the file specified by fd.
     * @param fd
@@ -722,14 +714,12 @@ trait Fs extends js.Object {
   def readSync(fd: FileDescriptor, buffer: BufferLike, offset: Int | Null): Unit = js.native
   def readSync(fd: FileDescriptor, buffer: BufferLike): Unit                     = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def readv(fd: FileDescriptor,
             buffers: js.Array[js.typedarray.ArrayBufferView],
             position: Int | Null,
             callback: FsCallback2[Int, js.Array[js.typedarray.ArrayBufferView]]
   ): Unit = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def readv(fd: FileDescriptor,
             buffers: js.Array[js.typedarray.ArrayBufferView],
             callback: FsCallback2[Int, js.Array[js.typedarray.ArrayBufferView]]
@@ -951,7 +941,6 @@ trait Fs extends js.Object {
     * @example
     *   fs.rmdir(path, callback)
     */
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def rmdir(path: Path, options: RmdirOptions, callback: FsCallback0): Unit = js.native
 
   /** Synchronous rmdir(2rmdir).
@@ -962,7 +951,6 @@ trait Fs extends js.Object {
     */
   def rmdirSync(path: Path): Unit = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def rmdirSync(path: Path, options: RmdirOptions): Unit = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
@@ -1317,21 +1305,17 @@ trait Fs extends js.Object {
   def writeSync(fd: FileDescriptor, data: String, encoding: String): Unit                = js.native
   def writeSync(fd: FileDescriptor, data: String): Unit                                  = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def writev(fd: FileDescriptor,
              buffers: js.Array[js.typedarray.ArrayBufferView],
              position: Int | Null,
              fsCallback2: FsCallback2[Int, js.Array[js.typedarray.ArrayBufferView]]
   ): Unit = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def writev(fd: FileDescriptor,
              buffers: js.Array[js.typedarray.ArrayBufferView],
              fsCallback2: FsCallback2[Int, js.Array[js.typedarray.ArrayBufferView]]
   ): Unit = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def writevSync(fd: FileDescriptor, buffers: js.Array[js.typedarray.ArrayBufferView], position: Int): Unit = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def writevSync(fd: FileDescriptor, buffers: js.Array[js.typedarray.ArrayBufferView]): Unit = js.native
+  def writevSync(fd: FileDescriptor, buffers: js.Array[js.typedarray.ArrayBufferView]): Unit                = js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
   def cpSync(src: Path, dest: Path, options: CpOptions): Unit = js.native
@@ -1380,7 +1364,6 @@ object Fs extends Fs {
 
     def lchown(path: Path, uid: UID, gid: GID): js.Promise[Unit] = js.native
 
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     def lutimes(path: Path, atime: Time, mtime: Time): js.Promise[Unit] = js.native
 
     def link(existingPath: Path, newPath: Path): js.Promise[Unit] = js.native
@@ -1399,13 +1382,10 @@ object Fs extends Fs {
     def open(path: Path, flags: Flags, mode: FileMode): js.Promise[FileHandle] = js.native
     def open(path: Path, flags: Flags, mode: String): js.Promise[FileHandle]   = js.native
     def open(path: Path, flags: Flags): js.Promise[FileHandle]                 = js.native
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-    def open(path: Path): js.Promise[FileHandle] = js.native
+    def open(path: Path): js.Promise[FileHandle]                               = js.native
 
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     def opendir(path: Path, options: OpendirOptions): js.Promise[Dir[String] | Dir[Buffer]] = js.native
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-    def opendir(path: Path): js.Promise[Dir[String]] = js.native
+    def opendir(path: Path): js.Promise[Dir[String]]                                        = js.native
 
     def readdir(path: Path, options: ReaddirOptions): js.Promise[ReaddirArrays2]     = js.native
     def readdir(path: Path, encoding: String): js.Promise[ReaddirArrays]             = js.native
@@ -1429,8 +1409,7 @@ object Fs extends Fs {
 
     def rename(oldPath: Path, newPath: Path): js.Promise[Unit] = js.native
 
-    def rmdir(path: Path): js.Promise[Unit] = js.native
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+    def rmdir(path: Path): js.Promise[Unit]                        = js.native
     def rmdir(path: Path, options: RmdirOptions): js.Promise[Unit] = js.native
 
     @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
@@ -1517,10 +1496,8 @@ object Fs extends Fs {
     def writeFile(data: BufferLike, options: FileWriteOptions): js.Promise[Unit] = js.native
     def writeFile(data: BufferLike): js.Promise[Unit]                            = js.native
 
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
     def writev(buffers: js.Array[js.typedarray.ArrayBufferView], position: Int): js.Promise[Unit] = js.native
-    @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-    def writev(buffers: js.Array[js.typedarray.ArrayBufferView]): js.Promise[Unit] = js.native
+    def writev(buffers: js.Array[js.typedarray.ArrayBufferView]): js.Promise[Unit]                = js.native
   }
 
   val promises: FsPromises = js.native
@@ -1537,7 +1514,6 @@ object Fs extends Fs {
     val name: TName                  = js.native
   }
 
-  @enableMembersIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   @js.native
   trait Dir[T] extends js.Object {
     def close(): js.Promise[Unit]                                    = js.native
@@ -1586,8 +1562,7 @@ trait ReaddirOptions extends js.Object {
 
 @Factory
 trait OpendirOptions extends js.Object {
-  var encoding: js.UndefOr[String] = js.undefined
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  var encoding: js.UndefOr[String]   = js.undefined
   var bufferSize: js.UndefOr[Double] = js.undefined
 }
 
@@ -1653,10 +1628,9 @@ trait RmdirOptions extends js.Object {
   )
   var emfileWait: js.UndefOr[Int] = js.undefined
   @deprecated("Use maxRetries", "Node.js v13.3.0, v12.16.0")
-  var maxBusyTries: js.UndefOr[Int] = js.undefined
-  var maxRetries: js.UndefOr[Int]   = js.undefined
-  var retryDelay: js.UndefOr[Int]   = js.undefined
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
+  var maxBusyTries: js.UndefOr[Int]  = js.undefined
+  var maxRetries: js.UndefOr[Int]    = js.undefined
+  var retryDelay: js.UndefOr[Int]    = js.undefined
   var recursive: js.UndefOr[Boolean] = js.undefined
 }
 

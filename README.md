@@ -24,8 +24,6 @@ Feel free to open issue/send pull request if you find missing module.
 Add below line to your SBT project.
 
 ```sbt
-// For Node.js v10 LTS (Will be dropped on 2021-4-30)
-libraryDependencies += "net.exoego" %%% "scala-js-nodejs-v10" % "0.14.0"
 // For Node.js v12 LTS
 libraryDependencies += "net.exoego" %%% "scala-js-nodejs-v12" % "0.14.0"
 // For Node.js v14 LTS

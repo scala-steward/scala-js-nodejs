@@ -17,8 +17,7 @@ class Worker protected () extends js.Object with MessagePoster {
   def ref(): Unit   = js.native
   def unref(): Unit = js.native
 
-  // TODO: No need to UnderOr when Node.js v10 dropepd
-  def terminate(): js.UndefOr[js.Promise[Unit]] = js.native
+  def terminate(): js.Promise[Unit] = js.native
 
   def threadId: Int = js.native
 
@@ -26,13 +25,10 @@ class Worker protected () extends js.Object with MessagePoster {
   def stdout: io.scalajs.nodejs.stream.Readable       = js.native
   def stdin: io.scalajs.nodejs.stream.Writable | Null = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def resourceLimits: ResourceLimits = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def getHeapSnapshot(): js.Promise[io.scalajs.nodejs.stream.Readable] = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def performance: PerformanceObject = js.native
 
 }

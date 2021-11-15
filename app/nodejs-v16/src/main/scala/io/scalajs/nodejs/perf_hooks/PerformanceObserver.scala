@@ -34,7 +34,6 @@ trait PerformanceObserverEntryList extends js.Object {
   def monitorEventLoopDelay(options: MonitorEventLoopDelayOptions): Histogram = js.native
 }
 
-@enableMembersIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
 @js.native
 trait Histogram extends js.Object {
   def disable(): Boolean                = js.native

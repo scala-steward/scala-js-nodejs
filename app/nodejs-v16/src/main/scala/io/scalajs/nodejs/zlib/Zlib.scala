@@ -13,17 +13,11 @@ import scala.scalajs.js.annotation.JSImport
   */
 @js.native
 trait Zlib extends js.Object with UncategorizedConstants with ZlibConstants {
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def createBrotliCompress(
-      options: BrotliOptions
-  ): BrotliCompress = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def createBrotliCompress(): BrotliCompress =
-    js.native
+  def createBrotliCompress(options: BrotliOptions): BrotliCompress = js.native
+  def createBrotliCompress(): BrotliCompress                       = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def createBrotliDecompress(
-      options: BrotliOptions
-  ): BrotliDecompress = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def createBrotliDecompress(): BrotliDecompress =
-    js.native
+  def createBrotliDecompress(options: BrotliOptions): BrotliDecompress = js.native
+  def createBrotliDecompress(): BrotliDecompress                       = js.native
 
   /** Returns a new Deflate object with an options.
     * @example
@@ -77,27 +71,17 @@ trait Zlib extends js.Object with UncategorizedConstants with ZlibConstants {
   //      Convenience Methods
   // ///////////////////////////////////////////////////////////////////////////////
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def brotliCompress(buffer: Data, options: BrotliOptions, callback: js.Function): Unit = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def brotliCompress(buffer: Data, callback: js.Function): Unit = js.native
+  def brotliCompress(buffer: Data, callback: js.Function): Unit                         = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def brotliCompressSync(buffer: Data,
-                                                                                            options: BrotliOptions
-  ): Buffer = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def brotliCompressSync(buffer: Data): Buffer =
-    js.native
+  def brotliCompressSync(buffer: Data, options: BrotliOptions): Buffer = js.native
+  def brotliCompressSync(buffer: Data): Buffer                         = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def brotliDecompress(buffer: Data, options: BrotliOptions, callback: js.Function): Unit = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
-  def brotliDecompress(buffer: Data, callback: js.Function): Unit = js.native
+  def brotliDecompress(buffer: Data, callback: js.Function): Unit                         = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def brotliDecompressSync(buffer: Data,
-                                                                                              options: BrotliOptions
-  ): Buffer = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def brotliDecompressSync(buffer: Data): Buffer =
-    js.native
+  def brotliDecompressSync(buffer: Data, options: BrotliOptions): Buffer = js.native
+  def brotliDecompressSync(buffer: Data): Buffer                         = js.native
 
   /** Compress a Buffer or string with Deflate.
     * @example

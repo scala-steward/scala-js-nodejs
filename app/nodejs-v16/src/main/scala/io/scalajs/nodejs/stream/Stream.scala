@@ -73,10 +73,8 @@ class Readable() extends IReadable {
 @js.native
 @JSImport("stream", "Readable")
 object Readable extends js.Object {
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def from(iterable: js.Iterable[_],
-                                                                              options: ReadableOptions
-  ): Readable = js.native
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12) def from(iterable: js.Iterable[_]): Readable =
+  def from(iterable: js.Iterable[_], options: ReadableOptions): Readable = js.native
+  def from(iterable: js.Iterable[_]): Readable =
     js.native
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
@@ -217,13 +215,10 @@ sealed trait IReadable extends Stream with LegacyStream {
   @JSName("read") def readAsObject(size: Int): js.Any = js.native
   @JSName("read") def readAsObject(): js.Any          = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def readable: Boolean = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def readableEncoding: String = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def readableEnded: Boolean = js.native
 
   def readableFlowing: Boolean | Null = js.native
@@ -232,7 +227,6 @@ sealed trait IReadable extends Stream with LegacyStream {
 
   def readableLength: Int = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def readableObjectMode: Boolean = js.native
 
   /** This method will cause the readable stream to resume emitting 'data' events. This method will switch the stream
@@ -353,23 +347,18 @@ sealed trait IWritable extends Stream with LegacyStream {
     */
   def uncork(): Unit = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def writable: Boolean = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def writableEnded: Boolean = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def writableCorked: Int = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def writableFinished: Boolean = js.native
 
   def writableHighWaterMark: Double = js.native
 
   def writableLength: Int = js.native
 
-  @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs12)
   def writableObjectMode: Boolean = js.native
 
   def write(chunk: Uint8Array, callback: js.Function1[Error, Any]): Boolean               = js.native
