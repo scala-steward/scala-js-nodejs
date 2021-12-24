@@ -102,7 +102,7 @@ class ClientRequest extends stream.Writable {
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
   def getRawHeaderNames(): js.Array[String] = js.native
-  def host: String = js.native
+  def host: String                          = js.native
 }
 
 trait Information extends js.Object {
