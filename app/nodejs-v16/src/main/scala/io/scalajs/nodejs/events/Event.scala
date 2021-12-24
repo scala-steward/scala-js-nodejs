@@ -18,13 +18,13 @@ trait Event extends js.Object {
 
   def stopPropagation(): Unit = js.native
   @deprecated("Use stopPropagation", "legacy")
-  def cancelBubble: Boolean = js.native
+  def cancelBubble: Boolean            = js.native
   def stopImmediatePropagation(): Unit = js.native
 
   def bubbles: Boolean    = js.native
   def cancelable: Boolean = js.native
   @deprecated("Use returnValue", "legacy")
-  def returnValue: Boolean = js.native
+  def returnValue: Boolean      = js.native
   def preventDefault(): Unit    = js.native
   def defaultPrevented: Boolean = js.native
   def composed: Boolean         = js.native
