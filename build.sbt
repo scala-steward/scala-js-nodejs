@@ -1,6 +1,27 @@
+inThisBuild(
+  List(
+    organization := "net.exoego",
+    licenses     := Seq("APL2" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt")),
+    scmInfo := Some(
+      ScmInfo(
+        url("https://github.com/exoego/scala-js-nodejs"),
+        "scm:git:git@github.com:exoego/scala-js-nodejs.git"
+      )
+    ),
+    homepage := scmInfo.value.map(_.browseUrl),
+    developers := List(
+      Developer(
+        id = "exoego",
+        name = "TATSUNO Yasuhiro",
+        email = "ytatsuno.jp@gmail.com",
+        url = url("https://www.exoego.net")
+      )
+    )
+  )
+)
+
 lazy val scala213 = "2.13.8"
 lazy val scala212 = "2.12.15"
-ThisBuild / organization       := "net.exoego"
 ThisBuild / crossScalaVersions := Seq(scala213, scala212)
 ThisBuild / scalaVersion       := scala213
 Global / excludeLintKeys ++= Set(publishArtifact, scalacOptions)
