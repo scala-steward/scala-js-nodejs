@@ -84,51 +84,11 @@ object MySettings {
   )
 
   lazy val publishingSettings = Seq(
-    licenses := Seq("APL2" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt")),
-    scmInfo := Some(
-      ScmInfo(
-        url("https://github.com/exoego/scala-js-nodejs"),
-        "scm:git:git@github.com:exoego/scala-js-nodejs.git"
-      )
-    ),
-    homepage := scmInfo.value.map(_.browseUrl),
-    developers := List(
-      Developer(
-        id = "exoego",
-        name = "TATSUNO Yasuhiro",
-        email = "ytatsuno.jp@gmail.com",
-        url = url("https://www.exoego.net")
-      )
-    ),
-    publishMavenStyle                      := true,
     Test / publishArtifact                 := false,
     Compile / packageDoc / publishArtifact := true,
     Compile / packageSrc / publishArtifact := true,
-    packageDoc / publishArtifact           := true,
     pomIncludeRepository := { _ =>
       false
-    },
-    publishTo := Some(
-      if (isSnapshot.value)
-        Opts.resolver.sonatypeSnapshots
-      else
-        Opts.resolver.sonatypeStaging
-    ),
-    publishConfiguration        := publishConfiguration.value.withOverwrite(false),
-    publishLocalConfiguration   := publishLocalConfiguration.value.withOverwrite(true),
-    releaseIgnoreUntrackedFiles := true,
-    releaseProcess := Seq[ReleaseStep](
-      checkSnapshotDependencies,
-      inquireVersions,
-      runClean,
-      runTest,
-      setReleaseVersion,
-      commitReleaseVersion,
-      tagRelease,
-      releaseStepCommandAndRemaining("+publishSigned"),
-      setNextVersion,
-      commitNextVersion,
-      releaseStepCommand("sonatypeReleaseAll")
-    )
+    }
   )
 }
