@@ -1,7 +1,6 @@
 package io.scalajs.nodejs.vm
 
 import com.thoughtworks.enableIf
-import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -95,7 +94,6 @@ trait VM extends js.Object {
 @JSImport("vm", JSImport.Namespace)
 object VM extends VM
 
-@Factory
 trait CompileFunctionOptions extends js.Object {
   var filename: js.UndefOr[String]                       = js.undefined
   var lineOffset: js.UndefOr[Int]                        = js.undefined
@@ -104,8 +102,27 @@ trait CompileFunctionOptions extends js.Object {
   var parsingContext: js.UndefOr[js.Object]              = js.undefined
   var contextExtensions: js.UndefOr[js.Array[js.Object]] = js.undefined
 }
+object CompileFunctionOptions {
+  def apply(
+      filename: js.UndefOr[String] = js.undefined,
+      lineOffset: js.UndefOr[Int] = js.undefined,
+      columnOffset: js.UndefOr[Int] = js.undefined,
+      cachedData: js.UndefOr[js.typedarray.Uint8Array | js.typedarray.DataView] = js.undefined,
+      parsingContext: js.UndefOr[js.Object] = js.undefined,
+      contextExtensions: js.UndefOr[js.Array[js.Object]] = js.undefined
+  ): CompileFunctionOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    filename.foreach(_v => _obj$.updateDynamic("filename")(_v.asInstanceOf[js.Any]))
+    lineOffset.foreach(_v => _obj$.updateDynamic("lineOffset")(_v.asInstanceOf[js.Any]))
+    columnOffset.foreach(_v => _obj$.updateDynamic("columnOffset")(_v.asInstanceOf[js.Any]))
+    cachedData.foreach(_v => _obj$.updateDynamic("cachedData")(_v.asInstanceOf[js.Any]))
+    parsingContext.foreach(_v => _obj$.updateDynamic("parsingContext")(_v.asInstanceOf[js.Any]))
+    contextExtensions.foreach(_v => _obj$.updateDynamic("contextExtensions")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[CompileFunctionOptions]
+  }
+}
 
-@Factory
 trait CreateContextOptions extends js.Object {
   var name: js.UndefOr[String]                   = js.undefined
   var origin: js.UndefOr[String]                 = js.undefined
@@ -114,8 +131,23 @@ trait CreateContextOptions extends js.Object {
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
   var microtaskMode: js.UndefOr[String] = js.undefined
 }
+object CreateContextOptions {
+  def apply(
+      name: js.UndefOr[String] = js.undefined,
+      origin: js.UndefOr[String] = js.undefined,
+      codeGeneration: js.UndefOr[CodeGeneration] = js.undefined,
+      microtaskMode: js.UndefOr[String] = js.undefined
+  ): CreateContextOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    name.foreach(_v => _obj$.updateDynamic("name")(_v.asInstanceOf[js.Any]))
+    origin.foreach(_v => _obj$.updateDynamic("origin")(_v.asInstanceOf[js.Any]))
+    codeGeneration.foreach(_v => _obj$.updateDynamic("codeGeneration")(_v.asInstanceOf[js.Any]))
+    microtaskMode.foreach(_v => _obj$.updateDynamic("microtaskMode")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[CreateContextOptions]
+  }
+}
 
-@Factory
 trait VMRunInNewContextOptions extends js.Object {
   var filename: js.UndefOr[String]                      = js.undefined
   var lineOffset: js.UndefOr[Int]                       = js.undefined
@@ -130,8 +162,39 @@ trait VMRunInNewContextOptions extends js.Object {
   var produceCachedData: js.UndefOr[Boolean]            = js.undefined
   var importModuleDynamically: js.UndefOr[js.Function]  = js.undefined
 }
+object VMRunInNewContextOptions {
+  def apply(
+      filename: js.UndefOr[String] = js.undefined,
+      lineOffset: js.UndefOr[Int] = js.undefined,
+      columnOffset: js.UndefOr[Int] = js.undefined,
+      displayErrors: js.UndefOr[Boolean] = js.undefined,
+      timeout: js.UndefOr[Int] = js.undefined,
+      breakOnSigint: js.UndefOr[Boolean] = js.undefined,
+      contextName: js.UndefOr[String] = js.undefined,
+      contextOrigin: js.UndefOr[String] = js.undefined,
+      contextCodeGeneration: js.UndefOr[CodeGeneration] = js.undefined,
+      cachedData: js.UndefOr[js.typedarray.Uint8Array | js.typedarray.DataView] = js.undefined,
+      produceCachedData: js.UndefOr[Boolean] = js.undefined,
+      importModuleDynamically: js.UndefOr[js.Function] = js.undefined
+  ): VMRunInNewContextOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    filename.foreach(_v => _obj$.updateDynamic("filename")(_v.asInstanceOf[js.Any]))
+    lineOffset.foreach(_v => _obj$.updateDynamic("lineOffset")(_v.asInstanceOf[js.Any]))
+    columnOffset.foreach(_v => _obj$.updateDynamic("columnOffset")(_v.asInstanceOf[js.Any]))
+    displayErrors.foreach(_v => _obj$.updateDynamic("displayErrors")(_v.asInstanceOf[js.Any]))
+    timeout.foreach(_v => _obj$.updateDynamic("timeout")(_v.asInstanceOf[js.Any]))
+    breakOnSigint.foreach(_v => _obj$.updateDynamic("breakOnSigint")(_v.asInstanceOf[js.Any]))
+    contextName.foreach(_v => _obj$.updateDynamic("contextName")(_v.asInstanceOf[js.Any]))
+    contextOrigin.foreach(_v => _obj$.updateDynamic("contextOrigin")(_v.asInstanceOf[js.Any]))
+    contextCodeGeneration.foreach(_v => _obj$.updateDynamic("contextCodeGeneration")(_v.asInstanceOf[js.Any]))
+    cachedData.foreach(_v => _obj$.updateDynamic("cachedData")(_v.asInstanceOf[js.Any]))
+    produceCachedData.foreach(_v => _obj$.updateDynamic("produceCachedData")(_v.asInstanceOf[js.Any]))
+    importModuleDynamically.foreach(_v => _obj$.updateDynamic("importModuleDynamically")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[VMRunInNewContextOptions]
+  }
+}
 
-@Factory
 trait VMRunInContextOptions extends js.Object {
   var filename: js.UndefOr[String]                     = js.undefined
   var lineOffset: js.UndefOr[Int]                      = js.undefined
@@ -142,4 +205,30 @@ trait VMRunInContextOptions extends js.Object {
   var cachedData: js.UndefOr[Uint8Array | DataView]    = js.undefined
   var produceCachedData: js.UndefOr[Boolean]           = js.undefined
   var importModuleDynamically: js.UndefOr[js.Function] = js.undefined
+}
+object VMRunInContextOptions {
+  def apply(
+      filename: js.UndefOr[String] = js.undefined,
+      lineOffset: js.UndefOr[Int] = js.undefined,
+      columnOffset: js.UndefOr[Int] = js.undefined,
+      displayErrors: js.UndefOr[Boolean] = js.undefined,
+      timeout: js.UndefOr[Int] = js.undefined,
+      breakOnSigint: js.UndefOr[Boolean] = js.undefined,
+      cachedData: js.UndefOr[js.typedarray.Uint8Array | js.typedarray.DataView] = js.undefined,
+      produceCachedData: js.UndefOr[Boolean] = js.undefined,
+      importModuleDynamically: js.UndefOr[js.Function] = js.undefined
+  ): VMRunInContextOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    filename.foreach(_v => _obj$.updateDynamic("filename")(_v.asInstanceOf[js.Any]))
+    lineOffset.foreach(_v => _obj$.updateDynamic("lineOffset")(_v.asInstanceOf[js.Any]))
+    columnOffset.foreach(_v => _obj$.updateDynamic("columnOffset")(_v.asInstanceOf[js.Any]))
+    displayErrors.foreach(_v => _obj$.updateDynamic("displayErrors")(_v.asInstanceOf[js.Any]))
+    timeout.foreach(_v => _obj$.updateDynamic("timeout")(_v.asInstanceOf[js.Any]))
+    breakOnSigint.foreach(_v => _obj$.updateDynamic("breakOnSigint")(_v.asInstanceOf[js.Any]))
+    cachedData.foreach(_v => _obj$.updateDynamic("cachedData")(_v.asInstanceOf[js.Any]))
+    produceCachedData.foreach(_v => _obj$.updateDynamic("produceCachedData")(_v.asInstanceOf[js.Any]))
+    importModuleDynamically.foreach(_v => _obj$.updateDynamic("importModuleDynamically")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[VMRunInContextOptions]
+  }
 }

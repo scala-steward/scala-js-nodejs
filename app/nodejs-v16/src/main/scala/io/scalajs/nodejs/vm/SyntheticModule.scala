@@ -1,7 +1,5 @@
 package io.scalajs.nodejs.vm
 
-import net.exoego.scalajs.types.util.Factory
-
 import scala.scalajs.js
 
 class SyntheticModule protected () extends js.Object {
@@ -10,8 +8,19 @@ class SyntheticModule protected () extends js.Object {
 
 }
 
-@Factory
 trait SyntheticModuleOptions extends js.Object {
   var identifier: js.UndefOr[String] = js.undefined
   var context: js.UndefOr[Context]   = js.undefined
+}
+object SyntheticModuleOptions {
+  def apply(
+      identifier: js.UndefOr[String] = js.undefined,
+      context: js.UndefOr[Context] = js.undefined
+  ): SyntheticModuleOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    identifier.foreach(_v => _obj$.updateDynamic("identifier")(_v.asInstanceOf[js.Any]))
+    context.foreach(_v => _obj$.updateDynamic("context")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[SyntheticModuleOptions]
+  }
 }

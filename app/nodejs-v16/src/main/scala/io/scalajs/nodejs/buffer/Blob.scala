@@ -2,7 +2,6 @@ package io.scalajs.nodejs.buffer
 
 import com.thoughtworks.enableMembersIf
 import io.scalajs.nodejs.webstream
-import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSImport, JSName}
@@ -36,8 +35,19 @@ class Blob() extends js.Object {
   def stream(): webstream.ReadableStream = js.native
 }
 
-@Factory
 trait BlobOptions extends js.Object {
   var encoding: js.UndefOr[String] = js.undefined
   var `type`: js.UndefOr[String]   = js.undefined
+}
+object BlobOptions {
+  def apply(
+      encoding: js.UndefOr[String] = js.undefined,
+      `type`: js.UndefOr[String] = js.undefined
+  ): BlobOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    encoding.foreach(_v => _obj$.updateDynamic("encoding")(_v.asInstanceOf[js.Any]))
+    `type`.foreach(_v => _obj$.updateDynamic("type")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[BlobOptions]
+  }
 }

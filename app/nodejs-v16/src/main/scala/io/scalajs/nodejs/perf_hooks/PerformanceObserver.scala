@@ -1,7 +1,6 @@
 package io.scalajs.nodejs.perf_hooks
 
 import com.thoughtworks.{enableIf, enableMembersIf}
-import _root_.net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -15,10 +14,21 @@ class PerformanceObserver(callback: js.Function2[PerformanceObserverEntryList, P
   def observe(options: ObserveOptions): Unit = js.native
 }
 
-@Factory
 trait ObserveOptions extends js.Object {
   var entryTypes: js.Array[String]
   var buffered: js.UndefOr[Boolean] = js.undefined
+}
+object ObserveOptions {
+  def apply(
+      entryTypes: js.Array[String],
+      buffered: js.UndefOr[Boolean] = js.undefined
+  ): ObserveOptions = {
+    val _obj$ = js.Dynamic.literal(
+      "entryTypes" -> entryTypes.asInstanceOf[js.Any]
+    )
+    buffered.foreach(_v => _obj$.updateDynamic("buffered")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[ObserveOptions]
+  }
 }
 
 @js.native
@@ -58,7 +68,16 @@ trait Histogram extends js.Object {
   def recordDelta(): Unit = js.native
 }
 
-@Factory
 trait MonitorEventLoopDelayOptions extends js.Object {
   var resolution: js.UndefOr[Double] = js.undefined
+}
+object MonitorEventLoopDelayOptions {
+  def apply(
+      resolution: js.UndefOr[Double] = js.undefined
+  ): MonitorEventLoopDelayOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    resolution.foreach(_v => _obj$.updateDynamic("resolution")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[MonitorEventLoopDelayOptions]
+  }
 }

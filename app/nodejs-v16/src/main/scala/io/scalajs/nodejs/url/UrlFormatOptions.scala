@@ -1,10 +1,7 @@
 package io.scalajs.nodejs.url
 
-import net.exoego.scalajs.types.util.Factory
-
 import scala.scalajs.js
 
-@Factory
 trait UrlFormatOptions extends js.Object {
 
   /** true if the serialized URL string should include the username and password, false otherwise. Defaults to true.
@@ -23,4 +20,21 @@ trait UrlFormatOptions extends js.Object {
     * to being Punycode encoded. Defaults to false.
     */
   var unicode: js.UndefOr[Boolean] = js.undefined
+}
+
+object UrlFormatOptions {
+  def apply(
+      auth: js.UndefOr[Boolean] = js.undefined,
+      fragment: js.UndefOr[Boolean] = js.undefined,
+      search: js.UndefOr[Boolean] = js.undefined,
+      unicode: js.UndefOr[Boolean] = js.undefined
+  ): UrlFormatOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    auth.foreach(_v => _obj$.updateDynamic("auth")(_v.asInstanceOf[js.Any]))
+    fragment.foreach(_v => _obj$.updateDynamic("fragment")(_v.asInstanceOf[js.Any]))
+    search.foreach(_v => _obj$.updateDynamic("search")(_v.asInstanceOf[js.Any]))
+    unicode.foreach(_v => _obj$.updateDynamic("unicode")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[UrlFormatOptions]
+  }
 }

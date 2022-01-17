@@ -4,7 +4,6 @@ package dgram
 import com.thoughtworks.enableIf
 import io.scalajs.nodejs.events.IEventEmitter
 import io.scalajs.nodejs.net.Address
-import _root_.net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -137,25 +136,68 @@ class Socket protected () extends IEventEmitter {
   def unref(): this.type                                      = js.native
 }
 
-@Factory
 trait BindOptions extends js.Object {
   var port: js.UndefOr[Int]          = js.undefined
   var address: js.UndefOr[String]    = js.undefined
   var exclusive: js.UndefOr[Boolean] = js.undefined
   var fd: js.UndefOr[Int]            = js.undefined
 }
-
-@js.native
-trait RemoteAddress extends js.Object {
-  var address: String = js.native
-  var family: String  = js.native
-  var port: Int       = js.native
+object BindOptions {
+  def apply(
+      port: js.UndefOr[Int] = js.undefined,
+      address: js.UndefOr[String] = js.undefined,
+      exclusive: js.UndefOr[Boolean] = js.undefined,
+      fd: js.UndefOr[Int] = js.undefined
+  ): BindOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    port.foreach(_v => _obj$.updateDynamic("port")(_v.asInstanceOf[js.Any]))
+    address.foreach(_v => _obj$.updateDynamic("address")(_v.asInstanceOf[js.Any]))
+    exclusive.foreach(_v => _obj$.updateDynamic("exclusive")(_v.asInstanceOf[js.Any]))
+    fd.foreach(_v => _obj$.updateDynamic("fd")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[BindOptions]
+  }
 }
 
-@js.native
+trait RemoteAddress extends js.Object {
+  var address: String
+  var family: String
+  var port: Int
+}
+object RemoteAddress {
+  def apply(
+      address: String,
+      family: String,
+      port: Int
+  ): RemoteAddress = {
+    val _obj$ = js.Dynamic.literal(
+      "address" -> address.asInstanceOf[js.Any],
+      "family"  -> family.asInstanceOf[js.Any],
+      "port"    -> port.asInstanceOf[js.Any]
+    )
+    _obj$.asInstanceOf[RemoteAddress]
+  }
+}
+
 trait RemoteAddressInfo extends js.Object {
-  var address: String = js.native
-  var family: String  = js.native
-  var port: Int       = js.native
-  var size: Int       = js.native
+  var address: String
+  var family: String
+  var port: Int
+  var size: Int
+}
+object RemoteAddressInfo {
+  def apply(
+      address: String,
+      family: String,
+      port: Int,
+      size: Int
+  ): RemoteAddressInfo = {
+    val _obj$ = js.Dynamic.literal(
+      "address" -> address.asInstanceOf[js.Any],
+      "family"  -> family.asInstanceOf[js.Any],
+      "port"    -> port.asInstanceOf[js.Any],
+      "size"    -> size.asInstanceOf[js.Any]
+    )
+    _obj$.asInstanceOf[RemoteAddressInfo]
+  }
 }

@@ -103,7 +103,3 @@ for {
   console.log("output3 =", output3)
 }
 ```
-
-## Note
-
-This facade leverages [`@Factory` marcro](https://github.com/exoego/scalajs-types-util#factory-macro) to create highly-optimized factory method without boilerplate.

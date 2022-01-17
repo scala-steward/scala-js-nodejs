@@ -3,7 +3,6 @@ package io.scalajs.nodejs.crypto
 import com.thoughtworks.enableMembersIf
 import io.scalajs.nodejs.buffer.Buffer
 import io.scalajs.nodejs.tls.TLSCertificate
-import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -54,11 +53,28 @@ class X509Certificate private[this] () extends js.Object {
   def verify(publicKey: KeyObject): Boolean = js.native
 }
 
-@Factory
 trait CheckOptions extends js.Object {
   var subject: js.UndefOr[String]                = js.undefined
   var wildcards: js.UndefOr[Boolean]             = js.undefined
   var partialWildcards: js.UndefOr[Boolean]      = js.undefined
   var multiLabelWildcards: js.UndefOr[Boolean]   = js.undefined
   var singleLabelSubdomains: js.UndefOr[Boolean] = js.undefined
+}
+object CheckOptions {
+  def apply(
+      subject: js.UndefOr[String] = js.undefined,
+      wildcards: js.UndefOr[Boolean] = js.undefined,
+      partialWildcards: js.UndefOr[Boolean] = js.undefined,
+      multiLabelWildcards: js.UndefOr[Boolean] = js.undefined,
+      singleLabelSubdomains: js.UndefOr[Boolean] = js.undefined
+  ): CheckOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    subject.foreach(_v => _obj$.updateDynamic("subject")(_v.asInstanceOf[js.Any]))
+    wildcards.foreach(_v => _obj$.updateDynamic("wildcards")(_v.asInstanceOf[js.Any]))
+    partialWildcards.foreach(_v => _obj$.updateDynamic("partialWildcards")(_v.asInstanceOf[js.Any]))
+    multiLabelWildcards.foreach(_v => _obj$.updateDynamic("multiLabelWildcards")(_v.asInstanceOf[js.Any]))
+    singleLabelSubdomains.foreach(_v => _obj$.updateDynamic("singleLabelSubdomains")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[CheckOptions]
+  }
 }

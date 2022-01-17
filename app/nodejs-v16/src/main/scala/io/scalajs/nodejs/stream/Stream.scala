@@ -2,7 +2,6 @@ package io.scalajs.nodejs
 package stream
 
 import com.thoughtworks.enableIf
-import _root_.net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js.|
 import io.scalajs.nodejs.buffer.{Blob, Buffer}
@@ -281,7 +280,6 @@ sealed trait IReadable extends Stream with LegacyStream {
   def wrap(stream: LegacyStream): Unit = js.native
 }
 
-@Factory
 trait ReadableOptions extends js.Object {
   var highWaterMark: js.UndefOr[Int]   = js.undefined
   var encoding: js.UndefOr[String]     = js.undefined
@@ -292,12 +290,44 @@ trait ReadableOptions extends js.Object {
   var autoDestroy: js.UndefOr[Boolean] = js.undefined
 }
 
-@Factory
+object ReadableOptions {
+  def apply(
+      highWaterMark: js.UndefOr[Int] = js.undefined,
+      encoding: js.UndefOr[String] = js.undefined,
+      objectMode: js.UndefOr[Boolean] = js.undefined,
+      emitClose: js.UndefOr[Boolean] = js.undefined,
+      read: js.UndefOr[js.Function] = js.undefined,
+      destroy: js.UndefOr[js.Function] = js.undefined,
+      autoDestroy: js.UndefOr[Boolean] = js.undefined
+  ): ReadableOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    highWaterMark.foreach(_v => _obj$.updateDynamic("highWaterMark")(_v.asInstanceOf[js.Any]))
+    encoding.foreach(_v => _obj$.updateDynamic("encoding")(_v.asInstanceOf[js.Any]))
+    objectMode.foreach(_v => _obj$.updateDynamic("objectMode")(_v.asInstanceOf[js.Any]))
+    emitClose.foreach(_v => _obj$.updateDynamic("emitClose")(_v.asInstanceOf[js.Any]))
+    read.foreach(_v => _obj$.updateDynamic("read")(_v.asInstanceOf[js.Any]))
+    destroy.foreach(_v => _obj$.updateDynamic("destroy")(_v.asInstanceOf[js.Any]))
+    autoDestroy.foreach(_v => _obj$.updateDynamic("autoDestroy")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[ReadableOptions]
+  }
+}
+
 trait ReadablePipeOptions extends js.Object {
 
   /** End the writer when the reader ends. Defaults to true.
     */
   var end: js.UndefOr[Boolean] = js.undefined
+}
+object ReadablePipeOptions {
+  def apply(
+      end: js.UndefOr[Boolean] = js.undefined
+  ): ReadablePipeOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    end.foreach(_v => _obj$.updateDynamic("end")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[ReadablePipeOptions]
+  }
 }
 
 /** Readable State
@@ -369,7 +399,6 @@ sealed trait IWritable extends Stream with LegacyStream {
   def write(chunk: String, encoding: String, callback: js.Function1[Error, Any]): Boolean = js.native
 }
 
-@Factory
 trait WritableOptions extends js.Object {
   var highWaterMark: js.UndefOr[Int]      = js.undefined
   var decodeStrings: js.UndefOr[Boolean]  = js.undefined
@@ -382,6 +411,34 @@ trait WritableOptions extends js.Object {
   var `final`: js.UndefOr[js.Function]    = js.undefined
   var autoDestroy: js.UndefOr[Boolean]    = js.undefined
 }
+object WritableOptions {
+  def apply(
+      highWaterMark: js.UndefOr[Int] = js.undefined,
+      decodeStrings: js.UndefOr[Boolean] = js.undefined,
+      defaultEncoding: js.UndefOr[String] = js.undefined,
+      objectMode: js.UndefOr[Boolean] = js.undefined,
+      emitClose: js.UndefOr[Boolean] = js.undefined,
+      write: js.UndefOr[js.Function] = js.undefined,
+      writev: js.UndefOr[js.Function] = js.undefined,
+      destroy: js.UndefOr[js.Function] = js.undefined,
+      `final`: js.UndefOr[js.Function] = js.undefined,
+      autoDestroy: js.UndefOr[Boolean] = js.undefined
+  ): WritableOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    highWaterMark.foreach(_v => _obj$.updateDynamic("highWaterMark")(_v.asInstanceOf[js.Any]))
+    decodeStrings.foreach(_v => _obj$.updateDynamic("decodeStrings")(_v.asInstanceOf[js.Any]))
+    defaultEncoding.foreach(_v => _obj$.updateDynamic("defaultEncoding")(_v.asInstanceOf[js.Any]))
+    objectMode.foreach(_v => _obj$.updateDynamic("objectMode")(_v.asInstanceOf[js.Any]))
+    emitClose.foreach(_v => _obj$.updateDynamic("emitClose")(_v.asInstanceOf[js.Any]))
+    write.foreach(_v => _obj$.updateDynamic("write")(_v.asInstanceOf[js.Any]))
+    writev.foreach(_v => _obj$.updateDynamic("writev")(_v.asInstanceOf[js.Any]))
+    destroy.foreach(_v => _obj$.updateDynamic("destroy")(_v.asInstanceOf[js.Any]))
+    `final`.foreach(_v => _obj$.updateDynamic("final")(_v.asInstanceOf[js.Any]))
+    autoDestroy.foreach(_v => _obj$.updateDynamic("autoDestroy")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[WritableOptions]
+  }
+}
 
 /** Duplex Interface
   */
@@ -393,7 +450,6 @@ sealed trait IDuplex extends IReadable with IWritable {
 @js.native
 sealed trait ITransform extends IDuplex
 
-@Factory
 trait DuplexOptions extends js.Object {
 
   /** If set to false, then the stream will automatically end the readable side when the writable side ends and vice
@@ -409,8 +465,21 @@ trait DuplexOptions extends js.Object {
     */
   var writableObjectMode: js.UndefOr[Boolean] = js.undefined
 }
+object DuplexOptions {
+  def apply(
+      allowHalfOpen: js.UndefOr[Boolean] = js.undefined,
+      readableObjectMode: js.UndefOr[Boolean] = js.undefined,
+      writableObjectMode: js.UndefOr[Boolean] = js.undefined
+  ): DuplexOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    allowHalfOpen.foreach(_v => _obj$.updateDynamic("allowHalfOpen")(_v.asInstanceOf[js.Any]))
+    readableObjectMode.foreach(_v => _obj$.updateDynamic("readableObjectMode")(_v.asInstanceOf[js.Any]))
+    writableObjectMode.foreach(_v => _obj$.updateDynamic("writableObjectMode")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[DuplexOptions]
+  }
+}
 
-@Factory
 trait TransformOptions extends js.Object {
   var transform: js.UndefOr[js.Function] = js.undefined
   var flush: js.UndefOr[js.Function]     = js.undefined

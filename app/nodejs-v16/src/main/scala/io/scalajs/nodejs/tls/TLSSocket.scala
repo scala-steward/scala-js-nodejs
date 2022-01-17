@@ -3,7 +3,7 @@ package tls
 
 import com.thoughtworks.enableIf
 import io.scalajs.nodejs.buffer.Buffer
-import _root_.net.exoego.scalajs.types.util.Factory
+
 import io.scalajs.nodejs.crypto.X509Certificate
 
 import scala.scalajs.js
@@ -80,7 +80,6 @@ class TLSSocket protected () extends net.Socket {
   def getX509Certificate(): X509Certificate = js.native
 }
 
-@Factory
 trait TLSSocketOptions extends js.Object {
   var enableTrace: js.UndefOr[Boolean] = js.undefined
 
@@ -122,8 +121,51 @@ trait TLSSocketOptions extends js.Object {
     */
   var secureContext: js.UndefOr[SecureContext] = js.undefined
 }
-@Factory
+
+object TLSSocketOptions {
+  def apply(
+      enableTrace: js.UndefOr[Boolean] = js.undefined,
+      isServer: js.UndefOr[Boolean] = js.undefined,
+      server: js.UndefOr[net.Server] = js.undefined,
+      requestCert: js.UndefOr[Boolean] = js.undefined,
+      rejectUnauthorized: js.UndefOr[Boolean] = js.undefined,
+      NPNProtocols: js.UndefOr[Boolean] = js.undefined,
+      ALPNProtocols: js.UndefOr[ALPNProtocols] = js.undefined,
+      SNICallback: js.UndefOr[js.Function2[String, js.Function, Any]] = js.undefined,
+      session: js.UndefOr[Buffer] = js.undefined,
+      requestOCSP: js.UndefOr[Boolean] = js.undefined,
+      secureContext: js.UndefOr[SecureContext] = js.undefined
+  ): TLSSocketOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    enableTrace.foreach(_v => _obj$.updateDynamic("enableTrace")(_v.asInstanceOf[js.Any]))
+    isServer.foreach(_v => _obj$.updateDynamic("isServer")(_v.asInstanceOf[js.Any]))
+    server.foreach(_v => _obj$.updateDynamic("server")(_v.asInstanceOf[js.Any]))
+    requestCert.foreach(_v => _obj$.updateDynamic("requestCert")(_v.asInstanceOf[js.Any]))
+    rejectUnauthorized.foreach(_v => _obj$.updateDynamic("rejectUnauthorized")(_v.asInstanceOf[js.Any]))
+    NPNProtocols.foreach(_v => _obj$.updateDynamic("NPNProtocols")(_v.asInstanceOf[js.Any]))
+    ALPNProtocols.foreach(_v => _obj$.updateDynamic("ALPNProtocols")(_v.asInstanceOf[js.Any]))
+    SNICallback.foreach(_v => _obj$.updateDynamic("SNICallback")(_v.asInstanceOf[js.Any]))
+    session.foreach(_v => _obj$.updateDynamic("session")(_v.asInstanceOf[js.Any]))
+    requestOCSP.foreach(_v => _obj$.updateDynamic("requestOCSP")(_v.asInstanceOf[js.Any]))
+    secureContext.foreach(_v => _obj$.updateDynamic("secureContext")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[TLSSocketOptions]
+  }
+}
+
 trait RenegotiateOptions extends js.Object {
   var rejectUnauthorized: js.UndefOr[Boolean] = js.undefined
   var requestCert: js.UndefOr[Boolean]        = js.undefined
+}
+object RenegotiateOptions {
+  def apply(
+      rejectUnauthorized: js.UndefOr[Boolean] = js.undefined,
+      requestCert: js.UndefOr[Boolean] = js.undefined
+  ): RenegotiateOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    rejectUnauthorized.foreach(_v => _obj$.updateDynamic("rejectUnauthorized")(_v.asInstanceOf[js.Any]))
+    requestCert.foreach(_v => _obj$.updateDynamic("requestCert")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[RenegotiateOptions]
+  }
 }

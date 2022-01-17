@@ -3,7 +3,6 @@ package io.scalajs.nodejs.crypto
 import com.thoughtworks.enableIf
 import io.scalajs.nodejs.buffer.Buffer
 import io.scalajs.nodejs.stream.{Transform, TransformOptions}
-import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
 
@@ -71,7 +70,20 @@ sealed trait Hash extends Transform {
   def update(data: BufferLike): Hash                    = js.native
 }
 
-@Factory
 trait CreateHashOptions extends TransformOptions {
   var outputLength: js.UndefOr[Int] = js.undefined
+}
+object CreateHashOptions {
+  def apply(
+      transform: js.UndefOr[js.Function] = js.undefined,
+      flush: js.UndefOr[js.Function] = js.undefined,
+      outputLength: js.UndefOr[Int] = js.undefined
+  ): CreateHashOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    transform.foreach(_v => _obj$.updateDynamic("transform")(_v.asInstanceOf[js.Any]))
+    flush.foreach(_v => _obj$.updateDynamic("flush")(_v.asInstanceOf[js.Any]))
+    outputLength.foreach(_v => _obj$.updateDynamic("outputLength")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[CreateHashOptions]
+  }
 }

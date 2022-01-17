@@ -3,7 +3,6 @@ package fs
 
 import com.thoughtworks.{enableIf, enableMembersIf}
 import io.scalajs.nodejs.buffer.Buffer
-import _root_.net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -1534,45 +1533,114 @@ trait BufferIOResult[T] extends js.Object {
   val buffer: T      = js.native
 }
 
-@Factory
 trait FileAppendOptions extends js.Object {
   var encoding: js.UndefOr[String] = js.undefined
   var mode: js.UndefOr[FileMode]   = js.undefined
   var flag: js.UndefOr[String]     = js.undefined
 }
+object FileAppendOptions {
+  def apply(
+      encoding: js.UndefOr[String] = js.undefined,
+      mode: js.UndefOr[FileMode] = js.undefined,
+      flag: js.UndefOr[String] = js.undefined
+  ): FileAppendOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    encoding.foreach(_v => _obj$.updateDynamic("encoding")(_v.asInstanceOf[js.Any]))
+    mode.foreach(_v => _obj$.updateDynamic("mode")(_v.asInstanceOf[js.Any]))
+    flag.foreach(_v => _obj$.updateDynamic("flag")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[FileAppendOptions]
+  }
+}
 
-@Factory
 trait FileEncodingOptions extends js.Object {
   var encoding: js.UndefOr[String] = js.undefined
 }
+object FileEncodingOptions {
+  def apply(
+      encoding: js.UndefOr[String] = js.undefined
+  ): FileEncodingOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    encoding.foreach(_v => _obj$.updateDynamic("encoding")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[FileEncodingOptions]
+  }
+}
 
-@Factory
 trait ReadOptions extends js.Object {
   var buffer: js.UndefOr[BufferLike] = js.undefined
   var offset: js.UndefOr[Int]        = js.undefined
   var length: js.UndefOr[Int]        = js.undefined
   var position: js.UndefOr[Int]      = js.undefined
 }
+object ReadOptions {
+  def apply(
+      buffer: js.UndefOr[BufferLike] = js.undefined,
+      offset: js.UndefOr[Int] = js.undefined,
+      length: js.UndefOr[Int] = js.undefined,
+      position: js.UndefOr[Int] = js.undefined
+  ): ReadOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    buffer.foreach(_v => _obj$.updateDynamic("buffer")(_v.asInstanceOf[js.Any]))
+    offset.foreach(_v => _obj$.updateDynamic("offset")(_v.asInstanceOf[js.Any]))
+    length.foreach(_v => _obj$.updateDynamic("length")(_v.asInstanceOf[js.Any]))
+    position.foreach(_v => _obj$.updateDynamic("position")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[ReadOptions]
+  }
+}
 
-@Factory
 trait ReaddirOptions extends js.Object {
   var encoding: js.UndefOr[String]       = js.undefined
   var withFileTypes: js.UndefOr[Boolean] = js.undefined
 }
+object ReaddirOptions {
+  def apply(
+      encoding: js.UndefOr[String] = js.undefined,
+      withFileTypes: js.UndefOr[Boolean] = js.undefined
+  ): ReaddirOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    encoding.foreach(_v => _obj$.updateDynamic("encoding")(_v.asInstanceOf[js.Any]))
+    withFileTypes.foreach(_v => _obj$.updateDynamic("withFileTypes")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[ReaddirOptions]
+  }
+}
 
-@Factory
 trait OpendirOptions extends js.Object {
   var encoding: js.UndefOr[String]   = js.undefined
   var bufferSize: js.UndefOr[Double] = js.undefined
 }
+object OpendirOptions {
+  def apply(
+      encoding: js.UndefOr[String] = js.undefined,
+      bufferSize: js.UndefOr[Double] = js.undefined
+  ): OpendirOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    encoding.foreach(_v => _obj$.updateDynamic("encoding")(_v.asInstanceOf[js.Any]))
+    bufferSize.foreach(_v => _obj$.updateDynamic("bufferSize")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[OpendirOptions]
+  }
+}
 
-@Factory
 trait ReadFileOptions extends js.Object {
   var encoding: js.UndefOr[String] = js.undefined
   var flag: js.UndefOr[String]     = js.undefined
 }
+object ReadFileOptions {
+  def apply(
+      encoding: js.UndefOr[String] = js.undefined,
+      flag: js.UndefOr[String] = js.undefined
+  ): ReadFileOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    encoding.foreach(_v => _obj$.updateDynamic("encoding")(_v.asInstanceOf[js.Any]))
+    flag.foreach(_v => _obj$.updateDynamic("flag")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[ReadFileOptions]
+  }
+}
 
-@Factory
 trait FileInputOptions extends js.Object {
   var flags: js.UndefOr[String]      = js.undefined
   var encoding: js.UndefOr[String]   = js.undefined
@@ -1588,7 +1656,36 @@ trait FileInputOptions extends js.Object {
   var fs: js.UndefOr[js.Object] = js.undefined
 }
 
-@Factory
+object FileInputOptions {
+
+  def apply(
+      flags: js.UndefOr[String] = js.undefined,
+      encoding: js.UndefOr[String] = js.undefined,
+      fd: js.UndefOr[FileDescriptor] = js.undefined,
+      mode: js.UndefOr[FileMode] = js.undefined,
+      autoClose: js.UndefOr[Boolean] = js.undefined,
+      emitClose: js.UndefOr[Boolean] = js.undefined,
+      start: js.UndefOr[Int] = js.undefined,
+      end: js.UndefOr[Int] = js.undefined,
+      highWaterMark: js.UndefOr[Int] = js.undefined,
+      fs: js.UndefOr[js.Object] = js.undefined
+  ): FileInputOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    flags.foreach(_v => _obj$.updateDynamic("flags")(_v.asInstanceOf[js.Any]))
+    encoding.foreach(_v => _obj$.updateDynamic("encoding")(_v.asInstanceOf[js.Any]))
+    fd.foreach(_v => _obj$.updateDynamic("fd")(_v.asInstanceOf[js.Any]))
+    mode.foreach(_v => _obj$.updateDynamic("mode")(_v.asInstanceOf[js.Any]))
+    autoClose.foreach(_v => _obj$.updateDynamic("autoClose")(_v.asInstanceOf[js.Any]))
+    emitClose.foreach(_v => _obj$.updateDynamic("emitClose")(_v.asInstanceOf[js.Any]))
+    start.foreach(_v => _obj$.updateDynamic("start")(_v.asInstanceOf[js.Any]))
+    end.foreach(_v => _obj$.updateDynamic("end")(_v.asInstanceOf[js.Any]))
+    highWaterMark.foreach(_v => _obj$.updateDynamic("highWaterMark")(_v.asInstanceOf[js.Any]))
+    fs.foreach(_v => _obj$.updateDynamic("fs")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[FileInputOptions]
+  }
+}
+
 trait FileOutputOptions extends js.Object {
   var flags: js.UndefOr[String]           = js.undefined
   var defaultEncoding: js.UndefOr[String] = js.undefined
@@ -1601,26 +1698,82 @@ trait FileOutputOptions extends js.Object {
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
   var fs: js.UndefOr[js.Object] = js.undefined
 }
+object FileOutputOptions {
+  def apply(
+      flags: js.UndefOr[String] = js.undefined,
+      defaultEncoding: js.UndefOr[String] = js.undefined,
+      fd: js.UndefOr[FileDescriptor] = js.undefined,
+      mode: js.UndefOr[FileMode] = js.undefined,
+      autoClose: js.UndefOr[Boolean] = js.undefined,
+      emitClose: js.UndefOr[Boolean] = js.undefined,
+      start: js.UndefOr[Int] = js.undefined,
+      fs: js.UndefOr[js.Object] = js.undefined
+  ): FileOutputOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    flags.foreach(_v => _obj$.updateDynamic("flags")(_v.asInstanceOf[js.Any]))
+    defaultEncoding.foreach(_v => _obj$.updateDynamic("defaultEncoding")(_v.asInstanceOf[js.Any]))
+    fd.foreach(_v => _obj$.updateDynamic("fd")(_v.asInstanceOf[js.Any]))
+    mode.foreach(_v => _obj$.updateDynamic("mode")(_v.asInstanceOf[js.Any]))
+    autoClose.foreach(_v => _obj$.updateDynamic("autoClose")(_v.asInstanceOf[js.Any]))
+    emitClose.foreach(_v => _obj$.updateDynamic("emitClose")(_v.asInstanceOf[js.Any]))
+    start.foreach(_v => _obj$.updateDynamic("start")(_v.asInstanceOf[js.Any]))
+    fs.foreach(_v => _obj$.updateDynamic("fs")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[FileOutputOptions]
+  }
+}
 
-@Factory
 trait FileWatcherOptions extends js.Object {
   var bigint: js.UndefOr[Boolean]     = js.undefined
   var persistent: js.UndefOr[Boolean] = js.undefined
   var interval: js.UndefOr[Int]       = js.undefined
 }
+object FileWatcherOptions {
+  def apply(
+      bigint: js.UndefOr[Boolean] = js.undefined,
+      persistent: js.UndefOr[Boolean] = js.undefined,
+      interval: js.UndefOr[Int] = js.undefined
+  ): FileWatcherOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    bigint.foreach(_v => _obj$.updateDynamic("bigint")(_v.asInstanceOf[js.Any]))
+    persistent.foreach(_v => _obj$.updateDynamic("persistent")(_v.asInstanceOf[js.Any]))
+    interval.foreach(_v => _obj$.updateDynamic("interval")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[FileWatcherOptions]
+  }
+}
 
-@Factory
 trait StatOptions extends js.Object {
   var bigint: js.UndefOr[Boolean] = js.undefined
 }
+object StatOptions {
+  def apply(
+      bigint: js.UndefOr[Boolean] = js.undefined
+  ): StatOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    bigint.foreach(_v => _obj$.updateDynamic("bigint")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[StatOptions]
+  }
+}
 
-@Factory
 trait MkdirOptions extends js.Object {
   var recursive: js.UndefOr[Boolean]      = js.undefined
   var mode: js.UndefOr[FileMode | String] = js.undefined
 }
+object MkdirOptions {
+  def apply(
+      recursive: js.UndefOr[Boolean] = js.undefined,
+      mode: js.UndefOr[FileMode | String] = js.undefined
+  ): MkdirOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    recursive.foreach(_v => _obj$.updateDynamic("recursive")(_v.asInstanceOf[js.Any]))
+    mode.foreach(_v => _obj$.updateDynamic("mode")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[MkdirOptions]
+  }
+}
 
-@Factory
 trait RmdirOptions extends js.Object {
   @deprecated(
     "Tha option has been removed, and EMFILE errors use the same retry logic as other errors.",
@@ -1633,14 +1786,47 @@ trait RmdirOptions extends js.Object {
   var retryDelay: js.UndefOr[Int]    = js.undefined
   var recursive: js.UndefOr[Boolean] = js.undefined
 }
+object RmdirOptions {
+  def apply(
+      emfileWait: js.UndefOr[Int] = js.undefined,
+      maxBusyTries: js.UndefOr[Int] = js.undefined,
+      maxRetries: js.UndefOr[Int] = js.undefined,
+      retryDelay: js.UndefOr[Int] = js.undefined,
+      recursive: js.UndefOr[Boolean] = js.undefined
+  ): RmdirOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    emfileWait.foreach(_v => _obj$.updateDynamic("emfileWait")(_v.asInstanceOf[js.Any]))
+    maxBusyTries.foreach(_v => _obj$.updateDynamic("maxBusyTries")(_v.asInstanceOf[js.Any]))
+    maxRetries.foreach(_v => _obj$.updateDynamic("maxRetries")(_v.asInstanceOf[js.Any]))
+    retryDelay.foreach(_v => _obj$.updateDynamic("retryDelay")(_v.asInstanceOf[js.Any]))
+    recursive.foreach(_v => _obj$.updateDynamic("recursive")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[RmdirOptions]
+  }
+}
 
 @enableMembersIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
-@Factory
 trait RmOptions extends js.Object {
   var force: js.UndefOr[Boolean]     = js.undefined
   var maxRetries: js.UndefOr[Int]    = js.undefined
   var retryDelay: js.UndefOr[Int]    = js.undefined
   var recursive: js.UndefOr[Boolean] = js.undefined
+}
+object RmOptions {
+  def apply(
+      force: js.UndefOr[Boolean] = js.undefined,
+      maxRetries: js.UndefOr[Int] = js.undefined,
+      retryDelay: js.UndefOr[Int] = js.undefined,
+      recursive: js.UndefOr[Boolean] = js.undefined
+  ): RmOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    force.foreach(_v => _obj$.updateDynamic("force")(_v.asInstanceOf[js.Any]))
+    maxRetries.foreach(_v => _obj$.updateDynamic("maxRetries")(_v.asInstanceOf[js.Any]))
+    retryDelay.foreach(_v => _obj$.updateDynamic("retryDelay")(_v.asInstanceOf[js.Any]))
+    recursive.foreach(_v => _obj$.updateDynamic("recursive")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[RmOptions]
+  }
 }
 
 @js.native
@@ -1661,16 +1847,42 @@ trait FileWatchEvent extends js.Object {
   val eventType: String
   val filename: String | Buffer
 }
+object FileWatchEvent {
+  def apply(
+      eventType: String,
+      filename: String | Buffer
+  ): FileWatchEvent = {
+    val _obj$ = js.Dynamic.literal(
+      "eventType" -> eventType.asInstanceOf[js.Any],
+      "filename"  -> filename.asInstanceOf[js.Any]
+    )
+    _obj$.asInstanceOf[FileWatchEvent]
+  }
+}
 
-@Factory
 trait FsPromiseWatchOptions extends js.Object {
   var signal: js.UndefOr[AbortSignal] = js.undefined
   var encoding: js.UndefOr[String]    = js.undefined
   var persistent: js.UndefOr[Boolean] = js.undefined
   var recursive: js.UndefOr[Boolean]  = js.undefined
 }
+object FsPromiseWatchOptions {
+  def apply(
+      signal: js.UndefOr[AbortSignal] = js.undefined,
+      encoding: js.UndefOr[String] = js.undefined,
+      persistent: js.UndefOr[Boolean] = js.undefined,
+      recursive: js.UndefOr[Boolean] = js.undefined
+  ): FsPromiseWatchOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    signal.foreach(_v => _obj$.updateDynamic("signal")(_v.asInstanceOf[js.Any]))
+    encoding.foreach(_v => _obj$.updateDynamic("encoding")(_v.asInstanceOf[js.Any]))
+    persistent.foreach(_v => _obj$.updateDynamic("persistent")(_v.asInstanceOf[js.Any]))
+    recursive.foreach(_v => _obj$.updateDynamic("recursive")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[FsPromiseWatchOptions]
+  }
+}
 
-@Factory
 trait CpOptions extends js.Object {
   var filter: js.UndefOr[js.Function1[String, Boolean]] = js.undefined
   var dereference: js.UndefOr[Boolean]                  = js.undefined
@@ -1678,4 +1890,25 @@ trait CpOptions extends js.Object {
   var force: js.UndefOr[Boolean]                        = js.undefined
   var preserveTimestamps: js.UndefOr[Boolean]           = js.undefined
   var recursive: js.UndefOr[Boolean]                    = js.undefined
+}
+
+object CpOptions {
+  def apply(
+      filter: js.UndefOr[js.Function1[String, Boolean]] = js.undefined,
+      dereference: js.UndefOr[Boolean] = js.undefined,
+      errorOnExist: js.UndefOr[Boolean] = js.undefined,
+      force: js.UndefOr[Boolean] = js.undefined,
+      preserveTimestamps: js.UndefOr[Boolean] = js.undefined,
+      recursive: js.UndefOr[Boolean] = js.undefined
+  ): CpOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    filter.foreach(_v => _obj$.updateDynamic("filter")(_v.asInstanceOf[js.Any]))
+    dereference.foreach(_v => _obj$.updateDynamic("dereference")(_v.asInstanceOf[js.Any]))
+    errorOnExist.foreach(_v => _obj$.updateDynamic("errorOnExist")(_v.asInstanceOf[js.Any]))
+    force.foreach(_v => _obj$.updateDynamic("force")(_v.asInstanceOf[js.Any]))
+    preserveTimestamps.foreach(_v => _obj$.updateDynamic("preserveTimestamps")(_v.asInstanceOf[js.Any]))
+    recursive.foreach(_v => _obj$.updateDynamic("recursive")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[CpOptions]
+  }
 }

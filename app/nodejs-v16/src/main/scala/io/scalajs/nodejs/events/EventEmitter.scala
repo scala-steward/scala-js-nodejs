@@ -1,7 +1,6 @@
 package io.scalajs.nodejs.events
 
 import com.thoughtworks.enableIf
-import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -20,7 +19,6 @@ class EventEmitter() extends IEventEmitter {
   def this(options: EventEmitterOptions) = this()
 }
 
-@Factory
 trait EventEmitterOptions extends js.Object {
 
   /** It enables automatic capturing of promise rejection. Default: false.
@@ -28,6 +26,16 @@ trait EventEmitterOptions extends js.Object {
     * Experimental !
     */
   var captureRejections: Boolean
+}
+object EventEmitterOptions {
+  def apply(
+      captureRejections: Boolean
+  ): EventEmitterOptions = {
+    val _obj$ = js.Dynamic.literal(
+      "captureRejections" -> captureRejections.asInstanceOf[js.Any]
+    )
+    _obj$.asInstanceOf[EventEmitterOptions]
+  }
 }
 
 /** EventEmitter Interface
