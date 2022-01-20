@@ -84,7 +84,7 @@ trait IStats[TInt, TFloat] extends js.Object {
 /** fs.Stats (Stat Time Values) - Objects returned from fs.stat(), fs.lstat() and fs.fstat() and their synchronous
   * counterparts are of this type.
   * @example
-  * {{{
+  *   {{{
   *   Stats {
   *     dev: 2114,
   *     ino: 48064969,
@@ -105,7 +105,7 @@ trait IStats[TInt, TFloat] extends js.Object {
   *     ctime: Mon, 10 Oct 2011 23:24:11 GMT,
   *     birthtime: Mon, 10 Oct 2011 23:24:11 GMT
   *   }
-  * }}}
+  *   }}}
   * @since 0.1.21
   */
 @js.native
@@ -115,7 +115,7 @@ trait Stats extends IStats[Int, Double]
   * counterparts are of this type.
   *
   * @example
-  * {{{
+  *   {{{
   *   BigIntStats {
   *     dev: 2114n,
   *     ino: 48064969n,
@@ -140,7 +140,7 @@ trait Stats extends IStats[Int, Double]
   *     ctime: Mon, 10 Oct 2011 23:24:11 GMT,
   *     birthtime: Mon, 10 Oct 2011 23:24:11 GMT
   *   }
-  * }}}
+  *   }}}
   * @since 0.1.21
   */
 @js.native
