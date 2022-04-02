@@ -18,7 +18,7 @@ object Dependencies {
       scalaReflect.value,
       "net.exoego"               %%% "scalajs-types-util" % "0.3.0"          % "provided",
       "org.scalatest"            %%% "scalatest"          % scalatestVersion % "test",
-      "com.thoughtworks.enableIf" %% "enableif"           % "1.1.7"
+      "com.thoughtworks.enableIf" %% "enableif"           % "1.1.8"
     )
   )
 
