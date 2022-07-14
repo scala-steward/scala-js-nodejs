@@ -2,7 +2,6 @@ package io.scalajs.nodejs.readline
 
 import com.thoughtworks.enableIf
 import io.scalajs.nodejs.events.IEventEmitter
-import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
 
@@ -91,16 +90,42 @@ trait Interface extends IEventEmitter {
   def getCursorPos(): CursorPos = js.native
 }
 
-@Factory
 trait Key extends js.Object {
   var ctrl: js.UndefOr[Boolean]  = js.undefined
   var meta: js.UndefOr[Boolean]  = js.undefined
   var shift: js.UndefOr[Boolean] = js.undefined
   var name: js.UndefOr[String]   = js.undefined
 }
+object Key {
+  def apply(
+      ctrl: js.UndefOr[Boolean] = js.undefined,
+      meta: js.UndefOr[Boolean] = js.undefined,
+      shift: js.UndefOr[Boolean] = js.undefined,
+      name: js.UndefOr[String] = js.undefined
+  ): Key = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    ctrl.foreach(_v => _obj$.updateDynamic("ctrl")(_v.asInstanceOf[js.Any]))
+    meta.foreach(_v => _obj$.updateDynamic("meta")(_v.asInstanceOf[js.Any]))
+    shift.foreach(_v => _obj$.updateDynamic("shift")(_v.asInstanceOf[js.Any]))
+    name.foreach(_v => _obj$.updateDynamic("name")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[Key]
+  }
+}
 
-@Factory
 trait CursorPos extends js.Object {
   var rows: Int
   var cols: Int
+}
+object CursorPos {
+  def apply(
+      rows: Int,
+      cols: Int
+  ): CursorPos = {
+    val _obj$ = js.Dynamic.literal(
+      "rows" -> rows.asInstanceOf[js.Any],
+      "cols" -> cols.asInstanceOf[js.Any]
+    )
+    _obj$.asInstanceOf[CursorPos]
+  }
 }

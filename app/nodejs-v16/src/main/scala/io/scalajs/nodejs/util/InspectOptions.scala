@@ -1,7 +1,6 @@
 package io.scalajs.nodejs.util
 
 import com.thoughtworks.enableIf
-import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
 import scala.scalajs.js.|
@@ -9,7 +8,6 @@ import scala.scalajs.js.|
 /** @see
   *   [[https://nodejs.org/api/util.html#util_util_inspect_object_options]]
   */
-@Factory
 trait InspectOptions extends js.Object {
 
   /** If true, the object's non-enumerable symbols and properties will be included in the formatted result. Defaults to
@@ -58,4 +56,35 @@ trait InspectOptions extends js.Object {
     */
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
   var maxStringLength: js.UndefOr[Int] = js.undefined
+}
+
+object InspectOptions {
+  def apply(
+      showHidden: js.UndefOr[Boolean] = js.undefined,
+      depth: js.UndefOr[Int] = js.undefined,
+      colors: js.UndefOr[Boolean] = js.undefined,
+      customInspect: js.UndefOr[Boolean] = js.undefined,
+      showProxy: js.UndefOr[Boolean] = js.undefined,
+      maxArrayLength: js.UndefOr[Int] = js.undefined,
+      breakLength: js.UndefOr[Int] = js.undefined,
+      compact: js.UndefOr[Boolean | Int] = js.undefined,
+      sorted: js.UndefOr[Boolean | js.Function2[String, String, Int]] = js.undefined,
+      getters: js.UndefOr[Boolean | String] = js.undefined,
+      maxStringLength: js.UndefOr[Int] = js.undefined
+  ): InspectOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    showHidden.foreach(_v => _obj$.updateDynamic("showHidden")(_v.asInstanceOf[js.Any]))
+    depth.foreach(_v => _obj$.updateDynamic("depth")(_v.asInstanceOf[js.Any]))
+    colors.foreach(_v => _obj$.updateDynamic("colors")(_v.asInstanceOf[js.Any]))
+    customInspect.foreach(_v => _obj$.updateDynamic("customInspect")(_v.asInstanceOf[js.Any]))
+    showProxy.foreach(_v => _obj$.updateDynamic("showProxy")(_v.asInstanceOf[js.Any]))
+    maxArrayLength.foreach(_v => _obj$.updateDynamic("maxArrayLength")(_v.asInstanceOf[js.Any]))
+    breakLength.foreach(_v => _obj$.updateDynamic("breakLength")(_v.asInstanceOf[js.Any]))
+    compact.foreach(_v => _obj$.updateDynamic("compact")(_v.asInstanceOf[js.Any]))
+    sorted.foreach(_v => _obj$.updateDynamic("sorted")(_v.asInstanceOf[js.Any]))
+    getters.foreach(_v => _obj$.updateDynamic("getters")(_v.asInstanceOf[js.Any]))
+    maxStringLength.foreach(_v => _obj$.updateDynamic("maxStringLength")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[InspectOptions]
+  }
 }

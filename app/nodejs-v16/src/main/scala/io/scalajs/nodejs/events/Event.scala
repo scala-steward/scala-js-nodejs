@@ -1,7 +1,5 @@
 package io.scalajs.nodejs.events
 
-import net.exoego.scalajs.types.util.Factory
-
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSGlobal
 
@@ -56,16 +54,38 @@ trait EventTarget extends js.Object {
   ): Unit = js.native
 }
 
-@Factory
 trait AddEventListenerOptions extends js.Object {
   var once: js.UndefOr[Boolean]
   var passive: js.UndefOr[Boolean]
   var capture: js.UndefOr[Boolean]
 }
+object AddEventListenerOptions {
+  def apply(
+      once: js.UndefOr[Boolean] = js.undefined,
+      passive: js.UndefOr[Boolean] = js.undefined,
+      capture: js.UndefOr[Boolean] = js.undefined
+  ): AddEventListenerOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    once.foreach(_v => _obj$.updateDynamic("once")(_v.asInstanceOf[js.Any]))
+    passive.foreach(_v => _obj$.updateDynamic("passive")(_v.asInstanceOf[js.Any]))
+    capture.foreach(_v => _obj$.updateDynamic("capture")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[AddEventListenerOptions]
+  }
+}
 
-@Factory
 trait RemoveEventListenerOptions extends js.Object {
   var capture: js.UndefOr[Boolean]
+}
+object RemoveEventListenerOptions {
+  def apply(
+      capture: js.UndefOr[Boolean] = js.undefined
+  ): RemoveEventListenerOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    capture.foreach(_v => _obj$.updateDynamic("capture")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[RemoveEventListenerOptions]
+  }
 }
 
 @js.native
@@ -91,7 +111,16 @@ trait NodeEventTarget extends EventTarget {
   def removeListener(`type`: String, listener: js.Function1[Event, Any]): EventTarget = js.native
 }
 
-@Factory
 trait AddListenerOptions extends js.Object {
-  var once: js.UndefOr[Boolean]
+  var once: js.UndefOr[Boolean] = js.undefined
+}
+object AddListenerOptions {
+  def apply(
+      once: js.UndefOr[Boolean] = js.undefined
+  ): AddListenerOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    once.foreach(_v => _obj$.updateDynamic("once")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[AddListenerOptions]
+  }
 }

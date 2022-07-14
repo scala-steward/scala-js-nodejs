@@ -5,7 +5,6 @@ import io.scalajs.nodejs.buffer.Buffer
 import io.scalajs.nodejs.stream.{TransformOptions, WritableOptions}
 import io.scalajs.nodejs.v8.SharedArrayBuffer
 import io.scalajs.nodejs.Error
-import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs
 import scala.scalajs.js
@@ -462,38 +461,90 @@ object Constants extends js.Object {
   val defaultCipherList: String     = js.native
 }
 
-@Factory
 trait CreatePrivateKeyOptions extends js.Object {
-  val key: String | Buffer
+  var key: String | Buffer
   var format: js.UndefOr[String]              = js.undefined
   var `type`: js.UndefOr[String]              = js.undefined
   var passphrase: js.UndefOr[String | Buffer] = js.undefined
 }
+object CreatePrivateKeyOptions {
+  def apply(
+      key: String | Buffer,
+      format: js.UndefOr[String] = js.undefined,
+      `type`: js.UndefOr[String] = js.undefined,
+      passphrase: js.UndefOr[String | Buffer] = js.undefined
+  ): CreatePrivateKeyOptions = {
+    val _obj$ = js.Dynamic.literal(
+      "key" -> key.asInstanceOf[js.Any]
+    )
+    format.foreach(_v => _obj$.updateDynamic("format")(_v.asInstanceOf[js.Any]))
+    `type`.foreach(_v => _obj$.updateDynamic("type")(_v.asInstanceOf[js.Any]))
+    passphrase.foreach(_v => _obj$.updateDynamic("passphrase")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[CreatePrivateKeyOptions]
+  }
+}
 
-@Factory
 trait CreatePublicKeyOptions extends js.Object {
-  val key: String | Buffer
-
+  var key: String | Buffer
   var format: js.UndefOr[String] = js.undefined
   var `type`: js.UndefOr[String] = js.undefined
 }
-
-@Factory
-trait GenerateKeyOptions extends js.Object {
-  val length: Int
+object CreatePublicKeyOptions {
+  def apply(
+      key: String | Buffer,
+      format: js.UndefOr[String] = js.undefined,
+      `type`: js.UndefOr[String] = js.undefined
+  ): CreatePublicKeyOptions = {
+    val _obj$ = js.Dynamic.literal(
+      "key" -> key.asInstanceOf[js.Any]
+    )
+    format.foreach(_v => _obj$.updateDynamic("format")(_v.asInstanceOf[js.Any]))
+    `type`.foreach(_v => _obj$.updateDynamic("type")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[CreatePublicKeyOptions]
+  }
 }
 
-@Factory
+trait GenerateKeyOptions extends js.Object {
+  var length: Int
+}
+object GenerateKeyOptions {
+  def apply(
+      length: Int
+  ): GenerateKeyOptions = {
+    val _obj$ = js.Dynamic.literal(
+      "length" -> length.asInstanceOf[js.Any]
+    )
+    _obj$.asInstanceOf[GenerateKeyOptions]
+  }
+}
+
 trait GeneratePrimeOptions extends js.Object {
   var add: js.UndefOr[ArrayBuffer | SharedArrayBuffer | TypedArray[_, _] | Buffer | DataView | js.BigInt] = js.undefined
   var rem: js.UndefOr[ArrayBuffer | SharedArrayBuffer | TypedArray[_, _] | Buffer | DataView | js.BigInt] = js.undefined
   var safe: js.UndefOr[Boolean]                                                                           = js.undefined
   var bigint: js.UndefOr[Boolean]                                                                         = js.undefined
 }
+object GeneratePrimeOptions {
+  def apply(
+      add: js.UndefOr[ArrayBuffer | SharedArrayBuffer | TypedArray[_, _] | Buffer | DataView | js.BigInt] =
+        js.undefined,
+      rem: js.UndefOr[ArrayBuffer | SharedArrayBuffer | TypedArray[_, _] | Buffer | DataView | js.BigInt] =
+        js.undefined,
+      safe: js.UndefOr[Boolean] = js.undefined,
+      bigint: js.UndefOr[Boolean] = js.undefined
+  ): GeneratePrimeOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    add.foreach(_v => _obj$.updateDynamic("add")(_v.asInstanceOf[js.Any]))
+    rem.foreach(_v => _obj$.updateDynamic("rem")(_v.asInstanceOf[js.Any]))
+    safe.foreach(_v => _obj$.updateDynamic("safe")(_v.asInstanceOf[js.Any]))
+    bigint.foreach(_v => _obj$.updateDynamic("bigint")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[GeneratePrimeOptions]
+  }
+}
 
-@Factory
 trait GenerateKeyPairOptions extends js.Object {
-  val modulusLength: Int
+  var modulusLength: Int
   var publicExponent: js.UndefOr[Int]                        = js.undefined
   var divisorLength: js.UndefOr[Int]                         = js.undefined
   var namedCurve: js.UndefOr[String]                         = js.undefined
@@ -501,7 +552,27 @@ trait GenerateKeyPairOptions extends js.Object {
   var privateKeyEncoding: js.UndefOr[KeyObjectExportOptions] = js.undefined
 }
 
-@Factory
+object GenerateKeyPairOptions {
+  def apply(
+      modulusLength: Int,
+      publicExponent: js.UndefOr[Int] = js.undefined,
+      divisorLength: js.UndefOr[Int] = js.undefined,
+      namedCurve: js.UndefOr[String] = js.undefined,
+      publicKeyEncoding: js.UndefOr[KeyObjectExportOptions] = js.undefined,
+      privateKeyEncoding: js.UndefOr[KeyObjectExportOptions] = js.undefined
+  ): GenerateKeyPairOptions = {
+    val _obj$ = js.Dynamic.literal(
+      "modulusLength" -> modulusLength.asInstanceOf[js.Any]
+    )
+    publicExponent.foreach(_v => _obj$.updateDynamic("publicExponent")(_v.asInstanceOf[js.Any]))
+    divisorLength.foreach(_v => _obj$.updateDynamic("divisorLength")(_v.asInstanceOf[js.Any]))
+    namedCurve.foreach(_v => _obj$.updateDynamic("namedCurve")(_v.asInstanceOf[js.Any]))
+    publicKeyEncoding.foreach(_v => _obj$.updateDynamic("publicKeyEncoding")(_v.asInstanceOf[js.Any]))
+    privateKeyEncoding.foreach(_v => _obj$.updateDynamic("privateKeyEncoding")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[GenerateKeyPairOptions]
+  }
+}
+
 trait ScryptOptions extends js.Object {
   var cost: js.UndefOr[Int]            = js.undefined
   var blockSize: js.UndefOr[Int]       = js.undefined
@@ -511,16 +582,58 @@ trait ScryptOptions extends js.Object {
   var p: js.UndefOr[Int]               = js.undefined
   var maxmem: js.UndefOr[Int]          = js.undefined
 }
-
-@js.native
-trait KeyPair extends js.Object {
-  val publicKey: String | Buffer | KeyObject
-  val privateKey: String | Buffer | KeyObject
+object ScryptOptions {
+  def apply(
+      cost: js.UndefOr[Int] = js.undefined,
+      blockSize: js.UndefOr[Int] = js.undefined,
+      parallelization: js.UndefOr[Int] = js.undefined,
+      N: js.UndefOr[Int] = js.undefined,
+      r: js.UndefOr[Int] = js.undefined,
+      p: js.UndefOr[Int] = js.undefined,
+      maxmem: js.UndefOr[Int] = js.undefined
+  ): ScryptOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    cost.foreach(_v => _obj$.updateDynamic("cost")(_v.asInstanceOf[js.Any]))
+    blockSize.foreach(_v => _obj$.updateDynamic("blockSize")(_v.asInstanceOf[js.Any]))
+    parallelization.foreach(_v => _obj$.updateDynamic("parallelization")(_v.asInstanceOf[js.Any]))
+    N.foreach(_v => _obj$.updateDynamic("N")(_v.asInstanceOf[js.Any]))
+    r.foreach(_v => _obj$.updateDynamic("r")(_v.asInstanceOf[js.Any]))
+    p.foreach(_v => _obj$.updateDynamic("p")(_v.asInstanceOf[js.Any]))
+    maxmem.foreach(_v => _obj$.updateDynamic("maxmem")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[ScryptOptions]
+  }
 }
 
-@Factory
+trait KeyPair extends js.Object {
+  var publicKey: String | Buffer | KeyObject
+  var privateKey: String | Buffer | KeyObject
+}
+object KeyPair {
+  def apply(
+      publicKey: String | Buffer | KeyObject,
+      privateKey: String | Buffer | KeyObject
+  ): KeyPair = {
+    val _obj$ = js.Dynamic.literal(
+      "publicKey"  -> publicKey.asInstanceOf[js.Any],
+      "privateKey" -> privateKey.asInstanceOf[js.Any]
+    )
+    _obj$.asInstanceOf[KeyPair]
+  }
+}
+
 trait CheckPrimeOptions extends js.Object {
   var checks: js.UndefOr[Int] = js.undefined
+}
+object CheckPrimeOptions {
+  def apply(
+      checks: js.UndefOr[Int] = js.undefined
+  ): CheckPrimeOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    checks.foreach(_v => _obj$.updateDynamic("checks")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[CheckPrimeOptions]
+  }
 }
 
 trait CipherInfo extends js.Object {
@@ -531,16 +644,56 @@ trait CipherInfo extends js.Object {
   var keyLength: Int
   var mode: String
 }
+object CipherInfo {
+  def apply(
+      name: String,
+      nid: Double,
+      blockSize: Double,
+      ivLength: Int,
+      keyLength: Int,
+      mode: String
+  ): CipherInfo = {
+    val _obj$ = js.Dynamic.literal(
+      "name"      -> name.asInstanceOf[js.Any],
+      "nid"       -> nid.asInstanceOf[js.Any],
+      "blockSize" -> blockSize.asInstanceOf[js.Any],
+      "ivLength"  -> ivLength.asInstanceOf[js.Any],
+      "keyLength" -> keyLength.asInstanceOf[js.Any],
+      "mode"      -> mode.asInstanceOf[js.Any]
+    )
+    _obj$.asInstanceOf[CipherInfo]
+  }
+}
 
-@Factory
 trait GetCipherInfoOptions extends js.Object {
   var keyLength: js.UndefOr[Int] = js.undefined
   var ivLength: js.UndefOr[Int]  = js.undefined
 }
+object GetCipherInfoOptions {
+  def apply(
+      keyLength: js.UndefOr[Int] = js.undefined,
+      ivLength: js.UndefOr[Int] = js.undefined
+  ): GetCipherInfoOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    keyLength.foreach(_v => _obj$.updateDynamic("keyLength")(_v.asInstanceOf[js.Any]))
+    ivLength.foreach(_v => _obj$.updateDynamic("ivLength")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[GetCipherInfoOptions]
+  }
+}
 
-@Factory
 trait RandomUUIDOptions extends js.Object {
   var disableEntropyCache: js.UndefOr[Boolean] = js.undefined
+}
+object RandomUUIDOptions {
+  def apply(
+      disableEntropyCache: js.UndefOr[Boolean] = js.undefined
+  ): RandomUUIDOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    disableEntropyCache.foreach(_v => _obj$.updateDynamic("disableEntropyCache")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[RandomUUIDOptions]
+  }
 }
 
 trait HeapUsed extends js.Object {

@@ -2,7 +2,6 @@ package io.scalajs.nodejs.crypto
 
 import io.scalajs.nodejs.buffer.Buffer
 import io.scalajs.nodejs.stream.{Transform, TransformOptions}
-import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
 
@@ -85,7 +84,20 @@ sealed trait Cipher extends Transform {
   def update(data: BufferLike): Buffer                                            = js.native
 }
 
-@Factory
 trait SetAADOptions extends TransformOptions {
   var plaintextLength: js.UndefOr[Int] = js.undefined
+}
+object SetAADOptions {
+  def apply(
+      transform: js.UndefOr[js.Function] = js.undefined,
+      flush: js.UndefOr[js.Function] = js.undefined,
+      plaintextLength: js.UndefOr[Int] = js.undefined
+  ): SetAADOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    transform.foreach(_v => _obj$.updateDynamic("transform")(_v.asInstanceOf[js.Any]))
+    flush.foreach(_v => _obj$.updateDynamic("flush")(_v.asInstanceOf[js.Any]))
+    plaintextLength.foreach(_v => _obj$.updateDynamic("plaintextLength")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[SetAADOptions]
+  }
 }

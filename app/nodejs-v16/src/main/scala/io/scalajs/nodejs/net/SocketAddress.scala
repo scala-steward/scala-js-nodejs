@@ -1,7 +1,6 @@
 package io.scalajs.nodejs.net
 
 import com.thoughtworks.enableMembersIf
-import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -18,10 +17,25 @@ class SocketAddress(options: SocketAddressOptions) extends js.Object {
   var port: Int       = js.native
 }
 
-@Factory
 trait SocketAddressOptions extends js.Object {
-  var address: js.UndefOr[String]
-  var family: js.UndefOr[String]
-  var flowlabel: js.UndefOr[Int]
-  var port: js.UndefOr[Int]
+  var address: js.UndefOr[String] = js.undefined
+  var family: js.UndefOr[String]  = js.undefined
+  var flowlabel: js.UndefOr[Int]  = js.undefined
+  var port: js.UndefOr[Int]       = js.undefined
+}
+object SocketAddressOptions {
+  def apply(
+      address: js.UndefOr[String] = js.undefined,
+      family: js.UndefOr[String] = js.undefined,
+      flowlabel: js.UndefOr[Int] = js.undefined,
+      port: js.UndefOr[Int] = js.undefined
+  ): SocketAddressOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    address.foreach(_v => _obj$.updateDynamic("address")(_v.asInstanceOf[js.Any]))
+    family.foreach(_v => _obj$.updateDynamic("family")(_v.asInstanceOf[js.Any]))
+    flowlabel.foreach(_v => _obj$.updateDynamic("flowlabel")(_v.asInstanceOf[js.Any]))
+    port.foreach(_v => _obj$.updateDynamic("port")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[SocketAddressOptions]
+  }
 }

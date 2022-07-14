@@ -1,6 +1,5 @@
 package io.scalajs.nodejs.perf_hooks
 
-import _root_.net.exoego.scalajs.types.util.Factory
 import com.thoughtworks.enableIf
 
 import scala.scalajs.js
@@ -40,22 +39,43 @@ class Performance extends js.Object {
 @JSImport("perf_hooks", "performance")
 object Performance extends Performance
 
-@Factory
 trait PerformanceEntry extends js.Object {
-  def duration: Double
-  def name: String
-  def startTime: Double
-  def entryType: String
-  def kind: js.UndefOr[Int]
+  var duration: Double
+  var name: String
+  var startTime: Double
+  var entryType: String
+  var kind: js.UndefOr[Int] = js.undefined
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
-  def flags: js.UndefOr[Int]
+  var flags: js.UndefOr[Int] = js.undefined
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs16)
-  def details: js.Any
+  var details: js.Any
 }
 
-@Factory
+object PerformanceEntry {
+  def apply(
+      duration: Double,
+      name: String,
+      startTime: Double,
+      entryType: String,
+      details: js.Any,
+      kind: js.UndefOr[Int] = js.undefined,
+      flags: js.UndefOr[Int] = js.undefined
+  ): PerformanceEntry = {
+    val _obj$ = js.Dynamic.literal(
+      "duration"  -> duration.asInstanceOf[js.Any],
+      "name"      -> name.asInstanceOf[js.Any],
+      "startTime" -> startTime.asInstanceOf[js.Any],
+      "entryType" -> entryType.asInstanceOf[js.Any],
+      "details"   -> details.asInstanceOf[js.Any]
+    )
+    kind.foreach(_v => _obj$.updateDynamic("kind")(_v.asInstanceOf[js.Any]))
+    flags.foreach(_v => _obj$.updateDynamic("flags")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[PerformanceEntry]
+  }
+}
+
 trait PerformanceNodeTiming extends PerformanceEntry {
   var bootstrapComplete: Double
   var environment: Double
@@ -66,6 +86,43 @@ trait PerformanceNodeTiming extends PerformanceEntry {
 
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
   var idleTime: Double
+}
+
+object PerformanceNodeTiming {
+  def apply(
+      bootstrapComplete: Double,
+      environment: Double,
+      loopExit: Double,
+      loopStart: Double,
+      nodeStart: Double,
+      v8Start: Double,
+      duration: Double,
+      name: String,
+      startTime: Double,
+      entryType: String,
+      details: js.Any,
+      idleTime: Double,
+      kind: js.UndefOr[Int] = js.undefined,
+      flags: js.UndefOr[Int] = js.undefined
+  ): PerformanceNodeTiming = {
+    val _obj$ = js.Dynamic.literal(
+      "bootstrapComplete" -> bootstrapComplete.asInstanceOf[js.Any],
+      "environment"       -> environment.asInstanceOf[js.Any],
+      "loopExit"          -> loopExit.asInstanceOf[js.Any],
+      "loopStart"         -> loopStart.asInstanceOf[js.Any],
+      "nodeStart"         -> nodeStart.asInstanceOf[js.Any],
+      "v8Start"           -> v8Start.asInstanceOf[js.Any],
+      "duration"          -> duration.asInstanceOf[js.Any],
+      "name"              -> name.asInstanceOf[js.Any],
+      "startTime"         -> startTime.asInstanceOf[js.Any],
+      "entryType"         -> entryType.asInstanceOf[js.Any],
+      "details"           -> details.asInstanceOf[js.Any],
+      "idleTime"          -> idleTime.asInstanceOf[js.Any]
+    )
+    kind.foreach(_v => _obj$.updateDynamic("kind")(_v.asInstanceOf[js.Any]))
+    flags.foreach(_v => _obj$.updateDynamic("flags")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[PerformanceNodeTiming]
+  }
 }
 
 @js.native

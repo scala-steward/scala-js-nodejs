@@ -2,12 +2,10 @@ package io.scalajs.nodejs.console_module
 
 import io.scalajs.nodejs.stream.IWritable
 import io.scalajs.nodejs.util.InspectOptions
-import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
 import scala.scalajs.js.|
 
-@Factory
 trait ConsoleOptions extends js.Object {
   var stdout: IWritable
   var stderr: js.UndefOr[IWritable] = js.undefined
@@ -30,4 +28,25 @@ trait ConsoleOptions extends js.Object {
   /** Set group indentation. Default: 2. Node.js v14.2.0.
     */
   var groupIndentation: js.UndefOr[Int] = js.undefined
+}
+
+object ConsoleOptions {
+  def apply(
+      stdout: IWritable,
+      stderr: js.UndefOr[IWritable] = js.undefined,
+      ignoreErrors: js.UndefOr[Boolean] = js.undefined,
+      colorMode: js.UndefOr[Boolean | String] = js.undefined,
+      inspectOptions: js.UndefOr[InspectOptions] = js.undefined,
+      groupIndentation: js.UndefOr[Int] = js.undefined
+  ): ConsoleOptions = {
+    val _obj$ = js.Dynamic.literal(
+      "stdout" -> stdout.asInstanceOf[js.Any]
+    )
+    stderr.foreach(_v => _obj$.updateDynamic("stderr")(_v.asInstanceOf[js.Any]))
+    ignoreErrors.foreach(_v => _obj$.updateDynamic("ignoreErrors")(_v.asInstanceOf[js.Any]))
+    colorMode.foreach(_v => _obj$.updateDynamic("colorMode")(_v.asInstanceOf[js.Any]))
+    inspectOptions.foreach(_v => _obj$.updateDynamic("inspectOptions")(_v.asInstanceOf[js.Any]))
+    groupIndentation.foreach(_v => _obj$.updateDynamic("groupIndentation")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[ConsoleOptions]
+  }
 }

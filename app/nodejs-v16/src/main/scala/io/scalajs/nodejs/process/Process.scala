@@ -3,7 +3,6 @@ package io.scalajs.nodejs.process
 import com.thoughtworks.{enableIf, enableMembersIf}
 import io.scalajs.nodejs.events.IEventEmitter
 import io.scalajs.nodejs.tty.{ReadStream, WriteStream}
-import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSGlobal
@@ -398,9 +397,18 @@ trait ReleaseInfo extends js.Object {
   var lts: js.UndefOr[String]    = js.native
 }
 
-@Factory
 trait TransferOptions extends js.Object {
   var keepOpen: js.UndefOr[Boolean] = js.undefined
+}
+object TransferOptions {
+  def apply(
+      keepOpen: js.UndefOr[Boolean] = js.undefined
+  ): TransferOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    keepOpen.foreach(_v => _obj$.updateDynamic("keepOpen")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[TransferOptions]
+  }
 }
 
 /** Version Information
@@ -432,12 +440,27 @@ trait CpuUsage extends js.Object {
   val system: Int = js.native
 }
 
-@Factory
 trait WarningOptions extends js.Object {
   var `type`: js.UndefOr[String]    = js.undefined
   var code: js.UndefOr[String]      = js.undefined
   var detail: js.UndefOr[String]    = js.undefined
   var ctor: js.UndefOr[js.Function] = js.undefined
+}
+object WarningOptions {
+  def apply(
+      `type`: js.UndefOr[String] = js.undefined,
+      code: js.UndefOr[String] = js.undefined,
+      detail: js.UndefOr[String] = js.undefined,
+      ctor: js.UndefOr[js.Function] = js.undefined
+  ): WarningOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    `type`.foreach(_v => _obj$.updateDynamic("type")(_v.asInstanceOf[js.Any]))
+    code.foreach(_v => _obj$.updateDynamic("code")(_v.asInstanceOf[js.Any]))
+    detail.foreach(_v => _obj$.updateDynamic("detail")(_v.asInstanceOf[js.Any]))
+    ctor.foreach(_v => _obj$.updateDynamic("ctor")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[WarningOptions]
+  }
 }
 
 @js.native

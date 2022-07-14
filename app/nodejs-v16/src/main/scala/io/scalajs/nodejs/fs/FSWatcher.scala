@@ -1,7 +1,6 @@
 package io.scalajs.nodejs
 package fs
 
-import _root_.net.exoego.scalajs.types.util.Factory
 import com.thoughtworks.enableIf
 import io.scalajs.nodejs.events.IEventEmitter
 
@@ -37,7 +36,6 @@ trait FSStatWatcher extends IEventEmitter {
   def unref(): FSStatWatcher = js.native
 }
 
-@Factory
 trait FSWatcherOptions extends js.Object {
 
   /** Specifies the character encoding to be used for the filename passed to the listener (default: "utf8") */
@@ -50,4 +48,19 @@ trait FSWatcherOptions extends js.Object {
     * directory is specified, and only on supported platforms (See Caveats) (default: false)
     */
   var recursive: js.UndefOr[Boolean] = js.undefined
+}
+
+object FSWatcherOptions {
+  def apply(
+      encoding: js.UndefOr[String] = js.undefined,
+      persistent: js.UndefOr[Boolean] = js.undefined,
+      recursive: js.UndefOr[Boolean] = js.undefined
+  ): FSWatcherOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    encoding.foreach(_v => _obj$.updateDynamic("encoding")(_v.asInstanceOf[js.Any]))
+    persistent.foreach(_v => _obj$.updateDynamic("persistent")(_v.asInstanceOf[js.Any]))
+    recursive.foreach(_v => _obj$.updateDynamic("recursive")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[FSWatcherOptions]
+  }
 }

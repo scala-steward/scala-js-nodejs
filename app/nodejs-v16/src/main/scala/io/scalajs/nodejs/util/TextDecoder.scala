@@ -1,7 +1,5 @@
 package io.scalajs.nodejs.util
 
-import net.exoego.scalajs.types.util.Factory
-
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import scala.scalajs.js.typedarray.{ArrayBuffer, ArrayBufferView}
@@ -21,7 +19,16 @@ class TextDecoder() extends js.Object {
   def decode(buffer: ArrayBufferView): String                             = js.native
 }
 
-@Factory
 trait TextDecodeOptions extends js.Object {
-  var stream: js.UndefOr[Boolean]
+  var stream: js.UndefOr[Boolean] = js.undefined
+}
+object TextDecodeOptions {
+  def apply(
+      stream: js.UndefOr[Boolean] = js.undefined
+  ): TextDecodeOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    stream.foreach(_v => _obj$.updateDynamic("stream")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[TextDecodeOptions]
+  }
 }

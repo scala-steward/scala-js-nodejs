@@ -3,7 +3,6 @@ package io.scalajs.nodejs.repl
 import com.thoughtworks.enableIf
 import io.scalajs.nodejs.events.IEventEmitter
 import io.scalajs.nodejs.readline.Interface
-import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
 
@@ -57,8 +56,19 @@ trait REPLServer extends IEventEmitter with Interface {
     js.native
 }
 
-@Factory
 trait DefinedCommand extends js.Object {
   var action: js.Function1[String, Any]
   var help: js.UndefOr[String] = js.undefined
+}
+object DefinedCommand {
+  def apply(
+      action: js.Function1[String, Any],
+      help: js.UndefOr[String] = js.undefined
+  ): DefinedCommand = {
+    val _obj$ = js.Dynamic.literal(
+      "action" -> action.asInstanceOf[js.Any]
+    )
+    help.foreach(_v => _obj$.updateDynamic("help")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[DefinedCommand]
+  }
 }

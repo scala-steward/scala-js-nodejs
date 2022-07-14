@@ -1,7 +1,5 @@
 package io.scalajs.nodejs.perf_hooks
 
-import net.exoego.scalajs.types.util.Factory
-
 import com.thoughtworks.enableIf
 
 import scala.scalajs.js
@@ -22,17 +20,44 @@ trait PerfHooks extends js.Object {
   def performance: Performance = js.native
 }
 
-@Factory
 trait EventLoopUtilizationResult extends js.Object {
   var idle: Double
   var active: Double
   var utilization: Double
 }
-@js.native
+object EventLoopUtilizationResult {
+  def apply(
+      idle: Double,
+      active: Double,
+      utilization: Double
+  ): EventLoopUtilizationResult = {
+    val _obj$ = js.Dynamic.literal(
+      "idle"        -> idle.asInstanceOf[js.Any],
+      "active"      -> active.asInstanceOf[js.Any],
+      "utilization" -> utilization.asInstanceOf[js.Any]
+    )
+    _obj$.asInstanceOf[EventLoopUtilizationResult]
+  }
+}
+
 trait PerformanceResultJson extends js.Object {
-  var nodeTiming: PerformanceNodeTiming                = js.native
-  var timeOrigin: Double                               = js.native
-  var eventLoopUtilization: EventLoopUtilizationResult = js.native
+  var nodeTiming: PerformanceNodeTiming
+  var timeOrigin: Double
+  var eventLoopUtilization: EventLoopUtilizationResult
+}
+object PerformanceResultJson {
+  def apply(
+      nodeTiming: PerformanceNodeTiming,
+      timeOrigin: Double,
+      eventLoopUtilization: EventLoopUtilizationResult
+  ): PerformanceResultJson = {
+    val _obj$ = js.Dynamic.literal(
+      "nodeTiming"           -> nodeTiming.asInstanceOf[js.Any],
+      "timeOrigin"           -> timeOrigin.asInstanceOf[js.Any],
+      "eventLoopUtilization" -> eventLoopUtilization.asInstanceOf[js.Any]
+    )
+    _obj$.asInstanceOf[PerformanceResultJson]
+  }
 }
 
 @js.native

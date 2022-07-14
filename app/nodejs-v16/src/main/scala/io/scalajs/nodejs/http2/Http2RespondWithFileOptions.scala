@@ -1,14 +1,30 @@
 package io.scalajs.nodejs.http2
 
-import net.exoego.scalajs.types.util.Factory
-
 import scala.scalajs.js
 
-@Factory
 trait Http2RespondWithFileOptions extends js.Object {
   var statCheck: js.UndefOr[js.Function]   = js.undefined
   var onError: js.UndefOr[js.Function]     = js.undefined
   var waitForTrailers: js.UndefOr[Boolean] = js.undefined
   var offset: js.UndefOr[Int]              = js.undefined
   var length: js.UndefOr[Int]              = js.undefined
+}
+
+object Http2RespondWithFileOptions {
+  def apply(
+      statCheck: js.UndefOr[js.Function] = js.undefined,
+      onError: js.UndefOr[js.Function] = js.undefined,
+      waitForTrailers: js.UndefOr[Boolean] = js.undefined,
+      offset: js.UndefOr[Int] = js.undefined,
+      length: js.UndefOr[Int] = js.undefined
+  ): Http2RespondWithFileOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    statCheck.foreach(_v => _obj$.updateDynamic("statCheck")(_v.asInstanceOf[js.Any]))
+    onError.foreach(_v => _obj$.updateDynamic("onError")(_v.asInstanceOf[js.Any]))
+    waitForTrailers.foreach(_v => _obj$.updateDynamic("waitForTrailers")(_v.asInstanceOf[js.Any]))
+    offset.foreach(_v => _obj$.updateDynamic("offset")(_v.asInstanceOf[js.Any]))
+    length.foreach(_v => _obj$.updateDynamic("length")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[Http2RespondWithFileOptions]
+  }
 }

@@ -1,7 +1,6 @@
 package io.scalajs.nodejs.vm
 
 import com.thoughtworks.enableIf
-import net.exoego.scalajs.types.util.Factory
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -55,7 +54,6 @@ class Script protected () extends js.Object {
   def runInThisContext(): Script                             = js.native
 }
 
-@Factory
 trait ScriptOptions extends js.Object {
   var filename: js.UndefOr[String]                     = js.undefined
   var lineOffset: js.UndefOr[Int]                      = js.undefined
@@ -64,15 +62,47 @@ trait ScriptOptions extends js.Object {
   var produceCachedData: js.UndefOr[Boolean]           = js.undefined
   var importModuleDynamically: js.UndefOr[js.Function] = js.undefined
 }
+object ScriptOptions {
+  def apply(
+      filename: js.UndefOr[String] = js.undefined,
+      lineOffset: js.UndefOr[Int] = js.undefined,
+      columnOffset: js.UndefOr[Int] = js.undefined,
+      cachedData: js.UndefOr[js.typedarray.Uint8Array | js.typedarray.DataView] = js.undefined,
+      produceCachedData: js.UndefOr[Boolean] = js.undefined,
+      importModuleDynamically: js.UndefOr[js.Function] = js.undefined
+  ): ScriptOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    filename.foreach(_v => _obj$.updateDynamic("filename")(_v.asInstanceOf[js.Any]))
+    lineOffset.foreach(_v => _obj$.updateDynamic("lineOffset")(_v.asInstanceOf[js.Any]))
+    columnOffset.foreach(_v => _obj$.updateDynamic("columnOffset")(_v.asInstanceOf[js.Any]))
+    cachedData.foreach(_v => _obj$.updateDynamic("cachedData")(_v.asInstanceOf[js.Any]))
+    produceCachedData.foreach(_v => _obj$.updateDynamic("produceCachedData")(_v.asInstanceOf[js.Any]))
+    importModuleDynamically.foreach(_v => _obj$.updateDynamic("importModuleDynamically")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[ScriptOptions]
+  }
+}
 
-@Factory
 trait RunInContextOptions extends js.Object {
   var displayErrors: js.UndefOr[Boolean] = js.undefined
   var timeout: js.UndefOr[Int]           = js.undefined
   var breakOnSigint: js.UndefOr[Boolean] = js.undefined
 }
+object RunInContextOptions {
+  def apply(
+      displayErrors: js.UndefOr[Boolean] = js.undefined,
+      timeout: js.UndefOr[Int] = js.undefined,
+      breakOnSigint: js.UndefOr[Boolean] = js.undefined
+  ): RunInContextOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    displayErrors.foreach(_v => _obj$.updateDynamic("displayErrors")(_v.asInstanceOf[js.Any]))
+    timeout.foreach(_v => _obj$.updateDynamic("timeout")(_v.asInstanceOf[js.Any]))
+    breakOnSigint.foreach(_v => _obj$.updateDynamic("breakOnSigint")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[RunInContextOptions]
+  }
+}
 
-@Factory
 trait RunInNewContextOptions extends js.Object {
   var displayErrors: js.UndefOr[Boolean]                = js.undefined
   var timeout: js.UndefOr[Int]                          = js.undefined
@@ -84,9 +114,42 @@ trait RunInNewContextOptions extends js.Object {
   @enableIf(io.scalajs.nodejs.internal.CompilerSwitches.gteNodeJs14)
   var microtaskMode: js.UndefOr[String] = js.undefined
 }
+object RunInNewContextOptions {
+  def apply(
+      displayErrors: js.UndefOr[Boolean] = js.undefined,
+      timeout: js.UndefOr[Int] = js.undefined,
+      breakOnSigint: js.UndefOr[Boolean] = js.undefined,
+      contextName: js.UndefOr[String] = js.undefined,
+      contextOrigin: js.UndefOr[String] = js.undefined,
+      contextCodeGeneration: js.UndefOr[CodeGeneration] = js.undefined,
+      microtaskMode: js.UndefOr[String] = js.undefined
+  ): RunInNewContextOptions = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    displayErrors.foreach(_v => _obj$.updateDynamic("displayErrors")(_v.asInstanceOf[js.Any]))
+    timeout.foreach(_v => _obj$.updateDynamic("timeout")(_v.asInstanceOf[js.Any]))
+    breakOnSigint.foreach(_v => _obj$.updateDynamic("breakOnSigint")(_v.asInstanceOf[js.Any]))
+    contextName.foreach(_v => _obj$.updateDynamic("contextName")(_v.asInstanceOf[js.Any]))
+    contextOrigin.foreach(_v => _obj$.updateDynamic("contextOrigin")(_v.asInstanceOf[js.Any]))
+    contextCodeGeneration.foreach(_v => _obj$.updateDynamic("contextCodeGeneration")(_v.asInstanceOf[js.Any]))
+    microtaskMode.foreach(_v => _obj$.updateDynamic("microtaskMode")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[RunInNewContextOptions]
+  }
+}
 
-@Factory
 trait CodeGeneration extends js.Object {
   var strings: js.UndefOr[Boolean] = js.undefined
   var wasm: js.UndefOr[Boolean]    = js.undefined
+}
+object CodeGeneration {
+  def apply(
+      strings: js.UndefOr[Boolean] = js.undefined,
+      wasm: js.UndefOr[Boolean] = js.undefined
+  ): CodeGeneration = {
+    val _obj$ = js.Dynamic.literal(
+    )
+    strings.foreach(_v => _obj$.updateDynamic("strings")(_v.asInstanceOf[js.Any]))
+    wasm.foreach(_v => _obj$.updateDynamic("wasm")(_v.asInstanceOf[js.Any]))
+    _obj$.asInstanceOf[CodeGeneration]
+  }
 }
