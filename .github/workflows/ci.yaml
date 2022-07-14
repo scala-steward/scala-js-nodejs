@@ -6,7 +6,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        scala: [2.13.7, 2.12.15]
+        scala: [2.13.8, 2.12.16]
         nodejs: [16.3.0, 14.16.0, 12.21.0]
     steps:
       - uses: actions/checkout@v3
