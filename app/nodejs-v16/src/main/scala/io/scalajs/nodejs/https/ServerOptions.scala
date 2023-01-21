@@ -10,7 +10,7 @@ import scala.scalajs.js.|
 trait ServerOptions extends js.Object {
   var ALPNProtocols: js.UndefOr[
     js.Array[String] | js.Array[TypedArray[_, _]] | js.Array[DataView] | TypedArray[_, _] | DataView
-  ]                                           = js.undefined
+  ] = js.undefined
   var enableTrace: js.UndefOr[Boolean]        = js.undefined
   var handshakeTimeout: js.UndefOr[Int]       = js.undefined
   var rejectUnauthorized: js.UndefOr[Boolean] = js.undefined
